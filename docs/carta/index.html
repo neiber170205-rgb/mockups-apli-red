@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Carta · La Cava del Llano</title>
+
+<meta name="description" content="Carta de La Cava del Llano, Sede Centro. Se abre escaneando el código QR de la mesa: muestra los platos disponibles y permite pedir sin llamar al mesero.">
+<meta name="author" content="Danilo Neiber">
+
+<!-- Esta pagina se sirve con el token de la mesa en la direccion. Un buscador
+     que la indexe publicaria esa direccion, y con ella la sesion de una mesa
+     concreta. `noindex` la deja fuera del indice y `nofollow` evita que se
+     sigan sus enlaces internos. -->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Por el mismo motivo: si el comensal sale a un enlace externo, el token no
+     puede viajar dentro de la cabecera Referer. -->
+<meta name="referrer" content="no-referrer">
+
+<!-- El movil pinta su barra superior con este color, asi que la pantalla
+     completa se lee como una sola pieza y no como una web dentro del navegador. -->
+<meta name="theme-color" content="#0f766e">
+
+<link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+<!-- Primer elemento enfocable con el tabulador: deja saltar la navegacion de
+     categorias e ir directo a los platos. -->
+<a class="saltar" href="#carta">Saltar a la carta</a>
+
+<!-- ENCABEZADO · quien es el restaurante y en que mesa esta sentado quien lee.
+     La mesa no es decorativa: es la unica pista de que el QR escaneado es el
+     correcto, y el comensal la puede contrastar con el numero de su mesa. -->
+<header class="cabecera">
+  <div class="marca">
+    <span class="logo" aria-hidden="true">LC</span>
+    <div>
+      <h1 class="restaurante">La Cava del Llano</h1>
+      <p class="sede">Sede Centro</p>
+    </div>
+  </div>
+  <p class="mesa">
+    Mesa 5 · Terraza
+    <span class="estado"><span class="punto" aria-hidden="true"></span>En la mesa</span>
+  </p>
+</header>
+
+<!-- NAVEGACION · las cuatro secciones de la carta. Son enlaces internos de
+     verdad (#ancla), no botones de JavaScript: la pagina funciona y se puede
+     recorrer entera con el guion desactivado. -->
+<nav class="secciones" aria-label="Secciones de la carta">
+  <ul>
+    <li><a href="#para-picar">Para picar</a></li>
+    <li><a href="#platos-fuertes">Platos fuertes</a></li>
+    <li><a href="#bebidas">Bebidas</a></li>
+    <li><a href="#postres">Postres</a></li>
+  </ul>
+</nav>
+
+<main id="carta">
+
+  <section id="para-picar" aria-labelledby="t-para-picar">
+    <h2 id="t-para-picar">Para picar</h2>
+    <ul class="platos">
+
+      <li>
+        <article class="plato">
+          <figure class="foto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <figcaption>Todavía sin foto</figcaption>
+          </figure>
+          <div class="detalle">
+            <h3>Empanada de carne</h3>
+            <p class="descripcion">Masa de maíz, frita al momento. Va con ají de la casa.</p>
+            <p class="precio"><data value="4500">$4.500</data></p>
+          </div>
+          <button type="button" class="anadir">Añadir<span class="sr"> Empanada de carne al pedido</span></button>
+        </article>
+      </li>
+
+      <li>
+        <article class="plato">
+          <figure class="foto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <figcaption>Todavía sin foto</figcaption>
+          </figure>
+          <div class="detalle">
+            <h3>Arepa de huevo</h3>
+            <p class="descripcion">Arepa de maíz con huevo dentro, frita en el momento.</p>
+            <p class="precio"><data value="8500">$8.500</data></p>
+          </div>
+          <button type="button" class="anadir">Añadir<span class="sr"> Arepa de huevo al pedido</span></button>
+        </article>
+      </li>
+
+      <li>
+        <article class="plato">
+          <figure class="foto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <figcaption>Todavía sin foto</figcaption>
+          </figure>
+          <div class="detalle">
+            <h3>Patacón con hogao</h3>
+            <p class="descripcion">Plátano verde aplastado, con hogao de tomate y cebolla.</p>
+            <p class="precio"><data value="14000">$14.000</data></p>
+          </div>
+          <button type="button" class="anadir">Añadir<span class="sr"> Patacón con hogao al pedido</span></button>
+        </article>
+      </li>
+
+    </ul>
+  </section>
+
+  <section id="platos-fuertes" aria-labelledby="t-platos-fuertes">
+    <h2 id="t-platos-fuertes">Platos fuertes</h2>
+    <ul class="platos">
+
+      <li>
+        <article class="plato">
+          <figure class="foto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <figcaption>Todavía sin foto</figcaption>
+          </figure>
+          <div class="detalle">
+            <h3>Bandeja paisa</h3>
+            <p class="descripcion">El plato de la casa. Alcanza de sobra si se comparte entre dos.</p>
+            <p class="precio"><data value="38000">$38.000</data></p>
+          </div>
+          <button type="button" class="anadir">Añadir<span class="sr"> Bandeja paisa al pedido</span></button>
+        </article>
+      </li>
+
+      <li>
+        <article class="plato">
+          <figure class="foto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <figcaption>Todavía sin foto</figcaption>
+          </figure>
+          <div class="detalle">
+            <h3>Sancocho de gallina</h3>
+            <p class="descripcion">Con yuca, plátano y mazorca. Se sirve con arroz aparte.</p>
+            <p class="precio"><data value="32000">$32.000</data></p>
+          </div>
+          <button type="button" class="anadir">Añadir<span class="sr"> Sancocho de gallina al pedido</span></button>
+        </article>
+      </li>
+
+      <!-- AGOTADO · el plato SIGUE EN LA CARTA, y esa es la decision de diseno:
+           esconderlo haria que el comensal lo buscara y preguntara por el. Se
+           muestra, se marca, y el boton se deshabilita de verdad con el
+           atributo `disabled` — no solo pintado de gris. -->
+      <li>
+        <article class="plato agotado">
+          <figure class="foto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <figcaption>Todavía sin foto</figcaption>
+          </figure>
+          <div class="detalle">
+            <h3>Mojarra frita <span class="marca-agotado">Agotado</span></h3>
+            <p class="descripcion">Mojarra entera, frita al momento del pedido.</p>
+            <p class="precio"><data value="42000">$42.000</data></p>
+          </div>
+          <button type="button" class="anadir" disabled>Agotado</button>
+        </article>
+      </li>
+
+      <li>
+        <article class="plato">
+          <figure class="foto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <figcaption>Todavía sin foto</figcaption>
+          </figure>
+          <div class="detalle">
+            <h3>Churrasco 300 g</h3>
+            <p class="descripcion">Lomo de res a la parrilla.</p>
+            <!-- Se le acabo un ingrediente, no el plato: se puede pedir, pero
+                 hay que avisar ANTES de pedirlo y no cuando llegue a la mesa. -->
+            <p class="aviso">Hoy sale sin ensalada</p>
+            <p class="precio"><data value="46000">$46.000</data></p>
+          </div>
+          <button type="button" class="anadir">Añadir<span class="sr"> Churrasco 300 g al pedido</span></button>
+        </article>
+      </li>
+
+    </ul>
+  </section>
+
+  <section id="bebidas" aria-labelledby="t-bebidas">
+    <h2 id="t-bebidas">Bebidas</h2>
+    <ul class="platos">
+
+      <li>
+        <article class="plato">
+          <figure class="foto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <figcaption>Todavía sin foto</figcaption>
+          </figure>
+          <div class="detalle">
+            <h3>Jugo de lulo</h3>
+            <p class="descripcion">Natural, en agua o en leche.</p>
+            <p class="precio"><data value="9000">$9.000</data></p>
+          </div>
+          <button type="button" class="anadir">Añadir<span class="sr"> Jugo de lulo al pedido</span></button>
+        </article>
+      </li>
+
+      <li>
+        <article class="plato">
+          <figure class="foto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <figcaption>Todavía sin foto</figcaption>
+          </figure>
+          <div class="detalle">
+            <h3>Limonada de coco</h3>
+            <p class="descripcion">Batida al momento, bien fría.</p>
+            <p class="precio"><data value="12000">$12.000</data></p>
+          </div>
+          <button type="button" class="anadir">Añadir<span class="sr"> Limonada de coco al pedido</span></button>
+        </article>
+      </li>
+
+      <li>
+        <article class="plato">
+          <figure class="foto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <figcaption>Todavía sin foto</figcaption>
+          </figure>
+          <div class="detalle">
+            <h3>Gaseosa 400 ml</h3>
+            <p class="descripcion">Botella personal.</p>
+            <p class="precio"><data value="5000">$5.000</data></p>
+          </div>
+          <button type="button" class="anadir">Añadir<span class="sr"> Gaseosa 400 ml al pedido</span></button>
+        </article>
+      </li>
+
+    </ul>
+  </section>
+
+  <section id="postres" aria-labelledby="t-postres">
+    <h2 id="t-postres">Postres</h2>
+    <ul class="platos">
+
+      <li>
+        <article class="plato">
+          <figure class="foto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <figcaption>Todavía sin foto</figcaption>
+          </figure>
+          <div class="detalle">
+            <h3>Flan de caramelo</h3>
+            <p class="descripcion">Casero, porción individual.</p>
+            <p class="precio"><data value="10000">$10.000</data></p>
+          </div>
+          <button type="button" class="anadir">Añadir<span class="sr"> Flan de caramelo al pedido</span></button>
+        </article>
+      </li>
+
+      <li>
+        <article class="plato">
+          <figure class="foto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <figcaption>Todavía sin foto</figcaption>
+          </figure>
+          <div class="detalle">
+            <h3>Postre de natas</h3>
+            <p class="descripcion">Tradicional, con uvas pasas.</p>
+            <p class="precio"><data value="11000">$11.000</data></p>
+          </div>
+          <button type="button" class="anadir">Añadir<span class="sr"> Postre de natas al pedido</span></button>
+        </article>
+      </li>
+
+    </ul>
+  </section>
+
+</main>
+
+<!-- Barra fija con el resumen del pedido. Va DESPUES del contenido en el
+     orden del documento —para que el lector de pantalla lea primero la carta—
+     pero se ancla abajo con CSS. -->
+<a class="resumen" href="../bocetos/3-mi-pedido.html" aria-label="Ver mi pedido: 3 platos, 31.000 pesos">
+  <span>Ver mi pedido · 3</span>
+  <strong><data value="31000">$31.000</data></strong>
+</a>
+
+<footer class="pie">
+  <p>Los precios incluyen todos los impuestos. Si algo del pedido no llega como
+     lo esperabas, avísale a quien te atiende antes de pagar.</p>
+  <p class="firma">La Cava del Llano · Sede Centro · Cúcuta</p>
+</footer>
+
+</body>
+</html>
