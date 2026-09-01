@@ -22,9 +22,10 @@ Aplicaciones en Red** (Unidad 2 · FESC · Cúcuta).
 
 ```
 docs/            el sitio que publica GitHub Pages
+  GUIA-01-RESPUESTAS.md  las respuestas de la guía
   index.html       galería agrupada por rol
+  carta/           la primera página construida en HTML5
   bocetos/         una página por pantalla, abre sola en el navegador
-  ENLACES.txt      los 42 enlaces, para pegar en el documento
 mockups/         la fuente de los bocetos
   *.dc.html        cada pantalla como componente de diseño
   canvas.json      posición, agrupación y títulos en el lienzo

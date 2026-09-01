@@ -6,21 +6,30 @@
 
 <title>Carta · La Cava del Llano</title>
 
+<!-- Inerte mientras haya noindex: su unico consumidor seria un buscador. Se
+     mantiene porque si algun dia la carta se publica sin token, ya esta puesta. -->
 <meta name="description" content="Carta de La Cava del Llano, Sede Centro. Se abre escaneando el código QR de la mesa: muestra los platos disponibles y permite pedir sin llamar al mesero.">
 <meta name="author" content="Danilo Neiber">
 
-<!-- Esta pagina se sirve con el token de la mesa en la direccion. Un buscador
-     que la indexe publicaria esa direccion, y con ella la sesion de una mesa
-     concreta. `noindex` la deja fuera del indice y `nofollow` evita que se
-     sigan sus enlaces internos. -->
+<!-- La carta se servira con el token de la mesa en la direccion, y no tiene
+     sentido que salga en un buscador. OJO CON LO QUE ESTO ES: una PETICION que
+     Google y Bing respetan, no un candado. Un scraper puede ignorarla, y para
+     leerla el bot ya se descargo la URL con el token dentro. La defensa de
+     verdad no es esta etiqueta: es que el token caduque al cerrar la cuenta y
+     se canjee por una cookie en la primera peticion. Eso va en el servidor,
+     que todavia no existe. -->
 <meta name="robots" content="noindex, nofollow">
 
-<!-- Por el mismo motivo: si el comensal sale a un enlace externo, el token no
-     puede viajar dentro de la cabecera Referer. -->
+<!-- Impide que la direccion completa viaje en la cabecera Referer al salir a
+     otro dominio. Aporta menos de lo que parece: el valor por defecto de los
+     navegadores de hoy (strict-origin-when-cross-origin) ya manda solo el
+     origen hacia fuera. Se deja porque tambien cubre el salto a otra pagina
+     del mismo sitio, y porque no cuesta nada. -->
 <meta name="referrer" content="no-referrer">
 
-<!-- El movil pinta su barra superior con este color, asi que la pantalla
-     completa se lee como una sola pieza y no como una web dentro del navegador. -->
+<!-- Tine la barra del navegador con el color de la marca. NO es universal:
+     Safari en iOS y Chrome en Android la respetan, Firefox la ignora. Es una
+     mejora si esta y no se echa de menos si falta. -->
 <meta name="theme-color" content="#0f766e">
 
 <link rel="stylesheet" href="estilos.css">
