@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+</helmet>
+<div style="width:390px;height:844px;position:relative;background:var(--canvas);font-size:15px;overflow:hidden">
+
+  <div style="position:absolute;inset:0;background:var(--surface);opacity:.35"></div>
+  <div style="position:absolute;inset:0;background:oklch(24% .018 235/.42)"></div>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;height:640px;display:flex;flex-direction:column;background:var(--surface);border-radius:12px 12px 0 0;box-shadow:0 -16px 32px oklch(24% .018 235/.14)">
+
+    <div style="display:flex;justify-content:center;padding:10px 0 4px">
+      <span style="width:36px;height:4px;border-radius:2px;background:var(--line2)"></span>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 18px 14px;border-bottom:1px solid var(--line)">
+      <div style="display:flex;flex-direction:column;flex-grow:1;gap:3px">
+        <span style="font-size:18px;font-weight:600;line-height:22px">Bandeja paisa</span>
+        <span style="font-family:var(--f-mono);font-size:13px;color:var(--fg3)">FUE-01 · $38.000</span>
+      </div>
+      <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:5px;background:var(--surface3)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--fg2)"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+    </div>
+
+    <div style="flex-grow:1;overflow-y:auto;padding:0 0 8px">
+
+      <div style="display:flex;align-items:center;gap:8px;padding:16px 18px 8px">
+        <span style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg2)">Término de la carne</span>
+        <span style="display:inline-flex;align-items:center;height:18px;padding:0 6px;border-radius:3px;font-size:11px;font-weight:600;background:var(--danger-soft);color:var(--danger);border:1px solid oklch(52% .170 27/.25)">Obligatorio</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1px">
+        <div style="min-height:56px;display:flex;align-items:center;gap:12px;padding:0 18px;border-top:1px solid var(--line)">
+          <span style="width:22px;height:22px;border-radius:50%;border:2px solid var(--line2)"></span>
+          <span style="flex-grow:1;font-size:15px">Tres cuartos</span>
+        </div>
+        <div style="min-height:56px;display:flex;align-items:center;gap:12px;padding:0 18px;border-top:1px solid var(--line);background:var(--accent-soft)">
+          <span style="width:22px;height:22px;border-radius:50%;border:2px solid var(--accent);display:flex;align-items:center;justify-content:center">
+            <span style="width:10px;height:10px;border-radius:50%;background:var(--accent)"></span>
+          </span>
+          <span style="flex-grow:1;font-size:15px;font-weight:500;color:var(--accent)">Bien asada</span>
+        </div>
+        <div style="min-height:56px;display:flex;align-items:center;gap:12px;padding:0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+          <span style="width:22px;height:22px;border-radius:50%;border:2px solid var(--line2)"></span>
+          <span style="flex-grow:1;font-size:15px">Término medio</span>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:8px;padding:20px 18px 8px">
+        <span style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg2)">Adiciones</span>
+        <span style="font-size:12px;color:var(--fg3)">1 de 3</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1px">
+        <div style="min-height:56px;display:flex;align-items:center;gap:12px;padding:0 18px;border-top:1px solid var(--line);background:var(--accent-soft)">
+          <span style="width:22px;height:22px;border-radius:3px;background:var(--accent);display:flex;align-items:center;justify-content:center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="color:var(--accent-fg)"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span style="flex-grow:1;font-size:15px;font-weight:500">Chicharrón extra</span>
+          <span style="font-family:var(--f-mono);font-size:14px;color:var(--accent);font-weight:500">+$6.000</span>
+        </div>
+        <div style="min-height:56px;display:flex;align-items:center;gap:12px;padding:0 18px;border-top:1px solid var(--line)">
+          <span style="width:22px;height:22px;border-radius:3px;border:2px solid var(--line2)"></span>
+          <span style="flex-grow:1;font-size:15px">Aguacate</span>
+          <span style="font-family:var(--f-mono);font-size:14px;color:var(--fg2)">+$4.000</span>
+        </div>
+        <div style="min-height:56px;display:flex;align-items:center;gap:12px;padding:0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+          <span style="width:22px;height:22px;border-radius:3px;border:2px solid var(--line2)"></span>
+          <span style="flex-grow:1;font-size:15px">Sin cebolla</span>
+          <span style="font-family:var(--f-mono);font-size:14px;color:var(--fg3)">Sin costo</span>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:8px;padding:20px 18px 8px">
+        <span style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg2)">Cómo va el plato</span>
+        <span style="font-size:12px;color:var(--fg3)">2 cambios</span>
+      </div>
+      <ul style="margin:0;padding:0;list-style:none">
+        <li style="min-height:56px;display:flex;align-items:center;gap:12px;padding:0 18px;border-top:1px solid var(--line)">
+          <span style="width:22px;height:22px;flex-shrink:0;border-radius:3px;border:2px solid var(--accent);background:var(--accent);display:flex;align-items:center;justify-content:center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="color:var(--accent-fg)"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span style="flex-grow:1;font-size:15px">Frijoles</span>
+          <span style="display:flex;align-items:center;height:44px;padding:0 12px;border-radius:5px;border:1px solid var(--line);font-family:var(--f-mono);font-size:13px;color:var(--fg2)">+$5.000</span>
+        </li>
+        <li style="min-height:56px;display:flex;align-items:center;gap:12px;padding:0 18px;border-top:1px solid var(--line)">
+          <span style="width:22px;height:22px;flex-shrink:0;border-radius:3px;border:2px solid var(--accent);background:var(--accent);display:flex;align-items:center;justify-content:center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="color:var(--accent-fg)"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span style="flex-grow:1;font-size:15px">Arroz</span>
+        </li>
+        <li style="min-height:56px;display:flex;align-items:center;gap:12px;padding:0 18px;border-top:1px solid var(--line)">
+          <span style="width:22px;height:22px;flex-shrink:0;border-radius:3px;border:2px solid var(--warning);display:flex;align-items:center;justify-content:center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="color:var(--warning)"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span style="font-size:15px;font-weight:500">Chicharrón</span>
+          <span style="display:inline-flex;align-items:center;height:20px;padding:0 6px;border-radius:3px;font-size:11px;font-weight:600;background:var(--warning-soft);color:var(--warning);border:1px solid oklch(56% .110 75/.30)">doble</span>
+          <span style="margin-left:auto;display:flex;align-items:center;height:44px;padding:0 12px;border-radius:5px;border:1px solid oklch(56% .110 75/.40);background:var(--warning-soft);font-family:var(--f-mono);font-size:13px;color:var(--warning)">+$6.000</span>
+        </li>
+        <li style="min-height:56px;display:flex;align-items:center;gap:12px;padding:0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+          <span style="width:22px;height:22px;flex-shrink:0;border-radius:3px;border:2px solid var(--danger);display:flex;align-items:center;justify-content:center">
+            <span style="width:12px;height:2px;border-radius:1px;background:var(--danger)"></span>
+          </span>
+          <span style="flex-grow:1;font-size:15px;color:var(--danger);text-decoration:line-through;text-decoration-color:var(--danger)">Cebolla</span>
+        </li>
+      </ul>
+
+      <div style="display:flex;align-items:center;gap:8px;padding:20px 18px 8px">
+        <span style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg2)">Nota para la cocina</span>
+      </div>
+      <div style="padding:0 18px">
+        <div style="min-height:72px;padding:12px 14px;border:1px solid var(--line);border-radius:5px;background:var(--surface2);display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:15px;color:var(--fg)">La señora es alérgica al maní</span>
+          <span style="font-family:var(--f-mono);font-size:11px;color:var(--fg3);align-self:flex-end">29 / 120</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex-shrink:0;display:flex;align-items:center;gap:12px;padding:14px 18px;border-top:1px solid var(--line);background:var(--surface)">
+      <div style="display:flex;align-items:center;background:var(--surface);border:1px solid var(--line2);border-radius:5px;overflow:hidden">
+        <div style="width:48px;height:56px;display:flex;align-items:center;justify-content:center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--fg2)"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <span style="font-family:var(--f-mono);font-size:17px;font-weight:600;min-width:26px;text-align:center">2</span>
+        <div style="width:48px;height:56px;display:flex;align-items:center;justify-content:center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--fg2)"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+      </div>
+      <div style="flex-grow:1;height:56px;display:flex;align-items:center;justify-content:center;border-radius:5px;background:var(--accent);color:var(--accent-fg);border:1px solid var(--accent)">
+        <span style="font-size:16px;font-weight:600">Agregar · $88.000</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

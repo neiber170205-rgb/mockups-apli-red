@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+  <style>
+    .le .fila{ display:flex; align-items:center; gap:13px; padding:13px 15px; border-radius:8px;
+               background:var(--surface); border:1px solid var(--line); }
+    .le .teja{ display:flex; align-items:center; justify-content:center; width:38px; height:38px;
+               flex-shrink:0; border-radius:8px; font-size:14px; font-weight:700; color:#fff; letter-spacing:-.02em; }
+    .le .rol{ display:inline-flex; align-items:center; height:20px; padding:0 7px; border-radius:3px;
+              font-size:11px; font-weight:600; }
+    .le .nit{ font-family:var(--f-mono); font-size:12px; color:var(--fg3); }
+  </style>
+</helmet>
+<div class="le" style="width:1280px;height:820px;display:flex;align-items:center;justify-content:center;background:var(--canvas);font-size:13px">
+
+  <div style="width:560px;display:flex;flex-direction:column;gap:18px">
+
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:6px">
+      <span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:5px;background:var(--accent);color:var(--accent-fg)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v9a3 3 0 006 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h3V2z"/></svg></span>
+      <span style="font-size:15px;font-weight:600;letter-spacing:-.01em">Pedidos</span>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:11px">
+      <span style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--surface3);font-size:12px;font-weight:700;color:var(--fg2)">DN</span>
+      <div style="display:flex;flex-direction:column;flex-grow:1;min-width:0">
+        <span style="font-size:13px;font-weight:500">Danilo Neiber</span>
+        <span style="font-size:12px;color:var(--fg3)">danilo@lacavadelllano.co</span>
+      </div>
+      <span style="font-size:12px;color:var(--accent)">No soy yo</span>
+    </div>
+
+    <div>
+      <h1 style="margin:0;font-size:20px;font-weight:600;line-height:26px">¿En qué sede entras?</h1>
+      <!-- La SEDE, no la compañía: el perímetro, las mesas, las estaciones de
+           cocina y el turno son de un local concreto. Y el ROL cambia de una a
+           otra —aquí administra el Centro y es mesero en Ventura Plaza—, así
+           que verlo antes de entrar es lo que explica por qué la pantalla
+           siguiente se ve distinta. -->
+      <p style="margin:0;padding-top:4px;font-size:13px;color:var(--fg2)">Las mesas, la cocina y el perímetro son de cada local. Tu rol también cambia.</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div class="fila" style="border-color:var(--accent-line);box-shadow:var(--sh-sm)">
+        <span class="teja" style="background:#0F766E">LC</span>
+        <div style="display:flex;flex-direction:column;flex-grow:1;min-width:0;gap:3px">
+          <span style="font-size:14px;font-weight:600;line-height:18px">Sede Centro</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:12px;color:var(--fg3)">La Cava del Llano</span>
+            <span class="rol" style="background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line)">Administrador</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--success)"><span style="width:6px;height:6px;border-radius:50%;background:var(--success)"></span>Turno abierto · 11:00</span></div>
+      </div>
+      <div class="fila" style="">
+        <span class="teja" style="background:#0F766E">LC</span>
+        <div style="display:flex;flex-direction:column;flex-grow:1;min-width:0;gap:3px">
+          <span style="font-size:14px;font-weight:600;line-height:18px">Sede Ventura Plaza</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:12px;color:var(--fg3)">La Cava del Llano</span>
+            <span class="rol" style="background:var(--surface3);color:var(--fg2);border:1px solid var(--line)">Mesero</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--fg3)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Sin abrir turno</span></div>
+      </div>
+      <div class="fila" style="">
+        <span class="teja" style="background:#B45309">FA</span>
+        <div style="display:flex;flex-direction:column;flex-grow:1;min-width:0;gap:3px">
+          <span style="font-size:14px;font-weight:600;line-height:18px">Sede única</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:12px;color:var(--fg3)">El Fogón de la Abuela</span>
+            <span class="rol" style="background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line)">Administrador</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--success)"><span style="width:6px;height:6px;border-radius:50%;background:var(--success)"></span>Turno abierto · 10:30</span></div>
+      </div>
+    </div>
+
+    <!-- ESTA PANTALLA CASI NUNCA APARECE, Y ESO ES LO CORRECTO.
+         Solo sale si el sistema no puede decidir: alguien con varias sedes que
+         entra por primera vez, o cuyo último local dejó de estar disponible.
+         Con una sola sede se entra directo, y quien ya entró antes vuelve a la
+         última que usó. El selector de la barra de arriba la cambia sin salir. -->
+    <div style="display:flex;gap:9px;padding:12px 14px;border-radius:5px;background:var(--surface2);border:1px solid var(--line)">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <span style="font-size:12px;line-height:17px;color:var(--fg2)">Solo se pregunta la primera vez. Después se entra directo a la última sede que usaste, y se cambia desde la barra de arriba sin volver a entrar.</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

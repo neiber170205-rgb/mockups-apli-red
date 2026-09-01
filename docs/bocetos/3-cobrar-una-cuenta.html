@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3 · Cobrar una cuenta &middot; Pedidos</title>
+<meta name="description" content="Boceto de la pantalla «3 · Cobrar una cuenta» del sistema de pedidos para restaurantes.">
+<meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+
+</head>
+<body>
+<div class="barra-guia">
+  <a href="../index.html">&#8592; Todos los bocetos</a>
+  <span class="sep">&middot;</span>
+  <strong>3 · Cobrar una cuenta</strong>
+  <span class="mod">Caja</span>
+</div>
+<style>
+  .barra-guia{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:10px;
+    padding:10px 16px;background:#12263b;color:#e8eef5;font:500 13px/1.4 system-ui,sans-serif}
+  .barra-guia a{color:#9ec5e8;text-decoration:none} .barra-guia a:hover{text-decoration:underline}
+  .barra-guia .sep{opacity:.45} .barra-guia .mod{margin-left:auto;opacity:.65;font-weight:400}
+  body{display:flex;flex-direction:column;align-items:center}
+  body > *:not(.barra-guia):not(style){margin:22px auto;box-shadow:0 6px 28px rgba(10,25,45,.16);
+    border-radius:10px;overflow:hidden;flex-shrink:0}
+</style>
+
+<div style="width:1280px;height:820px;display:flex;flex-direction:column;background:var(--canvas);font-size:13px;overflow:hidden">
+  <div style="flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--line)">
+    <div style="display:flex;align-items:center;gap:12px;padding:0 12px;height:48px">
+
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <span style="display:grid;place-items:center;width:24px;height:24px;border-radius:5px;background:var(--accent);color:var(--accent-fg);font-weight:600;font-size:12px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v9a3 3 0 006 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h3V2z"/></svg>
+        </span>
+        <span style="font-weight:600;letter-spacing:-.01em">Pedidos</span>
+      </div>
+
+      <!-- Selector de sede — mismo disparador que SelectorEmpresa.tsx:46-53:
+           h-9 px-2, borde de línea, dos renglones apretados y el galón. -->
+      <div style="display:flex;align-items:center;gap:8px;height:36px;padding:0 8px;border-radius:5px;border:1px solid var(--line);background:var(--surface);text-align:left;min-width:0">
+        <span style="display:grid;place-items:center;width:20px;height:20px;flex-shrink:0;border-radius:4px;background:#0F766E;color:#fff;font-size:10px;font-weight:700">LC</span>
+        <span style="min-width:0">
+          <span style="display:block;font-size:12px;font-weight:500;color:var(--fg);line-height:1.15">La Cava del Llano</span>
+          <span style="display:block;font-size:11px;color:var(--fg3);line-height:1.15">Sede Centro</span>
+        </span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+
+      <!-- Donde el ERP pone el periodo contable, aquí va el turno: mismo chip
+           (h-7 px-2, success-soft sobre success, punto de 6 px). -->
+      <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 8px;border-radius:5px;background:var(--success-soft);color:var(--success);font-size:12px">
+        <span style="width:6px;height:6px;border-radius:50%;background:currentColor"></span>
+        Turno abierto · 11:00
+      </span>
+
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px;width:224px;height:32px;padding:0 10px;border-radius:5px;border:1px solid var(--line);background:var(--surface2);font-size:12px;color:var(--fg3)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <span style="flex:1;text-align:left">Buscar…</span>
+        <span style="font-size:11px;border:1px solid var(--line);border-radius:3px;padding:1px 4px;background:var(--surface)">Ctrl K</span>
+      </div>
+
+      <div style="display:flex;align-items:center;padding-left:8px;margin-left:4px;border-left:1px solid var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;height:32px;padding:0 6px 0 4px;border-radius:5px;border:1px solid transparent">
+          <span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:50%;background:var(--accent);color:var(--accent-fg);font-size:11px;font-weight:600">AR</span>
+          <span style="font-size:12px;font-weight:500;color:var(--fg2);max-width:112px">Ana Ramírez</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;display:flex">
+    <div style="width:224px;flex-shrink:0;display:flex;flex-direction:column;background:var(--surface);border-right:1px solid var(--line)">
+      <ul style="flex:1;margin:0;padding:8px;list-style:none;display:flex;flex-direction:column;gap:2px">
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg);font-weight:500">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M2 11h20"/><circle cx="17" cy="15" r="1.5"/></svg>
+            <span>Caja</span>
+          </div>
+          <ul style="margin:2px 0 4px;padding:0;list-style:none;display:flex;flex-direction:column;gap:1px">
+            <li><div style="display:flex;align-items:center;height:28px;padding-left:16px;margin-left:12px;border-radius:5px;border-left:1px solid var(--accent);font-size:12px;background:var(--accent-soft);color:var(--accent);font-weight:500">Cuentas por cobrar</div></li>
+            <li><div style="display:flex;align-items:center;height:28px;padding-left:16px;margin-left:12px;border-radius:5px;border-left:1px solid var(--line);font-size:12px;color:var(--fg3)">Turno</div></li>
+          </ul>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 3 4-6"/></svg>
+            <span>Informes</span>
+          </div>
+        </li>
+      </ul>
+      <div style="margin:8px;padding:10px;border-radius:5px;background:var(--surface2);border:1px solid var(--line)">
+        <span style="font-size:12px;line-height:16px;color:var(--fg3)"><b style="font-weight:600;color:var(--fg2)">Cajero.</b> Dos módulos. No ve la carta ni puede tocar precios: los de la cuenta vienen congelados del pedido.</span>
+      </div>
+    </div>
+    <div style="flex:1;min-width:0;min-height:0;overflow:hidden;padding:16px">
+      <div style="display:flex;flex-direction:column;min-height:0;gap:8px;height:100%">
+        <div style="flex-shrink:0;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:1px solid var(--line)">
+          <div style="min-width:0">
+            <span style="display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--fg3)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>Cuentas por cobrar
+            </span>
+            <h1 style="margin:0;font-size:20px;font-weight:600;line-height:26px;letter-spacing:-.01em">Mesa 7 · Terraza <span style="font-family:var(--f-mono);font-size:14px;font-weight:500;color:var(--fg3)">· folio 041</span></h1>
+            <div style="font-size:12px;color:var(--fg3)">4 comensales · atendió Camilo Ortega · abierta hace 1 h 12 min</div>
+          </div>
+          <span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:5px;font-size:12px;background:var(--surface);border:1px solid var(--line);color:var(--fg2)">Volver</span>
+        </div>
+
+        <div style="flex:1;min-height:0;display:grid;grid-template-columns:1fr 380px;gap:16px;padding-top:8px">
+
+          <div style="min-width:0;display:flex;flex-direction:column;gap:10px;overflow:auto">
+            <div style="border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)">
+              <table style="width:100%;border-collapse:collapse">
+                <thead><tr>
+                  <th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:60px">Cant.</th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left">Plato</th>
+                  <th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:110px;text-align:right"><span style="display:flex;justify-content:flex-end;align-items:center;height:100%">Unitario</span></th>
+                  <th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:120px;text-align:right"><span style="display:flex;justify-content:flex-end;align-items:center;height:100%">Total</span></th>
+                  <th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:80px"></th>
+                </tr></thead>
+                <tbody>
+              <tr style="border-bottom:1px solid var(--line)">
+                <td style="padding:8px 12px;vertical-align:top;font-family:var(--f-mono);font-size:13px;color:var(--fg2)">3×</td>
+                <td style="padding:8px 12px;vertical-align:top">
+                  <span style="font-size:13px;font-weight:500">Bandeja paisa</span>
+                  <div style="padding-top:2px;font-size:11px;color:var(--fg3)">Sin aguacate · sin cebolla</div>
+                </td>
+                <td style="padding:8px 12px;vertical-align:top;text-align:right"><span style="font-size:12px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--fg2)">38.000</span></td>
+                <td style="padding:8px 12px;vertical-align:top;text-align:right"><span style="font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg)">114.000</span></td>
+                <td style="padding:8px 12px;vertical-align:top;text-align:center"><span style="font-size:12px;color:var(--fg3)">Anular</span></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--line)">
+                <td style="padding:8px 12px;vertical-align:top;font-family:var(--f-mono);font-size:13px;color:var(--fg2)">1×</td>
+                <td style="padding:8px 12px;vertical-align:top">
+                  <span style="font-size:13px;font-weight:500">Churrasco 300 g</span>
+                  <div style="padding-top:2px;font-size:11px;color:var(--fg3)">Término medio</div>
+                </td>
+                <td style="padding:8px 12px;vertical-align:top;text-align:right"><span style="font-size:12px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--fg2)">46.000</span></td>
+                <td style="padding:8px 12px;vertical-align:top;text-align:right"><span style="font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg)">46.000</span></td>
+                <td style="padding:8px 12px;vertical-align:top;text-align:center"><span style="font-size:12px;color:var(--fg3)">Anular</span></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--line)">
+                <td style="padding:8px 12px;vertical-align:top;font-family:var(--f-mono);font-size:13px;color:var(--fg2)">3×</td>
+                <td style="padding:8px 12px;vertical-align:top">
+                  <span style="font-size:13px;font-weight:500">Limonada de coco</span>
+                  
+                </td>
+                <td style="padding:8px 12px;vertical-align:top;text-align:right"><span style="font-size:12px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--fg2)">12.000</span></td>
+                <td style="padding:8px 12px;vertical-align:top;text-align:right"><span style="font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg)">36.000</span></td>
+                <td style="padding:8px 12px;vertical-align:top;text-align:center"><span style="font-size:12px;color:var(--fg3)">Anular</span></td>
+              </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- EL PRECIO NO SALE DE LA CARTA, SALE DEL PEDIDO. Es donde el
+                 congelado deja de ser una decisión bonita del modelo y se
+                 vuelve dinero: si el administrador subió la bandeja a las 4,
+                 esta cuenta abierta a las 2 sigue cobrando la de las 2. -->
+            <div style="display:flex;gap:9px;padding:10px 12px;border-radius:5px;background:var(--surface2);border:1px solid var(--line)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0;margin-top:1px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              <span style="font-size:12px;line-height:17px;color:var(--fg2)">Estos precios son los que tenía la carta cuando se tomó el pedido, no los de ahora. Aquí no se pueden cambiar.</span>
+            </div>
+
+            <div style="display:flex;gap:9px;padding:6px 8px;border-radius:5px;background:var(--warning-soft);border:1px solid oklch(56% .110 75/.28)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--warning);flex-shrink:0;margin-top:1px"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M21.7 18l-8-14a2 2 0 00-3.5 0l-8 14A2 2 0 004 21h16a2 2 0 001.7-3z"/></svg>
+              <span style="font-size:12px;line-height:17px;color:var(--fg2)"><b style="font-weight:600;color:var(--fg)">Anular una línea pide dos personas.</b> Quien anula y quien autoriza, con PIN. Lo exige la base de datos, no una norma interna: es el punto exacto donde se cobra un plato y luego se borra.</span>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+
+            <div style="display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:8px;background:var(--surface);border:1px solid var(--line)">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
+              <span style="font-size:12px;;color:var(--fg2)">Subtotal</span>
+              <span style="font-size:13px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--fg2)">196.000</span>
+            </div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
+              <span style="font-size:12px;;color:var(--fg2)">Descuento</span>
+              <span style="font-size:13px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--fg2)">0</span>
+            </div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
+              <span style="font-size:12px;;color:var(--fg2)">Propina (sugerida 10 %)</span>
+              <span style="display:inline-flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;height:26px;padding:0 8px;border-radius:4px;background:var(--surface);border:1px solid var(--line);font-size:13px;font-variant-numeric:tabular-nums">19.600</span><span style="font-size:12px;color:var(--fg3);text-decoration:underline;text-underline-offset:2px">Quitar</span></span>
+            </div>
+              <div style="height:1px;background:var(--line);margin:2px 0"></div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
+              <span style="font-size:14px;font-weight:600;color:var(--fg)">Total</span>
+              <span style="font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--fg2)">215.600</span>
+            </div>
+            </div>
+
+            <!-- PAGO MIXTO: el caso normal, y el que un solo número de
+                 «pagado» no puede representar. Por eso cada cobro es una fila. -->
+            <div style="display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:8px;background:var(--surface);border:1px solid var(--line)">
+              <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg3)">Ya cobrado</span>
+              <div style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:5px;background:var(--success-soft);border:1px solid oklch(50% .120 155/.25)">
+                <span style="color:var(--success)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>
+                <span style="flex:1;font-size:12px;color:var(--fg2)">Tarjeta · voucher 4417</span>
+                <span style="font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--success)">120.000</span><span style="margin-left:10px;font-size:12px;color:var(--fg3);text-decoration:underline;text-underline-offset:2px;white-space:nowrap">Anular</span>
+              </div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px">
+              <span style="font-size:12px;;color:var(--fg2)">Falta por pagar</span>
+              <span style="font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--danger)">95.600</span>
+            </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:8px;background:var(--surface);border:1px solid var(--line)">
+              <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg3)">Cómo paga el resto</span>
+              <div style="display:flex;gap:8px"><span style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:38px;border-radius:5px;font-size:13px;background:var(--accent-soft);border:1px solid var(--accent);color:var(--accent);font-weight:600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg>Efectivo</span><span style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:38px;border-radius:5px;font-size:13px;background:var(--surface);border:1px solid var(--line);color:var(--fg2)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Tarjeta</span><span style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:38px;border-radius:5px;font-size:13px;background:var(--surface);border:1px solid var(--line);color:var(--fg2)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M4 9h16l-4-4"/><path d="M20 15H4l4 4"/></svg>Transfer.</span></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                <div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2)">Monto</span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;font-family:var(--f-mono);">95.600</div></div>
+                <div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2)">Recibido</span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;font-family:var(--f-mono);">100.000</div></div>
+                <div style="display:flex;flex-direction:column;gap:5px;opacity:.55"><span style="font-size:12px;font-weight:500;color:var(--fg2)">Referencia · voucher</span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface2);border:1px dashed var(--line);font-size:13px;color:var(--fg3)">Con tarjeta o transferencia</div></div>
+              </div>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;padding:9px 11px;border-radius:5px;background:var(--accent-soft);border:1px solid var(--accent-line)">
+                <span style="font-size:13px;font-weight:600;color:var(--accent)">Cambio</span>
+                <span style="font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--accent)">4.400</span>
+              </div>
+              <div style="height:44px;display:flex;align-items:center;justify-content:center;border-radius:5px;background:var(--accent);border:1px solid var(--accent);font-size:14px;font-weight:600;color:var(--accent-fg)">Cobrar y cerrar la cuenta</div>
+              <span style="font-size:11px;line-height:15px;color:var(--fg3);text-align:center">Al cerrarla, la mesa 7 vuelve a salir libre en el salón.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

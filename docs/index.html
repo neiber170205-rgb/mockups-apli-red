@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bocetos &middot; Sistema de pedidos para restaurantes</title>
+<meta name="description" content="Bocetos de las pantallas del sistema de pedidos para restaurantes: comensal, mesero, cocina, caja, acceso y administración.">
+<meta name="author" content="Danilo Neiber &middot; FESC">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root{--bg:#f6f8fa;--card:#fff;--line:#dde3ea;--fg:#16232f;--fg2:#5a6b7c;--acc:#12263b;--acc2:#2f6ea8}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--fg)}
+  header{background:var(--acc);color:#eaf1f8;padding:34px 24px 30px}
+  .w{max-width:1080px;margin:0 auto}
+  header h1{margin:0 0 6px;font-size:26px;letter-spacing:-.02em}
+  header p{margin:0;opacity:.8;font-size:14px;line-height:1.55;max-width:70ch}
+  main{padding:8px 24px 56px}
+  section{margin-top:34px}
+  h2{font-size:17px;margin:0 0 3px;display:flex;align-items:center;gap:9px}
+  h2 .c{font-size:11px;font-weight:600;background:var(--acc2);color:#fff;border-radius:20px;padding:2px 8px}
+  .d{margin:0 0 14px;color:var(--fg2);font-size:13px;line-height:1.5}
+  .rej{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:10px}
+  .b{display:flex;align-items:center;min-height:56px;padding:12px 14px;background:var(--card);
+     border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--fg);
+     font-size:13.5px;font-weight:500;line-height:1.35;transition:.12s}
+  .b:hover{border-color:var(--acc2);box-shadow:0 3px 12px rgba(20,45,75,.10);transform:translateY(-1px)}
+  .nota{margin-top:34px;padding:15px 17px;background:#fff8e6;border:1px solid #f0dca8;border-radius:8px;font-size:13px;line-height:1.6}
+  .nota ul{margin:8px 0 0;padding-left:20px}
+  footer{border-top:1px solid var(--line);padding:22px 24px;color:var(--fg2);font-size:12.5px}
+</style>
+</head>
+<body>
+<header><div class="w">
+  <h1>Sistema de pedidos para restaurantes</h1>
+  <p>Bocetos de las 42 pantallas, agrupadas por quién las usa.
+     Cada boceto abre a tamaño real: es el mismo diseño del que sale la primera página construida en HTML.</p>
+</div></header>
+<main><div class="w">
+    <section id="comensal">
+      <h2>Comensal <span class="c">4</span></h2>
+      <p class="d">Lo que ve el cliente en su celular al escanear el QR de la mesa. No inicia sesión.</p>
+      <div class="rej">
+        <a class="b" href="bocetos/1-carta.html"><span class="n">1 · Carta</span></a>
+        <a class="b" href="bocetos/2-que-lleva-el-plato.html"><span class="n">2 · Qué lleva el plato</span></a>
+        <a class="b" href="bocetos/3-mi-pedido.html"><span class="n">3 · Mi pedido</span></a>
+        <a class="b" href="bocetos/4-seguimiento.html"><span class="n">4 · Seguimiento</span></a>
+      </div>
+    </section>
+    <section id="mesero">
+      <h2>Mesero <span class="c">6</span></h2>
+      <p class="d">Teléfono personal del mesero, con PIN y geocerca.</p>
+      <div class="rej">
+        <a class="b" href="bocetos/1-salon.html"><span class="n">1 · Salón</span></a>
+        <a class="b" href="bocetos/3-que-lleva-el-plato.html"><span class="n">3 · Qué lleva el plato</span></a>
+        <a class="b" href="bocetos/4-modificadores.html"><span class="n">4 · Modificadores</span></a>
+        <a class="b" href="bocetos/5-confirmar-envio.html"><span class="n">5 · Confirmar envío</span></a>
+        <a class="b" href="bocetos/6-pedidos-por-aprobar.html"><span class="n">6 · Pedidos por aprobar</span></a>
+        <a class="b" href="bocetos/7-fallos-de-ubicacion.html"><span class="n">7 · Fallos de ubicación</span></a>
+      </div>
+    </section>
+    <section id="cocina">
+      <h2>Cocina <span class="c">7</span></h2>
+      <p class="d">Pantalla táctil compartida en la cocina. Fondo oscuro, se lee a un metro.</p>
+      <div class="rej">
+        <a class="b" href="bocetos/1a-cola-scroll-en-la-tarjeta.html"><span class="n">1a · Cola · scroll en la tarjeta</span></a>
+        <a class="b" href="bocetos/1b-cola-tarjeta-con-ficha.html"><span class="n">1b · Cola · tarjeta con ficha</span></a>
+        <a class="b" href="bocetos/2-ficha-del-pedido.html"><span class="n">2 · Ficha del pedido</span></a>
+        <a class="b" href="bocetos/3-asignar-cocineros.html"><span class="n">3 · Asignar cocineros</span></a>
+        <a class="b" href="bocetos/4a-se-acabo-el-plato.html"><span class="n">4a · Se acabó el plato</span></a>
+        <a class="b" href="bocetos/4b-se-acabo-un-ingrediente.html"><span class="n">4b · Se acabó un ingrediente</span></a>
+        <a class="b" href="bocetos/4c-se-acabo-el-plato-carta-grande.html"><span class="n">4c · Se acabó el plato · carta grande</span></a>
+      </div>
+    </section>
+    <section id="caja">
+      <h2>Caja <span class="c">4</span></h2>
+      <p class="d">El turno de caja: sin turno abierto no se puede abrir ni una mesa.</p>
+      <div class="rej">
+        <a class="b" href="bocetos/1-abrir-el-turno.html"><span class="n">1 · Abrir el turno</span></a>
+        <a class="b" href="bocetos/2-cuentas-por-cobrar.html"><span class="n">2 · Cuentas por cobrar</span></a>
+        <a class="b" href="bocetos/3-cobrar-una-cuenta.html"><span class="n">3 · Cobrar una cuenta</span></a>
+        <a class="b" href="bocetos/4-cerrar-el-turno.html"><span class="n">4 · Cerrar el turno</span></a>
+      </div>
+    </section>
+    <section id="acceso">
+      <h2>Acceso <span class="c">3</span></h2>
+      <p class="d">Entrada al sistema: producto → sede → persona.</p>
+      <div class="rej">
+        <a class="b" href="bocetos/1-entrar.html"><span class="n">1 · Entrar</span></a>
+        <a class="b" href="bocetos/2-elegir-sede.html"><span class="n">2 · Elegir sede</span></a>
+        <a class="b" href="bocetos/3-pin-del-mesero.html"><span class="n">3 · PIN del mesero</span></a>
+      </div>
+    </section>
+    <section id="administracion">
+      <h2>Administración <span class="c">18</span></h2>
+      <p class="d">Listados y fichas, en pares. Mismo patrón de tabla en todos.</p>
+      <div class="rej">
+        <a class="b" href="bocetos/1-panel.html"><span class="n">1 · Panel</span></a>
+        <a class="b" href="bocetos/2-salon-zonas.html"><span class="n">2 · Salón › Zonas</span></a>
+        <a class="b" href="bocetos/3-salon-ficha-de-zona.html"><span class="n">3 · Salón › Ficha de zona</span></a>
+        <a class="b" href="bocetos/4-salon-mesas-y-qr.html"><span class="n">4 · Salón › Mesas y QR</span></a>
+        <a class="b" href="bocetos/5-carta-platos.html"><span class="n">5 · Carta › Platos</span></a>
+        <a class="b" href="bocetos/6-carta-ficha-de-plato.html"><span class="n">6 · Carta › Ficha de plato</span></a>
+        <a class="b" href="bocetos/7-carta-ingredientes.html"><span class="n">7 · Carta › Ingredientes</span></a>
+        <a class="b" href="bocetos/8-carta-ficha-de-ingrediente.html"><span class="n">8 · Carta › Ficha de ingrediente</span></a>
+        <a class="b" href="bocetos/9-carta-categorias.html"><span class="n">9 · Carta › Categorías</span></a>
+        <a class="b" href="bocetos/10-carta-ficha-de-categoria.html"><span class="n">10 · Carta › Ficha de categoría</span></a>
+        <a class="b" href="bocetos/11-cocina-estaciones.html"><span class="n">11 · Cocina › Estaciones</span></a>
+        <a class="b" href="bocetos/12-cocina-ficha-de-estacion.html"><span class="n">12 · Cocina › Ficha de estación</span></a>
+        <a class="b" href="bocetos/13-cocina-cocineros.html"><span class="n">13 · Cocina › Cocineros</span></a>
+        <a class="b" href="bocetos/14-cocina-ficha-de-cocinero.html"><span class="n">14 · Cocina › Ficha de cocinero</span></a>
+        <a class="b" href="bocetos/15-personas-usuarios.html"><span class="n">15 · Personas › Usuarios</span></a>
+        <a class="b" href="bocetos/16-personas-ficha-de-usuario.html"><span class="n">16 · Personas › Ficha de usuario</span></a>
+        <a class="b" href="bocetos/17-personas-permisos-del-rol.html"><span class="n">17 · Personas › Permisos del rol</span></a>
+        <a class="b" href="bocetos/17-sede-perimetro.html"><span class="n">17 · Sede › Perímetro</span></a>
+      </div>
+    </section>
+  <div class="nota"><strong>Una pantalla no está aquí:</strong><ul><li><strong>2 · Toma de pedido</strong> — prototipo con lógica; solo funciona dentro del lienzo de diseño.</li></ul></div>
+</div></main>
+<footer><div class="w">Desarrollo Básico de Aplicaciones en Red &middot; Unidad 2 &middot; FESC &middot; Cúcuta</div></footer>
+</body>
+</html>

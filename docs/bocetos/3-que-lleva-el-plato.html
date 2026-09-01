@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3 · Qué lleva el plato &middot; Pedidos</title>
+<meta name="description" content="Boceto de la pantalla «3 · Qué lleva el plato» del sistema de pedidos para restaurantes.">
+<meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+
+</head>
+<body>
+<div class="barra-guia">
+  <a href="../index.html">&#8592; Todos los bocetos</a>
+  <span class="sep">&middot;</span>
+  <strong>3 · Qué lleva el plato</strong>
+  <span class="mod">Mesero</span>
+</div>
+<style>
+  .barra-guia{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:10px;
+    padding:10px 16px;background:#12263b;color:#e8eef5;font:500 13px/1.4 system-ui,sans-serif}
+  .barra-guia a{color:#9ec5e8;text-decoration:none} .barra-guia a:hover{text-decoration:underline}
+  .barra-guia .sep{opacity:.45} .barra-guia .mod{margin-left:auto;opacity:.65;font-weight:400}
+  body{display:flex;flex-direction:column;align-items:center}
+  body > *:not(.barra-guia):not(style){margin:22px auto;box-shadow:0 6px 28px rgba(10,25,45,.16);
+    border-radius:10px;overflow:hidden;flex-shrink:0}
+</style>
+
+<div style="position:relative;width:390px;height:844px;overflow:hidden;background:var(--canvas);font-size:16px">
+
+  <!-- La toma de pedido sigue detrás: mirar un plato no es cambiar de tarea. -->
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;filter:blur(2px);opacity:.9">
+    <div style="height:56px;flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--line)"></div>
+    <div style="flex-grow:1;display:flex">
+      <div style="width:84px;flex-shrink:0;background:var(--surface2);border-right:1px solid var(--line)"></div>
+      <div style="flex-grow:1;background:var(--surface)">
+        <div style="height:64px;border-bottom:1px solid var(--line)"></div>
+        <div style="height:64px;border-bottom:1px solid var(--line);background:var(--accent-soft)"></div>
+        <div style="height:64px;border-bottom:1px solid var(--line)"></div>
+        <div style="height:64px;border-bottom:1px solid var(--line)"></div>
+      </div>
+    </div>
+    <div style="height:200px;flex-shrink:0;background:var(--surface);border-top:1px solid var(--line2)"></div>
+  </div>
+
+  <div style="position:absolute;inset:0;background:oklch(24% .018 235/.40)"></div>
+
+  <div style="position:absolute;inset:0;display:flex;align-items:flex-end">
+    <div style="width:100%;max-height:85%;display:flex;flex-direction:column;overflow:hidden;border-radius:12px 12px 0 0;background:var(--surface);box-shadow:0 -16px 32px oklch(24% .018 235/.14)">
+
+      <div style="flex-shrink:0;display:flex;justify-content:center;padding:10px 0 4px">
+        <span style="width:36px;height:4px;border-radius:2px;background:var(--line2)"></span>
+      </div>
+
+      <div style="flex-grow:1;min-height:0;overflow-y:auto">
+        <!-- Marco dibujado y dicho en voz alta. Un marcador honesto es mejor
+             que un intento malo de la cosa real, y sobre todo mejor que un
+             hueco en blanco, que se lee como que la pantalla se rompió. -->
+        <div style="width:100%;aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--surface3)">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="color:var(--fg3)"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span style="font-size:13px;color:var(--fg3)">Todavía sin foto</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px;padding:16px 18px 20px">
+          <div style="display:flex;align-items:flex-start;gap:12px">
+            <span style="flex-grow:1;font-size:20px;font-weight:600;line-height:26px;text-wrap:balance">Bandeja paisa</span>
+            <span style="flex-shrink:0;padding-top:3px;font-family:var(--f-mono);font-size:16px;font-weight:600;white-space:nowrap">$38.000</span>
+          </div>
+
+          <span style="font-size:14px;line-height:22px;color:var(--fg2)">El plato de la casa. Alcanza de sobra si se comparte entre dos.</span>
+
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--fg3)">Lleva</span>
+            <!-- Etiquetas y no una lista con viñetas: son diez partes, y diez
+                 renglones ocupan media pantalla para decir lo mismo. -->
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+                <span style="border-radius:3px;padding:4px 10px;font-size:13px;color:var(--fg2);background:var(--surface2);border:1px solid var(--line)">Frijoles</span>
+                <span style="border-radius:3px;padding:4px 10px;font-size:13px;color:var(--fg2);background:var(--surface2);border:1px solid var(--line)">Arroz</span>
+                <span style="border-radius:3px;padding:4px 10px;font-size:13px;color:var(--fg2);background:var(--surface2);border:1px solid var(--line)">Chicharrón</span>
+                <span style="border-radius:3px;padding:4px 10px;font-size:13px;color:var(--fg2);background:var(--surface2);border:1px solid var(--line)">Chorizo</span>
+                <span style="border-radius:3px;padding:4px 10px;font-size:13px;color:var(--fg2);background:var(--surface2);border:1px solid var(--line)">Carne molida</span>
+                <span style="border-radius:3px;padding:4px 10px;font-size:13px;color:var(--fg2);background:var(--surface2);border:1px solid var(--line)">Huevo frito</span>
+                <span style="border-radius:3px;padding:4px 10px;font-size:13px;color:var(--fg2);background:var(--surface2);border:1px solid var(--line)">Tajadas de plátano</span>
+                <span style="border-radius:3px;padding:4px 10px;font-size:13px;color:var(--fg2);background:var(--surface2);border:1px solid var(--line)">Arepa</span>
+                <span style="border-radius:3px;padding:4px 10px;font-size:13px;color:var(--fg2);background:var(--surface2);border:1px solid var(--line)">Aguacate</span>
+                <span style="border-radius:3px;padding:4px 10px;font-size:13px;color:var(--warning);background:var(--warning-soft);border:1px solid oklch(56% .110 75/.28);text-decoration:line-through;text-decoration-color:var(--warning)">Cebolla</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:7px;padding:6px 8px;border-radius:5px;background:var(--warning-soft);border:1px solid oklch(56% .110 75/.28)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--warning);flex-shrink:0"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M21.7 18l-8-14a2 2 0 00-3.5 0l-8 14A2 2 0 004 21h16a2 2 0 001.7-3z"/></svg>
+              <span style="font-size:13px;font-weight:500;color:var(--warning)">Hoy sale sin cebolla. Se acabó en la cocina.</span>
+            </div>
+          </div>
+
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--fg3)">Se elige al pedirlo</span>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <span style="font-size:14px;font-weight:500;line-height:19px">Término de la carne</span>
+                <span style="font-size:13px;line-height:18px;color:var(--fg3)">Tres cuartos · Bien asada · Término medio</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <span style="font-size:14px;font-weight:500;line-height:19px">Adiciones</span>
+                <span style="font-size:13px;line-height:18px;color:var(--fg3)">Chicharrón extra · Aguacate · Sin cebolla</span>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div style="flex-shrink:0;display:flex;gap:10px;padding:12px 18px 16px;border-top:1px solid var(--line)">
+        <div style="height:52px;flex-shrink:0;display:flex;align-items:center;gap:6px;padding:0 16px;border-radius:5px;font-size:14px;font-weight:500;color:var(--fg2);border:1px solid var(--line)">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          Cerrar
+        </div>
+        <div style="height:52px;flex-grow:1;display:flex;align-items:center;justify-content:center;border-radius:5px;font-size:16px;font-weight:600;background:var(--accent);color:var(--accent-fg);border:1px solid var(--accent)">Agregar al pedido</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

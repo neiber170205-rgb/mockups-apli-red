@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+  <style>
+    /* Densidad RELAJADA (control de 36 px), no la normal de 32.
+       El ERP deja elegir densidad, pero la preferencia vive en la cuenta — y
+       aquí todavía no hay cuenta. Entrar es lo único que se hace una vez al
+       día: apretarlo a 32 px ahorra cuatro píxeles en la única pantalla donde
+       no sobra ninguno. */
+    .lg .campo{ display:flex; flex-direction:column; gap:5px; }
+    .lg .campo>label{ font-size:12px; font-weight:500; color:var(--fg2); }
+    .lg .entrada{ display:flex; align-items:center; height:36px; padding:0 10px; border-radius:5px;
+                  background:var(--surface); border:1px solid var(--line2); font-size:13px; }
+    .lg .entrada.foco{ border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
+  </style>
+</helmet>
+<div class="lg" style="width:1280px;height:820px;display:flex;align-items:center;justify-content:center;background:var(--canvas);font-size:13px">
+
+  <div style="width:400px;display:flex;flex-direction:column;gap:20px">
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+      <!-- Marca de posición: el ERP no tiene nombre de producto todavía
+           (index.html dice solo «ERP»). Se deja marcado en vez de inventarlo. -->
+      <div style="display:flex;align-items:center;gap:9px">
+        <svg width="26" height="26" viewBox="0 0 24 24" role="img" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" fill="var(--accent)"/>
+          <path d="M8 6v5a2.2 2.2 0 004.4 0V6" stroke="var(--accent-fg)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <path d="M10.2 6v12" stroke="var(--accent-fg)" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M17 6c-1.1 1.4-1.5 2.8-1.5 5v2.5H18V6z" stroke="var(--accent-fg)" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+          <path d="M16.8 13.5V18" stroke="var(--accent-fg)" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span style="font-size:19px;font-weight:600;letter-spacing:-.01em">Pedidos</span>
+      </div>
+      <span style="font-size:13px;color:var(--fg3)">Entra con la cuenta que te dio tu restaurante</span>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:16px;padding:24px;border-radius:8px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--sh-md)">
+
+      <div class="campo">
+        <label>Correo</label>
+        <div class="entrada" style="color:var(--fg)">danilo@lacavadelllano.co</div>
+      </div>
+
+      <div class="campo">
+        <label>Contraseña</label>
+        <div class="entrada foco" style="justify-content:space-between">
+          <span style="letter-spacing:.22em;color:var(--fg)">••••••••••</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3)"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:7px">
+          <span style="width:15px;height:15px;border-radius:3px;background:var(--accent);display:flex;align-items:center;justify-content:center">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" style="color:var(--accent-fg)"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span style="font-size:12px;color:var(--fg2)">No cerrar sesión en este equipo</span>
+        </div>
+        <span style="font-size:12px;color:var(--accent)">¿Olvidaste tu contraseña?</span>
+      </div>
+
+      <div style="height:36px;display:flex;align-items:center;justify-content:center;border-radius:5px;background:var(--accent);border:1px solid var(--accent);font-size:13px;font-weight:600;color:var(--accent-fg)">Entrar</div>
+    </div>
+
+    <!-- NO HAY REGISTRO, y decirlo es media pantalla.
+         La ficha de usuario del ERP no tiene campo de contraseña a propósito:
+         a la gente se la INVITA por correo y la clave la fija su dueño. Si
+         aquí hubiera un «crear cuenta», la primera pregunta del jurado sería
+         a qué empresa entra alguien que se registra solo. -->
+    <div style="display:flex;gap:9px;padding:12px 14px;border-radius:5px;background:var(--surface2);border:1px solid var(--line)">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <span style="font-size:12px;line-height:17px;color:var(--fg2)">Aquí no se crean cuentas. Quien administra el restaurante te invita por correo y tú eliges tu contraseña — nadie más puede verla ni escribirla por ti.</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+</helmet>
+<div style="width:1280px;height:820px;display:flex;flex-direction:column;background:var(--canvas);font-size:13px;overflow:hidden">
+  <div style="flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--line)">
+    <div style="display:flex;align-items:center;gap:12px;padding:0 12px;height:48px">
+
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <span style="display:grid;place-items:center;width:24px;height:24px;border-radius:5px;background:var(--accent);color:var(--accent-fg);font-weight:600;font-size:12px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v9a3 3 0 006 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h3V2z"/></svg>
+        </span>
+        <span style="font-weight:600;letter-spacing:-.01em">Pedidos</span>
+      </div>
+
+      <!-- Selector de sede — mismo disparador que SelectorEmpresa.tsx:46-53:
+           h-9 px-2, borde de línea, dos renglones apretados y el galón. -->
+      <div style="display:flex;align-items:center;gap:8px;height:36px;padding:0 8px;border-radius:5px;border:1px solid var(--line);background:var(--surface);text-align:left;min-width:0">
+        <span style="display:grid;place-items:center;width:20px;height:20px;flex-shrink:0;border-radius:4px;background:#0F766E;color:#fff;font-size:10px;font-weight:700">LC</span>
+        <span style="min-width:0">
+          <span style="display:block;font-size:12px;font-weight:500;color:var(--fg);line-height:1.15">La Cava del Llano</span>
+          <span style="display:block;font-size:11px;color:var(--fg3);line-height:1.15">Sede Centro</span>
+        </span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+
+      <!-- Donde el ERP pone el periodo contable, aquí va el turno: mismo chip
+           (h-7 px-2, success-soft sobre success, punto de 6 px). -->
+      <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 8px;border-radius:5px;background:var(--success-soft);color:var(--success);font-size:12px">
+        <span style="width:6px;height:6px;border-radius:50%;background:currentColor"></span>
+        Turno abierto · 11:00
+      </span>
+
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px;width:224px;height:32px;padding:0 10px;border-radius:5px;border:1px solid var(--line);background:var(--surface2);font-size:12px;color:var(--fg3)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <span style="flex:1;text-align:left">Buscar…</span>
+        <span style="font-size:11px;border:1px solid var(--line);border-radius:3px;padding:1px 4px;background:var(--surface)">Ctrl K</span>
+      </div>
+
+      <div style="display:flex;align-items:center;padding-left:8px;margin-left:4px;border-left:1px solid var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;height:32px;padding:0 6px 0 4px;border-radius:5px;border:1px solid transparent">
+          <span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:50%;background:var(--accent);color:var(--accent-fg);font-size:11px;font-weight:600">AR</span>
+          <span style="font-size:12px;font-weight:500;color:var(--fg2);max-width:112px">Ana Ramírez</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;display:flex">
+    <div style="width:224px;flex-shrink:0;display:flex;flex-direction:column;background:var(--surface);border-right:1px solid var(--line)">
+      <ul style="flex:1;margin:0;padding:8px;list-style:none;display:flex;flex-direction:column;gap:2px">
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg);font-weight:500">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M2 11h20"/><circle cx="17" cy="15" r="1.5"/></svg>
+            <span>Caja</span>
+          </div>
+          <ul style="margin:2px 0 4px;padding:0;list-style:none;display:flex;flex-direction:column;gap:1px">
+            <li><div style="display:flex;align-items:center;height:28px;padding-left:16px;margin-left:12px;border-radius:5px;border-left:1px solid var(--accent);font-size:12px;background:var(--accent-soft);color:var(--accent);font-weight:500">Cuentas por cobrar</div></li>
+            <li><div style="display:flex;align-items:center;height:28px;padding-left:16px;margin-left:12px;border-radius:5px;border-left:1px solid var(--line);font-size:12px;color:var(--fg3)">Turno</div></li>
+          </ul>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 3 4-6"/></svg>
+            <span>Informes</span>
+          </div>
+        </li>
+      </ul>
+      <div style="margin:8px;padding:10px;border-radius:5px;background:var(--surface2);border:1px solid var(--line)">
+        <span style="font-size:12px;line-height:16px;color:var(--fg3)"><b style="font-weight:600;color:var(--fg2)">Cajero.</b> Dos módulos. No ve la carta ni puede tocar precios: los de la cuenta vienen congelados del pedido.</span>
+      </div>
+    </div>
+    <div style="flex:1;min-width:0;min-height:0;overflow:hidden;padding:16px">
+      <div style="display:flex;flex-direction:column;min-height:0;gap:8px;height:100%">
+
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap">
+          <div style="min-width:0">
+            <h1 style="margin:0;font-size:20px;font-weight:600;line-height:26px;letter-spacing:-.01em">Cuentas por cobrar</h1>
+            <div style="font-size:12px;color:var(--fg3)">Caja 1 · turno abierto desde las 11:00 · base 200.000</div>
+          </div>
+          <span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:5px;font-size:12px;background:var(--accent);border:1px solid var(--accent);color:var(--accent-fg);font-weight:500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Cobrar sin mesa<span style="margin-left:4px;padding:0 4px;border-radius:3px;border:1px solid oklch(99% 0 0/.3);font-family:var(--f-mono);font-size:11px;opacity:.8">Ins</span></span>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap">
+          <span style="display:inline-flex;align-items:center;gap:8px;flex:1;flex-basis:320px;min-width:224px;max-width:672px;height:32px;padding:0 10px;border-radius:5px;border:1px solid var(--line);background:var(--surface);font-size:12px;color:var(--fg3)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Buscar por mesa o mesero</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:5px;font-size:12px;background:var(--accent-soft);border:1px solid var(--accent-line);color:var(--accent);font-weight:500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M3 5h18"/><path d="M7 12h10"/><path d="M10 19h4"/></svg>Filtros<span style="display:grid;place-items:center;min-width:16px;height:16px;padding:0 4px;border-radius:999px;background:var(--accent);color:var(--accent-fg);font-size:11px;font-variant-numeric:tabular-nums">1</span></span>
+        <span style="display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 4px 0 8px;border-radius:5px;background:var(--surface2);border:1px solid var(--line);font-size:11px;color:var(--fg2)"><span style="font-weight:500;color:var(--fg)">Estado</span><span style="color:var(--fg3)">es</span><span style="font-weight:500;color:var(--fg);max-width:128px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">pidió la cuenta</span><span style="display:grid;place-items:center;width:16px;height:16px;border-radius:3px;color:var(--fg3)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span></span>
+        <span style="margin-left:auto;display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:5px;font-size:12px;background:var(--surface);border:1px solid var(--line);color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Imprimir</span><span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:5px;font-size:12px;background:var(--surface);border:1px solid var(--line);color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Exportar</span><span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:5px;font-size:12px;background:var(--surface);border:1px solid var(--line);color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/></svg>Columnas</span></span>
+        </div>
+
+        <div style="flex:1;min-height:0;overflow:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)">
+          <table style="width:100%;border-collapse:collapse">
+            <thead><tr><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:36px;padding:0 8px"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--line2);background:var(--surface)"></span></th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:64px;">
+              <span style="display:flex;align-items:center;gap:4px;height:100%;">Folio</span>
+            </th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:90px;">
+              <span style="display:flex;align-items:center;gap:4px;height:100%;">Mesa<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" style="opacity:.3;flex-shrink:0"><polyline points="18 15 12 9 6 15"/></svg></span>
+            </th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:140px;">
+              <span style="display:flex;align-items:center;gap:4px;height:100%;">Zona</span>
+            </th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:150px;">
+              <span style="display:flex;align-items:center;gap:4px;height:100%;">Mesero</span>
+            </th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:110px;text-align:center">
+              <span style="display:flex;align-items:center;gap:4px;height:100%;justify-content:center">Comensales</span>
+            </th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:130px;">
+              <span style="display:flex;align-items:center;gap:4px;height:100%;">Abierta hace<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" style="opacity:.3;flex-shrink:0"><polyline points="18 15 12 9 6 15"/></svg></span>
+            </th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:90px;text-align:center">
+              <span style="display:flex;align-items:center;gap:4px;height:100%;justify-content:center">Platos</span>
+            </th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:130px;text-align:right">
+              <span style="display:flex;align-items:center;gap:4px;height:100%;justify-content:flex-end">Total<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" style="opacity:.3;flex-shrink:0"><polyline points="18 15 12 9 6 15"/></svg></span>
+            </th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:150px;">
+              <span style="display:flex;align-items:center;gap:4px;height:100%;">Estado</span>
+            </th></tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--line)"><td style="padding:0 8px;height:36px"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--line2);background:var(--surface)"></span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">041</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:15px;font-weight:600">M 7</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">Terraza</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">Camilo Ortega</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:center;"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">4</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--warning)">1 h 12 min</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:center;"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">7</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:right;font-variant-numeric:tabular-nums;"><span style="display:inline-flex;flex-direction:column;align-items:flex-end;line-height:1.25"><span style="font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg)">215.600</span><span style="font-size:11px;font-variant-numeric:tabular-nums;color:var(--success)">abonó 120.000</span></span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:500;line-height:16px;background:var(--warning-soft);color:var(--warning);border:1px solid oklch(56% .110 75/.28)">Pidió la cuenta</span></td></tr>
+              <tr style="border-bottom:1px solid var(--line)"><td style="padding:0 8px;height:36px"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--line2);background:var(--surface)"></span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">038</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:15px;font-weight:600">M 15</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">Segundo piso</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">Yuliana Mora</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:center;"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">6</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">48 min</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:center;"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">8</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:right;font-variant-numeric:tabular-nums;"><span style="font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg)">214.500</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:500;line-height:16px;background:var(--warning-soft);color:var(--warning);border:1px solid oklch(56% .110 75/.28)">Pidió la cuenta</span></td></tr>
+              <tr style="border-bottom:1px solid var(--line)"><td style="padding:0 8px;height:36px"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--line2);background:var(--surface)"></span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">044</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:15px;font-weight:600">M 3</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">Terraza</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">Camilo Ortega</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:center;"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">2</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">22 min</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:center;"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">3</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:right;font-variant-numeric:tabular-nums;"><span style="font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg)">61.000</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:500;line-height:16px;background:var(--warning-soft);color:var(--warning);border:1px solid oklch(56% .110 75/.28)">Pidió la cuenta</span></td></tr>
+              <tr style="border-bottom:1px solid var(--line)"><td style="padding:0 8px;height:36px"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--line2);background:var(--surface)"></span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">042</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:15px;font-weight:600">M 12</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">Salón interior</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">Yuliana Mora</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:center;"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">4</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">35 min</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:center;"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">5</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:right;font-variant-numeric:tabular-nums;"><span style="font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg)">128.000</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:500;line-height:16px;background:var(--surface3);color:var(--fg2);border:1px solid var(--line)">Comiendo</span></td></tr>
+              <tr style="border-bottom:1px solid var(--line)"><td style="padding:0 8px;height:36px"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--line2);background:var(--surface)"></span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">036</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:15px;font-weight:600">M 18</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">Segundo piso</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">Camilo Ortega</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:center;"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">10</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--warning)">1 h 5 min</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:center;"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">12</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:right;font-variant-numeric:tabular-nums;"><span style="font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg)">386.000</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:500;line-height:16px;background:var(--surface3);color:var(--fg2);border:1px solid var(--line)">Comiendo</span></td></tr>
+              <tr style="border-bottom:1px solid var(--line)"><td style="padding:0 8px;height:36px"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--line2);background:var(--surface)"></span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">045</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:15px;font-weight:600">M 6</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">Terraza</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">Yuliana Mora</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:center;"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">4</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">15 min</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:center;"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">2</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:right;font-variant-numeric:tabular-nums;"><span style="font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg)">24.500</span></td><td style="padding:0 12px;height:36px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:500;line-height:16px;background:var(--surface3);color:var(--fg2);border:1px solid var(--line)">Comiendo</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 4px 0;font-size:12px;color:var(--fg3)">
+          <span style="font-variant-numeric:tabular-nums">Mostrando <b style='font-weight:500;color:var(--fg2)'>1</b>–<b style='font-weight:500;color:var(--fg2)'>6</b> de <b style='font-weight:500;color:var(--fg2)'>6</b></span>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span style="display:flex;align-items:center;gap:6px">Por página
+              <span style="display:inline-flex;align-items:center;justify-content:space-between;width:80px;height:32px;padding:0 8px;border-radius:5px;border:1px solid var(--line);background:var(--surface);color:var(--fg)">25
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--fg3)"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

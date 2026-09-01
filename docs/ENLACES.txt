@@ -1,0 +1,98 @@
+# Galería completa
+https://neiber170205-rgb.github.io/mockups-apli-red/
+
+## Comensal
+1 · Carta
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/1-carta.html
+2 · Qué lleva el plato
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/2-que-lleva-el-plato.html
+3 · Mi pedido
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/3-mi-pedido.html
+4 · Seguimiento
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/4-seguimiento.html
+
+## Mesero
+1 · Salón
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/1-salon.html
+3 · Qué lleva el plato
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/3-que-lleva-el-plato.html
+4 · Modificadores
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/4-modificadores.html
+5 · Confirmar envío
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/5-confirmar-envio.html
+6 · Pedidos por aprobar
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/6-pedidos-por-aprobar.html
+7 · Fallos de ubicación
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/7-fallos-de-ubicacion.html
+
+## Cocina
+1a · Cola · scroll en la tarjeta
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/1a-cola-scroll-en-la-tarjeta.html
+1b · Cola · tarjeta con ficha
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/1b-cola-tarjeta-con-ficha.html
+2 · Ficha del pedido
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/2-ficha-del-pedido.html
+3 · Asignar cocineros
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/3-asignar-cocineros.html
+4a · Se acabó el plato
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/4a-se-acabo-el-plato.html
+4b · Se acabó un ingrediente
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/4b-se-acabo-un-ingrediente.html
+4c · Se acabó el plato · carta grande
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/4c-se-acabo-el-plato-carta-grande.html
+
+## Caja
+1 · Abrir el turno
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/1-abrir-el-turno.html
+2 · Cuentas por cobrar
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/2-cuentas-por-cobrar.html
+3 · Cobrar una cuenta
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/3-cobrar-una-cuenta.html
+4 · Cerrar el turno
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/4-cerrar-el-turno.html
+
+## Acceso
+1 · Entrar
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/1-entrar.html
+2 · Elegir sede
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/2-elegir-sede.html
+3 · PIN del mesero
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/3-pin-del-mesero.html
+
+## Administración
+1 · Panel
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/1-panel.html
+2 · Salón › Zonas
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/2-salon-zonas.html
+3 · Salón › Ficha de zona
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/3-salon-ficha-de-zona.html
+4 · Salón › Mesas y QR
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/4-salon-mesas-y-qr.html
+5 · Carta › Platos
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/5-carta-platos.html
+6 · Carta › Ficha de plato
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/6-carta-ficha-de-plato.html
+7 · Carta › Ingredientes
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/7-carta-ingredientes.html
+8 · Carta › Ficha de ingrediente
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/8-carta-ficha-de-ingrediente.html
+9 · Carta › Categorías
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/9-carta-categorias.html
+10 · Carta › Ficha de categoría
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/10-carta-ficha-de-categoria.html
+11 · Cocina › Estaciones
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/11-cocina-estaciones.html
+12 · Cocina › Ficha de estación
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/12-cocina-ficha-de-estacion.html
+13 · Cocina › Cocineros
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/13-cocina-cocineros.html
+14 · Cocina › Ficha de cocinero
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/14-cocina-ficha-de-cocinero.html
+15 · Personas › Usuarios
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/15-personas-usuarios.html
+16 · Personas › Ficha de usuario
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/16-personas-ficha-de-usuario.html
+17 · Personas › Permisos del rol
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/17-personas-permisos-del-rol.html
+17 · Sede › Perímetro
+  https://neiber170205-rgb.github.io/mockups-apli-red/bocetos/17-sede-perimetro.html

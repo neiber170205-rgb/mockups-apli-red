@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5 · Confirmar envío &middot; Pedidos</title>
+<meta name="description" content="Boceto de la pantalla «5 · Confirmar envío» del sistema de pedidos para restaurantes.">
+<meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+
+</head>
+<body>
+<div class="barra-guia">
+  <a href="../index.html">&#8592; Todos los bocetos</a>
+  <span class="sep">&middot;</span>
+  <strong>5 · Confirmar envío</strong>
+  <span class="mod">Mesero</span>
+</div>
+<style>
+  .barra-guia{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:10px;
+    padding:10px 16px;background:#12263b;color:#e8eef5;font:500 13px/1.4 system-ui,sans-serif}
+  .barra-guia a{color:#9ec5e8;text-decoration:none} .barra-guia a:hover{text-decoration:underline}
+  .barra-guia .sep{opacity:.45} .barra-guia .mod{margin-left:auto;opacity:.65;font-weight:400}
+  body{display:flex;flex-direction:column;align-items:center}
+  body > *:not(.barra-guia):not(style){margin:22px auto;box-shadow:0 6px 28px rgba(10,25,45,.16);
+    border-radius:10px;overflow:hidden;flex-shrink:0}
+</style>
+
+<div style="width:390px;height:844px;display:flex;flex-direction:column;background:var(--canvas);font-size:15px;overflow:hidden">
+
+  <div style="height:56px;flex-shrink:0;display:flex;align-items:center;gap:10px;padding:0 14px;background:var(--surface);border-bottom:1px solid var(--line)">
+    <div style="width:44px;height:44px;margin-left:-6px;border-radius:5px;background:var(--surface3);display:flex;align-items:center;justify-content:center">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg2)"><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+    <span style="font-size:16px;font-weight:600;flex-grow:1">Confirmar envío</span>
+    <span style="display:grid;place-items:center;flex-shrink:0;color:var(--fg3)" title="Pedidos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M7 2v9a3 3 0 006 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h3V2z"/></svg></span>
+    <div style="display:flex;align-items:center;gap:5px;height:28px;padding:0 9px;border-radius:3px;background:var(--success-soft);border:1px solid oklch(50% .120 155/.25)">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--success)"></span>
+      <span style="font-size:11px;font-weight:600;color:var(--success)">En el local</span>
+    </div>
+  </div>
+
+  <div style="padding:16px 16px 10px;display:flex;flex-direction:column;gap:4px">
+    <span style="font-size:20px;font-weight:600;line-height:26px">Se van a preparar 3 platos</span>
+    <span style="font-size:14px;color:var(--fg2);line-height:19px">Mesa 7 · Terraza. Después de enviar, estas líneas solo se pueden anular con motivo.</span>
+  </div>
+
+  <div style="flex-grow:1;overflow-y:auto;padding:6px 16px 16px;display:flex;flex-direction:column;gap:10px">
+
+    <div style="border:1px solid var(--accent-line);border-radius:8px;background:var(--surface);overflow:hidden">
+      <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--accent-soft);border-bottom:1px solid var(--accent-line)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--accent)"><path d="M12 5v14M5 12h14"/></svg>
+        <span style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)">Nuevo en esta ronda</span>
+      </div>
+
+      <div style="display:flex;gap:10px;padding:13px 14px;border-bottom:1px solid var(--line)">
+        <span style="font-family:var(--f-mono);font-size:15px;font-weight:600;color:var(--accent);min-width:24px">2×</span>
+        <div style="display:flex;flex-direction:column;flex-grow:1;gap:4px">
+          <span style="font-size:15px;font-weight:500;line-height:19px">Bandeja paisa</span>
+          <div style="display:flex;flex-wrap:wrap;gap:5px">
+            <span style="display:inline-flex;align-items:center;height:20px;padding:0 7px;border-radius:3px;font-size:11px;font-weight:500;background:var(--surface3);color:var(--fg2);border:1px solid var(--line)">Bien asada</span>
+            <span style="display:inline-flex;align-items:center;height:20px;padding:0 7px;border-radius:3px;font-size:11px;font-weight:500;background:var(--surface3);color:var(--fg2);border:1px solid var(--line)">Chicharrón extra</span>
+          </div>
+          <span style="font-size:13px;color:var(--warning);line-height:17px">Nota: la señora es alérgica al maní</span>
+        </div>
+        <span style="font-family:var(--f-mono);font-size:14px;font-weight:500;white-space:nowrap">$88.000</span>
+      </div>
+
+      <div style="display:flex;gap:10px;padding:13px 14px">
+        <span style="font-family:var(--f-mono);font-size:15px;font-weight:600;color:var(--accent);min-width:24px">1×</span>
+        <div style="display:flex;flex-direction:column;flex-grow:1;gap:4px">
+          <span style="font-size:15px;font-weight:500;line-height:19px">Limonada de coco</span>
+          <span style="display:inline-flex;align-self:flex-start;align-items:center;height:20px;padding:0 7px;border-radius:3px;font-size:11px;font-weight:500;background:var(--surface3);color:var(--fg2);border:1px solid var(--line)">Barra</span>
+        </div>
+        <span style="font-family:var(--f-mono);font-size:14px;font-weight:500;white-space:nowrap">$12.000</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface2)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r=".5" fill="currentColor"/></svg>
+      <span style="font-size:13px;color:var(--fg2);line-height:18px">Las 3 líneas enviadas antes no se reenvían. La cocina ya las tiene.</span>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:8px;padding:14px;border:1px solid var(--line);border-radius:8px;background:var(--surface)">
+      <div style="display:flex;justify-content:space-between">
+        <span style="font-size:14px;color:var(--fg2)">Esta ronda</span>
+        <span style="font-family:var(--f-mono);font-size:14px">$100.000</span>
+      </div>
+      <div style="display:flex;justify-content:space-between">
+        <span style="font-size:14px;color:var(--fg2)">Ya enviado</span>
+        <span style="font-family:var(--f-mono);font-size:14px;color:var(--fg2)">$47.500</span>
+      </div>
+      <div style="height:1px;background:var(--line)"></div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <span style="font-size:15px;font-weight:600">Total de la mesa</span>
+        <span style="font-family:var(--f-mono);font-size:20px;font-weight:600">$147.500</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex-shrink:0;display:flex;gap:10px;padding:14px 16px;background:var(--surface);border-top:1px solid var(--line)">
+    <div style="width:110px;height:56px;display:flex;align-items:center;justify-content:center;border-radius:5px;border:1px solid var(--line2);background:var(--surface);color:var(--fg)">
+      <span style="font-size:15px;font-weight:500">Volver</span>
+    </div>
+    <div style="flex-grow:1;height:56px;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:5px;background:var(--accent);border:1px solid var(--accent);color:var(--accent-fg)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      <span style="font-size:16px;font-weight:600">Enviar a cocina</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

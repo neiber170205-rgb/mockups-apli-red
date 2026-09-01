@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+</helmet>
+<div style="width:1280px;height:820px;display:flex;flex-direction:column;background:var(--canvas);font-size:13px;overflow:hidden">
+  <div style="flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--line)">
+    <div style="display:flex;align-items:center;gap:12px;padding:0 12px;height:48px">
+
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <span style="display:grid;place-items:center;width:24px;height:24px;border-radius:5px;background:var(--accent);color:var(--accent-fg);font-weight:600;font-size:12px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v9a3 3 0 006 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h3V2z"/></svg>
+        </span>
+        <span style="font-weight:600;letter-spacing:-.01em">Pedidos</span>
+      </div>
+
+      <!-- Selector de sede — mismo disparador que SelectorEmpresa.tsx:46-53:
+           h-9 px-2, borde de línea, dos renglones apretados y el galón. -->
+      <div style="display:flex;align-items:center;gap:8px;height:36px;padding:0 8px;border-radius:5px;border:1px solid var(--line);background:var(--surface);text-align:left;min-width:0">
+        <span style="display:grid;place-items:center;width:20px;height:20px;flex-shrink:0;border-radius:4px;background:#0F766E;color:#fff;font-size:10px;font-weight:700">LC</span>
+        <span style="min-width:0">
+          <span style="display:block;font-size:12px;font-weight:500;color:var(--fg);line-height:1.15">La Cava del Llano</span>
+          <span style="display:block;font-size:11px;color:var(--fg3);line-height:1.15">Sede Centro</span>
+        </span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+
+      <!-- Donde el ERP pone el periodo contable, aquí va el turno: mismo chip
+           (h-7 px-2, success-soft sobre success, punto de 6 px). -->
+      <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 8px;border-radius:5px;background:var(--success-soft);color:var(--success);font-size:12px">
+        <span style="width:6px;height:6px;border-radius:50%;background:currentColor"></span>
+        Turno abierto · 11:00
+      </span>
+
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px;width:224px;height:32px;padding:0 10px;border-radius:5px;border:1px solid var(--line);background:var(--surface2);font-size:12px;color:var(--fg3)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <span style="flex:1;text-align:left">Buscar…</span>
+        <span style="font-size:11px;border:1px solid var(--line);border-radius:3px;padding:1px 4px;background:var(--surface)">Ctrl K</span>
+      </div>
+
+      <div style="display:flex;align-items:center;padding-left:8px;margin-left:4px;border-left:1px solid var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;height:32px;padding:0 6px 0 4px;border-radius:5px;border:1px solid transparent">
+          <span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:50%;background:var(--accent);color:var(--accent-fg);font-size:11px;font-weight:600">DN</span>
+          <span style="font-size:12px;font-weight:500;color:var(--fg2);max-width:112px">Danilo Neiber</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;display:flex">
+    <div style="width:224px;flex-shrink:0;display:flex;flex-direction:column;background:var(--surface);border-right:1px solid var(--line)">
+      <ul style="flex:1;margin:0;padding:8px;list-style:none;display:flex;flex-direction:column;gap:2px">
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            <span>Salón</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg);font-weight:500">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            <span>Carta</span>
+          </div>
+          <ul style="margin:2px 0 4px;padding:0;list-style:none;display:flex;flex-direction:column;gap:1px">
+            <li><div style="display:flex;align-items:center;height:28px;padding-left:16px;margin-left:12px;border-radius:5px;border-left:1px solid var(--line);font-size:12px;color:var(--fg3)">Productos</div></li>
+            <li><div style="display:flex;align-items:center;height:28px;padding-left:16px;margin-left:12px;border-radius:5px;border-left:1px solid var(--accent);font-size:12px;background:var(--accent-soft);color:var(--accent);font-weight:500">Categorías</div></li>
+          </ul>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M8.5 3a2.5 2.5 0 013.5-.9A2.5 2.5 0 0115.5 3 2.5 2.5 0 0119 6.5c0 1.4-.9 2.6-2 3v7.5H7V9.5c-1.1-.4-2-1.6-2-3A2.5 2.5 0 018.5 3z"/><path d="M7 21h10"/></svg>
+            <span>Cocina</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.9"/></svg>
+            <span>Personas</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M12 21s-7-6.4-7-11a7 7 0 1114 0c0 4.6-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <span>Sede</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 3 4-6"/></svg>
+            <span>Informes</span>
+          </div>
+        </li>
+      </ul>
+      <div style="margin:8px;height:28px;display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:5px;border:1px solid var(--line);background:var(--surface);font-size:12px;color:var(--fg3)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M15 9l-3 3 3 3"/></svg>
+        Colapsar
+      </div>
+    </div>
+    <div style="flex:1;min-width:0;min-height:0;overflow:hidden;padding:16px">
+      <div style="display:flex;flex-direction:column;min-height:0;gap:8px;height:100%">
+        <div style="flex-shrink:0;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:1px solid var(--line)">
+          <div style="min-width:0">
+            <span style="display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--fg3)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>Categorías
+            </span>
+            <h1 style="margin:0;font-size:20px;font-weight:600;line-height:26px;letter-spacing:-.01em">Fuertes</h1>
+            <div style="font-size:12px;color:var(--fg3)">4 productos · se despachan en Cocina caliente</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;flex-shrink:0"><span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:5px;font-size:12px;background:var(--surface);border:1px solid var(--line);color:var(--fg2)">Cancelar</span><span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:5px;font-size:12px;background:var(--accent);border:1px solid var(--accent);color:var(--accent-fg);font-weight:500">Guardar<span style="margin-left:4px;padding:0 4px;border-radius:3px;border:1px solid oklch(99% 0 0/.3);font-family:var(--f-mono);font-size:11px;opacity:.8">Ctrl S</span></span></div>
+        </div>
+        <div style="flex:1;min-height:0;overflow:auto;padding-top:8px;display:flex;flex-direction:column;gap:20px;max-width:1440px">
+          <div style="display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:8px;background:var(--surface);border:1px solid var(--line)">
+            <div><span style="font-size:13px;font-weight:600">Identificación</span><p style="margin:0;padding-top:2px;font-size:12px;color:var(--fg3);max-width:672px">El nombre sale en las pestañas del mesero y como título de sección en la carta del comensal.</p></div>
+            <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px"><div style="grid-column:span 5;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2)">Nombre</span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;">Fuertes</div></div><div style="grid-column:span 3;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2)">Orden</span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;font-family:var(--f-mono);">3</div></div><div style="grid-column:span 4;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2)">Activa</span><div style="display:flex;align-items:center;gap:11px;height:32px"><span style="width:36px;height:20px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);display:flex;align-items:center;justify-content:flex-end;padding:0 2px;box-sizing:border-box"><span style="width:14px;height:14px;border-radius:50%;background:var(--surface)"></span></span><span style="font-size:13px;color:var(--fg2)">Sale en la carta</span></div><span style="font-size:12px;color:var(--fg3)">Apagada, sus productos dejan de verse sin borrarse.</span></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:8px;background:var(--surface);border:1px solid var(--line)">
+            <div><span style="font-size:13px;font-weight:600">Estación por defecto</span><p style="margin:0;padding-top:2px;font-size:12px;color:var(--fg3);max-width:672px">Cuando se crea un producto en esta categoría, arranca con esta estación. Se puede cambiar plato por plato.</p></div>
+            <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px"><div style="grid-column:span 5;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2)">Estación</span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" style="color:var(--accent);flex-shrink:0"><polyline points="20 6 9 17 4 12"/></svg><span style="padding-left:6px">Cocina caliente</span><span style="margin-left:auto;display:flex;align-items:center;gap:4px;flex-shrink:0"><span style="display:grid;place-items:center;width:16px;height:16px;border-radius:3px;color:var(--fg3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span><span style="display:grid;place-items:center;width:16px;height:16px;border-radius:3px;color:var(--fg3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span></span></div></div></div>
+          </div>
+          <div style="display:flex;gap:9px;padding:6px 8px;border-radius:5px;background:var(--accent-soft);border:1px solid var(--accent-line)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <span style="font-size:12px;line-height:17px;color:var(--fg2)">«Frecuentes» no aparece en esta lista y es a propósito: no es una categoría, es un atajo del mesero que sale de los platos que más se piden. Se configura en la ficha de cada producto, no aquí.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

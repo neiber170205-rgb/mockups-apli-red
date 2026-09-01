@@ -1,0 +1,487 @@
+{
+  "artboards": [
+    {
+      "file": "Salon.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "1 · Salón",
+      "page": "mesero"
+    },
+    {
+      "file": "Main.dc.html",
+      "x": 510,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "2 · Toma de pedido",
+      "page": "mesero"
+    },
+    {
+      "file": "FichaPlatoMesero.dc.html",
+      "x": 1020,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "3 · Qué lleva el plato",
+      "page": "mesero"
+    },
+    {
+      "file": "Modificadores.dc.html",
+      "x": 1530,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "4 · Modificadores",
+      "page": "mesero"
+    },
+    {
+      "file": "Confirmacion.dc.html",
+      "x": 2040,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "5 · Confirmar envío",
+      "page": "mesero"
+    },
+    {
+      "file": "Bandeja.dc.html",
+      "x": 2550,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "6 · Pedidos por aprobar",
+      "page": "mesero"
+    },
+    {
+      "file": "Geocerca.dc.html",
+      "x": 3060,
+      "y": 0,
+      "w": 812,
+      "h": 844,
+      "title": "7 · Fallos de ubicación",
+      "page": "mesero"
+    },
+    {
+      "file": "Carta.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "1 · Carta",
+      "page": "comensal"
+    },
+    {
+      "file": "FichaPlatoComensal.dc.html",
+      "x": 510,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "2 · Qué lleva el plato",
+      "page": "comensal"
+    },
+    {
+      "file": "Revision.dc.html",
+      "x": 1020,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "3 · Mi pedido",
+      "page": "comensal"
+    },
+    {
+      "file": "Seguimiento.dc.html",
+      "x": 1530,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "4 · Seguimiento",
+      "page": "comensal"
+    },
+    {
+      "file": "Login.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "title": "1 · Entrar",
+      "page": "acceso"
+    },
+    {
+      "file": "LoginSede.dc.html",
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "title": "2 · Elegir sede",
+      "page": "acceso"
+    },
+    {
+      "file": "LoginMesero.dc.html",
+      "x": 2800,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "3 · PIN del mesero",
+      "page": "acceso"
+    },
+    {
+      "file": "AbrirTurno.dc.html",
+      "title": "1 · Abrir el turno",
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "caja"
+    },
+    {
+      "file": "CuentasPorCobrar.dc.html",
+      "title": "2 · Cuentas por cobrar",
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "caja"
+    },
+    {
+      "file": "Cobrar.dc.html",
+      "title": "3 · Cobrar una cuenta",
+      "x": 2800,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "caja"
+    },
+    {
+      "file": "CerrarTurno.dc.html",
+      "title": "4 · Cerrar el turno",
+      "x": 4200,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "caja"
+    },
+    {
+      "file": "PanelAdmin.dc.html",
+      "title": "1 · Panel",
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "admin"
+    },
+    {
+      "file": "Zonas.dc.html",
+      "title": "2 · Salón › Zonas",
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "admin"
+    },
+    {
+      "file": "FormularioZona.dc.html",
+      "title": "3 · Salón › Ficha de zona",
+      "x": 2800,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "admin"
+    },
+    {
+      "file": "MesasQR.dc.html",
+      "x": 4200,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "title": "4 · Salón › Mesas y QR",
+      "page": "admin"
+    },
+    {
+      "file": "Platos.dc.html",
+      "title": "5 · Carta › Platos",
+      "x": 5600,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "admin"
+    },
+    {
+      "file": "FormularioPlato.dc.html",
+      "title": "6 · Carta › Ficha de plato",
+      "x": 7000,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "admin"
+    },
+    {
+      "file": "Ingredientes.dc.html",
+      "title": "7 · Carta › Ingredientes",
+      "x": 8400,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "admin"
+    },
+    {
+      "file": "FormularioIngrediente.dc.html",
+      "title": "8 · Carta › Ficha de ingrediente",
+      "x": 9800,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "admin"
+    },
+    {
+      "file": "Categorias.dc.html",
+      "title": "9 · Carta › Categorías",
+      "x": 11200,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "admin"
+    },
+    {
+      "file": "FormularioCategoria.dc.html",
+      "title": "10 · Carta › Ficha de categoría",
+      "x": 12600,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "admin"
+    },
+    {
+      "file": "Estaciones.dc.html",
+      "title": "11 · Cocina › Estaciones",
+      "x": 14000,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "admin"
+    },
+    {
+      "file": "FormularioEstacion.dc.html",
+      "title": "12 · Cocina › Ficha de estación",
+      "x": 15400,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "admin"
+    },
+    {
+      "file": "Cocineros.dc.html",
+      "title": "13 · Cocina › Cocineros",
+      "x": 16800,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "admin"
+    },
+    {
+      "file": "FormularioCocinero.dc.html",
+      "title": "14 · Cocina › Ficha de cocinero",
+      "x": 18200,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "admin"
+    },
+    {
+      "file": "Usuarios.dc.html",
+      "title": "15 · Personas › Usuarios",
+      "x": 19600,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "admin"
+    },
+    {
+      "file": "FormularioUsuario.dc.html",
+      "title": "16 · Personas › Ficha de usuario",
+      "x": 21000,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "page": "admin"
+    },
+    {
+      "file": "FormularioRol.dc.html",
+      "title": "17 · Personas › Permisos del rol",
+      "x": 23800,
+      "y": 0,
+      "w": 1280,
+      "h": 1240,
+      "page": "admin"
+    },
+    {
+      "file": "ConfigGeocerca.dc.html",
+      "x": 22400,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "title": "17 · Sede › Perímetro",
+      "page": "admin"
+    },
+    {
+      "file": "Despacho.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "title": "1a · Cola · scroll en la tarjeta",
+      "page": "cocina"
+    },
+    {
+      "file": "DespachoFicha.dc.html",
+      "x": 1560,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "title": "1b · Cola · tarjeta con ficha",
+      "page": "cocina"
+    },
+    {
+      "file": "FichaComanda.dc.html",
+      "x": 3120,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "title": "2 · Ficha del pedido",
+      "page": "cocina"
+    },
+    {
+      "file": "AsignarCocineros.dc.html",
+      "x": 4680,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "title": "3 · Asignar cocineros",
+      "page": "cocina"
+    },
+    {
+      "file": "SeAcabo.dc.html",
+      "title": "4a · Se acabó el plato",
+      "x": 6240,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "page": "cocina"
+    },
+    {
+      "file": "SeAcaboIngrediente.dc.html",
+      "title": "4b · Se acabó un ingrediente",
+      "x": 7800,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "page": "cocina"
+    },
+    {
+      "file": "SeAcaboMuchos.dc.html",
+      "title": "4c · Se acabó el plato · carta grande",
+      "x": 9360,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "page": "cocina"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "rotulo-mesero",
+      "x": 0,
+      "y": -260,
+      "w": 620,
+      "text": "MESERO · celular personal, 390 px\n\nDensidad táctil: objetivos de 44 a 56 px, no los 32 px del ERP.\nLa pantalla 2 responde a la regla de tres toques: categoría → producto → enviar.\n\nCada fila tiene DOS gestos. La fila entera agrega de un toque —es la operación de las\nmil veces por servicio y no se toca—; la ⓘ de la derecha abre la ficha del plato (2b)\nsin agregar nada. Sigue viva con el plato agotado: «¿qué lleva?» se pregunta igual, y\nes justo cuando hay que ofrecer otra cosa parecida.",
+      "page": "mesero"
+    },
+    {
+      "id": "rotulo-comensal",
+      "x": 0,
+      "y": -260,
+      "w": 620,
+      "text": "COMENSAL · su propio celular, entra por el QR de la mesa\n\nOtro producto sobre la misma API: fotos, descripciones, una sola columna y contraste\nalto, porque esto se lee de noche en una terraza.\n\nLa tarjeta entera abre la ficha (9b); el + de al lado agrega sin abrir nada. Son los dos\ngestos que alguien espera de una carta: mirar un plato antes de pedirlo, y pedir el que\nya conoce.\n\nEn la ficha del comensal NO aparece «se elige al pedirlo». Su pedido todavía no lleva\nopciones, y enseñárselas sería prometer algo que el flujo no cumple.",
+      "page": "comensal"
+    },
+    {
+      "id": "rotulo-cocina",
+      "x": 0,
+      "y": -260,
+      "w": 620,
+      "text": "COCINA · pantalla fija, 1440×900\n\nTres columnas por estado, cada una con SU reloj y SU umbral: cuatro minutos sin recoger ya es\nrojo; cuatro cocinando ni siquiera es ámbar.\n\n«SE ACABÓ» (4) LO DECIDE LA COCINA, Y ESE ES EL PUNTO. Quien sabe que no hay mojarra es quien\nabre la nevera, no quien está en el escritorio: si el interruptor vive solo en administración,\nel plato se sigue pidiendo cuarenta minutos mientras alguien camina hasta la oficina.\n\nY el MOMENTO es el del rechazo, no un catálogo aparte: el cocinero ya está tocando esa comanda\ny acaba de comprobarlo. Un botón permanente con los doce platos, en una pantalla táctil y con\nlas manos grasosas, es una invitación a apagar el plato equivocado.\n\nEl diálogo pregunta QUÉ se acabó, no por qué — y son dos respuestas con CONSECUENCIAS OPUESTAS,\ngracias a que los ingredientes ya existen como cosas:\n  · 4a EL PLATO — la línea se cancela y sale de la cuenta; nadie puede volver a pedirlo.\n  · 4b UN INGREDIENTE — la línea NO se cancela: el plato se puede hacer sin esa parte, así que\n    decide la mesa. Los candidatos son las partes de ESE plato, no los veintiún ingredientes de\n    la carta: un buscador largo, en táctil y con prisa, es donde se toca el equivocado.\n\nDos columnas a propósito: se lee a la izquierda y se firma a la derecha. El teclado vive en su\nsitio en vez de flotar tapando justo las opciones que hay que elegir.\n\nPIN, y no por desconfianza: rechazar una línea SACA DINERO de la cuenta de la mesa. Es la misma\nregla del resto de la pantalla — la ficha basta mientras no se mueva plata; cuando se mueve, PIN.\n\nY el chip rojo de la barra es la vuelta atrás: sin él, apagar un plato sería una puerta de un\nsolo sentido y el cocinero acabaría no usándola.",
+      "page": "cocina"
+    },
+    {
+      "id": "alternativa-a",
+      "x": 0,
+      "y": 1020,
+      "w": 1440,
+      "text": "ALTERNATIVA A · el sobrante se desliza dentro de la tarjeta\n\nA favor: todo el pedido sigue en la tarjeta, sin abrir nada. El «5 platos» del\nencabezado y el degradado del final avisan de que hay más abajo, y la barra de\nscroll de esta pantalla es gruesa a propósito para que se vea desde la parrilla.\n\nEn contra: hay que deslizar con las manos ocupadas, y un plato que quedó fuera de\nla vista es un plato que se puede olvidar. Además el scroll se pierde solo: cada\nrefresco de la cola vuelve a dejar la lista arriba.",
+      "page": "cocina"
+    },
+    {
+      "id": "alternativa-b",
+      "x": 0,
+      "y": 1020,
+      "w": 2000,
+      "text": "ALTERNATIVA B · el encabezado de la tarjeta abre la ficha completa (10c)\n\nA favor: la tarjeta se lee de un vistazo desde la parrilla, sin tocarla. Y la ficha muestra\nlo que en la tarjeta nunca cabría: los tres relojes a la vez, TODAS las partes de cada plato\n—no solo las que cambian—, la nota entera, quién lleva cada plato y de dónde vino cada línea.\n\nEl ojo no es un botón aparte: se toca el encabezado entero. Un botón propio de 44 px le\nrobaba alto a todas las tarjetas, también a las que caben enteras y nunca lo necesitan.\n\nEn contra: un toque de más para ver el pedido completo.\n\nRECOMENDADA. En cocina se mira más de lo que se toca, y cuando por fin se toca se quiere ver\nel plato entero, no un trozo. B da las dos cosas; A obliga a elegir.",
+      "page": "cocina"
+    },
+    {
+      "id": "rotulo-acceso",
+      "x": 0,
+      "y": -260,
+      "w": 2000,
+      "text": "ACCESO · el diseño se toma del ERP hermano; el contenido, de ESTE proyecto\n\nENTRAR (14) va en densidad RELAJADA —control de 36 px en vez de 32— porque la preferencia de\ndensidad vive en la cuenta y aquí todavía no hay cuenta. No tiene «crear cuenta»: a la gente se\nla invita por correo y la contraseña la fija su dueño.\n\nELEGIR SEDE (15) casi nunca aparece, y eso es lo correcto. Solo sale si el sistema no puede\ndecidir: alguien con varias sedes que entra por primera vez. Con una sola se entra directo, y\nquien ya entró vuelve a la última que usó. Es la SEDE y no la compañía porque las mesas, la\ncocina, el perímetro y el turno son de un local concreto — y el rol cambia de uno a otro.\n\nPIN DEL MESERO (16) es el caso que NO se puede unificar. Su teléfono ya quedó inscrito atado a\nél, así que el equipo sabe quién es y solo se teclea el PIN. Pedir usuario y clave en un celular\npropio, veinte veces por turno, es como se acaba con el PIN pegado con cinta detrás del teléfono.",
+      "page": "acceso"
+    },
+    {
+      "id": "rotulo-carta",
+      "page": "admin",
+      "x": -203,
+      "y": -717,
+      "w": 2000,
+      "text": "ADMINISTRACIÓN · en pares LISTA + FICHA, agrupada por el menú del que cuelga\n\nTodas las listas son la misma DataTable del ERP: cabecera de 36 px en versalitas, filas de 36,\nceldas de 12 px de lado, la tabla dentro de una tarjeta, y UN botón «Filtros» que abre el\nconstructor de condiciones — lo aplicado sale como chips fuera, para que se vea por qué la tabla\nmuestra lo que muestra sin abrir nada. Pulsar una fila ABRE el registro.\n\n«PRODUCTO» HACÍA DOS TRABAJOS, y por eso se partió en dos vistas (5 y 7) sobre UNA SOLA TABLA\ncon tipo, como el `Item` del ERP —cuyo tipo `kit` es literalmente un plato: «se vende como uno y\ndescarga varios componentes»—. Dos tablas se rompían con la gaseosa: se compra tal cual y se\nvende tal cual, así que existiría dos veces.\n\nLo que compra: antes «Cebolla» era texto libre por plato, así que la de la bandeja y la del\nchurrasco eran dos filas que no se conocían, y «se acabó la cebolla» era ir plato por plato. Ahora\nes un interruptor y el sistema sabe a quién afecta (8). Sigue SIN ser inventario: no hay\nexistencias, ni kardex, ni costeo — es vocabulario, y el informe mantiene el inventario fuera.\n\nY lo que NO cambia: la línea del pedido sigue guardando el NOMBRE del ingrediente, no solo su\nidentificador. Si mañana se renombra a «Cebolla cabezona», el pedido de ayer tiene que seguir\ndiciendo SIN CEBOLLA — porque eso fue lo que pasó. Es la regla del precio congelado, un nivel\nmás abajo."
+    },
+    {
+      "id": "rotulo-caja",
+      "page": "caja",
+      "x": -55,
+      "y": -840,
+      "w": 2000,
+      "text": "CAJERO · el rol que abre el día para todos los demás\n\n`ordenes.turno_id` es NOT NULL, así que SIN TURNO ABIERTO NO SE PUEDE ABRIR UNA MESA. No es que\nno se pueda cobrar: el mesero no puede ni empezar a tomar el pedido, porque la orden no tiene\ndónde colgarse. Por eso la pantalla 1 es la primera del día del restaurante entero.\n\nIgual que el mesero, el cajero NO tiene tablero: su panel es la lista de cuentas y cada fila\nabre el cobro. Y su barra lateral tiene DOS módulos — no ve la carta, y no le hace falta:\nlos precios de la cuenta vienen congelados del pedido y aquí no se pueden tocar.\n\nTRES COSAS QUE SOLO SE VEN AL DIBUJARLO:\n\n  · EL PAGO MIXTO (3). «Ciento veinte con tarjeta y el resto en efectivo» es lo más normal del\n    mundo, y un solo número de «pagado» no puede representarlo. Por eso cada cobro es una fila\n    de `orden_pagos` — la tabla que se escribió en api/sql/003_caja.sql.\n\n  · EL CUADRE (4) separa el efectivo de lo que no pasa por el cajón. Tarjeta y transferencia se\n    listan aparte a propósito: sumarlos haría cuadrar cualquier cosa. Lo que se cuenta a mano es\n    solo el efectivo, y por eso el cuadre era imposible sin saber el MEDIO de cada pago.\n\n  · EL BLOQUEO (4). No se puede cerrar con mesas sin cobrar: ese dinero se quedaría colgando de\n    un turno cerrado y no entraría en ningún cuadre. Es la clase de regla que solo aparece\n    cuando dibujas la pantalla del final.\n\nY una que ya estaba resuelta en el motor: ANULAR UNA LÍNEA EXIGE DOS PERSONAS (CK_oi_anulacion).\nEs el punto exacto donde se roba en un restaurante — se cobra el plato, se anula la línea, y el\ndinero sale del cajón. Lo cierra la base de datos, no la disciplina."
+    }
+  ],
+  "launch": {
+    "view": "canvas",
+    "page": "admin"
+  },
+  "pages": [
+    {
+      "id": "mesero",
+      "name": "Mesero"
+    },
+    {
+      "id": "comensal",
+      "name": "Comensal"
+    },
+    {
+      "id": "cocina",
+      "name": "Cocina"
+    },
+    {
+      "id": "caja",
+      "name": "Caja"
+    },
+    {
+      "id": "acceso",
+      "name": "Acceso"
+    },
+    {
+      "id": "admin",
+      "name": "Administración"
+    }
+  ]
+}

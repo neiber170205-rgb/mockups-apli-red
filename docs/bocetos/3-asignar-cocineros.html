@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3 · Asignar cocineros &middot; Pedidos</title>
+<meta name="description" content="Boceto de la pantalla «3 · Asignar cocineros» del sistema de pedidos para restaurantes.">
+<meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+  <style>
+    .kds{ --k-bg:oklch(16% .010 235); --k-surf:oklch(22% .012 235); --k-surf2:oklch(19% .011 235);
+          --k-line:oklch(32% .014 235); --k-fg:oklch(97% .004 235); --k-fg2:oklch(74% .010 235);
+          --k-ok:oklch(72% .130 155); --k-warn:oklch(78% .130 78); --k-bad:oklch(70% .160 27);
+          --k-acc:oklch(76% .105 205); --k-on:oklch(18% .020 235); }
+    .kds .ficha{ display:flex; align-items:center; gap:16px; min-height:96px; padding:12px 20px;
+                 border-radius:8px; text-align:left; }
+    .kds .av{ display:flex; align-items:center; justify-content:center; width:56px; height:56px;
+              flex-shrink:0; border-radius:50%; font-size:20px; font-weight:700; letter-spacing:-.02em;
+              color:oklch(18% .02 235); }
+    .kds .nom{ font-size:20px; font-weight:600; line-height:24px; }
+  </style>
+
+</head>
+<body>
+<div class="barra-guia">
+  <a href="../index.html">&#8592; Todos los bocetos</a>
+  <span class="sep">&middot;</span>
+  <strong>3 · Asignar cocineros</strong>
+  <span class="mod">Cocina</span>
+</div>
+<style>
+  .barra-guia{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:10px;
+    padding:10px 16px;background:#12263b;color:#e8eef5;font:500 13px/1.4 system-ui,sans-serif}
+  .barra-guia a{color:#9ec5e8;text-decoration:none} .barra-guia a:hover{text-decoration:underline}
+  .barra-guia .sep{opacity:.45} .barra-guia .mod{margin-left:auto;opacity:.65;font-weight:400}
+  body{display:flex;flex-direction:column;align-items:center}
+  body > *:not(.barra-guia):not(style){margin:22px auto;box-shadow:0 6px 28px rgba(10,25,45,.16);
+    border-radius:10px;overflow:hidden;flex-shrink:0}
+</style>
+
+<div class="kds" style="width:1440px;height:900px;position:relative;overflow:hidden;background:var(--k-bg);color:var(--k-fg)">
+
+  <!-- La cola sigue detrás, difuminada. No se apaga la sala: el cocinero no
+       pierde de vista que hay comandas esperando mientras elige. -->
+  <div style="position:absolute;inset:0;filter:blur(14px);opacity:.75">
+    <div style="height:64px;background:var(--k-surf);border-bottom:1px solid var(--k-line)"></div>
+    <div style="height:836px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--k-line)">
+      <div style="background:var(--k-bg)">
+        <div style="height:52px;background:var(--k-line)"></div>
+        <div style="padding:12px;display:flex;flex-direction:column;gap:12px">
+          <div style="height:230px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-bad)"></div>
+          <div style="height:180px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-bad)"></div>
+        </div>
+      </div>
+      <div style="background:var(--k-bg)">
+        <div style="height:52px;background:var(--k-acc)"></div>
+        <div style="padding:12px;display:flex;flex-direction:column;gap:12px">
+          <div style="height:250px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-line)"></div>
+          <div style="height:210px;border-radius:8px;background:var(--k-surf);border:2px solid oklch(78% .130 78/.55)"></div>
+        </div>
+      </div>
+      <div style="background:var(--k-bg)">
+        <div style="height:52px;background:var(--k-ok)"></div>
+        <div style="padding:12px;display:flex;flex-direction:column;gap:12px">
+          <div style="height:200px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-bad)"></div>
+          <div style="height:160px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-ok)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;inset:0;background:oklch(10% .01 235 / .55)"></div>
+
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px">
+    <div style="width:1024px;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;background:var(--k-surf);border:1px solid var(--k-line);box-shadow:0 32px 64px oklch(0% 0 0 / .5)">
+
+      <header style="padding:26px 24px 16px">
+        <h2 style="margin:0;font-size:30px;font-weight:700;line-height:36px">¿Quién está en la mesa 15?</h2>
+        <p style="margin:0;padding-top:6px;font-size:18px;color:var(--k-fg2)">Toca tu ficha. Pueden ser varios.</p>
+      </header>
+
+      <ul style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0 24px 20px;margin:0;list-style:none">
+
+        <li><div class="ficha" style="background:color-mix(in oklch, oklch(72% .14 200) 22%, transparent);border:2px solid oklch(72% .14 200)">
+          <span class="av" style="background:oklch(72% .14 200)">AR</span>
+          <span class="nom" style="flex-grow:1">Ana Lucía Ramírez Ospina</span>
+          <span style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;border-radius:50%;background:oklch(72% .14 200)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" style="color:oklch(18% .02 235)"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+        </div></li>
+
+        <li><div class="ficha" style="background:var(--k-surf2);border:2px solid var(--k-line)">
+          <span class="av" style="background:oklch(74% .15 80)">LP</span>
+          <span class="nom" style="flex-grow:1">Luis Fernando Peñaranda Vega</span>
+        </div></li>
+
+        <li><div class="ficha" style="background:var(--k-surf2);border:2px solid var(--k-line)">
+          <span class="av" style="background:oklch(70% .16 340)">MC</span>
+          <span class="nom" style="flex-grow:1">Marta Isabel Contreras Quintero</span>
+        </div></li>
+
+        <li><div class="ficha" style="background:color-mix(in oklch, oklch(74% .14 150) 22%, transparent);border:2px solid oklch(74% .14 150)">
+          <span class="av" style="background:oklch(74% .14 150)">JV</span>
+          <span class="nom" style="flex-grow:1">Jairo Andrés Villamizar Rincón</span>
+          <span style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;border-radius:50%;background:oklch(74% .14 150)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" style="color:oklch(18% .02 235)"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+        </div></li>
+
+        <li><div class="ficha" style="background:var(--k-surf2);border:2px solid var(--k-line)">
+          <span class="av" style="background:oklch(72% .15 30)">SD</span>
+          <span class="nom" style="flex-grow:1">Sofía Camila Duarte Mendoza</span>
+        </div></li>
+
+        <li><div class="ficha" style="background:var(--k-surf2);border:2px solid var(--k-line)">
+          <span class="av" style="background:oklch(70% .13 280)">AC</span>
+          <span class="nom" style="flex-grow:1">Ana María Cárdenas Suárez</span>
+        </div></li>
+      </ul>
+
+      <footer style="display:flex;gap:12px;padding:0 24px 24px">
+        <div style="display:flex;align-items:center;justify-content:center;width:160px;height:64px;flex-shrink:0;border-radius:5px;font-size:18px;font-weight:600;color:var(--k-fg2);border:1px solid var(--k-line)">Cancelar</div>
+        <div style="display:flex;align-items:center;justify-content:center;flex-grow:1;height:64px;border-radius:5px;font-size:24px;font-weight:700;background:var(--k-acc);color:var(--k-on)">Empezar entre 2</div>
+      </footer>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+  <style>
+    .kds{ --k-bg:oklch(16% .010 235); --k-surf:oklch(22% .012 235); --k-surf2:oklch(19% .011 235);
+          --k-line:oklch(32% .014 235); --k-fg:oklch(97% .004 235); --k-fg2:oklch(74% .010 235);
+          --k-ok:oklch(72% .130 155); --k-warn:oklch(78% .130 78); --k-bad:oklch(70% .160 27);
+          --k-acc:oklch(76% .105 205); --k-on:oklch(18% .020 235); }
+    .kds .col{ display:flex; flex-direction:column; min-height:0; background:var(--k-bg); }
+    .kds .colh{ display:flex; align-items:center; gap:12px; padding:14px 16px;
+                font-size:18px; font-weight:700; text-transform:uppercase; letter-spacing:.02em; }
+    .kds .cont{ border-radius:3px; padding:2px 10px; font-family:var(--f-mono); font-size:18px; }
+
+    /* MISMO ALTO TOPE QUE LA ALTERNATIVA A — lo que cambia es qué pasa con lo
+       que no cabe. Aquí no se desliza: se corta, y el detalle completo vive en
+       la ficha. La tarjeta pasa a ser un resumen que se lee de un vistazo. */
+    .kds .card{ display:flex; flex-direction:column; flex-shrink:0; max-height:360px;
+                border-radius:8px; background:var(--k-surf); overflow:hidden; }
+    .kds .card>*{ flex-shrink:0; }
+    .kds .cuerpo{ position:relative; display:flex; flex-direction:column; flex:1 1 auto; min-height:0; overflow:hidden; }
+    .kds .cuerpo.mas::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:44px;
+                             pointer-events:none; background:linear-gradient(to top, var(--k-surf), transparent); }
+
+    .kds .ch{ display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid var(--k-line); }
+    .kds .est{ border-radius:3px; padding:2px 8px; font-size:12px; font-weight:700; letter-spacing:.04em; }
+    /* El ENCABEZADO ENTERO abre la ficha; el ojo solo lo anuncia. Un botón
+       propio de 44 px le robaba doce píxeles de alto a todas las tarjetas,
+       también a las que caben enteras. Así el objetivo táctil pasa de 44 px a
+       los 450 de la tarjeta y el alto no cambia. */
+    .kds .ch{ cursor:pointer; }
+    .kds .ojo{ display:flex; align-items:center; color:var(--k-fg2); }
+    .kds .npl{ border-radius:3px; padding:3px 8px; font-size:14px; font-weight:600;
+               background:var(--k-surf2); color:var(--k-fg2); }
+    .kds .reloj{ margin-left:auto; display:flex; flex-direction:column; align-items:flex-end; line-height:1; }
+    .kds .reloj b{ font-family:var(--f-mono); font-size:20px; font-weight:600; font-variant-numeric:tabular-nums; }
+    .kds .reloj span{ padding-top:4px; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--k-fg2); }
+    .kds .lin{ display:flex; gap:10px; }
+    .kds .lin>b{ font-family:var(--f-mono); font-size:18px; font-weight:700; color:var(--k-fg2); }
+    .kds .plato{ font-size:18px; font-weight:600; line-height:24px; }
+    .kds .tag{ border-radius:3px; padding:2px 6px; font-size:14px; font-weight:700; letter-spacing:.02em; }
+    .kds .comp{ font-size:14px; font-weight:500; letter-spacing:.02em; color:var(--k-fg2); }
+    .kds ul{ margin:0; padding:12px 14px; list-style:none; display:flex; flex-direction:column; gap:12px; }
+    .kds .btn{ display:flex; align-items:center; justify-content:center; gap:8px; height:56px;
+               border-radius:5px; font-size:18px; font-weight:700; }
+    .kds .pie{ padding:0 14px 14px; }
+    .kds .espera{ margin:0; padding:8px 14px 0; font-size:14px; color:var(--k-fg2); font-variant-numeric:tabular-nums; }
+    .kds .equipo{ display:flex; align-items:center; gap:8px; padding:10px 14px;
+                  background:var(--k-surf2); border-bottom:1px solid var(--k-line); }
+    .kds .av{ display:flex; align-items:center; justify-content:center; width:32px; height:32px;
+              border-radius:50%; font-size:12px; font-weight:700; letter-spacing:-.02em; color:oklch(18% .02 235); }
+  </style>
+</helmet>
+<div class="kds" style="width:1440px;height:900px;display:flex;flex-direction:column;overflow:hidden;background:var(--k-bg);color:var(--k-fg)">
+
+  <div style="height:64px;flex-shrink:0;display:flex;align-items:center;gap:12px;padding:0 20px;background:var(--k-surf);border-bottom:1px solid var(--k-line)">
+    <div style="width:44px;height:44px;margin-left:-8px;display:flex;align-items:center;justify-content:center;border-radius:5px;color:var(--k-fg2)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+    <span style="display:grid;place-items:center;width:30px;height:30px;flex-shrink:0;border-radius:7px;background:var(--k-acc);color:var(--k-on)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v9a3 3 0 006 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h3V2z"/></svg></span>
+    <div style="display:flex;flex-direction:column;gap:0px;min-width:0">
+      <span style="font-size:15px;font-weight:600;line-height:18px;color:var(--k-fg);white-space:nowrap">La Cava del Llano</span>
+      <span style="font-size:11px;line-height:14px;color:var(--k-fg2)">Sede Centro</span>
+    </div>
+    <span style="width:1px;height:30px;flex-shrink:0;background:var(--k-line)"></span>
+    <div style="display:flex;gap:8px">
+      <span style="display:flex;align-items:center;height:44px;padding:0 16px;border-radius:5px;font-size:18px;font-weight:600;background:var(--k-fg);color:var(--k-on)">Cocina caliente</span>
+      <span style="display:flex;align-items:center;height:44px;padding:0 16px;border-radius:5px;font-size:18px;font-weight:600;color:var(--k-fg2);border:1px solid var(--k-line)">Barra</span>
+    </div>
+    <span style="margin-left:auto;display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border-radius:5px;font-size:14px;font-weight:600;background:color-mix(in oklch, var(--k-bad) 20%, transparent);border:1px solid var(--k-bad);color:var(--k-bad)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M21.7 18l-8-14a2 2 0 00-3.5 0l-8 14A2 2 0 004 21h16a2 2 0 001.7-3z"/></svg>
+      Se acabó · 3
+    </span>
+    <span style="display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border-radius:5px;font-size:14px;font-weight:500;color:var(--k-fg2);border:1px solid var(--k-line)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      Red
+    </span>
+    <span style="font-family:var(--f-mono);font-size:20px;font-weight:500;font-variant-numeric:tabular-nums">11:28 a. m.</span>
+  </div>
+
+  <div style="flex-grow:1;display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:1px;min-height:0;background:var(--k-line)">
+
+    <!-- ────────────────── POR HACER ────────────────── -->
+    <section class="col">
+      <h2 class="colh" style="background:var(--k-line);color:var(--k-fg)">
+        Por hacer
+        <span class="cont" style="background:oklch(97% .004 235 / .18);color:var(--k-fg)">6</span>
+      </h2>
+      <div style="flex-grow:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:12px">
+
+        <article class="card" style="border:2px solid var(--k-bad)">
+          <header class="ch" style="background:color-mix(in oklch, var(--k-bad) 15%, transparent)">
+            <span style="font-size:24px;font-weight:700">M 15</span>
+            <span class="est" style="background:var(--k-bad);color:var(--k-on)">TARDE</span>
+            <span class="npl">5 platos</span>
+            <span class="reloj"><b style="color:var(--k-bad)">21:09</b><span>esperando</span></span>
+            <span class="ojo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          </header>
+          <div class="cuerpo mas">
+            <ul>
+              <li class="lin"><b>1×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato">Patacón con hogao</span>
+                <span class="comp">COMPLETA</span></div></li>
+              <li class="lin"><b>3×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato">Bandeja paisa</span>
+                <div style="display:flex;flex-wrap:wrap;gap:4px"><span class="tag" style="background:var(--k-bad);color:var(--k-on)">SIN AGUACATE</span></div>
+                <span style="font-size:16px;line-height:20px;color:var(--k-bad)">El niño no come picante</span></div></li>
+              <li class="lin"><b>1×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato">Churrasco 300 g</span>
+                <span class="comp">COMPLETA</span></div></li>
+              <li class="lin"><b>2×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato">Sancocho de gallina</span>
+                <div style="display:flex;flex-wrap:wrap;gap:4px"><span class="tag" style="background:var(--k-warn);color:var(--k-on)">DOBLE MAZORCA</span></div></div></li>
+              <li class="lin"><b>1×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato">Arepa de huevo</span>
+                <span class="comp">COMPLETA</span></div></li>
+            </ul>
+          </div>
+          <footer class="pie">
+            <div class="btn" style="background:var(--k-acc);color:var(--k-on)">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"><path d="M18 11V6a2 2 0 00-4 0M14 10V4a2 2 0 00-4 0v2M10 10.5V6a2 2 0 00-4 0v8"/><path d="M18 8a2 2 0 114 0v6a8 8 0 01-8 8h-2a8 8 0 01-8-8v-1a2 2 0 114 0"/></svg>
+              Tomar
+            </div>
+          </footer>
+        </article>
+
+        <article class="card" style="border:2px solid var(--k-bad)">
+          <header class="ch" style="background:color-mix(in oklch, var(--k-bad) 15%, transparent)">
+            <span style="font-size:24px;font-weight:700">M 12</span>
+            <span class="est" style="background:var(--k-bad);color:var(--k-on)">TARDE</span>
+            <span class="reloj"><b style="color:var(--k-bad)">16:09</b><span>esperando</span></span>
+            <span class="ojo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          </header>
+          <div class="cuerpo">
+            <ul>
+              <li class="lin"><b>3×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato">Mojarra frita</span>
+                <div style="display:flex;flex-wrap:wrap;gap:4px"><span class="tag" style="background:var(--k-bad);color:var(--k-on)">SIN PATACÓN</span></div></div></li>
+              <li class="lin"><b>1×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato">Postre de natas</span>
+                <span class="comp">COMPLETA</span></div></li>
+            </ul>
+          </div>
+          <footer class="pie">
+            <div class="btn" style="background:var(--k-acc);color:var(--k-on)">Tomar</div>
+          </footer>
+        </article>
+
+        <article class="card" style="border:2px solid var(--k-line)">
+          <header class="ch">
+            <span style="font-size:24px;font-weight:700">M 1</span>
+            <span class="reloj"><b style="color:var(--k-fg2)">04:09</b><span>esperando</span></span>
+            <span class="ojo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          </header>
+          <div class="cuerpo">
+            <ul>
+              <li class="lin"><b>2×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato">Churrasco 300 g</span>
+                <div style="display:flex;flex-wrap:wrap;gap:4px">
+                  <span class="tag" style="background:var(--k-bad);color:var(--k-on)">SIN ENSALADA</span>
+                  <span class="tag" style="background:var(--k-warn);color:var(--k-on)">DOBLE PAPA CRIOLLA</span>
+                </div></div></li>
+            </ul>
+          </div>
+          <footer class="pie">
+            <div class="btn" style="background:var(--k-acc);color:var(--k-on)">Tomar</div>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+    <!-- ────────────────── EN PREPARACIÓN ────────────────── -->
+    <section class="col">
+      <h2 class="colh" style="background:var(--k-acc);color:var(--k-on)">
+        En preparación
+        <span class="cont" style="background:oklch(18% .020 235 / .18);color:var(--k-on)">5</span>
+      </h2>
+      <div style="flex-grow:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:12px">
+
+        <article class="card" style="border:2px solid var(--k-line)">
+          <header class="ch">
+            <span style="font-size:24px;font-weight:700">M 2</span>
+            <span class="reloj"><b style="color:var(--k-fg2)">02:09</b><span>cocinando</span></span>
+            <span class="ojo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          </header>
+          <div class="equipo">
+            <span class="av" style="background:oklch(72% .14 200)">AR</span>
+            <span style="font-size:16px;font-weight:600;color:var(--k-fg2)">Ana Ramírez</span>
+          </div>
+          <p class="espera">La mesa lleva 2 min esperando</p>
+          <div class="cuerpo">
+            <ul>
+              <li class="lin"><b>1×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato">Flan de caramelo</span>
+                <span class="comp">COMPLETA</span></div></li>
+              <li class="lin"><b>1×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato">Bandeja paisa</span>
+                <div style="display:flex;flex-wrap:wrap;gap:4px"><span class="tag" style="background:var(--k-bad);color:var(--k-on)">SIN FRIJOLES</span></div></div></li>
+            </ul>
+          </div>
+          <footer class="pie">
+            <div class="btn" style="background:var(--k-ok);color:var(--k-on)">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Listo
+            </div>
+          </footer>
+        </article>
+
+        <article class="card" style="border:2px solid oklch(78% .130 78 / .55)">
+          <header class="ch" style="background:color-mix(in oklch, var(--k-warn) 15%, transparent)">
+            <span style="font-size:24px;font-weight:700">M 18</span>
+            <span class="est" style="background:var(--k-warn);color:var(--k-on)">ATENTO</span>
+            <span class="npl">4 platos</span>
+            <span class="reloj"><b style="color:var(--k-warn)">12:09</b><span>cocinando</span></span>
+            <span class="ojo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          </header>
+          <div class="equipo">
+            <span class="av" style="background:oklch(70% .13 280);box-shadow:0 0 0 2px var(--k-surf2)">AC</span>
+            <span class="av" style="background:oklch(72% .15 30);margin-left:-10px;box-shadow:0 0 0 2px var(--k-surf2)">SD</span>
+            <span style="font-size:16px;font-weight:600;color:var(--k-fg2)">Ana Cárdenas y Sofía Duarte</span>
+          </div>
+          <p class="espera">La mesa lleva 12 min esperando</p>
+          <div class="cuerpo mas">
+            <ul>
+              <li class="lin"><b>2×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato">Sancocho de gallina</span>
+                <div style="display:flex;flex-wrap:wrap;gap:4px"><span class="tag" style="background:var(--k-bad);color:var(--k-on)">SIN MAZORCA</span></div>
+                <span style="font-size:16px;line-height:20px;color:var(--k-bad)">Sin sal, por favor</span></div></li>
+              <li class="lin"><b>3×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato">Empanada de carne</span>
+                <span class="comp">COMPLETA</span></div></li>
+              <li class="lin"><b>1×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato">Mojarra frita</span>
+                <span class="comp">COMPLETA</span></div></li>
+              <li class="lin"><b>2×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato">Flan de caramelo</span>
+                <span class="comp">COMPLETA</span></div></li>
+            </ul>
+          </div>
+          <footer class="pie">
+            <div class="btn" style="background:var(--k-ok);color:var(--k-on)">Listo</div>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+    <!-- ────────────────── LISTAS PARA LLEVAR ────────────────── -->
+    <section class="col">
+      <h2 class="colh" style="background:var(--k-ok);color:var(--k-on)">
+        Listas para llevar
+        <span class="cont" style="background:oklch(18% .020 235 / .18);color:var(--k-on)">5</span>
+      </h2>
+      <div style="flex-grow:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:12px">
+
+        <article class="card" style="border:2px solid var(--k-bad)">
+          <header class="ch" style="background:color-mix(in oklch, var(--k-ok) 14%, transparent)">
+            <span style="font-size:24px;font-weight:700">M 10</span>
+            <span class="est" style="background:var(--k-bad);color:var(--k-on)">TARDE</span>
+            <span class="reloj"><b style="color:var(--k-bad)">05:41</b><span>sin recoger</span></span>
+            <span class="ojo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          </header>
+          <p class="espera" style="color:var(--k-warn)">La mesa lleva 27 min esperando</p>
+          <div class="cuerpo">
+            <ul>
+              <li class="lin"><b>3×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato" style="color:var(--k-fg2);text-decoration:line-through;text-decoration-color:var(--k-ok)">Arepa de huevo</span>
+                <span class="comp">COMPLETA</span></div></li>
+              <li class="lin"><b>2×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato" style="color:var(--k-fg2);text-decoration:line-through;text-decoration-color:var(--k-ok)">Flan de caramelo</span>
+                <span class="comp">COMPLETA</span></div></li>
+            </ul>
+          </div>
+          <footer class="pie">
+            <div class="btn" style="color:var(--k-fg2);border:1px solid var(--k-line);font-size:16px;font-weight:600">Entregada a la mesa</div>
+          </footer>
+        </article>
+
+        <article class="card" style="border:2px solid var(--k-ok)">
+          <header class="ch" style="background:color-mix(in oklch, var(--k-ok) 14%, transparent)">
+            <span style="font-size:24px;font-weight:700">M 6</span>
+            <span class="reloj"><b style="color:var(--k-fg2)">00:52</b><span>sin recoger</span></span>
+            <span class="ojo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          </header>
+          <p class="espera">La mesa lleva 7 min esperando</p>
+          <div class="cuerpo">
+            <ul>
+              <li class="lin"><b>1×</b><div style="display:flex;flex-direction:column;gap:4px">
+                <span class="plato" style="color:var(--k-fg2);text-decoration:line-through;text-decoration-color:var(--k-ok)">Mojarra frita</span>
+                <div style="display:flex;flex-wrap:wrap;gap:4px"><span class="tag" style="background:var(--k-bad);color:var(--k-on)">SIN PATACÓN</span></div></div></li>
+            </ul>
+          </div>
+          <footer class="pie">
+            <div class="btn" style="color:var(--k-fg2);border:1px solid var(--k-line);font-size:16px;font-weight:600">Entregada a la mesa</div>
+          </footer>
+        </article>
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

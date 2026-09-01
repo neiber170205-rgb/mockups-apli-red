@@ -1,0 +1,19 @@
+# Este repo publica SOLO la maquetacion. Todo lo demas del proyecto vive
+# en local y se ignora a proposito, para que un `git add -A` distraido
+# no acabe publicando el backend ni las dependencias.
+/api/
+/web/
+/PPA/
+/actividades/
+/guias/
+/INFORME-PROYECTO.*
+/ESTADO.md
+/*.pdf
+
+# El lienzo de diseno empaquetado: 3 MB de editor, se regenera con seed-canvas
+mockups/salon-cocina-y-mesa.html
+
+# sistema
+.DS_Store
+node_modules/
+*.log

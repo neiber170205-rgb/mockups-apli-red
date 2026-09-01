@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+</helmet>
+<div style="width:1280px;height:820px;display:flex;flex-direction:column;background:var(--canvas);font-size:13px;overflow:hidden">
+  <div style="flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--line)">
+    <div style="display:flex;align-items:center;gap:12px;padding:0 12px;height:48px">
+
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <span style="display:grid;place-items:center;width:24px;height:24px;border-radius:5px;background:var(--accent);color:var(--accent-fg);font-weight:600;font-size:12px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v9a3 3 0 006 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h3V2z"/></svg>
+        </span>
+        <span style="font-weight:600;letter-spacing:-.01em">Pedidos</span>
+      </div>
+
+      <!-- Selector de sede — mismo disparador que SelectorEmpresa.tsx:46-53:
+           h-9 px-2, borde de línea, dos renglones apretados y el galón. -->
+      <div style="display:flex;align-items:center;gap:8px;height:36px;padding:0 8px;border-radius:5px;border:1px solid var(--line);background:var(--surface);text-align:left;min-width:0">
+        <span style="display:grid;place-items:center;width:20px;height:20px;flex-shrink:0;border-radius:4px;background:#0F766E;color:#fff;font-size:10px;font-weight:700">LC</span>
+        <span style="min-width:0">
+          <span style="display:block;font-size:12px;font-weight:500;color:var(--fg);line-height:1.15">La Cava del Llano</span>
+          <span style="display:block;font-size:11px;color:var(--fg3);line-height:1.15">Sede Centro</span>
+        </span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+
+      <!-- Donde el ERP pone el periodo contable, aquí va el turno: mismo chip
+           (h-7 px-2, success-soft sobre success, punto de 6 px). -->
+      <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 8px;border-radius:5px;background:var(--success-soft);color:var(--success);font-size:12px">
+        <span style="width:6px;height:6px;border-radius:50%;background:currentColor"></span>
+        Turno abierto · 11:00
+      </span>
+
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px;width:224px;height:32px;padding:0 10px;border-radius:5px;border:1px solid var(--line);background:var(--surface2);font-size:12px;color:var(--fg3)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <span style="flex:1;text-align:left">Buscar…</span>
+        <span style="font-size:11px;border:1px solid var(--line);border-radius:3px;padding:1px 4px;background:var(--surface)">Ctrl K</span>
+      </div>
+
+      <div style="display:flex;align-items:center;padding-left:8px;margin-left:4px;border-left:1px solid var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;height:32px;padding:0 6px 0 4px;border-radius:5px;border:1px solid transparent">
+          <span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:50%;background:var(--accent);color:var(--accent-fg);font-size:11px;font-weight:600">DN</span>
+          <span style="font-size:12px;font-weight:500;color:var(--fg2);max-width:112px">Danilo Neiber</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;display:flex">
+    <div style="width:224px;flex-shrink:0;display:flex;flex-direction:column;background:var(--surface);border-right:1px solid var(--line)">
+      <ul style="flex:1;margin:0;padding:8px;list-style:none;display:flex;flex-direction:column;gap:2px">
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg);font-weight:500">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            <span>Salón</span>
+          </div>
+          <ul style="margin:2px 0 4px;padding:0;list-style:none;display:flex;flex-direction:column;gap:1px">
+            <li><div style="display:flex;align-items:center;height:28px;padding-left:16px;margin-left:12px;border-radius:5px;border-left:1px solid var(--line);font-size:12px;color:var(--fg3)">Zonas</div></li>
+            <li><div style="display:flex;align-items:center;height:28px;padding-left:16px;margin-left:12px;border-radius:5px;border-left:1px solid var(--accent);font-size:12px;background:var(--accent-soft);color:var(--accent);font-weight:500">Mesas y QR</div></li>
+          </ul>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            <span>Carta</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M8.5 3a2.5 2.5 0 013.5-.9A2.5 2.5 0 0115.5 3 2.5 2.5 0 0119 6.5c0 1.4-.9 2.6-2 3v7.5H7V9.5c-1.1-.4-2-1.6-2-3A2.5 2.5 0 018.5 3z"/><path d="M7 21h10"/></svg>
+            <span>Cocina</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.9"/></svg>
+            <span>Personas</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M12 21s-7-6.4-7-11a7 7 0 1114 0c0 4.6-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <span>Sede</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 3 4-6"/></svg>
+            <span>Informes</span>
+          </div>
+        </li>
+      </ul>
+      <div style="margin:8px;height:28px;display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:5px;border:1px solid var(--line);background:var(--surface);font-size:12px;color:var(--fg3)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M15 9l-3 3 3 3"/></svg>
+        Colapsar
+      </div>
+    </div>
+    <div style="flex:1;min-width:0;min-height:0;overflow:hidden;padding:16px;display:flex;flex-direction:column">
+  <div style="flex-shrink:0;display:flex;align-items:center;gap:14px;margin-bottom:14px">
+    <span style="font-size:20px;font-weight:600;letter-spacing:-.01em">Mesas y códigos QR</span>
+    <span style="font-size:13px;color:var(--fg3)">Sede Centro · 20 mesas</span>
+    <div style="margin-left:auto;display:flex;gap:8px">
+      <div style="height:32px;display:flex;align-items:center;gap:6px;padding:0 12px;border-radius:5px;border:1px solid var(--line2);background:var(--surface)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg2)"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+        <span style="font-size:13px;font-weight:500">Imprimir hoja A4</span>
+      </div>
+      <div style="height:32px;display:flex;align-items:center;gap:6px;padding:0 12px;border-radius:5px;background:var(--accent);border:1px solid var(--accent)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--accent-fg)"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span style="font-size:13px;font-weight:500;color:var(--accent-fg)">Nueva mesa</span>
+      </div>
+    </div>
+  </div>
+  <div style="flex-grow:1;display:flex;min-height:0">
+
+    <div style="flex-grow:1;display:flex;flex-direction:column;padding:16px 20px;min-width:0">
+      <div style="border:1px solid var(--line);border-radius:8px;background:var(--surface);overflow:hidden">
+        <div style="display:grid;grid-template-columns:70px 1fr 110px 130px 140px 1fr;height:34px;background:var(--thead-bg);color:var(--thead-fg);align-items:center">
+          <span style="padding:0 12px;font-size:12px;font-weight:600;letter-spacing:.04em">MESA</span>
+          <span style="padding:0 12px;font-size:12px;font-weight:600;letter-spacing:.04em">ZONA</span>
+          <span style="padding:0 12px;font-size:12px;font-weight:600;letter-spacing:.04em">PUESTOS</span>
+          <span style="padding:0 12px;font-size:12px;font-weight:600;letter-spacing:.04em">ADHESIVO</span>
+          <span style="padding:0 12px;font-size:12px;font-weight:600;letter-spacing:.04em">ÚLTIMO ESCANEO</span>
+          <span style="padding:0 12px;font-size:12px;font-weight:600;letter-spacing:.04em">ESTADO</span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:70px 1fr 110px 130px 140px 1fr;min-height:36px;align-items:center;border-bottom:1px solid var(--line)">
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px;font-weight:500">1</span>
+          <span style="padding:0 12px">Terraza</span>
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px">4</span>
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px;color:var(--fg2)">M01-v2</span>
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px;color:var(--fg3)">hace 2 h</span>
+          <span style="padding:0 12px"><span style="display:inline-flex;align-items:center;gap:5px;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:500;background:var(--success-soft);color:var(--success);border:1px solid oklch(50% .120 155/.25)"><span style="width:5px;height:5px;border-radius:50%;background:currentColor"></span>Activo</span></span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:70px 1fr 110px 130px 140px 1fr;min-height:36px;align-items:center;border-bottom:1px solid var(--line);background:var(--accent-soft)">
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px;font-weight:600;color:var(--accent)">5</span>
+          <span style="padding:0 12px;font-weight:500">Terraza</span>
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px">6</span>
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px;color:var(--fg2)">M05-v3</span>
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px;color:var(--fg2)">hace 40 s</span>
+          <span style="padding:0 12px"><span style="display:inline-flex;align-items:center;gap:5px;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:500;background:var(--success-soft);color:var(--success);border:1px solid oklch(50% .120 155/.25)"><span style="width:5px;height:5px;border-radius:50%;background:currentColor"></span>Activo</span></span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:70px 1fr 110px 130px 140px 1fr;min-height:36px;align-items:center;border-bottom:1px solid var(--line)">
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px;font-weight:500">7</span>
+          <span style="padding:0 12px">Terraza</span>
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px">4</span>
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px;color:var(--fg2)">M07-v1</span>
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px;color:var(--fg3)">hace 3 días</span>
+          <span style="padding:0 12px"><span style="display:inline-flex;align-items:center;gap:5px;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:500;background:var(--success-soft);color:var(--success);border:1px solid oklch(50% .120 155/.25)"><span style="width:5px;height:5px;border-radius:50%;background:currentColor"></span>Activo</span></span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:70px 1fr 110px 130px 140px 1fr;min-height:36px;align-items:center;border-bottom:1px solid var(--line)">
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px;font-weight:500">9</span>
+          <span style="padding:0 12px">Salón interior</span>
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px">2</span>
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px;color:var(--fg3);text-decoration:line-through">M09-v1</span>
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px;color:var(--fg3)">—</span>
+          <span style="padding:0 12px"><span style="display:inline-flex;align-items:center;gap:5px;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:500;background:var(--danger-soft);color:var(--danger);border:1px solid oklch(52% .170 27/.25)">Revocado · adhesivo perdido</span></span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:70px 1fr 110px 130px 140px 1fr;min-height:36px;align-items:center">
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px;font-weight:500">11</span>
+          <span style="padding:0 12px">Salón interior</span>
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px">8</span>
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px;color:var(--fg2)">M11-v1</span>
+          <span style="padding:0 12px;font-family:var(--f-mono);font-size:13px;color:var(--fg3)">nunca</span>
+          <span style="padding:0 12px"><span style="display:inline-flex;align-items:center;gap:5px;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:500;background:var(--surface3);color:var(--fg2);border:1px solid var(--line)">Sin imprimir</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div style="width:340px;flex-shrink:0;display:flex;flex-direction:column;gap:14px;padding:16px 20px 16px 0">
+      <div style="display:flex;flex-direction:column;gap:14px;padding:18px;border-radius:8px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--sh-sm)">
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <span style="font-size:16px;font-weight:600">Mesa 5</span>
+          <span style="font-size:12px;color:var(--fg3)">Terraza · 6 puestos</span>
+        </div>
+
+        <div style="align-self:center;width:190px;height:190px;padding:12px;border-radius:5px;background:var(--surface);border:1px solid var(--line2)">
+          <svg viewBox="0 0 21 21" width="166" height="166" shape-rendering="crispEdges" style="display:block">
+            <rect width="21" height="21" fill="var(--surface)"/>
+            <g fill="var(--fg)">
+              <path d="M0 0h7v1H0zM0 1h1v1H0zM6 1h1v1H6zM0 2h1v1H0zM2 2h3v1H2zM6 2h1v1H6zM0 3h1v1H0zM2 3h3v1H2zM6 3h1v1H6zM0 4h1v1H0zM2 4h3v1H2zM6 4h1v1H6zM0 5h1v1H0zM6 5h1v1H6zM0 6h7v1H0z"/>
+              <path d="M14 0h7v1h-7zM14 1h1v1h-1zM20 1h1v1h-1zM14 2h1v1h-1zM16 2h3v1h-3zM20 2h1v1h-1zM14 3h1v1h-1zM16 3h3v1h-3zM20 3h1v1h-1zM14 4h1v1h-1zM16 4h3v1h-3zM20 4h1v1h-1zM14 5h1v1h-1zM20 5h1v1h-1zM14 6h7v1h-7z"/>
+              <path d="M0 14h7v1H0zM0 15h1v1H0zM6 15h1v1H6zM0 16h1v1H0zM2 16h3v1H2zM6 16h1v1H6zM0 17h1v1H0zM2 17h3v1H2zM6 17h1v1H6zM0 18h1v1H0zM2 18h3v1H2zM6 18h1v1H6zM0 19h1v1H0zM6 19h1v1H6zM0 20h7v1H0z"/>
+              <path d="M9 0h1v1H9zM11 1h1v1h-1zM9 2h2v1H9zM12 3h1v1h-1zM9 4h1v1H9zM11 4h2v1h-2zM10 5h1v1h-1zM12 6h1v1h-1zM8 8h2v1H8zM11 8h3v1h-3zM15 8h2v1h-2zM18 8h1v1h-1zM20 8h1v1h-1zM9 9h1v1H9zM12 9h1v1h-1zM14 9h1v1h-1zM17 9h2v1h-2zM8 10h3v1H8zM12 10h2v1h-2zM16 10h1v1h-1zM19 10h2v1h-2zM10 11h1v1h-1zM13 11h3v1h-3zM17 11h1v1h-1zM20 11h1v1h-1zM8 12h2v1H8zM11 12h1v1h-1zM14 12h2v1h-2zM18 12h3v1h-3zM9 14h2v1H9zM12 14h1v1h-1zM14 14h2v1h-2zM17 14h1v1h-1zM19 14h1v1h-1zM8 15h1v1H8zM11 15h1v1h-1zM13 15h1v1h-1zM16 15h2v1h-2zM20 15h1v1h-1zM9 16h3v1H9zM13 16h2v1h-2zM17 16h1v1h-1zM19 16h2v1h-2zM8 17h1v1H8zM10 17h1v1h-1zM12 17h1v1h-1zM15 17h3v1h-3zM19 17h1v1h-1zM9 18h2v1H9zM13 18h1v1h-1zM16 18h1v1h-1zM18 18h3v1h-3zM8 19h1v1H8zM11 19h2v1h-2zM14 19h2v1h-2zM17 19h1v1h-1zM20 19h1v1h-1zM10 20h1v1h-1zM12 20h3v1h-3zM16 20h2v1h-2zM19 20h1v1h-1z"/>
+            </g>
+          </svg>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:7px;padding:12px;border-radius:5px;background:var(--surface2);border:1px solid var(--line)">
+          <div style="display:flex;justify-content:space-between"><span style="font-size:12px;color:var(--fg3)">Etiqueta impresa</span><span style="font-family:var(--f-mono);font-size:12px;font-weight:500">M05-v3</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="font-size:12px;color:var(--fg3)">Creado</span><span style="font-family:var(--f-mono);font-size:12px">12 ago 2026</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="font-size:12px;color:var(--fg3)">Escaneos hoy</span><span style="font-family:var(--f-mono);font-size:12px">14</span></div>
+        </div>
+
+        <div style="display:flex;gap:8px">
+          <div style="flex-grow:1;height:32px;display:flex;align-items:center;justify-content:center;border-radius:5px;border:1px solid var(--line2);background:var(--surface)">
+            <span style="font-size:13px;font-weight:500">Descargar PNG</span>
+          </div>
+          <div style="flex-grow:1;height:32px;display:flex;align-items:center;justify-content:center;border-radius:5px;border:1px solid oklch(52% .170 27/.35);background:var(--danger-soft)">
+            <span style="font-size:13px;font-weight:500;color:var(--danger)">Revocar</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:9px;padding:12px;border-radius:8px;background:var(--surface2);border:1px solid var(--line)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r=".5" fill="currentColor"/></svg>
+        <span style="font-size:12px;color:var(--fg2);line-height:17px">Revocar genera un código nuevo y deja el anterior muerto. Hay que reimprimir el adhesivo.</span>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

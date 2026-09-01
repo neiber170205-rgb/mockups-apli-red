@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+  <style>
+    .kds{ --k-bg:oklch(16% .010 235); --k-surf:oklch(22% .012 235); --k-surf2:oklch(19% .011 235);
+          --k-line:oklch(32% .014 235); --k-fg:oklch(97% .004 235); --k-fg2:oklch(74% .010 235);
+          --k-ok:oklch(72% .130 155); --k-warn:oklch(78% .130 78); --k-bad:oklch(70% .160 27);
+          --k-acc:oklch(76% .105 205); --k-on:oklch(18% .020 235); }
+    .kds .rot{ font-size:14px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--k-fg2); }
+    .kds .tecla{ display:grid; place-items:center; height:64px; border-radius:8px; background:var(--k-surf2);
+                 border:1px solid var(--k-line); font-family:var(--f-mono); font-size:26px; font-weight:500; }
+  </style>
+</helmet>
+<div class="kds" style="position:relative;width:1440px;height:900px;overflow:hidden;background:var(--k-bg);color:var(--k-fg)">
+
+  <div style="position:absolute;inset:0;filter:blur(14px);opacity:.75">
+    <div style="height:64px;background:var(--k-surf);border-bottom:1px solid var(--k-line)"></div>
+    <div style="height:836px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--k-line)">
+      <div style="background:var(--k-bg)"><div style="height:52px;background:var(--k-line)"></div>
+        <div style="padding:12px;display:flex;flex-direction:column;gap:12px">
+          <div style="height:340px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-bad)"></div></div></div>
+      <div style="background:var(--k-bg)"><div style="height:52px;background:var(--k-acc)"></div>
+        <div style="padding:12px"><div style="height:280px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-line)"></div></div></div>
+      <div style="background:var(--k-bg)"><div style="height:52px;background:var(--k-ok)"></div>
+        <div style="padding:12px"><div style="height:200px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-ok)"></div></div></div>
+    </div>
+  </div>
+
+  <div style="position:absolute;inset:0;background:oklch(10% .01 235 / .55)"></div>
+
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:32px">
+    <div style="width:1160px;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;background:var(--k-surf);border:1px solid var(--k-line);box-shadow:0 32px 64px oklch(0% 0 0/.5)">
+
+      <header style="flex-shrink:0;padding:22px 24px 18px;border-bottom:1px solid var(--k-line)">
+        <div style="display:flex;align-items:center;gap:14px">
+          <h2 style="margin:0;font-size:28px;font-weight:700;line-height:1">Se acabó un plato</h2>
+          <span style="border-radius:4px;padding:4px 10px;font-size:14px;font-weight:700;letter-spacing:.04em;background:var(--k-bad);color:var(--k-on)">M 15</span>
+        </div>
+        <p style="margin:0;padding-top:8px;font-size:19px;color:var(--k-fg2)"><b style="font-weight:600;color:var(--k-fg)">2× Mojarra frita</b> · pedida hace 6 min</p>
+      </header>
+
+      <!-- DOS COLUMNAS: QUÉ pasó y QUIÉN lo dice.
+           La primera versión ponía el teclado flotando encima y tapaba justo
+           las opciones que hay que leer para elegir. Partido en dos, nada se
+           esconde detrás de nada: se lee a la izquierda, se firma a la derecha,
+           y el teclado vive en su sitio en vez de invadir. -->
+      <div style="display:grid;grid-template-columns:1fr 336px;gap:0;min-height:0">
+
+        <div style="display:flex;flex-direction:column;gap:12px;padding:20px 24px 24px;min-width:0">
+          <span class="rot">¿Qué se acabó?</span>
+          <!-- ABIERTA, y con la mojarra YA MARCADA: es la que abrió el diálogo,
+               así que el camino rápido es un solo toque en Confirmar.
+               El resto de la carta de esta estación queda disponible para el
+               «ya que estoy»: el cocinero también vio que no queda sancocho, y
+               apagarlo ahora evita el rechazo de dentro de diez minutos. Sin
+               esto, apagar un plato solo se puede cuando alguien YA lo pidió —
+               o sea, siempre a costa de un comensal. -->
+          <div style="display:flex;flex-direction:column;gap:14px;padding:16px 18px;border-radius:8px;background:color-mix(in oklch, var(--k-bad) 16%, transparent);border:2px solid var(--k-bad)">
+            <div style="display:flex;align-items:center;gap:14px">
+              <div style="display:flex;flex-direction:column;gap:4px;flex-grow:1;min-width:0">
+                <span style="font-size:19px;font-weight:600;line-height:24px">Se acabó un plato</span>
+                <span style="font-size:15px;line-height:20px;color:var(--k-fg2)">Deja de pedirse hasta que lo vuelvas a encender. Marca todos los que falten.</span>
+              </div>
+              <span style="display:grid;place-items:center;width:28px;height:28px;flex-shrink:0;border-radius:50%;background:var(--k-bad);color:var(--k-on)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+              <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:62px;padding:9px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-line)"><span style="font-size:16px;font-weight:600;line-height:20px;text-align:center">Arepa de huevo</span></div>
+              <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:62px;padding:9px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-line)"><span style="font-size:16px;font-weight:600;line-height:20px;text-align:center">Bandeja paisa</span></div>
+              <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:62px;padding:9px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-line)"><span style="font-size:16px;font-weight:600;line-height:20px;text-align:center">Churrasco 300 g</span></div>
+              <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:62px;padding:9px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-line);opacity:.45"><span style="font-size:16px;font-weight:600;line-height:20px;text-align:center">Empanada de carne</span><span style="font-size:12px;color:var(--k-fg2)">ya estaba apagado</span></div>
+              <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:62px;padding:9px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-line)"><span style="font-size:16px;font-weight:600;line-height:20px;text-align:center">Flan de caramelo</span></div>
+              <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:62px;padding:9px;border-radius:8px;background:color-mix(in oklch, var(--k-bad) 26%, transparent);border:2px solid var(--k-bad)"><span style="position:absolute;top:8px;right:8px;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--k-bad);color:var(--k-on)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span><span style="font-size:16px;font-weight:600;line-height:20px;text-align:center">Mojarra frita</span><span style="font-size:12px;font-weight:600;color:var(--k-bad)">LA QUE RECHAZAS</span></div>
+              <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:62px;padding:9px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-line)"><span style="font-size:16px;font-weight:600;line-height:20px;text-align:center">Patacón con hogao</span></div>
+              <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:62px;padding:9px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-line)"><span style="font-size:16px;font-weight:600;line-height:20px;text-align:center">Postre de natas</span></div>
+              <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:62px;padding:9px;border-radius:8px;background:var(--k-surf);border:2px solid var(--k-line)"><span style="font-size:16px;font-weight:600;line-height:20px;text-align:center">Sancocho de gallina</span></div>
+            </div>
+            <span style="font-size:14px;color:var(--k-fg2)">Solo los de <b style="font-weight:600;color:var(--k-fg)">Cocina caliente</b>. Los de Barra los apaga quien esté en la barra.</span>
+          </div>
+          <div style="display:flex;align-items:center;min-height:52px;padding:12px 18px;border-radius:8px;background:var(--k-surf2);border:2px solid var(--k-line)"><span style="font-size:18px;font-weight:600">Se acabó un ingrediente</span></div>
+          <div style="display:flex;align-items:center;min-height:52px;padding:12px 18px;border-radius:8px;background:var(--k-surf2);border:2px solid var(--k-line)"><span style="font-size:18px;font-weight:600">Otro motivo</span></div>
+
+          <div style="margin-top:4px;display:flex;flex-direction:column;gap:9px;padding:14px 16px;border-radius:8px;background:var(--k-surf2);border:1px solid var(--k-line)">
+            <span style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--k-fg2)">Al confirmar</span>
+            <div style="display:flex;align-items:flex-start;gap:10px"><span style="width:6px;height:6px;margin-top:8px;flex-shrink:0;border-radius:50%;background:var(--k-bad)"></span><span style="font-size:16px;line-height:22px">Las dos mojarras salen de la cuenta de la mesa 15, y al mesero le llega el aviso con el motivo.</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px"><span style="width:6px;height:6px;margin-top:8px;flex-shrink:0;border-radius:50%;background:var(--k-acc)"></span><span style="font-size:16px;line-height:22px">Los platos que marques dejan de poder pedirse —ni el mesero ni el QR— hasta que los enciendas.</span></div>
+          </div>
+        </div>
+
+        <!-- QUIÉN LO DICE. Primero la ficha —que dice quién— y después el PIN
+             —que dice que eres tú—. En ese orden: el PIN no identifica, confirma.
+             Por eso da igual que dos cocineros tengan el mismo. -->
+        <div style="display:flex;flex-direction:column;gap:14px;padding:20px 24px 24px;background:var(--k-surf2);border-left:1px solid var(--k-line)">
+          <span class="rot">¿Quién lo dice?</span>
+          <div style="display:flex;gap:8px"><span style="display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;border-radius:50%;background:oklch(72% .14 200);color:oklch(18% .02 235);font-size:15px;font-weight:700;letter-spacing:-.02em;box-shadow:0 0 0 2px var(--k-surf),0 0 0 4px var(--k-acc)">AR</span><span style="display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;border-radius:50%;background:oklch(74% .15 80);color:oklch(18% .02 235);font-size:15px;font-weight:700;letter-spacing:-.02em;opacity:.45">LP</span><span style="display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;border-radius:50%;background:oklch(70% .16 340);color:oklch(18% .02 235);font-size:15px;font-weight:700;letter-spacing:-.02em;opacity:.45">MC</span><span style="display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;border-radius:50%;background:oklch(74% .14 150);color:oklch(18% .02 235);font-size:15px;font-weight:700;letter-spacing:-.02em;opacity:.45">JV</span><span style="display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;border-radius:50%;background:oklch(72% .15 30);color:oklch(18% .02 235);font-size:15px;font-weight:700;letter-spacing:-.02em;opacity:.45">SD</span><span style="display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;border-radius:50%;background:oklch(70% .13 280);color:oklch(18% .02 235);font-size:15px;font-weight:700;letter-spacing:-.02em;opacity:.45">AC</span></div>
+          <span style="font-size:17px;font-weight:600;margin-top:-4px">Ana Ramírez</span>
+
+          <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px">
+            <span style="display:grid;place-items:center;height:64px;border-radius:8px;background:var(--k-surf2);border:1px solid var(--k-line);font-family:var(--f-mono);font-size:26px">•</span><span style="display:grid;place-items:center;height:64px;border-radius:8px;background:var(--k-surf2);border:1px solid var(--k-line);font-family:var(--f-mono);font-size:26px">•</span><span style="display:grid;place-items:center;height:64px;border-radius:8px;background:var(--k-surf2);border:1px solid var(--k-acc);font-family:var(--f-mono);font-size:26px"></span><span style="display:grid;place-items:center;height:64px;border-radius:8px;background:var(--k-surf2);border:1px solid var(--k-line);font-family:var(--f-mono);font-size:26px"></span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+            <span class="tecla">1</span><span class="tecla">2</span><span class="tecla">3</span><span class="tecla">4</span><span class="tecla">5</span><span class="tecla">6</span><span class="tecla">7</span><span class="tecla">8</span><span class="tecla">9</span><span></span><span class="tecla">0</span><span style="display:grid;place-items:center;height:64px;border-radius:8px;color:var(--k-fg2)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4H8l-7 8 7 8h13a2 2 0 002-2V6a2 2 0 00-2-2z"/><path d="M18 9l-6 6"/><path d="M12 9l6 6"/></svg></span>
+          </div>
+
+          <span style="font-size:13px;line-height:18px;color:var(--k-fg2)">Rechazar saca dinero de la cuenta, y para eso la ficha no basta.</span>
+        </div>
+      </div>
+
+      <footer style="flex-shrink:0;display:flex;justify-content:flex-end;gap:12px;padding:16px 24px 20px;border-top:1px solid var(--k-line)">
+        <span style="display:flex;align-items:center;justify-content:center;width:170px;height:64px;border-radius:5px;font-size:18px;font-weight:600;color:var(--k-fg2);border:1px solid var(--k-line)">Cancelar</span>
+        <span style="display:flex;align-items:center;justify-content:center;width:300px;height:64px;border-radius:5px;font-size:22px;font-weight:700;background:var(--k-bad);color:var(--k-on)">Confirmar</span>
+      </footer>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

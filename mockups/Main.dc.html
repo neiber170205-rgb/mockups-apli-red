@@ -1,0 +1,419 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+</helmet>
+<div style="position:relative;width:390px;height:844px;display:flex;flex-direction:column;background:var(--canvas);font-size:15px;overflow:hidden">
+
+  <div style="height:56px;flex-shrink:0;display:flex;align-items:center;gap:10px;padding:0 14px;background:var(--surface);border-bottom:1px solid var(--line)">
+    <div style="width:44px;height:44px;margin-left:-6px;border-radius:5px;background:var(--surface3);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg2)"><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+    <div style="display:flex;flex-direction:column;flex-grow:1;min-width:0">
+      <div style="font-size:16px;font-weight:600;line-height:20px">Mesa 7</div>
+      <div style="font-size:12px;color:var(--fg3);line-height:15px">Terraza · 4 comensales</div>
+    </div>
+    <span style="display:grid;place-items:center;flex-shrink:0;color:var(--fg3)" title="Pedidos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M7 2v9a3 3 0 006 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h3V2z"/></svg></span>
+    <div style="display:flex;align-items:center;gap:5px;height:28px;padding:0 9px;border-radius:3px;background:var(--success-soft);border:1px solid oklch(50% .120 155/.25)">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--success)"></span>
+      <span style="font-size:11px;font-weight:600;color:var(--success);letter-spacing:.01em">En el local</span>
+    </div>
+  </div>
+
+  <div style="flex-grow:1;display:flex;min-height:0">
+    <div style="width:84px;flex-shrink:0;background:var(--surface2);border-right:1px solid var(--line);overflow-y:auto">
+      <sc-for list="{{cats}}" as="c" hint-placeholder-count="5">
+        <div onClick="{{c.pick}}" style="{{c.style}}">
+          <span style="font-size:12px;font-weight:600;line-height:15px;text-align:center">{{c.nombre}}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="flex-grow:1;overflow-y:auto;background:var(--surface)">
+      <sc-for list="{{prods}}" as="p" hint-placeholder-count="6">
+        <div style="{{p.filaStyle}}">
+          <div onClick="{{p.add}}" style="{{p.zonaStyle}}">
+            <div style="display:flex;flex-direction:column;flex-grow:1;min-width:0;gap:3px">
+              <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+                <span style="font-size:15px;font-weight:500;line-height:19px">{{p.nombre}}</span>
+                <!-- AGOTADO: sigue en la lista, pero no se puede tocar. Sacarlo
+                     de la carta haría creer al mesero que ya no existe. -->
+                <sc-if value="{{p.agotado}}" hint-placeholder-val="{{false}}">
+                  <span style="display:inline-flex;align-items:center;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:500;line-height:16px;background:var(--surface3);color:var(--fg2);border:1px solid var(--line)">Agotado</span>
+                </sc-if>
+              </div>
+              <span style="font-family:var(--f-mono);font-size:12px;color:var(--fg3)">{{p.sku}}</span>
+              <!-- INGREDIENTE AGOTADO: el plato SÍ se puede pedir. Lo que cambia
+                   es que sale sin una de sus partes, y el mesero tiene que poder
+                   avisarlo ANTES de escribirlo, no cuando llegue el plato. -->
+              <sc-if value="{{p.sinIngrediente}}" hint-placeholder-val="{{false}}">
+                <span style="display:inline-flex;align-self:flex-start;align-items:center;gap:5px;padding:3px 7px;border-radius:3px;background:var(--warning-soft);border:1px solid oklch(56% .110 75/.28)">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--warning);flex-shrink:0"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M21.7 18l-8-14a2 2 0 00-3.5 0l-8 14A2 2 0 004 21h16a2 2 0 001.7-3z"/></svg>
+                  <span style="font-size:12px;font-weight:500;color:var(--warning)">{{p.avisoIngrediente}}</span>
+                </span>
+              </sc-if>
+            </div>
+            <span style="font-family:var(--f-mono);font-size:14px;font-weight:500;color:var(--fg2);white-space:nowrap">{{p.precio}}</span>
+          </div>
+          <div onClick="{{p.ver}}" style="width:48px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--fg3);cursor:pointer">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="flex-shrink:0;max-height:296px;display:flex;flex-direction:column;background:var(--surface);border-top:1px solid var(--line2);box-shadow:0 -4px 12px oklch(24% .018 235/.06)">
+
+    <div style="display:flex;align-items:center;gap:8px;height:38px;padding:0 14px;background:var(--surface2);border-bottom:1px solid var(--line)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3)"><polyline points="20 6 9 17 4 12"/></svg>
+      <span style="font-size:12px;font-weight:600;color:var(--fg3);letter-spacing:.06em;text-transform:uppercase">Enviado · 3 líneas</span>
+      <span style="font-family:var(--f-mono);font-size:12px;color:var(--fg3);margin-left:auto">19:42</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3)"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-bottom:1px solid var(--line)">
+      <span style="font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.06em;text-transform:uppercase">Por enviar</span>
+      <span style="font-family:var(--f-mono);font-size:12px;color:var(--fg3);margin-left:auto">{{nPorEnviar}}</span>
+    </div>
+
+    <div style="flex-grow:1;overflow-y:auto;min-height:64px">
+      <sc-if value="{{vacio}}" hint-placeholder-val="{{false}}">
+        <div style="height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px">
+          <span style="font-size:14px;color:var(--fg3)">Toca un plato para agregarlo</span>
+          <span style="font-size:12px;color:var(--fg3)">Categoría → producto → enviar</span>
+        </div>
+      </sc-if>
+      <sc-for list="{{lineas}}" as="l" hint-placeholder-count="2">
+        <div style="display:flex;align-items:center;gap:8px;padding:9px 14px;border-bottom:1px solid var(--line);background:var(--accent-soft)">
+          <div style="display:flex;flex-direction:column;flex-grow:1;min-width:0;gap:1px">
+            <span style="font-size:14px;font-weight:500;line-height:18px">{{l.nombre}}</span>
+            <sc-if value="{{l.tieneCambios}}" hint-placeholder-val="{{true}}">
+              <span style="display:flex;flex-wrap:wrap;gap:0 8px;font-size:12px;line-height:16px">
+                <span style="font-weight:600;color:var(--danger)">SIN CEBOLLA</span>
+                <span style="font-weight:600;color:var(--warning)">DOBLE CHICHARRÓN</span>
+              </span>
+            </sc-if>
+            <span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">{{l.subtotal}}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:2px;background:var(--surface);border:1px solid var(--line2);border-radius:5px;overflow:hidden">
+            <div onClick="{{l.dec}}" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--fg2)"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+            <span style="font-family:var(--f-mono);font-size:15px;font-weight:600;min-width:22px;text-align:center">{{l.cant}}</span>
+            <div onClick="{{l.inc}}" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--fg2)"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+          </div>
+          <div onClick="{{l.del}}" style="width:48px;height:48px;margin-left:4px;display:flex;align-items:center;justify-content:center;border-radius:5px;cursor:pointer">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--danger)"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="height:76px;flex-shrink:0;display:flex;align-items:center;padding:0 14px;background:var(--surface);border-top:1px solid var(--line)">
+    <div style="{{btnStyle}}">
+      <span style="font-size:16px;font-weight:600">{{btnTexto}}</span>
+    </div>
+  </div>
+
+
+  <sc-if value="{{hayFicha}}" hint-placeholder-val="{{true}}">
+    <div onClick="{{cerrarFondo}}" style="position:absolute;inset:0;z-index:50;display:flex;align-items:flex-end;background:oklch(24% .018 235/.40)">
+      <div style="width:100%;max-height:85%;display:flex;flex-direction:column;overflow:hidden;border-radius:12px 12px 0 0;background:var(--surface);box-shadow:0 -16px 32px oklch(24% .018 235/.14)">
+
+        <div style="flex-shrink:0;display:flex;justify-content:center;padding:10px 0 4px">
+          <span style="width:36px;height:4px;border-radius:2px;background:var(--line2)"></span>
+        </div>
+
+        <div style="flex-grow:1;min-height:0;overflow-y:auto">
+          <div style="width:100%;aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--surface3)">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="color:var(--fg3)"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span style="font-size:13px;color:var(--fg3)">Todavía sin foto</span>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:16px;padding:16px 18px 20px">
+            <div style="display:flex;align-items:flex-start;gap:12px">
+              <span style="flex-grow:1;font-size:20px;font-weight:600;line-height:26px;text-wrap:balance">{{ficha.nombre}}</span>
+              <span style="flex-shrink:0;padding-top:3px;font-family:var(--f-mono);font-size:16px;font-weight:600;white-space:nowrap">{{ficha.precio}}</span>
+            </div>
+
+            <sc-if value="{{ficha.hayDesc}}" hint-placeholder-val="{{true}}">
+              <span style="font-size:14px;line-height:22px;color:var(--fg2)">{{ficha.desc}}</span>
+            </sc-if>
+
+            <sc-if value="{{ficha.sinIngrediente}}" hint-placeholder-val="{{false}}">
+              <span style="display:inline-flex;align-self:flex-start;align-items:center;gap:6px;padding:6px 10px;border-radius:5px;background:var(--warning-soft);border:1px solid oklch(56% .110 75/.28)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--warning);flex-shrink:0"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M21.7 18l-8-14a2 2 0 00-3.5 0l-8 14A2 2 0 004 21h16a2 2 0 001.7-3z"/></svg>
+                <span style="font-size:13px;font-weight:500;color:var(--warning)">{{ficha.avisoIngrediente}} — avísale al cliente</span>
+              </span>
+            </sc-if>
+
+            <sc-if value="{{ficha.hayLleva}}" hint-placeholder-val="{{true}}">
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--fg3)">Lleva</span>
+                <div style="display:flex;flex-wrap:wrap;gap:6px">
+                  <sc-for list="{{ficha.lleva}}" as="parte" hint-placeholder-count="6">
+                    <span style="border-radius:3px;padding:4px 10px;font-size:13px;color:var(--fg2);background:var(--surface2);border:1px solid var(--line)">{{parte.nombre}}</span>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ficha.hayOpciones}}" hint-placeholder-val="{{true}}">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--fg3)">Se elige al pedirlo</span>
+                <sc-for list="{{ficha.opciones}}" as="g" hint-placeholder-count="2">
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <span style="font-size:14px;font-weight:500;line-height:19px">{{g.nombre}}</span>
+                    <span style="font-size:13px;line-height:18px;color:var(--fg3)">{{g.valores}}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ficha.pelado}}" hint-placeholder-val="{{false}}">
+              <span style="font-size:14px;color:var(--fg3)">De este plato no hay más detalle cargado todavía.</span>
+            </sc-if>
+          </div>
+        </div>
+
+        <div style="flex-shrink:0;display:flex;gap:10px;padding:12px 18px 16px;border-top:1px solid var(--line)">
+          <div onClick="{{cerrarFicha}}" style="height:52px;flex-shrink:0;display:flex;align-items:center;gap:6px;padding:0 16px;border-radius:5px;font-size:14px;font-weight:500;color:var(--fg2);border:1px solid var(--line);cursor:pointer">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            Cerrar
+          </div>
+          <div onClick="{{agregarDesdeFicha}}" style="height:52px;flex-grow:1;display:flex;align-items:center;justify-content:center;border-radius:5px;font-size:16px;font-weight:600;background:var(--accent);color:var(--accent-fg);border:1px solid var(--accent);cursor:pointer">Agregar al pedido</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"geocerca":{"editor":"enum","options":["dentro","fuera","impreciso"],"default":"dentro","section":"Estado"}}'>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { cat: 'frec', lineas: [], ficha: null }; }
+
+  catalogo() {
+    return {
+      frec: [
+        { id:1, nombre:'Bandeja paisa', sku:'FUE-01', precio:38000 },
+        { id:2, nombre:'Mojarra frita', sku:'FUE-04', precio:42000, agotado:true },
+        { id:3, nombre:'Limonada de coco', sku:'BEB-07', precio:12000 },
+        { id:4, nombre:'Jugo de lulo', sku:'BEB-02', precio:9000 },
+        { id:5, nombre:'Arepa de huevo', sku:'ENT-03', precio:8500 },
+      ],
+      ent: [
+        { id:5, nombre:'Arepa de huevo', sku:'ENT-03', precio:8500 },
+        { id:6, nombre:'Empanada de carne', sku:'ENT-01', precio:4500 },
+        { id:7, nombre:'Patacón con hogao', sku:'ENT-06', precio:14000 },
+      ],
+      fue: [
+        { id:1, nombre:'Bandeja paisa', sku:'FUE-01', precio:38000 },
+        { id:8, nombre:'Sancocho de gallina', sku:'FUE-02', precio:32000 },
+        { id:2, nombre:'Mojarra frita', sku:'FUE-04', precio:42000, agotado:true },
+        { id:9, nombre:'Churrasco 300 g', sku:'FUE-08', precio:46000, sinIng:'Hoy sale sin ensalada' },
+      ],
+      beb: [
+        { id:3, nombre:'Limonada de coco', sku:'BEB-07', precio:12000 },
+        { id:4, nombre:'Jugo de lulo', sku:'BEB-02', precio:9000 },
+        { id:10, nombre:'Gaseosa 400 ml', sku:'BEB-11', precio:5000 },
+      ],
+      pos: [
+        { id:11, nombre:'Postre de natas', sku:'POS-02', precio:11000 },
+        { id:12, nombre:'Flan de caramelo', sku:'POS-01', precio:10000 },
+      ],
+    };
+  }
+
+  /* El detalle vive aparte y se busca por nombre: el catálogo repite los
+     mismos platos en «Frecuentes» y en su categoría, y duplicar ahí diez
+     componentes por plato era pedir que se separaran. */
+  detalle(nombre) {
+    return ({
+      'Bandeja paisa': {
+        desc: 'El plato de la casa. Alcanza de sobra si se comparte entre dos.',
+        lleva: ['Frijoles','Arroz','Chicharrón','Chorizo','Carne molida','Huevo frito','Tajadas de plátano','Arepa','Aguacate','Cebolla'],
+        opciones: [
+          { nombre:'Término de la carne', valores:'Tres cuartos · Bien asada · Término medio' },
+          { nombre:'Adiciones', valores:'Chicharrón extra · Aguacate · Sin cebolla' },
+        ],
+      },
+      'Sancocho de gallina': {
+        desc: 'Cocido a fuego lento durante tres horas.',
+        lleva: ['Yuca','Plátano','Mazorca','Cilantro','Arroz aparte'],
+      },
+      'Mojarra frita': {
+        desc: 'Mojarra entera, frita al momento del pedido.',
+        lleva: ['Patacón','Arroz de coco','Ensalada','Limón'],
+      },
+      'Churrasco 300 g': {
+        desc: 'Lomo de res a la parrilla. Se pide el término al ordenarlo.',
+        lleva: ['Papa criolla','Ensalada','Chimichurri'],
+        opciones: [{ nombre:'Término de la carne', valores:'Tres cuartos · Bien asada · Término medio' }],
+      },
+      'Arepa de huevo':     { desc: 'Maíz amarillo, huevo de codorniz y suero costeño.' },
+      'Empanada de carne':  { desc: 'Unidad, con ají de la casa.' },
+      'Patacón con hogao':  { desc: 'Plátano verde, hogao y queso costeño.' },
+      'Jugo de lulo':       { desc: 'En agua o en leche.', opciones: [{ nombre:'Preparación', valores:'En agua · En leche' }] },
+    })[nombre] || {};
+  }
+
+  cop(n) { return '$' + n.toLocaleString('es-CO'); }
+
+  renderVals() {
+    const self = this;
+    const defs = [
+      { id:'frec', nombre:'Frecuentes' },
+      { id:'ent', nombre:'Entradas' },
+      { id:'fue', nombre:'Fuertes' },
+      { id:'beb', nombre:'Bebidas' },
+      { id:'pos', nombre:'Postres' },
+    ];
+    const activo = this.state.cat;
+    const cats = defs.map(function (c) {
+      const on = c.id === activo;
+      return {
+        nombre: c.nombre,
+        pick: function () { self.setState({ cat: c.id }); },
+        style: 'min-height:62px;display:flex;align-items:center;justify-content:center;padding:8px 6px;cursor:pointer;border-left:3px solid ' +
+          (on ? 'var(--accent)' : 'transparent') + ';background:' + (on ? 'var(--surface)' : 'transparent') +
+          ';color:' + (on ? 'var(--accent)' : 'var(--fg2)'),
+      };
+    });
+
+    const prods = (this.catalogo()[activo] || []).map(function (p) {
+      const agotado = p.agotado === true;
+      return {
+        nombre: p.nombre, sku: p.sku, precio: self.cop(p.precio),
+        agotado: agotado,
+        sinIngrediente: !agotado && !!p.sinIng,
+        avisoIngrediente: p.sinIng || '',
+        /* Un plato agotado no desaparece de la lista: se queda, atenuado y sin
+           responder. Si se quitara, el mesero lo buscaría creyendo que se borró
+           de la carta. */
+        filaStyle: 'min-height:64px;display:flex;align-items:stretch;border-bottom:1px solid var(--line)' +
+          (agotado ? ';opacity:.5' : ''),
+        zonaStyle: 'display:flex;align-items:center;gap:10px;flex-grow:1;min-width:0;padding:11px 0 11px 14px' +
+          (agotado ? ';cursor:not-allowed' : ';cursor:pointer'),
+        ver: function () { self.setState({ ficha: p }); },
+        add: function () {
+          if (agotado) return;
+          const ls = self.state.lineas.slice();
+          const i = ls.findIndex(function (x) { return x.id === p.id; });
+          if (i >= 0) { ls[i] = Object.assign({}, ls[i], { cant: ls[i].cant + 1 }); }
+          else { ls.push({ id: p.id, nombre: p.nombre, precio: p.precio, cant: 1 }); }
+          self.setState({ lineas: ls });
+        },
+      };
+    });
+
+    const lineas = this.state.lineas.map(function (l) {
+      return {
+        nombre: l.nombre, cant: l.cant, subtotal: self.cop(l.precio * l.cant),
+        // Solo los platos con partes traen desglose: una gaseosa no tiene nada
+        // que desviarse de lo estándar.
+        tieneCambios: l.id === 1,
+        // Solo los platos con partes muestran el desglose; una gaseosa no tiene
+        inc: function () {
+          self.setState({ lineas: self.state.lineas.map(function (x) { return x.id === l.id ? Object.assign({}, x, { cant: x.cant + 1 }) : x; }) });
+        },
+        dec: function () {
+          self.setState({ lineas: self.state.lineas.map(function (x) { return x.id === l.id ? Object.assign({}, x, { cant: Math.max(1, x.cant - 1) }) : x; }) });
+        },
+        del: function () {
+          self.setState({ lineas: self.state.lineas.filter(function (x) { return x.id !== l.id; }) });
+        },
+      };
+    });
+
+    const n = this.state.lineas.length;
+    const total = this.state.lineas.reduce(function (a, l) { return a + l.precio * l.cant; }, 0);
+    const geo = this.props.geocerca || 'dentro';
+
+    const base = 'width:100%;height:56px;display:flex;align-items:center;justify-content:center;border-radius:5px;border:1px solid ';
+    let btnStyle, btnTexto;
+    if (n === 0) {
+      btnStyle = base + 'var(--line);background:var(--surface2);color:var(--fg3)';
+      btnTexto = 'Sin líneas por enviar';
+    } else if (geo === 'fuera') {
+      btnStyle = base + 'oklch(52% .170 27/.30);background:var(--danger-soft);color:var(--danger)';
+      btnTexto = 'Fuera del restaurante';
+    } else if (geo === 'impreciso') {
+      btnStyle = base + 'oklch(56% .110 75/.30);background:var(--warning-soft);color:var(--warning)';
+      btnTexto = 'Señal imprecisa · ± 840 m';
+    } else {
+      btnStyle = base + 'var(--accent);background:var(--accent);color:var(--accent-fg)';
+      btnTexto = 'Enviar ' + n + (n === 1 ? ' línea · ' : ' líneas · ') + this.cop(total);
+    }
+
+    const f = this.state.ficha;
+    let ficha = null;
+    if (f) {
+      const d = this.detalle(f.nombre);
+      const partes = d.lleva || [];
+      const grupos = d.opciones || [];
+      ficha = {
+        nombre: f.nombre,
+        precio: this.cop(f.precio),
+        desc: d.desc || '',
+        hayDesc: !!d.desc,
+        lleva: partes.map(function (x) { return { nombre: x }; }),
+        hayLleva: partes.length > 0,
+        opciones: grupos,
+        hayOpciones: grupos.length > 0,
+        // Un plato sin descripción ni partes no deja la hoja en blanco: lo dice.
+        pelado: !d.desc && partes.length === 0 && grupos.length === 0,
+      };
+    }
+
+    return {
+      cats: cats, prods: prods, lineas: lineas, vacio: n === 0,
+      nPorEnviar: n === 0 ? '—' : this.cop(total), btnStyle: btnStyle, btnTexto: btnTexto,
+      ficha: ficha, hayFicha: f !== null,
+      cerrarFicha: function () { self.setState({ ficha: null }); },
+      // Solo si el toque cayó en el velo, no en la hoja: sin esta comprobación
+      // el clic burbujea desde dentro y la hoja se cierra al tocar su contenido.
+      cerrarFondo: function (e) { if (e.target === e.currentTarget) self.setState({ ficha: null }); },
+      agregarDesdeFicha: function () {
+        const pl = self.state.ficha;
+        if (!pl) return;
+        const ls = self.state.lineas.slice();
+        const i = ls.findIndex(function (x) { return x.id === pl.id; });
+        if (i >= 0) { ls[i] = Object.assign({}, ls[i], { cant: ls[i].cant + 1 }); }
+        else { ls.push({ id: pl.id, nombre: pl.nombre, precio: pl.precio, cant: 1 }); }
+        self.setState({ lineas: ls, ficha: null });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
