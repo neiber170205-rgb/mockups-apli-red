@@ -17,3 +17,6 @@ mockups/salon-cocina-y-mesa.html
 .DS_Store
 node_modules/
 *.log
+docs/GUIA-01-RESPUESTAS.pdf
+docs/GUIA-01-RESPUESTAS.md
+.gitignore

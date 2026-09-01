@@ -34,9 +34,3 @@ mockups/         la fuente de los bocetos
 Las páginas de `docs/bocetos/` se **generan** desde `mockups/`: se les quita el
 envoltorio del editor de diseño y se les añade una barra para volver al índice.
 Editar la maquetación se hace en `mockups/`, nunca en `docs/`.
-
-## Una pantalla no está
-
-**Toma de pedido** (la del mesero armando el pedido) es un prototipo con lógica
-—cuenta líneas, calcula el total, bloquea los platos agotados— y no funciona
-como página estática. Vive solo en el lienzo de diseño.
