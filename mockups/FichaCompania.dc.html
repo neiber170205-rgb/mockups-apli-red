@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+
+</helmet>
+<div style="width:1280px;height:1560px;display:flex;flex-direction:column;background:var(--canvas);font-size:13px;overflow:hidden">
+  <div style="flex-shrink:0;background:var(--thead-bg);border-bottom:1px solid oklch(38% .018 235)">
+    <div style="display:flex;align-items:center;gap:12px;padding:0 12px;height:48px">
+
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <span style="display:grid;place-items:center;width:24px;height:24px;border-radius:5px;background:var(--accent);color:var(--accent-fg)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M7 2v9a3 3 0 006 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h3V2z"/></svg>
+        </span>
+        <span style="font-weight:600;letter-spacing:-.01em;color:var(--thead-fg)">Pedidos</span>
+      </div>
+
+      <!-- Donde una compania lleva su selector, la plataforma lleva ESTO. La
+           barra oscura mas el rotulo son la respuesta permanente a «¿donde
+           estoy?», que es la pregunta que se olvida hacer justo antes de
+           equivocarse de restaurante. -->
+      <span style="display:inline-flex;align-items:center;gap:7px;height:28px;padding:0 10px;border-radius:5px;
+        background:oklch(42% .020 235);border:1px solid oklch(52% .022 235);color:var(--thead-fg);
+        font-size:11px;font-weight:700;letter-spacing:.08em">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        PLATAFORMA
+      </span>
+      
+
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px;width:224px;height:32px;padding:0 10px;border-radius:5px;border:1px solid oklch(45% .018 235);background:oklch(26% .014 235);font-size:12px;color:oklch(72% .012 235)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <span style="flex:1;text-align:left">Buscar compañía…</span>
+        <span style="font-size:11px;border:1px solid oklch(45% .018 235);border-radius:3px;padding:1px 4px">Ctrl K</span>
+      </div>
+
+      <div style="display:flex;align-items:center;padding-left:8px;margin-left:4px;border-left:1px solid oklch(42% .018 235)">
+        <div style="display:flex;align-items:center;gap:8px;height:32px;padding:0 6px 0 4px;border-radius:5px">
+          <span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:50%;background:var(--accent);color:var(--accent-fg);font-size:11px;font-weight:600">DN</span>
+          <span style="font-size:12px;font-weight:500;color:var(--thead-fg);max-width:112px">Danilo Neiber</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:oklch(72% .012 235)"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;display:flex">
+    <div style="width:224px;flex-shrink:0;display:flex;flex-direction:column;background:var(--surface);border-right:1px solid var(--line)">
+      <ul style="flex:1;margin:0;padding:8px;list-style:none;display:flex;flex-direction:column;gap:2px">
+        <li><div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2);font-weight:500"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Panel</span></div></li>
+        <li><div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;background:var(--accent-soft);color:var(--accent);font-weight:600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h.01"/><path d="M15 9h.01"/><path d="M9 13h.01"/><path d="M15 13h.01"/><path d="M10 21v-4h4v4"/></svg><span>Compañías</span></div></li>
+        <li><div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2);font-weight:500"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><span>Planes</span></div></li>
+        <li><div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2);font-weight:500"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0114 0v1"/></svg><span>Operadores</span></div></li>
+        <li><div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2);font-weight:500"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg><span>Auditoría</span></div></li>
+      </ul>
+      <div style="padding:10px 12px;border-top:1px solid var(--line);font-size:11px;color:var(--fg3);line-height:1.45">
+        3 compañías · 4 sedes<br>Todas al día
+      </div>
+    </div>
+    <div style="flex:1;min-width:0;min-height:0;overflow:hidden;padding:16px;display:flex;flex-direction:column">
+      <div style="flex-shrink:0;display:flex;align-items:flex-end;gap:16px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:14px">
+        <div style="min-width:0">
+          <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--fg3);padding-bottom:3px">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="15 18 9 12 15 6"/></svg>Compañías
+          </div>
+          <h1 style="margin:0;font-size:20px;font-weight:600;line-height:26px;letter-spacing:-.01em">La Cava del Llano</h1>
+          <div style="padding-top:2px;font-size:12px;color:var(--fg3)">NIT 901.456.789-8 · cliente desde el 14 de marzo de 2026 · con RUT y matrícula</div>
+        </div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0"><span style="display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 12px;border-radius:5px;font-size:13px;background:var(--surface);border:1px solid var(--danger);color:var(--danger);font-weight:500">Suspender</span><span style="display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 12px;border-radius:5px;font-size:13px;background:var(--surface);border:1px solid var(--line2);color:var(--fg2);font-weight:500">Cancelar</span><span style="display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 12px;border-radius:5px;font-size:13px;background:var(--accent);border:1px solid var(--accent);color:var(--accent-fg);font-weight:600">Guardar</span></div>
+      </div>
+      <div style="flex-shrink:0;display:flex;align-items:center;gap:4px;border-bottom:1px solid var(--line);margin-bottom:14px;overflow-x:auto"><span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid var(--accent);color:var(--accent);font-weight:600">Identidad y datos legales</span><span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid transparent;color:var(--fg2);font-weight:500">Plan y límites</span><span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid transparent;color:var(--fg2);font-weight:500">Administradores<span style="font-size:11px;color:var(--fg3);font-variant-numeric:tabular-nums">2</span></span><span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid transparent;color:var(--fg2);font-weight:500">Sedes<span style="font-size:11px;color:var(--fg3);font-variant-numeric:tabular-nums">1</span></span><span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid transparent;color:var(--fg2);font-weight:500">Bitácora<span style="font-size:11px;color:var(--fg3);font-variant-numeric:tabular-nums">2</span></span></div>
+      <div style="flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:14px;padding-right:4px">
+        <div style="display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:8px;background:var(--surface);border:1px solid var(--line)">
+          <div>
+            <span style="font-size:13px;font-weight:600">Cómo se llama</span>
+            <p style="margin:0;padding-top:2px;font-size:12px;color:var(--fg3);max-width:672px;line-height:1.5">Lo primero es cómo está registrado, porque decide qué hay debajo. Y los tres registros son cosas distintas que se tienen por separado: el <b>RUT</b> ante la DIAN es gratis y en línea; la <b>matrícula</b> de cámara de comercio cuesta plata y se renueva cada año. Lo común en un negocio pequeño es tener el primero y no el segundo.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px">
+            <div style="grid-column:span 6;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">¿Cómo está registrado el negocio?<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--accent)"><polyline points="20 6 9 17 4 12"/></svg><span style="padding-left:6px">Con RUT y matrícula de cámara de comercio</span><span style="margin-left:auto;display:flex;align-items:center;gap:4px;flex-shrink:0;color:var(--fg3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg></span></div></div>
+            <div style="grid-column:span 4;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Nombre del negocio<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;">La Cava del Llano</div><span style="font-size:12px;color:var(--fg3);line-height:1.45">El del letrero. Lo ven sus clientes.</span></div>
+            <div style="grid-column:span 2;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Código</span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;background:var(--surface2);color:var(--fg2);font-family:var(--f-mono);">lacava<span style="margin-left:auto;flex-shrink:0;color:var(--fg3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span></div><span style="font-size:12px;color:var(--fg3);line-height:1.45">Va en la dirección web.</span></div>
+            <div style="grid-column:span 7;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Razón social<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;">Inversiones La Cava S.A.S.</div><span style="font-size:12px;color:var(--fg3);line-height:1.45">El nombre con el que se constituyó la sociedad.</span></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:8px;background:var(--surface);border:1px solid var(--line)">
+          <div>
+            <span style="font-size:13px;font-weight:600">Identificación</span>
+            <p style="margin:0;padding-top:2px;font-size:12px;color:var(--fg3);max-width:672px;line-height:1.5">El <b>DV</b> solo aparece aquí porque hay RUT: es el dígito que la DIAN le pone al NIT al inscribirlo. Se calcula solo con módulo 11 para atrapar errores de digitación, pero <b>no se inventa</b> — un DV sin RUT no existe oficialmente, y guardarlo sería fabricar un dato tributario.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px">
+            <div style="grid-column:span 3;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Tipo de persona<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--accent)"><polyline points="20 6 9 17 4 12"/></svg><span style="padding-left:6px">Jurídica</span><span style="margin-left:auto;display:flex;align-items:center;gap:4px;flex-shrink:0;color:var(--fg3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg></span></div><span style="font-size:12px;color:var(--fg3);line-height:1.45">Sociedad (S.A.S., Ltda.).</span></div>
+            <div style="grid-column:span 3;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Documento<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--accent)"><polyline points="20 6 9 17 4 12"/></svg><span style="padding-left:6px">NIT</span><span style="margin-left:auto;display:flex;align-items:center;gap:4px;flex-shrink:0;color:var(--fg3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg></span></div></div>
+            <div style="grid-column:span 3;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Número<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;font-family:var(--f-mono);">901456789</div><span style="font-size:12px;color:var(--fg3);line-height:1.45">Sin puntos ni guiones.</span></div>
+            <div style="grid-column:span 2;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">DV<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;font-family:var(--f-mono);">8</div><span style="font-size:12px;color:var(--fg3);line-height:1.45">Se calcula.</span></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:8px;background:var(--surface);border:1px solid var(--line)">
+          <div>
+            <span style="font-size:13px;font-weight:600">Registro mercantil</span>
+            <p style="margin:0;padding-top:2px;font-size:12px;color:var(--fg3);max-width:672px;line-height:1.5">Esta sección entera desaparece si el negocio no tiene cámara de comercio. La renovación vence el 31 de marzo y no tenerla vigente le puede costar el cierre del local, así que avisamos 30 días antes.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px">
+            <div style="grid-column:span 4;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Matrícula mercantil<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;font-family:var(--f-mono);">0000234519</div></div>
+            <div style="grid-column:span 4;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Cámara de Comercio<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--accent)"><polyline points="20 6 9 17 4 12"/></svg><span style="padding-left:6px">Cúcuta</span><span style="margin-left:auto;display:flex;align-items:center;gap:4px;flex-shrink:0;color:var(--fg3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg></span></div></div>
+            <div style="grid-column:span 4;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Renovada hasta<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;">31/03/2027</div><span style="font-size:12px;color:var(--fg3);line-height:1.45">Le avisamos 30 días antes.</span></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:8px;background:var(--surface);border:1px solid var(--line)">
+          <div>
+            <span style="font-size:13px;font-weight:600">Representante legal</span>
+            <p style="margin:0;padding-top:2px;font-size:12px;color:var(--fg3);max-width:672px;line-height:1.5">Solo con sociedad. Una persona natural firma por sí misma: pedirle representante legal es pedirle que se represente a sí misma.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px">
+            <div style="grid-column:span 3;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Tipo de documento<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--accent)"><polyline points="20 6 9 17 4 12"/></svg><span style="padding-left:6px">Cédula de ciudadanía</span><span style="margin-left:auto;display:flex;align-items:center;gap:4px;flex-shrink:0;color:var(--fg3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg></span></div></div>
+            <div style="grid-column:span 3;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Documento<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;font-family:var(--f-mono);">88234107</div></div>
+            <div style="grid-column:span 6;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Nombre completo<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;">Óscar Iván Peñaranda Villamizar</div><span style="font-size:12px;color:var(--fg3);line-height:1.45">Como aparece en el certificado.</span></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:8px;background:var(--surface);border:1px solid var(--line)">
+          <div>
+            <span style="font-size:13px;font-weight:600">Dónde queda y por dónde le escribimos</span>
+            <p style="margin:0;padding-top:2px;font-size:12px;color:var(--fg3);max-width:672px;line-height:1.5">El canal principal es el <b>celular con WhatsApp</b>, no el correo. Por ahí va el código para entrar la primera vez, los avisos del servicio y el cobro. Mucha gente no tiene correo, o el que tiene es el del hijo; hacerlo obligatorio es perder el alta por un dato que nadie va a leer.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px">
+            <div style="grid-column:span 6;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Dirección fiscal<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;">Av. 0 # 12-34, Barrio La Playa</div><span style="font-size:12px;color:var(--fg3);line-height:1.45">La que aparece en el RUT.</span></div>
+            <div style="grid-column:span 3;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Municipio<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--accent)"><polyline points="20 6 9 17 4 12"/></svg><span style="padding-left:6px">Cúcuta</span><span style="margin-left:auto;display:flex;align-items:center;gap:4px;flex-shrink:0;color:var(--fg3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg></span></div><span style="font-size:12px;color:var(--fg3);line-height:1.45">Se guarda con su código DANE.</span></div>
+            <div style="grid-column:span 3;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Celular (WhatsApp)<span style="color:var(--danger);font-weight:700" title="Obligatorio">&#42;</span></span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;">316 842 1190</div></div>
+            <div style="grid-column:span 5;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Correo</span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;color:var(--fg3);">Sin correo</div><span style="font-size:12px;color:var(--fg3);line-height:1.45">Opcional. Si no tiene, le escribimos al celular.</span></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:8px;background:var(--surface);border:1px solid var(--line)">
+          <div>
+            <span style="font-size:13px;font-weight:600">Tratamiento de datos personales</span>
+            <p style="margin:0;padding-top:2px;font-size:12px;color:var(--fg3);max-width:672px;line-height:1.5">Los datos de sus clientes y de su personal siguen siendo del negocio; nosotros solo los cuidamos por cuenta suya. Bajo la Ley 1581 de 2012 el <b>responsable</b> es el restaurante y la plataforma es <b>encargada</b>, y eso obliga a un contrato de transmisión con cada compañía. <b>Es lo único que hay que aceptar para poder empezar</b> — y no protege al cliente, protege a la plataforma: sin él estaríamos tratando datos ajenos sin título.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px">
+            <div style="grid-column:span 4;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Contrato de transmisión</span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;background:var(--surface2);color:var(--fg2);">Aceptado el 14/03/2026<span style="margin-left:auto;flex-shrink:0;color:var(--fg3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span></div></div>
+            <div style="grid-column:span 2;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Versión</span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;background:var(--surface2);color:var(--fg2);font-family:var(--f-mono);">v2<span style="margin-left:auto;flex-shrink:0;color:var(--fg3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span></div></div>
+            <div style="grid-column:span 6;display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:500;color:var(--fg2);display:inline-flex;gap:3px">Aceptado por</span><div style="display:flex;align-items:center;height:32px;padding:0 8px;border-radius:5px;background:var(--surface);border:1px solid var(--line);font-size:13px;background:var(--surface2);color:var(--fg2);">Óscar Peñaranda · representante legal<span style="margin-left:auto;flex-shrink:0;color:var(--fg3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span></div></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:9px;padding:8px 10px;border-radius:5px;background:var(--warning-soft);border:1px solid oklch(56% .110 75/.30)"><span style="flex-shrink:0;color:var(--warning);padding-top:1px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M21.7 18l-8-14a2 2 0 00-3.5 0l-8 14A2 2 0 004 21h16a2 2 0 001.7-3z"/></svg></span><span style="font-size:12px;line-height:1.55;color:var(--fg2)"><b>Lo que ya no se pregunta, y por qué:</b> fuera el CIIU, el régimen de renta, las responsabilidades del RUT, si es responsable de IVA o de INC, y si opera por franquicia. Ninguna pantalla del sistema los lee —la plataforma no liquida impuestos— y son justo las preguntas que nadie sabe responder sin tener el RUT delante. Un dato inventado en un campo tributario es peor que un campo vacío. Vuelven el día que se conecte facturación electrónica.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

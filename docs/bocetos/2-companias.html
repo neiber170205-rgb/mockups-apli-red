@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2 · Compañías &middot; Pedidos</title>
+<meta name="description" content="Boceto de la pantalla «2 · Compañías» del sistema de pedidos para restaurantes.">
+<meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --bar-bg:oklch(30% .015 235); --bar-line:oklch(38% .018 235); --bar-line2:oklch(64% .020 235);
+      --bar-chip:oklch(42% .019 235); --bar-chip-line:oklch(52% .022 235);
+      --bar-field:oklch(26% .014 235); --bar-fg2:oklch(78% .012 235);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+
+
+</head>
+<body>
+<div class="barra-guia">
+  <a href="../index.html">&#8592; Todos los bocetos</a>
+  <span class="sep">&middot;</span><strong>2 · Compañías</strong>
+  <span class="mod">Plataforma</span>
+</div>
+<style>
+  .barra-guia{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:10px;
+    padding:10px 16px;background:#12263b;color:#e8eef5;font:500 13px/1.4 system-ui,sans-serif}
+  .barra-guia a{color:#9ec5e8;text-decoration:none} .barra-guia a:hover{text-decoration:underline}
+  .barra-guia .sep{opacity:.45} .barra-guia .mod{margin-left:auto;opacity:.65;font-weight:400}
+  body{display:flex;flex-direction:column;align-items:center}
+  body > *:not(.barra-guia):not(style){margin:22px auto;box-shadow:0 6px 28px rgba(10,25,45,.16);
+    border-radius:10px;overflow:hidden;flex-shrink:0}
+</style>
+
+<div style="width:1280px;height:820px;display:flex;flex-direction:column;background:var(--canvas);font-size:13px;overflow:hidden">
+  <div style="flex-shrink:0;background:var(--thead-bg);border-bottom:1px solid var(--bar-line)">
+    <div style="display:flex;align-items:center;gap:12px;padding:0 12px;height:48px">
+
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <span style="display:grid;place-items:center;width:24px;height:24px;border-radius:5px;background:var(--accent);color:var(--accent-fg)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M7 2v9a3 3 0 006 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h3V2z"/></svg>
+        </span>
+        <span style="font-weight:600;letter-spacing:-.01em;color:var(--thead-fg)">Pedidos</span>
+      </div>
+
+      <!-- Donde una compania lleva su selector, la plataforma lleva ESTO. La
+           barra oscura mas el rotulo son la respuesta permanente a «¿donde
+           estoy?», que es la pregunta que se olvida hacer justo antes de
+           equivocarse de restaurante. -->
+      <span style="display:inline-flex;align-items:center;gap:7px;height:28px;padding:0 10px;border-radius:5px;
+        background:var(--bar-chip);border:1px solid var(--bar-chip-line);color:var(--thead-fg);
+        font-size:11px;font-weight:700;letter-spacing:.08em">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        PLATAFORMA
+      </span>
+      
+
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px;width:224px;height:32px;padding:0 10px;border-radius:5px;border:1px solid var(--bar-line2);background:var(--bar-field);font-size:12px;color:var(--bar-fg2)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <span style="flex:1;text-align:left">Buscar compañía…</span>
+        <span style="font-size:11px;border:1px solid var(--bar-line2);border-radius:3px;padding:1px 4px">Ctrl K</span>
+      </div>
+
+      <div style="display:flex;align-items:center;padding-left:8px;margin-left:4px;border-left:1px solid var(--bar-chip)">
+        <div style="display:flex;align-items:center;gap:8px;height:32px;padding:0 6px 0 4px;border-radius:5px">
+          <span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:50%;background:var(--accent);color:var(--accent-fg);font-size:11px;font-weight:600">DN</span>
+          <span style="font-size:12px;font-weight:500;color:var(--thead-fg);max-width:112px">Danilo Neiber</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--bar-fg2)"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;display:flex">
+    <div style="width:224px;flex-shrink:0;display:flex;flex-direction:column;background:var(--surface);border-right:1px solid var(--line)">
+      <ul style="flex:1;margin:0;padding:8px;list-style:none;display:flex;flex-direction:column;gap:2px">
+        <li><div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2);font-weight:500"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Panel</span></div></li>
+        <li><div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;background:var(--accent-soft);color:var(--accent);font-weight:600"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h.01"/><path d="M15 9h.01"/><path d="M9 13h.01"/><path d="M15 13h.01"/><path d="M10 21v-4h4v4"/></svg><span>Compañías</span></div></li>
+      </ul>
+      <div style="padding:10px 12px;border-top:1px solid var(--line);font-size:12px;color:var(--fg2);line-height:1.45">
+        3 compañías · 4 sedes<br>1 sin administrador
+      </div>
+    </div>
+    <div style="flex:1;min-width:0;min-height:0;overflow:hidden;padding:16px;display:flex;flex-direction:column">
+            <div style="flex-shrink:0;display:flex;align-items:center;gap:14px;margin-bottom:14px">
+        <div style="min-width:0">
+          <h1 style="margin:0;font-size:20px;font-weight:600;line-height:26px;letter-spacing:-.01em">Compañías</h1>
+          <div style="padding-top:2px;font-size:12px;color:var(--fg3)">3 compañías · las que pagan por el sistema</div>
+        </div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0"><span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:5px;font-size:12px;background:var(--surface);border:1px solid var(--line2);color:var(--fg2);font-weight:500">Exportar</span><span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:5px;font-size:12px;background:var(--accent);border:1px solid var(--accent);color:var(--accent-fg);font-weight:500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M12 5v14"/><path d="M5 12h14"/></svg>Nueva compañía</span></div>
+      </div>
+
+      <div style="flex-shrink:0;display:flex;align-items:center;gap:8px;margin-bottom:12px"><span style="display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 10px;border-radius:5px;font-size:12px;background:var(--surface);border:1px solid var(--line2);color:var(--fg3);width:230px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Buscar por nombre o documento</span><span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:5px;font-size:12px;background:var(--surface);border:1px solid var(--line2);color:var(--fg2);font-weight:500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M3 5h18"/><path d="M7 12h10"/><path d="M10 19h4"/></svg>Filtros</span></div>
+
+      <div style="flex:1;min-height:0;overflow:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)">
+        <table style="width:100%;border-collapse:collapse">
+          <thead><tr>
+            <th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:36px;padding:0 8px"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--line2);background:var(--surface)"></span></th>
+            <th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;"><span style="display:flex;align-items:center;gap:4px;height:100%;">Compañía</span></th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:150px;"><span style="display:flex;align-items:center;gap:4px;height:100%;">Documento</span></th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:120px;"><span style="display:flex;align-items:center;gap:4px;height:100%;">Plan</span></th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:120px;"><span style="display:flex;align-items:center;gap:4px;height:100%;">Estado</span></th>
+            <th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:80px;text-align:right;"><span style="display:flex;align-items:center;gap:4px;height:100%;justify-content:flex-end;">Sedes</span></th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:96px;text-align:right;"><span style="display:flex;align-items:center;gap:4px;height:100%;justify-content:flex-end;">Personas</span></th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:160px;"><span style="display:flex;align-items:center;gap:4px;height:100%;">Última actividad</span></th>
+          </tr></thead>
+          <tbody>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:0 8px;height:44px"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--line2);background:var(--surface)"></span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);"><div style="display:flex;align-items:center;gap:10px"><span style="display:grid;place-items:center;width:28px;height:28px;flex-shrink:0;border-radius:5px;background:#0F766E;color:#fff;font-size:11px;font-weight:700">LC</span><div style="min-width:0"><div style="font-size:13px;font-weight:600">La Cava del Llano</div><div style="padding-top:1px;font-size:11px;color:var(--fg3)">Inversiones La Cava S.A.S.</div></div></div></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;flex-direction:column;line-height:1.3"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">901.456.789-8</span><span style="font-size:10px;color:var(--fg3);text-transform:uppercase;letter-spacing:.04em">NIT · con cámara</span></span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">Sede única</span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;padding:1px 7px;border-radius:3px;font-size:11px;font-weight:600;background:var(--success-soft);border:1px solid oklch(50% .120 155/.28);color:var(--success)">Activa</span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:right"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">1</span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:right"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">8</span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;color:var(--fg3)">hace 4 minutos</span></td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:0 8px;height:44px"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--line2);background:var(--surface)"></span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);"><div style="display:flex;align-items:center;gap:10px"><span style="display:grid;place-items:center;width:28px;height:28px;flex-shrink:0;border-radius:5px;background:#7C3AED;color:#fff;font-size:11px;font-weight:700">LN</span><div style="min-width:0"><div style="font-size:13px;font-weight:600">Cafetería La Nube</div><div style="padding-top:1px;font-size:11px;color:var(--fg3)">Marta Lucía Rojas Pabón</div></div></div></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;flex-direction:column;line-height:1.3"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">1.090.334.221-3</span><span style="font-size:10px;color:var(--fg3);text-transform:uppercase;letter-spacing:.04em">NIT · sin cámara</span></span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">Prueba</span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;padding:1px 7px;border-radius:3px;font-size:11px;font-weight:600;background:var(--accent-soft);border:1px solid var(--accent-line);color:var(--accent)">Prueba · 3 días</span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:right"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">1</span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:right"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">3</span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;color:var(--fg3)">ayer, 8:12 p. m.</span></td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:0 8px;height:44px"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--line2);background:var(--surface)"></span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);"><div style="display:flex;align-items:center;gap:10px"><span style="display:grid;place-items:center;width:28px;height:28px;flex-shrink:0;border-radius:5px;background:#B45309;color:#fff;font-size:11px;font-weight:700">EP</span><div style="min-width:0"><div style="font-size:13px;font-weight:600">Asadero El Portal</div><div style="padding-top:2px;font-size:11px;color:var(--danger);font-weight:500">Nadie puede entrar: no tiene administrador</div></div></div></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;flex-direction:column;line-height:1.3"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg3);font-variant-numeric:tabular-nums">88.234.107</span><span style="font-size:10px;color:var(--fg3);text-transform:uppercase;letter-spacing:.04em">Cédula · sin RUT</span></span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="color:var(--fg2)">Dos sedes</span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;padding:1px 7px;border-radius:3px;font-size:11px;font-weight:600;background:var(--danger-soft);border:1px solid oklch(52% .170 27/.28);color:var(--danger)">Sin acceso</span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:right"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">2</span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);text-align:right"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">0</span></td><td style="padding:0 12px;height:44px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;color:var(--fg3)">nunca</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="flex-shrink:0;padding-top:11px;font-size:12px;color:var(--fg2);line-height:1.55">
+        <b style="font-weight:600;color:var(--fg2)">Documento</b> dice además cómo está registrado cada negocio, porque no todos tienen NIT: trabajar con la cédula del dueño es una de las tres formas normales de tener un negocio en Colombia, y no recorta ninguna función del sistema. <b style="font-weight:600;color:var(--fg2)">Personas</b> cuenta a quien puede entrar, en todas sus sedes.
+        Un cero ahí no es un dato menor: es un alta que se quedó a medias y un cliente que no puede usar lo que compró,
+        por eso la fila sale marcada en rojo y sube al panel.
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -386,6 +386,78 @@
       "w": 1440,
       "h": 900,
       "page": "cocina"
+    },
+    {
+      "file": "PanelPlataforma.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "title": "1 · Panel de la plataforma",
+      "page": "plataforma"
+    },
+    {
+      "file": "Companias.dc.html",
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "title": "2 · Compañías",
+      "page": "plataforma"
+    },
+    {
+      "file": "FichaCompania.dc.html",
+      "x": 2800,
+      "y": 0,
+      "w": 1280,
+      "h": 1560,
+      "title": "3a · Ficha · con RUT y cámara",
+      "page": "plataforma"
+    },
+    {
+      "file": "FichaCompaniaSinRegistro.dc.html",
+      "x": 4200,
+      "y": 0,
+      "w": 1280,
+      "h": 1180,
+      "title": "3b · Ficha · con la cédula del dueño",
+      "page": "plataforma"
+    },
+    {
+      "file": "AdminsCompania.dc.html",
+      "x": 5600,
+      "y": 0,
+      "w": 1280,
+      "h": 880,
+      "title": "4 · Administradores de la compañía",
+      "page": "plataforma"
+    },
+    {
+      "file": "EntrarComoSoporte.dc.html",
+      "x": 7000,
+      "y": 0,
+      "w": 1280,
+      "h": 864,
+      "title": "5 · Entrar como soporte",
+      "page": "plataforma"
+    },
+    {
+      "file": "Auditoria.dc.html",
+      "x": 25200,
+      "y": 0,
+      "w": 1280,
+      "h": 900,
+      "title": "19 · Informes › Auditoría",
+      "page": "admin"
+    },
+    {
+      "file": "HistorialFicha.dc.html",
+      "x": 26600,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "title": "20 · Historial de una ficha",
+      "page": "admin"
     }
   ],
   "annotations": [
@@ -452,6 +524,14 @@
       "y": -840,
       "w": 2000,
       "text": "CAJERO · el rol que abre el día para todos los demás\n\n`ordenes.turno_id` es NOT NULL, así que SIN TURNO ABIERTO NO SE PUEDE ABRIR UNA MESA. No es que\nno se pueda cobrar: el mesero no puede ni empezar a tomar el pedido, porque la orden no tiene\ndónde colgarse. Por eso la pantalla 1 es la primera del día del restaurante entero.\n\nIgual que el mesero, el cajero NO tiene tablero: su panel es la lista de cuentas y cada fila\nabre el cobro. Y su barra lateral tiene DOS módulos — no ve la carta, y no le hace falta:\nlos precios de la cuenta vienen congelados del pedido y aquí no se pueden tocar.\n\nTRES COSAS QUE SOLO SE VEN AL DIBUJARLO:\n\n  · EL PAGO MIXTO (3). «Ciento veinte con tarjeta y el resto en efectivo» es lo más normal del\n    mundo, y un solo número de «pagado» no puede representarlo. Por eso cada cobro es una fila\n    de `orden_pagos` — la tabla que se escribió en api/sql/003_caja.sql.\n\n  · EL CUADRE (4) separa el efectivo de lo que no pasa por el cajón. Tarjeta y transferencia se\n    listan aparte a propósito: sumarlos haría cuadrar cualquier cosa. Lo que se cuenta a mano es\n    solo el efectivo, y por eso el cuadre era imposible sin saber el MEDIO de cada pago.\n\n  · EL BLOQUEO (4). No se puede cerrar con mesas sin cobrar: ese dinero se quedaría colgando de\n    un turno cerrado y no entraría en ningún cuadre. Es la clase de regla que solo aparece\n    cuando dibujas la pantalla del final.\n\nY una que ya estaba resuelta en el motor: ANULAR UNA LÍNEA EXIGE DOS PERSONAS (CK_oi_anulacion).\nEs el punto exacto donde se roba en un restaurante — se cobra el plato, se anula la línea, y el\ndinero sale del cajón. Lo cierra la base de datos, no la disciplina."
+    },
+    {
+      "id": "rotulo-plataforma",
+      "x": 0,
+      "y": -560,
+      "w": 2000,
+      "text": "PLATAFORMA · el nivel de encima, donde vive el operador del SaaS\n\nTres niveles, y meter un campo en el equivocado se paga tarde: PLATAFORMA (quién es cliente y qué paga),\nCOMPAÑÍA (lo que es igual en todos sus locales: NIT, nombre, carta) y SEDE (lo que cambia de un local a\notro: dirección, perímetro, mesas). La regla para decidir: si dos locales de la misma cadena podrían\nnecesitar valores distintos, es de sede.\n\nLA BARRA DE ARRIBA ES OSCURA A PROPÓSITO. La de una compañía es clara. El operador entra y sale del panel\nde sus clientes todo el día; si las dos se parecen, un día apaga un plato en el restaurante equivocado.\nLos siete colores de esa barra son tokens propios (--bar-*), declarados junto a los demás y no\nesparcidos como literales por cada archivo.\n\nLO QUE DESTAPÓ DIBUJAR ESTO — cuatro cosas que el esquema de hoy no aguanta:\n\n  · dbo.contadores es UNA FILA GLOBAL. La primera comanda del segundo cliente choca con\n    UQ_orden_eventos_seq y devuelve Msg 2601. No es lentitud: es que no arranca.\n\n  · dbo.idempotency_keys no tiene ningún ancla al inquilino. Dos restaurantes que manden la misma\n    Idempotency-Key en la misma ruta hacen que el segundo reciba la RESPUESTA DEL PRIMERO, con HTTP 200\n    y sin error en ninguna parte. Es la peor de las cuatro, porque no se nota.\n\n  · UX_usuarios_email es un índice único GLOBAL. Sin querer, ya decidió que un contador que lleva tres\n    restaurantes no puede usar el mismo correo en los tres.\n\n  · usuarios.sede_id y roles.sede_id son NOT NULL, y el operador de la plataforma no tiene sede. Meterlo\n    a la fuerza obliga a inventarle unas coordenadas GPS, porque CK_sede_no_null_island prohíbe (0,0).\n    Cuando el esquema te obliga a mentir, el que está mal es el esquema.\n\nY LA PANTALLA 5 ES LA MÁS PELIGROSA DEL PROYECTO. Entrar como un cliente para depurar rompe la\natribución: si el operador entra como Pedro y anula una comanda, la auditoría dirá «Pedro». En un sistema\ncuyo valor entero es saber quién hizo qué —y donde CK_oi_anulacion EXIGE dos personas distintas— una\nsesión suplantada podría satisfacer esa regla siendo una sola persona. Por eso: solo lectura, motivo\nobligatorio antes de entrar, reloj que corre, y una barra roja que no se puede cerrar.\n\nY UNA COSA QUE CAMBIÓ EL DISEÑO ENTERO: el sistema se vende también a negocios SIN REGISTRAR.\n«No registrado» en Colombia no es un estado, son TRES registros que se tienen por separado — el RUT ante la DIAN\n(gratis, en línea) y la matrícula de cámara de comercio (cuesta plata, se renueva cada año) son cosas distintas,\ny lo común en un negocio de barrio es tener el primero y no el segundo. Por eso la ficha 3a y la 3b son la misma\npantalla: cambia una sola respuesta arriba y desaparecen dos secciones enteras.\n\nNueve campos se fueron del formulario: CIIU, régimen de renta, responsabilidades del RUT, IVA, INC, franquicia,\ndepartamento, teléfono y el segundo correo. Ninguna pantalla los leía. Y el DV NO se calcula cuando no hay RUT:\nel algoritmo es público y daría un número que se ve bien, pero un DV sin RUT no existe — sería fabricar un dato\nde la DIAN. El canal obligatorio es el celular con WhatsApp; el correo es opcional.",
+      "page": "plataforma"
     }
   ],
   "launch": {
@@ -459,6 +539,10 @@
     "page": "admin"
   },
   "pages": [
+    {
+      "id": "plataforma",
+      "name": "Plataforma"
+    },
     {
       "id": "mesero",
       "name": "Mesero"

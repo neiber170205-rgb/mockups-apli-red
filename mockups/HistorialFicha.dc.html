@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+</helmet>
+<div style="width:1280px;height:820px;display:flex;flex-direction:column;background:var(--canvas);font-size:13px;overflow:hidden">
+  <div style="flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--line)">
+    <div style="display:flex;align-items:center;gap:12px;padding:0 12px;height:48px">
+
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <span style="display:grid;place-items:center;width:24px;height:24px;border-radius:5px;background:var(--accent);color:var(--accent-fg);font-weight:600;font-size:12px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v9a3 3 0 006 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h3V2z"/></svg>
+        </span>
+        <span style="font-weight:600;letter-spacing:-.01em">Pedidos</span>
+      </div>
+
+      <!-- Selector de sede — mismo disparador que SelectorEmpresa.tsx:46-53:
+           h-9 px-2, borde de línea, dos renglones apretados y el galón. -->
+      <div style="display:flex;align-items:center;gap:8px;height:36px;padding:0 8px;border-radius:5px;border:1px solid var(--line);background:var(--surface);text-align:left;min-width:0">
+        <span style="display:grid;place-items:center;width:20px;height:20px;flex-shrink:0;border-radius:4px;background:#0F766E;color:#fff;font-size:10px;font-weight:700">LC</span>
+        <span style="min-width:0">
+          <span style="display:block;font-size:12px;font-weight:500;color:var(--fg);line-height:1.15">La Cava del Llano</span>
+          <span style="display:block;font-size:11px;color:var(--fg3);line-height:1.15">Sede Centro</span>
+        </span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+
+      <!-- Donde el ERP pone el periodo contable, aquí va el turno: mismo chip
+           (h-7 px-2, success-soft sobre success, punto de 6 px). -->
+      <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 8px;border-radius:5px;background:var(--success-soft);color:var(--success);font-size:12px">
+        <span style="width:6px;height:6px;border-radius:50%;background:currentColor"></span>
+        Turno abierto · 11:00
+      </span>
+
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px;width:224px;height:32px;padding:0 10px;border-radius:5px;border:1px solid var(--line);background:var(--surface2);font-size:12px;color:var(--fg3)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <span style="flex:1;text-align:left">Buscar…</span>
+        <span style="font-size:11px;border:1px solid var(--line);border-radius:3px;padding:1px 4px;background:var(--surface)">Ctrl K</span>
+      </div>
+
+      <div style="display:flex;align-items:center;padding-left:8px;margin-left:4px;border-left:1px solid var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;height:32px;padding:0 6px 0 4px;border-radius:5px;border:1px solid transparent">
+          <span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:50%;background:var(--accent);color:var(--accent-fg);font-size:11px;font-weight:600">DN</span>
+          <span style="font-size:12px;font-weight:500;color:var(--fg2);max-width:112px">Danilo Neiber</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;display:flex">
+    <div style="width:224px;flex-shrink:0;display:flex;flex-direction:column;background:var(--surface);border-right:1px solid var(--line)">
+      <ul style="flex:1;margin:0;padding:8px;list-style:none;display:flex;flex-direction:column;gap:2px">
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg);font-weight:500">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            <span>Salón</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            <span>Carta</span>
+          </div>
+          <ul style="margin:2px 0 4px;padding:0;list-style:none;display:flex;flex-direction:column;gap:1px">
+            <li><div style="display:flex;align-items:center;height:28px;padding-left:16px;margin-left:12px;border-radius:5px;border-left:1px solid var(--accent);font-size:12px;background:var(--accent-soft);color:var(--accent);font-weight:500">Platos</div></li>
+            <li><div style="display:flex;align-items:center;height:28px;padding-left:16px;margin-left:12px;border-radius:5px;border-left:1px solid var(--line);font-size:12px;color:var(--fg3)">Ingredientes</div></li>
+            <li><div style="display:flex;align-items:center;height:28px;padding-left:16px;margin-left:12px;border-radius:5px;border-left:1px solid var(--line);font-size:12px;color:var(--fg3)">Categorías</div></li>
+          </ul>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M8.5 3a2.5 2.5 0 013.5-.9A2.5 2.5 0 0115.5 3 2.5 2.5 0 0119 6.5c0 1.4-.9 2.6-2 3v7.5H7V9.5c-1.1-.4-2-1.6-2-3A2.5 2.5 0 018.5 3z"/><path d="M7 21h10"/></svg>
+            <span>Cocina</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.9"/></svg>
+            <span>Personas</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M12 21s-7-6.4-7-11a7 7 0 1114 0c0 4.6-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <span>Sede</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 3 4-6"/></svg>
+            <span>Informes</span>
+          </div>
+        </li>
+      </ul>
+      <div style="margin:8px;height:28px;display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:5px;border:1px solid var(--line);background:var(--surface);font-size:12px;color:var(--fg3)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M15 9l-3 3 3 3"/></svg>
+        Colapsar
+      </div>
+    </div>
+    <div style="flex:1;min-width:0;min-height:0;overflow:hidden;padding:16px">
+
+  <div style="flex-shrink:0;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding:14px 24px 12px;background:var(--canvas);border-bottom:1px solid var(--line)">
+    <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+      <span style="display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--fg3)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Productos
+      </span>
+      <h1 style="margin:0;font-size:20px;font-weight:600;line-height:26px">Bandeja paisa</h1>
+      <span style="font-size:12px;color:var(--fg3)">FUE-01 · 17 cambios registrados · creado el 14 de marzo de 2026</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+      <span style="display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:5px;font-size:13px;color:var(--fg2);border:1px solid var(--line2);background:var(--surface);font-weight:500">Cancelar</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 12px;border-radius:5px;font-size:13px;font-weight:600;background:var(--accent);border:1px solid var(--accent);color:var(--accent-fg)">
+        Guardar
+        <span style="padding:1px 4px;border-radius:3px;border:1px solid oklch(99% 0 0/.3);font-family:var(--f-mono);font-size:11px;opacity:.8">Ctrl S</span>
+      </span>
+    </div>
+  </div>
+
+  <div style="flex-grow:1;overflow:auto;padding:18px 24px 32px;display:flex;flex-direction:column;gap:22px">
+
+      <!-- PESTAÑAS, no un scroll de cinco secciones — como el FormularioItem
+           del ERP. Y con su doctrina: «nunca pestañas con menos de tres grupos»,
+           porque dos pestañas son dos secciones con un clic de más. Aquí son
+           tres, y se rellenan en momentos distintos: los datos del plato al
+           crearlo; el desglose y las opciones, después y a menudo por quien
+           conoce la cocina.
+
+           La regla que las hace funcionar en un formulario: si al guardar hay
+           un error en una pestaña que no estás mirando, TIENES que verlo. Por
+           eso cada lengüeta lleva su contador —aquí sale el número de partes y
+           de grupos, que es el mismo sitio donde iría el de errores. -->
+      <div style="display:flex;align-items:center;gap:4px;border-bottom:1px solid var(--line);flex-shrink:0;overflow-x:auto">
+        <span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid transparent;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M16.5 9.4 7.5 4.2"/><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>General</span><span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid transparent;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="m12.8 2.5 7.4 4.3a1.6 1.6 0 0 1 0 2.8l-7.4 4.3a1.6 1.6 0 0 1-1.6 0L3.8 9.6a1.6 1.6 0 0 1 0-2.8l7.4-4.3a1.6 1.6 0 0 1 1.6 0z"/><path d="m22 17.6-9.2 5.3a1.6 1.6 0 0 1-1.6 0L2 17.6"/></svg>Receta<span style="font-size:11px;color:var(--fg3);font-variant-numeric:tabular-nums">10</span></span><span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid transparent;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></svg>Qué se elige al pedirlo<span style="font-size:11px;color:var(--fg3);font-variant-numeric:tabular-nums">2</span></span><span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid var(--accent);color:var(--accent);font-weight:600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Historial<span style="font-size:11px;color:var(--fg3);font-variant-numeric:tabular-nums">17</span></span>
+      </div>
+      <div style="flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:14px;padding:14px 0 0">
+
+        <!-- LA EXCEPCIÓN QUE JUSTIFICA ESTA PANTALLA: aquí NO hay ventana de
+             tiempo. En la pantalla general de auditoría la cota temporal es
+             obligatoria porque sin ella la consulta recorre la tabla entera;
+             aquí el filtro es la entidad, y IX_aud_entidad(entidad, entidad_id,
+             ocurrido_en DESC) resuelve «todos los cambios de ESTE plato» sin
+             tocar una fila de más. Por eso se puede ofrecer el historial
+             completo, y por eso este índice existe. -->
+        <div style="flex-shrink:0;display:flex;align-items:center;gap:10px">
+          <span style="font-size:13px;font-weight:600">17 cambios desde que se creó</span>
+          <span style="font-size:12px;color:var(--fg3)">Todo el historial · no hay ventana de tiempo</span>
+          <span style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;
+            border-radius:5px;background:var(--surface2);border:1px solid var(--line2);color:var(--fg2);font-size:11px;font-weight:600">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>SOLO LECTURA
+          </span>
+          <span style="display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 12px;border-radius:5px;font-size:13px;background:var(--surface);border:1px solid var(--line2);color:var(--fg2);font-weight:500">Ver en Auditoría</span>
+        </div>
+
+        <div style="flex-shrink:0;border:1px solid var(--line);border-radius:8px;background:var(--surface);overflow:hidden">
+<div style="display:flex;align-items:center;gap:9px;padding:9px 14px;background:var(--surface2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--fg2)">Hoy · 4 de septiembre</span><span style="font-size:11px;color:var(--fg3)">3 cambios</span></div>
+<div style="display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);"><div style="width:60px;flex-shrink:0;padding-top:1px"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">19:14</span></div><div style="width:26px;flex-shrink:0;padding-top:1px"><span style="display:grid;place-items:center;width:22px;height:22px;flex-shrink:0;border-radius:50%;background:#B45309;color:#fff;font-size:9px;font-weight:700">OP</span></div><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px"><div style="font-size:12px"><b style="font-weight:600">Óscar Peñaranda</b><span style="color:var(--fg3)"> · administrador · desde escritorio</span></div><div style="display:flex;align-items:baseline;gap:8px;font-size:12px"><span style="color:var(--fg2);min-width:96px">Precio</span><span style="font-family:var(--f-mono);color:var(--fg3);text-decoration:line-through;text-decoration-color:var(--danger)">38.000</span><span style="color:var(--fg3)">→</span><span style="font-family:var(--f-mono);color:var(--fg);font-weight:600">42.000</span></div><div style="display:flex;align-items:baseline;gap:8px;font-size:12px"><span style="color:var(--fg2);min-width:96px">Estación</span><span style="font-family:var(--f-mono);color:var(--fg3);text-decoration:line-through;text-decoration-color:var(--danger)">Cocina caliente</span><span style="color:var(--fg3)">→</span><span style="font-family:var(--f-mono);color:var(--fg);font-weight:600">Barra</span></div></div></div>
+<div style="display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);"><div style="width:60px;flex-shrink:0;padding-top:1px"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">12:41</span></div><div style="width:26px;flex-shrink:0;padding-top:1px"><span style="display:grid;place-items:center;width:22px;height:22px;flex-shrink:0;border-radius:50%;background:#7C3AED;color:#fff;font-size:9px;font-weight:700">MR</span></div><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px"><div style="font-size:12px"><b style="font-weight:600">Marta Rojas</b><span style="color:var(--fg3)"> · cocinera · con PIN en la pantalla de cocina</span></div><div style="display:flex;align-items:baseline;gap:8px;font-size:12px"><span style="color:var(--fg2);min-width:96px">Disponible</span><span style="font-family:var(--f-mono);color:var(--fg3);text-decoration:line-through;text-decoration-color:var(--danger)">sí</span><span style="color:var(--fg3)">→</span><span style="font-family:var(--f-mono);color:var(--fg);font-weight:600">no</span></div><div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--fg3)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M5.6 5.6l2.1 2.1"/><path d="M16.3 16.3l2.1 2.1"/><path d="M3 12h3"/><path d="M18 12h3"/></svg>Se acabó · quedó firmado con su PIN, no con el del equipo</div></div></div>
+<div style="display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);"><div style="width:60px;flex-shrink:0;padding-top:1px"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">11:02</span></div><div style="width:26px;flex-shrink:0;padding-top:1px"><span style="display:grid;place-items:center;width:22px;height:22px;flex-shrink:0;border-radius:50%;background:#B45309;color:#fff;font-size:9px;font-weight:700">OP</span></div><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px"><div style="font-size:12px"><b style="font-weight:600">Óscar Peñaranda</b><span style="color:var(--fg3)"> · administrador · desde escritorio</span></div><div style="display:flex;align-items:baseline;gap:8px;font-size:12px"><span style="color:var(--fg2);min-width:96px">Descripción</span><span style="font-family:var(--f-mono);color:var(--fg3);text-decoration:line-through;text-decoration-color:var(--danger)">El plato de la casa.</span><span style="color:var(--fg3)">→</span><span style="font-family:var(--f-mono);color:var(--fg);font-weight:600">El plato de la casa. Alcanza…</span></div><div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--fg3)">Texto recortado a 40 caracteres en el registro</div></div></div>
+
+<div style="display:flex;align-items:center;gap:9px;padding:9px 14px;background:var(--surface2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--fg2)">Ayer · 3 de septiembre</span><span style="font-size:11px;color:var(--fg3)">2 cambios</span></div>
+<div style="display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);"><div style="width:60px;flex-shrink:0;padding-top:1px"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">20:55</span></div><div style="width:26px;flex-shrink:0;padding-top:1px"><span style="display:grid;place-items:center;width:22px;height:22px;flex-shrink:0;border-radius:50%;background:#B45309;color:#fff;font-size:9px;font-weight:700">OP</span></div><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px"><div style="font-size:12px"><b style="font-weight:600">Óscar Peñaranda</b><span style="color:var(--fg3)"> · administrador · desde escritorio</span></div><div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--fg2)">Quitó «Cebolla» de la receta</div><div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--fg2)">Añadió «Aguacate» · precio del doble 4.000</div></div></div>
+<div style="display:flex;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);"><div style="width:60px;flex-shrink:0;padding-top:1px"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">09:30</span></div><div style="width:26px;flex-shrink:0;padding-top:1px"><span style="display:grid;place-items:center;width:22px;height:22px;flex-shrink:0;border-radius:50%;background:#0369A1;color:#fff;font-size:9px;font-weight:700">YM</span></div><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px"><div style="font-size:12px"><b style="font-weight:600">Yuliana Mora</b><span style="color:var(--fg3)"> · mesera · con PIN</span></div><div style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--danger)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>Intentó cambiar el precio · <b style="font-weight:600">denegado</b></div><div style="font-size:11px;color:var(--fg3)">Le falta <code style="font-family:var(--f-mono)">carta.platos.editar</code>. El intento queda igual que el cambio: es lo que hace útil el registro.</div></div></div>
+
+<div style="display:flex;align-items:center;gap:9px;padding:9px 14px;background:var(--surface2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--fg2)">14 de marzo de 2026</span><span style="font-size:11px;color:var(--fg3)">así empezó</span></div>
+<div style="display:flex;gap:12px;padding:12px 14px;"><div style="width:60px;flex-shrink:0;padding-top:1px"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">10:12</span></div><div style="width:26px;flex-shrink:0;padding-top:1px"><span style="display:grid;place-items:center;width:22px;height:22px;flex-shrink:0;border-radius:50%;background:#B91C1C;color:#fff;font-size:9px;font-weight:700">DN</span></div><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px"><div style="font-size:12px"><b style="font-weight:600">Danilo Neiber</b><span style="color:var(--fg3)"> · soporte de plataforma · al montar la carta inicial</span></div><div style="display:flex;align-items:center;gap:7px;font-size:12px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--success)"><path d="M12 5v14"/><path d="M5 12h14"/></svg><b style="font-weight:600">Creó el plato</b></div><div style="font-size:11px;color:var(--fg3);line-height:1.5">En un alta no hay valor anterior, y la fila lo dice con palabras en vez de dejar dos guiones que se leen como un fallo. Lo mismo al revés el día que se dé de baja.</div></div></div>
+        </div>
+
+        <div style="display:flex;gap:9px;padding:8px 10px;border-radius:5px;background:var(--accent-soft);border:1px solid var(--accent-line)"><span style="flex-shrink:0;color:var(--accent);padding-top:1px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><span style="font-size:12px;line-height:1.55;color:var(--fg2)"><b>Por qué el historial vive dentro de la ficha y no solo en Auditoría:</b> la pregunta que se hace aquí no es «qué pasó hoy» sino «por qué este plato está así». Son dos recorridos distintos sobre la misma tabla: uno entra por el tiempo y el otro por la entidad. El índice del esquema tiene esas dos puertas — <code style='font-family:var(--f-mono);font-size:11px'>IX_aud_entidad</code> para esta, y el orden por fecha para la otra.</span></div>
+
+        <div style="display:flex;gap:9px;padding:8px 10px;border-radius:5px;background:var(--warning-soft);border:1px solid oklch(56% .110 75/.30)"><span style="flex-shrink:0;color:var(--warning);padding-top:1px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M21.7 18l-8-14a2 2 0 00-3.5 0l-8 14A2 2 0 004 21h16a2 2 0 001.7-3z"/></svg></span><span style="font-size:12px;line-height:1.55;color:var(--fg2)"><b>El intento denegado se muestra igual que el cambio hecho</b>, y en rojo. Un historial que solo enseña lo que salió bien responde «quién cambió el precio», pero no responde «quién ha estado intentando cambiarlo» — que es la pregunta que se hace cuando algo huele mal. <code style='font-family:var(--f-mono);font-size:11px'>CK_aud_denegado</code> ya obliga a anotar el permiso que faltaba en cada rechazo.</span></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bocetos &middot; Sistema de pedidos para restaurantes</title>
-<meta name="description" content="Bocetos de las pantallas del sistema de pedidos para restaurantes: comensal, mesero, cocina, caja, acceso y administración.">
+<meta name="description" content="Bocetos de las pantallas del sistema de pedidos para restaurantes: plataforma, comensal, mesero, cocina, caja, acceso y administración.">
 <meta name="author" content="Danilo Neiber &middot; FESC">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
@@ -25,19 +25,28 @@
      border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--fg);
      font-size:13.5px;font-weight:500;line-height:1.35;transition:.12s}
   .b:hover{border-color:var(--acc2);box-shadow:0 3px 12px rgba(20,45,75,.10);transform:translateY(-1px)}
-  .nota{margin-top:34px;padding:15px 17px;background:#fff8e6;border:1px solid #f0dca8;border-radius:8px;font-size:13px;line-height:1.6}
-  .nota ul{margin:8px 0 0;padding-left:20px}
   footer{border-top:1px solid var(--line);padding:22px 24px;color:var(--fg2);font-size:12.5px}
 </style>
 </head>
 <body>
 <header><div class="w">
   <h1>Sistema de pedidos para restaurantes</h1>
-  <p>Bocetos de las 42 pantallas, agrupadas por quién las usa.
-     Cada boceto abre a tamaño real.</p>
+  <p>Bocetos de las 50 pantallas, agrupadas por quién las usa. Cada boceto abre a tamaño real.</p>
 </div></header>
 <main><div class="w">
-  <section id="comensal">
+    <section id="plataforma">
+      <h2>Plataforma <span class="c">6</span></h2>
+      <p class="d">El nivel de encima: quién es cliente de la plataforma y qué paga. Solo lo ve el operador del SaaS.</p>
+      <div class="rej">
+        <a class="b" href="bocetos/1-panel-de-la-plataforma.html"><span class="n">1 · Panel de la plataforma</span></a>
+        <a class="b" href="bocetos/2-companias.html"><span class="n">2 · Compañías</span></a>
+        <a class="b" href="bocetos/3a-ficha-con-rut-y-camara.html"><span class="n">3a · Ficha · con RUT y cámara</span></a>
+        <a class="b" href="bocetos/3b-ficha-con-la-cedula-del-dueno.html"><span class="n">3b · Ficha · con la cédula del dueño</span></a>
+        <a class="b" href="bocetos/4-administradores-de-la-compania.html"><span class="n">4 · Administradores de la compañía</span></a>
+        <a class="b" href="bocetos/5-entrar-como-soporte.html"><span class="n">5 · Entrar como soporte</span></a>
+      </div>
+    </section>
+    <section id="comensal">
       <h2>Comensal <span class="c">4</span></h2>
       <p class="d">Lo que ve el cliente en su celular al escanear el QR de la mesa. No inicia sesión.</p>
       <div class="rej">
@@ -92,7 +101,7 @@
       </div>
     </section>
     <section id="administracion">
-      <h2>Administración <span class="c">18</span></h2>
+      <h2>Administración <span class="c">20</span></h2>
       <p class="d">Listados y fichas, en pares. Mismo patrón de tabla en todos.</p>
       <div class="rej">
         <a class="b" href="bocetos/1-panel.html"><span class="n">1 · Panel</span></a>
@@ -113,10 +122,11 @@
         <a class="b" href="bocetos/16-personas-ficha-de-usuario.html"><span class="n">16 · Personas › Ficha de usuario</span></a>
         <a class="b" href="bocetos/17-personas-permisos-del-rol.html"><span class="n">17 · Personas › Permisos del rol</span></a>
         <a class="b" href="bocetos/17-sede-perimetro.html"><span class="n">17 · Sede › Perímetro</span></a>
+        <a class="b" href="bocetos/19-informes-auditoria.html"><span class="n">19 · Informes › Auditoría</span></a>
+        <a class="b" href="bocetos/20-historial-de-una-ficha.html"><span class="n">20 · Historial de una ficha</span></a>
       </div>
     </section>
-  </div>
-</main>
+</div></main>
 <footer><div class="w">Desarrollo Básico de Aplicaciones en Red &middot; Unidad 1 &middot; FESC &middot; Cúcuta</div></footer>
 </body>
 </html>

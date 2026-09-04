@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="es">
+<html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>1 · Panel &middot; Pedidos</title>
-<meta name="description" content="Boceto de la pantalla «1 · Panel» del sistema de pedidos para restaurantes.">
-<meta name="robots" content="noindex">
-
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
   <style>
     :root{
@@ -27,25 +27,42 @@
     a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
     ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
   </style>
+</helmet>
+<div style="width:1280px;height:864px;display:flex;flex-direction:column;background:var(--canvas);font-size:13px;overflow:hidden">
 
-</head>
-<body>
-<div class="barra-guia">
-  <a href="../index.html">&#8592; Todos los bocetos</a>
-  <span class="sep">&middot;</span><strong>1 · Panel</strong>
-  <span class="mod">Administración</span>
-</div>
-<style>
-  .barra-guia{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:10px;
-    padding:10px 16px;background:#12263b;color:#e8eef5;font:500 13px/1.4 system-ui,sans-serif}
-  .barra-guia a{color:#9ec5e8;text-decoration:none} .barra-guia a:hover{text-decoration:underline}
-  .barra-guia .sep{opacity:.45} .barra-guia .mod{margin-left:auto;opacity:.65;font-weight:400}
-  body{display:flex;flex-direction:column;align-items:center}
-  body > *:not(.barra-guia):not(style){margin:22px auto;box-shadow:0 6px 28px rgba(10,25,45,.16);
-    border-radius:10px;overflow:hidden;flex-shrink:0}
-</style>
+  <!-- ================================================================
+       LA BARRA QUE NO SE PUEDE CERRAR
+       ================================================================
+       El desastre de una sesion de soporte no es entrar: es OLVIDAR que
+       entraste. Media hora despues estas apagando un plato creyendo que es tu
+       demo y se lo estas apagando a un cliente en plena noche de sabado.
 
-<div style="width:1280px;height:820px;display:flex;flex-direction:column;background:var(--canvas);font-size:13px;overflow:hidden">
+       Por eso: roja, arriba del todo, sin boton de cerrar, con el nombre del
+       cliente en grande y un reloj que corre. Ocupa 44 px de 864 — el
+       5 % de la pantalla y es barato comparado con la alternativa.
+
+       Los cuatro datos no son decorativos, cada uno cierra un agujero:
+         · de QUIEN es la cuenta   -> «creia que era otra»
+         · SOLO LECTURA o no       -> «no sabia que podia escribir»
+         · el MOTIVO tecleado      -> obliga a justificar ANTES de entrar
+         · el RELOJ                -> la sesion muere sola; no depende de que
+                                      alguien se acuerde de salir
+  -->
+  <div style="flex-shrink:0;display:flex;align-items:center;gap:12px;height:44px;padding:0 14px;
+    background:var(--danger);color:#fff">
+    <span style="display:grid;place-items:center;width:22px;height:22px;flex-shrink:0;border-radius:5px;background:rgba(255,255,255,.22)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+    </span>
+    <span style="font-size:13px;font-weight:600;white-space:nowrap">Estás dentro de <b style="font-weight:700">La Cava del Llano</b> como soporte</span>
+    <span style="display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:4px;background:rgba(255,255,255,.20);font-size:11px;font-weight:700;letter-spacing:.05em;white-space:nowrap">SOLO LECTURA</span>
+    <span style="font-size:12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Motivo: turno de caja abierto desde el 29 de agosto</span>
+    <span style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;font-size:12px;font-variant-numeric:tabular-nums">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      quedan 21:04
+    </span>
+    <span style="display:inline-flex;align-items:center;height:28px;padding:0 12px;flex-shrink:0;border-radius:5px;background:#fff;color:var(--danger);font-size:12px;font-weight:700">Salir de la cuenta</span>
+  </div>
+
   <div style="flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--line)">
     <div style="display:flex;align-items:center;gap:12px;padding:0 12px;height:48px">
 
@@ -69,9 +86,9 @@
 
       <!-- Donde el ERP pone el periodo contable, aquí va el turno: mismo chip
            (h-7 px-2, success-soft sobre success, punto de 6 px). -->
-      <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 8px;border-radius:5px;background:var(--success-soft);color:var(--success);font-size:12px">
+      <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 8px;border-radius:5px;background:var(--warning-soft);color:var(--warning);font-size:12px">
         <span style="width:6px;height:6px;border-radius:50%;background:currentColor"></span>
-        Turno abierto · 11:00
+        Turno abierto · 29 ago
       </span>
 
       <div style="margin-left:auto;display:flex;align-items:center;gap:8px;width:224px;height:32px;padding:0 10px;border-radius:5px;border:1px solid var(--line);background:var(--surface2);font-size:12px;color:var(--fg3)">
@@ -214,12 +231,16 @@
         <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 24px">
             <span style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--success);flex-shrink:0"><circle cx="12" cy="12" r="10"/><polyline points="16 9.5 11 15 8 12"/></svg>Las dos estaciones de cocina, respondiendo</span>
             <span style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--success);flex-shrink:0"><circle cx="12" cy="12" r="10"/><polyline points="16 9.5 11 15 8 12"/></svg>Ningún plato lleva más de veinte minutos en el fuego</span>
-            <span style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--success);flex-shrink:0"><circle cx="12" cy="12" r="10"/><polyline points="16 9.5 11 15 8 12"/></svg>Turno abierto desde las 11:00</span>
+            <span style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--warning);flex-shrink:0"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M21.7 18l-8-14a2 2 0 00-3.5 0l-8 14A2 2 0 004 21h16a2 2 0 001.7-3z"/></svg>El turno lleva 6 días abierto — desde el 29 de agosto</span>
             <span style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--success);flex-shrink:0"><circle cx="12" cy="12" r="10"/><polyline points="16 9.5 11 15 8 12"/></svg>Ninguna mesa con la orden abierta desde ayer</span>
         </div>
       </div>
     </div>
   </div>
 </div>
+</x-dc>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
 </body>
 </html>

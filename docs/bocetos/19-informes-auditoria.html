@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>19 · Informes › Auditoría &middot; Pedidos</title>
+<meta name="description" content="Boceto de la pantalla «19 · Informes › Auditoría» del sistema de pedidos para restaurantes.">
+<meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
+    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  </style>
+
+
+</head>
+<body>
+<div class="barra-guia">
+  <a href="../index.html">&#8592; Todos los bocetos</a>
+  <span class="sep">&middot;</span><strong>19 · Informes › Auditoría</strong>
+  <span class="mod">Administración</span>
+</div>
+<style>
+  .barra-guia{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:10px;
+    padding:10px 16px;background:#12263b;color:#e8eef5;font:500 13px/1.4 system-ui,sans-serif}
+  .barra-guia a{color:#9ec5e8;text-decoration:none} .barra-guia a:hover{text-decoration:underline}
+  .barra-guia .sep{opacity:.45} .barra-guia .mod{margin-left:auto;opacity:.65;font-weight:400}
+  body{display:flex;flex-direction:column;align-items:center}
+  body > *:not(.barra-guia):not(style){margin:22px auto;box-shadow:0 6px 28px rgba(10,25,45,.16);
+    border-radius:10px;overflow:hidden;flex-shrink:0}
+</style>
+
+<div style="width:1280px;height:900px;position:relative;display:flex;flex-direction:column;background:var(--canvas);font-size:13px;overflow:hidden">
+  <div style="flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--line)">
+    <div style="display:flex;align-items:center;gap:12px;padding:0 12px;height:48px">
+
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <span style="display:grid;place-items:center;width:24px;height:24px;border-radius:5px;background:var(--accent);color:var(--accent-fg);font-weight:600;font-size:12px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v9a3 3 0 006 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h3V2z"/></svg>
+        </span>
+        <span style="font-weight:600;letter-spacing:-.01em">Pedidos</span>
+      </div>
+
+      <!-- Selector de sede — mismo disparador que SelectorEmpresa.tsx:46-53:
+           h-9 px-2, borde de línea, dos renglones apretados y el galón. -->
+      <div style="display:flex;align-items:center;gap:8px;height:36px;padding:0 8px;border-radius:5px;border:1px solid var(--line);background:var(--surface);text-align:left;min-width:0">
+        <span style="display:grid;place-items:center;width:20px;height:20px;flex-shrink:0;border-radius:4px;background:#0F766E;color:#fff;font-size:10px;font-weight:700">LC</span>
+        <span style="min-width:0">
+          <span style="display:block;font-size:12px;font-weight:500;color:var(--fg);line-height:1.15">La Cava del Llano</span>
+          <span style="display:block;font-size:11px;color:var(--fg3);line-height:1.15">Sede Centro</span>
+        </span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+
+      <!-- Donde el ERP pone el periodo contable, aquí va el turno: mismo chip
+           (h-7 px-2, success-soft sobre success, punto de 6 px). -->
+      <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 8px;border-radius:5px;background:var(--success-soft);color:var(--success);font-size:12px">
+        <span style="width:6px;height:6px;border-radius:50%;background:currentColor"></span>
+        Turno abierto · 11:00
+      </span>
+
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px;width:224px;height:32px;padding:0 10px;border-radius:5px;border:1px solid var(--line);background:var(--surface2);font-size:12px;color:var(--fg3)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <span style="flex:1;text-align:left">Buscar…</span>
+        <span style="font-size:11px;border:1px solid var(--line);border-radius:3px;padding:1px 4px;background:var(--surface)">Ctrl K</span>
+      </div>
+
+      <div style="display:flex;align-items:center;padding-left:8px;margin-left:4px;border-left:1px solid var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;height:32px;padding:0 6px 0 4px;border-radius:5px;border:1px solid transparent">
+          <span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:50%;background:var(--accent);color:var(--accent-fg);font-size:11px;font-weight:600">DN</span>
+          <span style="font-size:12px;font-weight:500;color:var(--fg2);max-width:112px">Danilo Neiber</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3);flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="flex:1;min-height:0;display:flex">
+    <div style="width:224px;flex-shrink:0;display:flex;flex-direction:column;background:var(--surface);border-right:1px solid var(--line)">
+      <ul style="flex:1;margin:0;padding:8px;list-style:none;display:flex;flex-direction:column;gap:2px">
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg);font-weight:500">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            <span>Salón</span>
+          </div>
+          <ul style="margin:2px 0 4px;padding:0;list-style:none;display:flex;flex-direction:column;gap:1px">
+            <li><div style="display:flex;align-items:center;height:28px;padding-left:16px;margin-left:12px;border-radius:5px;border-left:1px solid var(--line);font-size:12px;color:var(--fg3)">Zonas</div></li>
+            <li><div style="display:flex;align-items:center;height:28px;padding-left:16px;margin-left:12px;border-radius:5px;border-left:1px solid var(--line);font-size:12px;color:var(--fg3)">Mesas y QR</div></li>
+          </ul>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            <span>Carta</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M8.5 3a2.5 2.5 0 013.5-.9A2.5 2.5 0 0115.5 3 2.5 2.5 0 0119 6.5c0 1.4-.9 2.6-2 3v7.5H7V9.5c-1.1-.4-2-1.6-2-3A2.5 2.5 0 018.5 3z"/><path d="M7 21h10"/></svg>
+            <span>Cocina</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.9"/></svg>
+            <span>Personas</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M12 21s-7-6.4-7-11a7 7 0 1114 0c0 4.6-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <span>Sede</span>
+          </div>
+        </li>
+        <li>
+          <div style="display:flex;align-items:center;gap:10px;height:32px;padding:0 8px;border-radius:5px;font-size:13px;color:var(--fg2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:currentColor;flex-shrink:0"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 3 4-6"/></svg>
+            <span style="color:var(--accent);font-weight:600">Informes</span>
+          </div>
+        </li>
+      </ul>
+      <div style="margin:8px;height:28px;display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:5px;border:1px solid var(--line);background:var(--surface);font-size:12px;color:var(--fg3)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M15 9l-3 3 3 3"/></svg>
+        Colapsar
+      </div>
+    </div>
+    <div style="flex:1;min-width:0;min-height:0;overflow:hidden;padding:16px;display:flex;flex-direction:column">
+      <div style="flex-shrink:0;display:flex;align-items:flex-end;gap:16px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:12px">
+        <div style="min-width:0">
+          <h1 style="margin:0;font-size:20px;font-weight:600;line-height:26px;letter-spacing:-.01em">Auditoría</h1>
+          <div style="padding-top:2px;font-size:12px;color:var(--fg3)">Quién hizo qué, desde dónde y cuándo · Sede Centro · 1.847 registros en el turno</div>
+        </div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0">
+          <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:5px;
+            background:var(--surface2);border:1px solid var(--line2);color:var(--fg2);font-size:11px;font-weight:600">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            SOLO LECTURA
+          </span>
+          <span style="display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 12px;border-radius:5px;font-size:13px;background:var(--surface);border:1px solid var(--line2);color:var(--fg2);font-weight:500">Exportar</span>
+        </div>
+      </div>
+
+      <div style="flex-shrink:0;display:flex;align-items:center;gap:8px;margin-bottom:12px"><span style="display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 11px;border-radius:5px;background:var(--accent-soft);border:1px solid var(--accent-line);color:var(--accent);font-size:12px;font-weight:600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Turno actual · desde 11:00</span><span style="display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 10px;border-radius:5px;background:var(--surface);border:1px solid var(--line2);color:var(--fg3);font-size:12px;width:250px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Buscar por persona, entidad o IP</span><span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:5px;background:var(--surface);border:1px solid var(--line2);color:var(--fg2);font-size:12px;font-weight:500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M3 5h18"/><path d="M7 12h10"/><path d="M10 19h4"/></svg>Filtros</span><span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:5px;background:var(--accent-soft);border:1px solid var(--accent-line);color:var(--accent);font-size:12px;font-weight:500">Formulario: Carta › Platos<span style="display:grid;place-items:center;width:15px;height:15px;border-radius:3px;color:var(--accent)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></span></div>
+
+      <div style="flex:1;min-height:0;overflow:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)">
+        <table style="width:100%;border-collapse:collapse">
+          <thead><tr><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:92px;"><span style="display:flex;align-items:center;gap:4px;height:100%">Hora</span></th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:215px;"><span style="display:flex;align-items:center;gap:4px;height:100%">Actor</span></th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:175px;"><span style="display:flex;align-items:center;gap:4px;height:100%">Dispositivo</span></th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:140px;"><span style="display:flex;align-items:center;gap:4px;height:100%">Acción</span></th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:210px;"><span style="display:flex;align-items:center;gap:4px;height:100%">Formulario</span></th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;"><span style="display:flex;align-items:center;gap:4px;height:100%">Cambio</span></th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:96px;"><span style="display:flex;align-items:center;gap:4px;height:100%"></span></th></tr></thead>
+          <tbody>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">19:42:07</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><div style="display:flex;align-items:center;gap:8px"><span><span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:50%;background:#0F766E;color:#fff;font-size:10px;font-weight:700">CO</span></span><div style="min-width:0"><div style="font-size:13px">Camilo Ortega</div><div style="font-size:11px;color:var(--fg3)">mesero · con PIN</div></div></div></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;gap:7px;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg><span style="font-size:12px">Su celular</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;font-weight:500">Envió a cocina</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;flex-direction:column;line-height:1.35"><span style="font-size:12px;font-weight:600;color:var(--fg)">Comandas</span><span style="font-size:11px;color:var(--fg3)">Pedidos · M7</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;color:var(--fg2)">3 líneas pasan a «enviado»</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;color:var(--fg3)">·</span></td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">19:38:55</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><div style="display:flex;align-items:center;gap:8px"><span><span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:50%;background:var(--surface3);color:var(--fg3)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3z"/><path d="M20 20h1"/></svg></span></span><div style="min-width:0"><div style="font-size:13px">Comensal</div><div style="font-size:11px;color:var(--fg3)">mesa 5 · sesión por QR</div></div></div></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;gap:7px;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3z"/><path d="M20 20h1"/></svg><span style="font-size:12px">Sin inscribir</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;font-weight:500">Propuso plato</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;flex-direction:column;line-height:1.35"><span style="font-size:12px;font-weight:600;color:var(--fg)">Líneas</span><span style="font-size:11px;color:var(--fg3)">Pedidos · Limonada de coco</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;color:var(--fg2)">línea nueva · $12.000</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;color:var(--fg3)">·</span></td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">19:31:12</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><div style="display:flex;align-items:center;gap:8px"><span><span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:50%;background:#7C3AED;color:#fff;font-size:10px;font-weight:700">MR</span></span><div style="min-width:0"><div style="font-size:13px">Marta Rojas</div><div style="font-size:11px;color:var(--fg3)">cocinera · con PIN</div></div></div></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;gap:7px;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M2 9h20"/></svg><span style="font-size:12px">KDS Cocina caliente</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;font-weight:500">Apagó plato</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;flex-direction:column;line-height:1.35"><span style="font-size:12px;font-weight:600;color:var(--fg)">Platos</span><span style="font-size:11px;color:var(--fg3)">Carta · Mojarra frita</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg3);font-variant-numeric:tabular-nums">disponible</span><span style="padding:0 5px;color:var(--fg3)">→</span><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg);font-variant-numeric:tabular-nums">agotado</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;color:var(--fg3)">·</span></td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">19:14:03</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><div style="display:flex;align-items:center;gap:8px"><span><span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:50%;background:#B45309;color:#fff;font-size:10px;font-weight:700">OP</span></span><div style="min-width:0"><div style="font-size:13px">Óscar Peñaranda</div><div style="font-size:11px;color:var(--fg3)">administrador · contraseña</div></div></div></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;gap:7px;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg><span style="font-size:12px">Escritorio</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;font-weight:500">Editó plato</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;flex-direction:column;line-height:1.35"><span style="font-size:12px;font-weight:600;color:var(--fg)">Platos</span><span style="font-size:11px;color:var(--fg3)">Carta · Bandeja paisa</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg3);font-variant-numeric:tabular-nums">38.000</span><span style="padding:0 5px;color:var(--fg3)">→</span><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg);font-variant-numeric:tabular-nums">42.000</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;color:var(--fg3)">·</span></td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">18:52:40</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><div style="display:flex;align-items:center;gap:8px"><span><span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:50%;background:#B45309;color:#fff;font-size:10px;font-weight:700">OP</span></span><div style="min-width:0"><div style="font-size:13px">Óscar Peñaranda</div><div style="font-size:11px;color:var(--fg3)">administrador · contraseña</div></div></div></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;gap:7px;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg><span style="font-size:12px">Escritorio</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;font-weight:500">Editó usuario</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;flex-direction:column;line-height:1.35"><span style="font-size:12px;font-weight:600;color:var(--fg)">Usuarios</span><span style="font-size:11px;color:var(--fg3)">Personas · Camilo Ortega</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--fg3)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>valor no registrado</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;color:var(--fg3)">·</span></td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">18:47:19</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><div style="display:flex;align-items:center;gap:8px"><span><span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:50%;background:#0369A1;color:#fff;font-size:10px;font-weight:700">YM</span></span><div style="min-width:0"><div style="font-size:13px">Yuliana Mora</div><div style="font-size:11px;color:var(--fg3)">mesera · con PIN</div></div></div></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;gap:7px;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg><span style="font-size:12px">Su celular</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;font-weight:500">Intentó anular</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;flex-direction:column;line-height:1.35"><span style="font-size:12px;font-weight:600;color:var(--fg)">Líneas</span><span style="font-size:11px;color:var(--fg3)">Pedidos · Churrasco 300 g</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;color:var(--fg2)">pedidos.lineas.anular</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;padding:1px 7px;border-radius:3px;font-size:11px;font-weight:600;background:var(--danger-soft);border:1px solid oklch(52% .170 27/.28);color:var(--danger)">Denegado</span></td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2);font-variant-numeric:tabular-nums">18:30:02</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><div style="display:flex;align-items:center;gap:8px"><span><span style="display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:50%;background:#B91C1C;color:#fff;font-size:10px;font-weight:700">DN</span></span><div style="min-width:0"><div style="font-size:13px">Danilo Neiber</div><div style="font-size:11px;color:var(--fg3)">soporte de plataforma</div></div></div></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;gap:7px;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg><span style="font-size:12px">Escritorio</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;font-weight:500">Entró como soporte</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;flex-direction:column;line-height:1.35"><span style="font-size:12px;font-weight:600;color:var(--fg)">Soporte</span><span style="font-size:11px;color:var(--fg3)">Plataforma · ticket #412</span></span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="font-size:12px;color:var(--fg2)">solo lectura · 30 min</span></td><td style="padding:0 12px;height:40px;vertical-align:middle;font-size:13px;color:var(--fg);"><span style="display:inline-flex;align-items:center;padding:1px 7px;border-radius:3px;font-size:11px;font-weight:600;background:var(--warning-soft);border:1px solid oklch(56% .110 75/.30);color:var(--warning)">Soporte</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="flex-shrink:0;padding-top:11px;font-size:12px;color:var(--fg2);line-height:1.6">
+        <b style="font-weight:600">Esta pantalla no puede borrar ni editar nada, y no por cortesía:</b>
+        <code style="font-family:var(--f-mono);font-size:11px">002_permisos.sql</code> hace
+        <code style="font-family:var(--f-mono);font-size:11px">DENY UPDATE, DELETE ON dbo.auditoria</code>,
+        así que el motor rechaza el intento aunque alguien escriba la consulta a mano. La columna <b style="font-weight:600">Formulario</b> no guarda la tabla, guarda el <b style="font-weight:600">recurso</b> — el mismo vocabulario de <code style="font-family:var(--f-mono);font-size:11px">dbo.recursos</code>. Importa porque <code style="font-family:var(--f-mono);font-size:11px">productos</code> es UNA tabla que alimenta DOS formularios: Platos e Ingredientes. Guardando la tabla, los dos se verían iguales. La <b style="font-weight:600">IP</b>
+        y el <code style="font-family:var(--f-mono);font-size:11px">request_id</code> están en el detalle de cada fila, no en la
+        tabla: caben, pero se leen una vez cada cien y roban el ancho que necesita «Cambio», que se lee siempre.
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- ==================================================================
+       EL CAJÓN DE DETALLE · 420 px, no un modal ni una pantalla nueva.
+       El trabajo real es recorrer cuarenta filas y abrir tres: un modal
+       tapa la tabla y obliga a cerrarlo para seguir mirando.
+  -->
+  <div style="position:absolute;top:48px;right:0;bottom:0;width:420px;display:flex;flex-direction:column;
+    background:var(--surface);border-left:1px solid var(--line2);box-shadow:-6px 0 24px oklch(24% .018 235/.10)">
+
+    <div style="flex-shrink:0;display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--line)">
+      <div style="min-width:0">
+        <div style="font-size:14px;font-weight:600">Editó plato</div>
+        <div style="font-size:11px;color:var(--fg3)">Carta › <b style="font-weight:600;color:var(--fg2)">Platos</b> · Bandeja paisa</div>
+      </div>
+      <span style="margin-left:auto;display:grid;place-items:center;width:26px;height:26px;border-radius:5px;color:var(--fg3)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </span>
+    </div>
+
+    <div style="flex:1;min-height:0;overflow-y:auto;padding:0 16px 16px">
+
+      <!-- LA PIEZA CENTRAL. Va primero porque es lo que se vino a ver. -->
+      <div style="padding:14px 0 4px">
+        <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--fg3)">Qué cambió</span>
+      </div>
+      <div style="border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:4px">
+        <table style="width:100%;border-collapse:collapse">
+          <thead><tr>
+            <th style="background:var(--surface2);border-bottom:1px solid var(--line);padding:6px 10px;text-align:left;font-size:11px;font-weight:600;color:var(--fg3)">Campo</th>
+            <th style="background:var(--surface2);border-bottom:1px solid var(--line);padding:6px 10px;text-align:left;font-size:11px;font-weight:600;color:var(--fg3)">Antes</th>
+            <th style="background:var(--surface2);border-bottom:1px solid var(--line);padding:6px 10px;text-align:left;font-size:11px;font-weight:600;color:var(--fg3)">Después</th>
+          </tr></thead>
+          <tbody>
+<tr><td style="padding:7px 10px;border-bottom:1px solid var(--line);font-size:12px;color:var(--fg2);white-space:nowrap">Precio</td><td style="padding:7px 10px;border-bottom:1px solid var(--line)"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg3);text-decoration:line-through;text-decoration-color:var(--danger)">38.000</span></td><td style="padding:7px 10px;border-bottom:1px solid var(--line)"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg);font-weight:600">42.000</span></td></tr>
+<tr><td style="padding:7px 10px;border-bottom:1px solid var(--line);font-size:12px;color:var(--fg2);white-space:nowrap">Estación</td><td style="padding:7px 10px;border-bottom:1px solid var(--line)"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg3);text-decoration:line-through;text-decoration-color:var(--danger)">Cocina caliente</span></td><td style="padding:7px 10px;border-bottom:1px solid var(--line)"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg);font-weight:600">Barra</span></td></tr>
+<tr><td style="padding:7px 10px;border-bottom:1px solid var(--line);font-size:12px;color:var(--fg2);white-space:nowrap">Disponible</td><td style="padding:7px 10px;border-bottom:1px solid var(--line)"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg3);text-decoration:line-through;text-decoration-color:var(--danger)">sí</span></td><td style="padding:7px 10px;border-bottom:1px solid var(--line)"><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg);font-weight:600">no</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="padding-bottom:10px;font-size:11px;color:var(--fg2);line-height:1.5">
+        Solo los campos que cambiaron, no la fila entera. <code style="font-family:var(--f-mono)">orden_items</code>
+        tiene 30 columnas y guardar las 30 en cada edición haría el registro ilegible además de enorme.
+      </div>
+
+<div style="display:flex;flex-direction:column;gap:2px;padding:9px 0;border-bottom:1px solid var(--line)"><span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--fg3)">Cuándo</span><span style="font-size:13px;color:var(--fg)">4 sep 2026, 19:14:03<span style='color:var(--fg3)'>.412</span></span><div style="padding-top:2px;font-size:11px;color:var(--fg3);line-height:1.45">Hora de Cúcuta (−05:00). En UTC: 5 sep 2026, 00:14:03.412 · pertenece al día de negocio del 4 sep (corte 4 a.m.)</div></div>
+<div style="display:flex;flex-direction:column;gap:2px;padding:9px 0;border-bottom:1px solid var(--line)"><span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--fg3)">Quién</span><span style="font-size:13px;color:var(--fg)">Óscar Peñaranda</span><div style="padding-top:2px;font-size:11px;color:var(--fg3);line-height:1.45">Administrador · se identificó con contraseña</div></div>
+<div style="display:flex;flex-direction:column;gap:2px;padding:9px 0;border-bottom:1px solid var(--line)"><span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--fg3)">Desde qué equipo</span><span style="font-size:13px;color:var(--fg)">Escritorio · Chrome en Windows</span><div style="padding-top:2px;font-size:11px;color:var(--fg3);line-height:1.45">Equipo propio, no inscrito · no es un dispositivo del local</div></div>
+<div style="display:flex;flex-direction:column;gap:2px;padding:9px 0;border-bottom:1px solid var(--line)"><span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--fg3)">Dirección IP</span><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg)">191.95.42.118</span><div style="padding-top:2px;font-size:11px;color:var(--fg3);line-height:1.45">Ver todo lo que se hizo desde esta IP</div></div>
+<div style="display:flex;flex-direction:column;gap:2px;padding:9px 0;border-bottom:1px solid var(--line)"><span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--fg3)">Petición</span><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg)">a7f3c1e2-9b84-4d55-a3f1-0e6c2b118d94</span><div style="padding-top:2px;font-size:11px;color:var(--fg3);line-height:1.45">3 filas más se escribieron en esta misma petición · Verlas juntas</div></div>
+<div style="display:flex;flex-direction:column;gap:2px;padding:9px 0;border-bottom:1px solid var(--line)"><span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--fg3)">Ruta</span><span style="font-family:var(--f-mono);font-size:12px;color:var(--fg)">PUT /productos/41</span><div style="padding-top:2px;font-size:11px;color:var(--fg3);line-height:1.45">Permiso exigido: carta.platos.editar · resultado: permitido</div></div>
+<div style="display:flex;flex-direction:column;gap:2px;padding:9px 0;border-bottom:1px solid var(--line)"><span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--fg3)">Formulario</span><span style="font-size:13px;color:var(--fg)">Carta › Platos · Bandeja paisa (#41)</span><div style="padding-top:2px;font-size:11px;color:var(--fg3);line-height:1.45">17 cambios en esta entidad · Ver su historial</div></div>
+
+      <div style="padding:12px 0 0">
+        <div style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:5px;background:var(--surface2);border:1px solid var(--line);cursor:pointer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--fg3)"><polyline points="9 18 15 12 9 6"/></svg>
+          <span style="font-size:12px;color:var(--fg2)">Ver el JSON original de <code style="font-family:var(--f-mono);font-size:11px">detalle</code></span>
+        </div>
+        <div style="padding-top:7px;font-size:11px;color:var(--fg3);line-height:1.5">
+          Está al fondo y plegado a propósito: el día que el renderizador no entienda una forma nueva,
+          es mejor enseñar el dato feo que una celda vacía.
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
