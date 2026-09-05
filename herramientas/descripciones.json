@@ -1,0 +1,724 @@
+{
+ "Salon.dc.html": {
+  "archivo": "Salon.dc.html",
+  "quien": "Mesero",
+  "resumen": "El mapa de mesas al empezar el turno. Cada mesa muestra en una tarjeta si está libre u ocupada, cuánto lleva abierta, cuánto va acumulado y si algo necesita atención.",
+  "puntos": [
+   "Encabezado con el nombre del restaurante — La Cava del Llano — y la línea «Salón · 7 libres de 20 · desde las 18:00», más el distintivo verde «En el local» de la geocerca",
+   "Filtro por zona arriba: Todas · 20, Terraza, Salón interior, Segundo piso",
+   "Mesa libre solo muestra número, zona, etiqueta LIBRE y los puestos — 4 puestos, 6 puestos —; la ocupada muestra el tiempo abierta y el total acumulado",
+   "El tiempo cambia de color al demorarse: 12 min gris, 38 min ámbar, 1 h 14 en rojo con la etiqueta «Demorada · por cobrar»",
+   "Las señales de trabajo van en la tarjeta: «2 listas» en verde (mesa 7) y «QR · 2 por aprobar» en ámbar (mesa 5), los pedidos que el comensal mandó desde el QR"
+  ],
+  "nota": "El estado de la mesa se lee por el color de fondo del recuadro, no por un ícono: libre en verde suave, ocupada en blanco. El aviso va en el borde y en la etiqueta: la mesa 5 lleva borde ámbar por el QR sin aprobar; la mesa 8 no cambia de borde, lo dice con el tiempo en rojo y «Demorada · por cobrar»."
+ },
+ "Main.dc.html": {
+  "archivo": "Main.dc.html",
+  "quien": "Mesero",
+  "resumen": "La pantalla donde se arma el pedido de una mesa: categorías a la izquierda, platos a la derecha y abajo el carrito, con lo ya enviado y lo que todavía no se envía.",
+  "puntos": [
+   "Encabezado de la mesa: flecha para volver, «Mesa 7», «Terraza · 4 comensales» y el distintivo verde «En el local»",
+   "Tres zonas fijas: categorías (Frecuentes, Entradas, Fuertes, Bebidas, Postres), lista de platos con nombre, SKU y precio, y el carrito abajo",
+   "El plato agotado no se saca de la lista: la Mojarra frita se queda atenuada, con etiqueta «Agotado» y sin responder al toque, para que el mesero no la busque creyendo que se borró",
+   "Aviso ámbar en el plato cuando falta un ingrediente — Churrasco 300 g, «Hoy sale sin ensalada» — para avisarle al comensal antes de escribirlo, no cuando llegue el plato",
+   "El carrito separa «Enviado · 3 líneas» — colapsado, con la hora 19:42, eso ya está en cocina — de «Por enviar», donde sí se cambia cantidad con − / + o se borra la línea; los cambios salen en la misma línea: SIN CEBOLLA, DOBLE CHICHARRÓN",
+   "Con el carrito vacío el botón dice «Sin líneas por enviar» y en el hueco se lee «Toca un plato para agregarlo · Categoría → producto → enviar»; con líneas pasa a «Enviar N líneas · $total», y si la ubicación falla se bloquea en «Fuera del restaurante» (rojo) o «Señal imprecisa · ± 840 m» (ámbar)"
+  ],
+  "nota": "El ícono de información abre la ficha del plato en una hoja sobre la misma pantalla; mirar qué lleva un plato no obliga a salir de la toma de pedido."
+ },
+ "FichaPlatoMesero.dc.html": {
+  "archivo": "FichaPlatoMesero.dc.html",
+  "quien": "Mesero",
+  "resumen": "La hoja que se abre sobre la toma de pedido para responderle al cliente qué trae un plato. Muestra descripción, ingredientes y qué se elige al pedirlo.",
+  "puntos": [
+   "Se abre encima de la toma de pedido, que sigue difuminada detrás: consultar un plato no es cambiar de tarea",
+   "Bandeja paisa $38.000, con descripción y los diez ingredientes de «Lleva» como etiquetas, no como lista de renglones",
+   "El ingrediente que se acabó sale tachado en ámbar y se explica abajo: «Hoy sale sin cebolla. Se acabó en la cocina»",
+   "«Se elige al pedirlo» adelanta los grupos que vienen después: Término de la carne y Adiciones, con sus valores",
+   "Dos salidas al pie: Cerrar y Agregar al pedido"
+  ],
+  "nota": "Donde iría la foto hay un marco gris que dice «Todavía sin foto». Un marcador explícito se lee mejor que un hueco en blanco, que parece pantalla rota."
+ },
+ "Modificadores.dc.html": {
+  "archivo": "Modificadores.dc.html",
+  "quien": "Mesero",
+  "resumen": "La hoja donde se personaliza el plato antes de meterlo al pedido: opciones obligatorias, adiciones, cambios ingrediente por ingrediente y nota para la cocina.",
+  "puntos": [
+   "Encabezado con el plato que se está modificando — Bandeja paisa, FUE-01 · $38.000 — y una X para cerrar",
+   "«Término de la carne» va marcado Obligatorio y es de selección única: Tres cuartos, Bien asada (elegida), Término medio",
+   "«Adiciones» admite varias — el rótulo lleva el contador «1 de 3» — con el recargo a la vista: Chicharrón extra +$6.000 marcado, Aguacate +$4.000, Sin cebolla sin costo",
+   "«Cómo va el plato», con «2 cambios» al lado, desglosa los ingredientes uno por uno: Arroz va como viene, Chicharrón queda «doble» con +$6.000, Cebolla sale tachada en rojo y Frijoles lleva un +$5.000 al lado",
+   "Nota libre para la cocina, con contador de caracteres: «La señora es alérgica al maní», 29 / 120",
+   "Al pie, la cantidad con − / + y el botón que ya trae el total con adiciones: «Agregar · $88.000» por 2 unidades"
+  ]
+ },
+ "Confirmacion.dc.html": {
+  "archivo": "Confirmacion.dc.html",
+  "quien": "Mesero",
+  "resumen": "El último paso antes de mandar la ronda a cocina. Muestra qué se va a preparar, con sus modificadores, y advierte que después solo se puede anular con motivo.",
+  "puntos": [
+   "Encabezado «Confirmar envío» y titular directo: «Se van a preparar 3 platos», Mesa 7 · Terraza, y la advertencia de que enviado solo se anula con motivo",
+   "El bloque «Nuevo en esta ronda» lista las dos líneas: 2× Bandeja paisa con sus modificadores (Bien asada, Chicharrón extra) y la nota de la alergia, $88.000; 1× Limonada de coco con la etiqueta «Barra», $12.000",
+   "Aclaración explícita: «Las 3 líneas enviadas antes no se reenvían. La cocina ya las tiene»",
+   "Cuentas separadas: Esta ronda $100.000, Ya enviado $47.500, Total de la mesa $147.500",
+   "Dos acciones al pie: Volver, o Enviar a cocina"
+  ]
+ },
+ "Bandeja.dc.html": {
+  "archivo": "Bandeja.dc.html",
+  "quien": "Mesero",
+  "resumen": "La bandeja donde el mesero aprueba o rechaza lo que los comensales pidieron desde el QR. Nada pasa a cocina sin que él lo acepte.",
+  "puntos": [
+   "Encabezado «Pedidos de comensales» con «La Cava del Llano · 2 mesas esperando» y el distintivo «En el local»; cada tarjeta trae mesa, número de comensal y cuánto lleva esperando",
+   "El tiempo de espera se vuelve ámbar al pasar de unos minutos — Mesa 5, 3 min 40, con toda la tarjeta enmarcada en ámbar — frente a la reciente, Mesa 9 con 42 s",
+   "Cada línea va con cantidad, plato, sus cambios y su valor: 2× Mojarra frita «Sin arroz» $84.000; una puede llegar marcada en rojo «Se agotó mientras lo pedía», para que el mesero lo resuelva antes de aceptar",
+   "En la tarjeta de la mesa 5, debajo de las líneas, va desde dónde se hizo el pedido: «Pedido desde el local · ± 22 m»",
+   "Dos botones por mesa, Rechazar y Aceptar con el monto — «Aceptar los 2 · $146.000», «Aceptar · $36.000» — y la regla al pie: nada llega a cocina sin la aceptación del mesero, y no suma al total hasta que apruebe"
+  ]
+ },
+ "Geocerca.dc.html": {
+  "archivo": "Geocerca.dc.html",
+  "quien": "Mesero",
+  "resumen": "Los dos estados en que la app bloquea el envío por ubicación, uno al lado del otro: el mesero está lejos del local, o el celular manda una posición difusa.",
+  "puntos": [
+   "Caso «Fuera del radio»: «Estás a 340 m del restaurante», hay que estar en Sede Centro, y el borrador queda guardado",
+   "Ese caso muestra los datos crudos de la lectura: Distancia 340 m, Precisión ± 28 m, Última lectura hace 4 s, con botón Reintentar",
+   "Caso «Ubicación aproximada»: no está lejos — el teléfono difumina la posición a propósito — y llega con ± 1.840 m de precisión",
+   "Ahí no se regaña, se enseña: pasos en Android para pasar a ubicación Precisa desde el candado de la barra de direcciones",
+   "En los dos, el botón de enviar queda muerto con el motivo escrito: «Fuera del restaurante, no se puede enviar» y «Señal imprecisa · no se puede enviar»",
+   "Cada caso cierra distinto: el rojo avisa que «Un supervisor puede autorizar el envío con su PIN»; el ámbar sugiere «O sal un momento a una zona con mejor señal»"
+  ],
+  "nota": "El bloqueo no se muestra como error genérico: cada estado tiene su color propio y su distintivo en el encabezado — «Fuera del local» en rojo, «Señal imprecisa» en ámbar — y el botón muerto explica por qué no se puede enviar."
+ },
+ "Carta.dc.html": {
+  "archivo": "Carta.dc.html",
+  "quien": "Comensal",
+  "resumen": "La carta del restaurante en el celular del comensal, con la mesa ya identificada. Recorre categorías, ve precios y avisos del día, y va sumando platos al pedido.",
+  "puntos": [
+   "Arriba: La Cava del Llano, \"Mesa 5 · Terraza\" y un chip verde \"En la mesa\" — la sesión ya sabe dónde está sentado.",
+   "Categorías en fila horizontal — Para picar, Platos fuertes, Bebidas, Postres — con una sola activa: Platos fuertes, que es lo que se está viendo.",
+   "Cada plato disponible es una tarjeta con nombre, descripción, precio y un botón + grande: Bandeja paisa $38.000 y Churrasco 300 g $46.000.",
+   "Donde va la foto hay un cuadro gris con icono de imagen — ninguna tarjeta trae foto todavía. El icono de info, junto al nombre, lleva a la ficha del plato.",
+   "La Mojarra frita ($42.000) sale atenuada y con etiqueta \"Agotado\": conserva precio, descripción e icono de info, y pierde solo el botón +.",
+   "El Churrasco avisa \"Hoy sale sin ensalada\" en la propia tarjeta, y abajo la barra lleva la cuenta: \"Ver mi pedido · 3\" por $31.000."
+  ],
+  "nota": "Lo agotado no se esconde de la carta: se deja en gris, etiquetado y sin botón de agregar."
+ },
+ "FichaPlatoComensal.dc.html": {
+  "archivo": "FichaPlatoComensal.dc.html",
+  "quien": "Comensal",
+  "resumen": "Hoja que sube desde la carta con el detalle de un plato: qué lleva, qué le falta hoy y cuánto vale. Desde ahí se agrega al pedido o se cierra.",
+  "puntos": [
+   "Se abre encima de la carta, que queda borrosa y oscurecida detrás; se sale con \"Cerrar\" o se confirma con \"Agregar al pedido\".",
+   "Donde iría la foto hay un marcador dibujado que dice \"Todavía sin foto\", en vez de un hueco en blanco.",
+   "\"Lleva\" muestra diez ingredientes como etiquetas — frijoles, arroz, chicharrón, chorizo, carne molida, huevo frito, tajadas de plátano, arepa, aguacate — y la décima, Cebolla, va tachada en ámbar.",
+   "Debajo, el aviso en el mismo ámbar: \"Hoy sale sin cebolla. Se acabó en la cocina.\" El faltante lo marca la cocina, no lo elige el comensal.",
+   "No hay nada que escoger: nombre, precio $38.000, descripción, ingredientes y el botón de agregar. Ni cantidad ni opciones."
+  ],
+  "nota": "A propósito no se muestran opciones que el comensal escoja: el pedido todavía no las maneja, y enseñarlas sería prometer algo que el flujo no cumple."
+ },
+ "Revision.dc.html": {
+  "archivo": "Revision.dc.html",
+  "quien": "Comensal",
+  "resumen": "El pedido antes de enviarlo. Se ajustan cantidades y se ve el total; al tocar Enviar, la app pide la ubicación para comprobar que el pedido sale de una mesa del local.",
+  "puntos": [
+   "Encabezado con flecha para volver a la carta, \"Mi pedido\", La Cava del Llano y \"Mesa 5\".",
+   "Dos renglones — 2× Arepa de huevo $17.000 y 1× Patacón con hogao $14.000 — cada uno con su control − / + para subir o bajar la cantidad sin salir de la pantalla.",
+   "El resumen muestra Subtotal $31.000 y Total $31.000, con la nota \"El total lo calcula el restaurante. Se paga en caja al final.\"",
+   "No se paga aquí: el botón es \"Enviar pedido\", no un cobro.",
+   "El boceto está dibujado con la hoja de ubicación ya encima: \"Confirmemos que estás en el restaurante\", y debajo la razón — la ubicación solo verifica que el pedido sale de una mesa del local y no se guarda después.",
+   "La hoja deja dos salidas: \"Compartir ubicación\" en azul y, debajo, \"Llamar al mesero\" para quien no la quiera dar."
+  ],
+  "nota": "El permiso de ubicación no es un muro: quien lo niega puede pedir con el mesero, así que la geocerca filtra sin dejar a nadie por fuera."
+ },
+ "Seguimiento.dc.html": {
+  "archivo": "Seguimiento.dc.html",
+  "quien": "Comensal",
+  "resumen": "Después de enviar, el comensal ve en qué va cada cosa que pidió la mesa y cuánto lleva la cuenta. No hay nada que editar: solo mirar, llamar al mesero o pedir más.",
+  "puntos": [
+   "Aviso arriba: \"El mesero está confirmando tu pedido. Suele tardar menos de dos minutos.\"",
+   "El estado va por renglón, no por pedido completo: 2× Arepa de huevo \"Pendiente de confirmar\" en ámbar, 1× Patacón con hogao \"En preparación\" en azul, 3× Limonada de coco \"Entregada\" en verde con chulo.",
+   "La limonada no venía en \"Mi pedido\": la lista es de la mesa, y junta lo de antes con lo recién enviado.",
+   "Ningún renglón muestra precio; la plata sale solo en el bloque de la cuenta: Confirmado $50.000, Por confirmar $17.000 — las dos arepas — y \"Total de la mesa\" $67.000.",
+   "No se puede modificar ni cancelar nada desde aquí; abajo solo hay \"Llamar al mesero\" y \"Pedir más\".",
+   "Arriba manda el restaurante — LC, La Cava del Llano, Mesa 5 — y al pie va \"Funciona con Pedidos\": la marca de la plataforma queda debajo."
+  ],
+  "nota": "La cuenta es de la mesa, no del último pedido, y distingue el monto ya confirmado del que todavía depende del mesero."
+ },
+ "Login.dc.html": {
+  "archivo": "Login.dc.html",
+  "quien": "Personal del restaurante",
+  "resumen": "Puerta de entrada del personal desde computador: correo y contraseña de la cuenta que le dio su restaurante.",
+  "puntos": [
+   "Dos campos, correo y contraseña — la clave enmascarada, con un ojo para mostrarla — y el botón «Entrar».",
+   "Casilla «No cerrar sesión en este equipo», marcada, y enlace «¿Olvidaste tu contraseña?».",
+   "No hay «crear cuenta»: a la gente la invita por correo quien administra el restaurante.",
+   "Cada quien elige su propia contraseña — nadie más puede verla ni escribirla por él."
+  ],
+  "nota": "Usa densidad relajada (controles de 36 px) en vez de la normal de 32: la preferencia de densidad vive en la cuenta, y aquí todavía no hay cuenta."
+ },
+ "LoginSede.dc.html": {
+  "archivo": "LoginSede.dc.html",
+  "quien": "Personal del restaurante",
+  "resumen": "Tras entrar con la cuenta, quien trabaja en varias sedes elige a cuál entra. Cada fila la encabeza la sede, y debajo van la compañía, el rol y el turno.",
+  "puntos": [
+   "Se elige la sede, no la compañía: las mesas, la cocina y el perímetro son de un local concreto.",
+   "El rol cambia de una sede a otra — administrador en Sede Centro, mesero en Ventura Plaza.",
+   "Tres sedes de dos compañías distintas: La Cava del Llano y El Fogón de la Abuela.",
+   "Cada fila muestra el turno: «Turno abierto · 11:00» o «Sin abrir turno».",
+   "Arriba, la cuenta con la que se entró y un «No soy yo» para cambiarla."
+  ],
+  "nota": "Casi nunca aparece: solo si el sistema no puede decidir — varias sedes y primera vez, o la última dejó de estar disponible. Después se entra directo a la última usada y se cambia desde la barra de arriba."
+ },
+ "LoginMesero.dc.html": {
+  "archivo": "LoginMesero.dc.html",
+  "quien": "Mesero",
+  "resumen": "Entrada del mesero en su propio celular. No pide usuario: el teléfono ya está inscrito a su nombre, así que solo escribe el PIN.",
+  "puntos": [
+   "Arriba queda claro a dónde entra: La Cava del Llano · Sede Centro.",
+   "Saluda por nombre («Hola, Danilo») y dice el rol y qué hacer: «Mesero · escribe tu PIN».",
+   "PIN de cuatro dígitos: cuatro puntos de avance y teclado numérico propio con tecla de borrar.",
+   "Teclas de 72 px — esto se teclea de pie, con una mano y a veces con la bandeja en la otra.",
+   "Abajo, «Este no es mi teléfono», para cuando el equipo no es el suyo."
+  ],
+  "nota": "No hay geocerca en la entrada, a propósito: la ubicación bloquea ENVIAR la comanda, no entrar — si el GPS parpadea, el mesero igual puede mirar el salón."
+ },
+ "AbrirTurno.dc.html": {
+  "archivo": "AbrirTurno.dc.html",
+  "quien": "Cajero",
+  "resumen": "Primera pantalla del día. El cajero cuenta el fondo del cajón, lo escribe como base inicial y abre el turno de la caja.",
+  "puntos": [
+   "Dos cosas se eligen y una viene dada: la caja (Caja 1, de una lista), la base inicial (200.000, «Lo que hay en el cajón ahora mismo») y el día de negocio, que aparece en gris y no se edita.",
+   "El día de negocio se fija aquí y no cambia: lo que se cobre pasada la medianoche sigue siendo de hoy, hasta el corte de las 4:00 a. m.",
+   "Mientras no haya turno abierto los meseros no pueden abrir mesas — cada pedido se cuelga de un turno.",
+   "La base se cuenta antes de escribirla: contra ese número se cuadra al cerrar.",
+   "El chip del encabezado dice «Sin turno», en gris. «Abrir turno» es lo que lo enciende: en las demás pantallas de caja ya dice «Turno abierto · 11:00», en verde."
+  ],
+  "nota": "Donde un ERP pone el periodo contable, el encabezado pone el turno: mismo chip de estado, arriba a la izquierda."
+ },
+ "CuentasPorCobrar.dc.html": {
+  "archivo": "CuentasPorCobrar.dc.html",
+  "quien": "Cajero",
+  "resumen": "Bandeja del cajero: las mesas abiertas del turno con lo que debe cada una y en qué va, para elegir cuál cobrar.",
+  "puntos": [
+   "Bajo el título: Caja 1 · turno abierto desde las 11:00 · base 200.000 — la base que se escribió al abrir sigue a la vista.",
+   "Tabla de mesas del turno: folio, mesa, zona, mesero, comensales, abierta hace, platos, total y estado. Seis filas, «Mostrando 1–6 de 6».",
+   "Dos estados: «Pidió la cuenta» (M7, M15, M3) y «Comiendo» (M12, M18, M6). Arriba hay un chip de filtro —Estado es «pidió la cuenta»— y el contador de Filtros en 1.",
+   "El abono va bajo el total: la M7 suma 215.600 y ya abonó 120.000.",
+   "Botón «Cobrar sin mesa» (Ins) arriba a la derecha. La barra de la tabla trae buscar por mesa o mesero, Filtros, Imprimir, Exportar y Columnas.",
+   "El menú del cajero solo tiene Caja —con Cuentas por cobrar y Turno— e Informes: no ve la carta ni toca precios."
+  ],
+  "nota": "Las mesas que pasan de una hora abiertas pintan el tiempo en naranja: M7 con 1 h 12 min y M18 con 1 h 5 min. Las demás van en gris."
+ },
+ "Cobrar.dc.html": {
+  "archivo": "Cobrar.dc.html",
+  "quien": "Cajero",
+  "resumen": "La cuenta de una mesa: líneas del pedido con sus precios, totales con propina, lo ya cobrado y el cobro de lo que falta.",
+  "puntos": [
+   "Cabecera de la cuenta: Mesa 7 · Terraza · folio 041, 4 comensales, atendió Camilo Ortega, abierta hace 1 h 12 min.",
+   "Tres líneas con cantidad, unitario y total: 3× Bandeja paisa (sin aguacate · sin cebolla), 1× Churrasco 300 g (término medio) y 3× Limonada de coco. Las notas del pedido bajan pegadas al plato, y cada línea tiene «Anular».",
+   "Los precios son los que tenía la carta cuando se tomó el pedido, no los de ahora, y aquí no se pueden cambiar.",
+   "Anular una línea pide dos personas con PIN: quien anula y quien autoriza. El boceto anota que falta el CHECK que exija que sean distintas.",
+   "Totales: subtotal 196.000, descuento 0, propina sugerida del 10 % (19.600, en campo editable y con «Quitar») y total 215.600.",
+   "Pago mixto: ya entraron 120.000 con tarjeta —voucher 4417, con su «Anular»— y faltan 95.600. El resto se cobra en efectivo, tarjeta o transferencia; con efectivo elegido, monto 95.600 y recibido 100.000, el cambio da 4.400 y la referencia queda apagada («Con tarjeta o transferencia»).",
+   "«Cobrar y cerrar la cuenta» es el botón. Debajo avisa lo que pasa después: al cerrarla, la mesa 7 vuelve a salir libre en el salón."
+  ],
+  "nota": "Cada cobro es una fila y no un solo campo «pagado»: el pago mixto es lo normal y un número suelto no lo representa."
+ },
+ "CerrarTurno.dc.html": {
+  "archivo": "CerrarTurno.dc.html",
+  "quien": "Cajero",
+  "resumen": "Cuadre del turno. El sistema muestra el efectivo que debería haber, el cajero escribe lo que contó y explica la diferencia.",
+  "puntos": [
+   "Efectivo esperado en el cajón: base 200.000 más 848.000 de 41 cobros en efectivo, igual a 1.048.000.",
+   "Tarjeta (512.300 en 28 cobros, se concilia con el datáfono) y transferencia (96.000 en 4 cobros) van en un bloque aparte, «No pasa por el cajón».",
+   "El cajero escribe el efectivo contado (1.041.500), el sistema saca el faltante —6.500 contra los 1.048.000 esperados— y «Explica la diferencia» queda obligatorio cuando no cuadra.",
+   "«Cerrar turno» está gris y bloqueado: seis mesas siguen abiertas. M7 · M15 · M3 pidieron la cuenta (371.100) y M12 · M18 · M6 siguen comiendo (538.500); son 909.600 que se quedarían sin cuadre. Al lado, el atajo «Ir a cobrarlas».",
+   "Encabezado: Caja 1 · abierto a las 11:00 por Ana Ramírez · día de negocio 26 de agosto."
+  ],
+  "nota": "Tarjeta y transferencia van aparte a propósito: sumarlas al cuadre haría cuadrar cualquier cosa. A mano solo se cuenta el efectivo."
+ },
+ "Despacho.dc.html": {
+  "archivo": "Despacho.dc.html",
+  "quien": "Cocina",
+  "resumen": "Tablero de la estación Cocina caliente. La comanda avanza por tres columnas —Por hacer, En preparación, Listas para llevar— y cada tarjeta tiene un solo botón grande.",
+  "puntos": [
+   "Tres columnas con contador: Por hacer 6, En preparación 5, Listas para llevar 5. Un botón por tarjeta: Tomar, Listo, Entregada a la mesa.",
+   "Cada tarjeta lleva la mesa, el reloj de la fase en curso —esperando, cocinando, sin recoger— y el semáforo: la etiqueta TARDE o ATENTO en el encabezado y el mismo color en el borde. Las dos comandas que no caben añaden el total ahí mismo: 5 platos, 4 platos.",
+   "De cada plato se ve la cantidad y solo lo que cambia: SIN AGUACATE, DOBLE MAZORCA, la nota del comensal en rojo. El resto dice COMPLETA.",
+   "Ya tomada, la tarjeta muestra quién cocina y cuánto lleva esperando la mesa; en Listas los platos van tachados.",
+   "Arriba: el negocio y la sede —La Cava del Llano · Sede Centro—, pestañas por estación (Cocina caliente, Barra), el contador Se acabó · 3, el estado de red y la hora."
+  ],
+  "nota": "Variante 1a: la tarjeta se planta en 360 px y la lista de platos se desliza dentro, con un degradado que avisa de que hay más. El botón nunca se recorta."
+ },
+ "DespachoFicha.dc.html": {
+  "archivo": "DespachoFicha.dc.html",
+  "quien": "Cocina",
+  "resumen": "El mismo tablero de despacho, pero la tarjeta es un resumen: lo que no cabe se corta y el detalle completo vive en la ficha del pedido.",
+  "puntos": [
+   "Misma cola de tres columnas, mismos botones —Tomar, Listo, Entregada a la mesa— y el mismo semáforo con reloj de fase.",
+   "La tarjeta sigue topada en 360 px, pero aquí lo que no cabe no se desliza: se corta, y un degradado avisa de que la comanda sigue.",
+   "Un icono de ojo en el encabezado anuncia que ahí se abre la ficha con la comanda entera.",
+   "Lo demás no cambia: cantidades, tags de modificadores, notas del comensal, equipo asignado y minutos de espera de la mesa."
+  ],
+  "nota": "Se toca el encabezado entero para abrir la ficha, no un botón aparte: un botón propio de 44 px le robaba doce píxeles de alto a todas las tarjetas, también a las que caben enteras."
+ },
+ "FichaComanda.dc.html": {
+  "archivo": "FichaComanda.dc.html",
+  "quien": "Cocina",
+  "resumen": "Detalle de la comanda de la M 15, abierto sobre la cola difuminada. Aquí se ve el pedido completo y se toma entero.",
+  "puntos": [
+   "Los tres relojes juntos: esperando 21:09, cocinando y sin recoger en --:--, y al lado «Nadie la ha tomado», 5 platos · 8 unidades.",
+   "Cabecera con la mesa, la marca TARDE, la ubicación —segundo piso, 6 puestos— y la hora de envío, 11:07 a. m.",
+   "Bajo el rótulo «Cómo va el plato», cada línea lista TODAS sus partes, no solo las que cambian: SIN AGUACATE en rojo y DOBLE MAZORCA en ámbar por encima de Frijoles, Arroz, Chicharrón.",
+   "Cada línea lleva su propio estado —ESPERANDO— y, si el plato no tiene receta, dice «Este plato no se desglosa en partes».",
+   "Debajo, de dónde salió la línea: «Pedido por el comensal desde la mesa», en el sancocho y en la arepa de huevo. La nota va en rojo y rotulada: «Nota · El niño no come picante».",
+   "Salidas: la X del encabezado, o al pie Cerrar y Tomar los 5 platos de una."
+  ],
+  "nota": "Los tres relojes solo caben aquí: en la tarjeta se ve el de la fase en curso, y veinte minutos esperando no es lo mismo que veinte cocinando."
+ },
+ "AsignarCocineros.dc.html": {
+  "archivo": "AsignarCocineros.dc.html",
+  "quien": "Cocina",
+  "resumen": "Paso previo a empezar una comanda: quien se la va a echar al hombro toca su ficha. Pueden ser varios.",
+  "puntos": [
+   "Pregunta directa —«¿Quién está en la mesa 15?»— y debajo la instrucción: «Toca tu ficha. Pueden ser varios».",
+   "Seis fichas de cocinero, cada una con avatar de iniciales en su propio color y el nombre completo: así no se cruzan Ana Lucía Ramírez Ospina y Ana María Cárdenas Suárez.",
+   "Selección múltiple: las dos marcadas —Ana Lucía y Jairo Andrés— se pintan del color de su avatar y llevan chulo. El botón lleva la cuenta: «Empezar entre 2».",
+   "Aquí no se pide PIN: basta tocar la ficha. Y se puede salir con Cancelar."
+  ],
+  "nota": "La cola queda detrás difuminada, no apagada: el cocinero no pierde de vista que hay comandas esperando mientras elige."
+ },
+ "SeAcabo.dc.html": {
+  "archivo": "SeAcabo.dc.html",
+  "quien": "Cocina",
+  "resumen": "Diálogo para rechazar lo que no se puede hacer —2× Mojarra frita de la M 15— eligiendo el motivo y firmando con ficha y PIN.",
+  "puntos": [
+   "Bajo «¿Qué se acabó?», tres motivos: se acabó un plato (abierto), se acabó un ingrediente, otro motivo. La mojarra ya viene marcada como LA QUE RECHAZAS.",
+   "La rejilla es la carta de la estación —nueve platos—: de paso se pueden apagar más. Los que ya estaban apagados salen atenuados y rotulados «ya estaba apagado».",
+   "Alcance acotado: solo platos de Cocina caliente. Los de Barra los apaga quien esté en la barra.",
+   "El bloque «Al confirmar» lo dice antes de tocar nada: las dos mojarras salen de la cuenta de la mesa 15 y al mesero le llega el aviso con el motivo; lo marcado deja de poder pedirse —ni mesero ni QR— hasta que lo enciendas.",
+   "A la derecha, «¿Quién lo dice?»: se toca la ficha —Ana Ramírez, entre seis— y se teclea un PIN de cuatro dígitos. Rechazar saca dinero de la cuenta, y para eso la ficha no basta.",
+   "Al pie, Cancelar y Confirmar en rojo."
+  ],
+  "nota": "Dos columnas —qué pasó a la izquierda, quién lo dice a la derecha— para que el teclado no tape las opciones que hay que leer para elegir."
+ },
+ "SeAcaboIngrediente.dc.html": {
+  "archivo": "SeAcaboIngrediente.dc.html",
+  "quien": "Cocina",
+  "resumen": "La misma decisión con otro motivo: no falta la mojarra, falta algo que la mojarra lleva. El plato no se cancela — se avisa y decide la mesa.",
+  "puntos": [
+   "Cabecera: «Falta un ingrediente», la marca M 15 y «2× Mojarra frita · pedida hace 6 min». El ámbar reemplaza al rojo del rechazo en la marca, en la opción elegida y en Confirmar.",
+   "Los candidatos son las partes de ESE plato —Patacón (marcado), Arroz de coco, Ensalada, Limón— y cada uno dice a cuántos platos afecta: la ensalada, 2; los demás, 1.",
+   "Salida para lo que no está en el plato: «Se acabó otra cosa · buscar en todos los ingredientes».",
+   "Los otros dos motivos quedan cerrados pero explicados: «Se acabó un plato · deja de pedirse hasta que lo vuelvas a encender» y «Otro motivo · se cayó el plato, llegó mal, se pidió por error. No apaga nada».",
+   "Al confirmar, las mojarras NO se cancelan: al mesero le llega la pregunta de servirlas sin patacón o cambiarlas, y el plato que lleva patacón queda avisando «sale sin patacón» al mesero y en el QR.",
+   "Se firma con ficha y PIN, con la advertencia al lado: apagar un ingrediente afecta a todos los platos que lo llevan durante el resto del turno, lo de mayor alcance que puede hacer un cocinero. Al pie, Cancelar y Confirmar en ámbar."
+  ],
+  "nota": "Se listan las partes del plato y no los veintiún ingredientes de la carta: un buscador largo, en táctil y con prisa, es donde se toca el equivocado."
+ },
+ "SeAcaboMuchos.dc.html": {
+  "archivo": "SeAcaboMuchos.dc.html",
+  "quien": "Cocina",
+  "resumen": "El mismo rechazo de plato cuando la estación tiene carta grande: 47 platos que no caben de un vistazo, sin que el diálogo crezca.",
+  "puntos": [
+   "«Mojarra frita · LA QUE RECHAZAS» queda clavada arriba, fuera del desplazamiento: confirmar sigue siendo un solo toque.",
+   "Chips de categoría con conteo: Todos · 47, Fuertes · 15 —el que está activo—, Entradas · 12, Sopas · 8, Postres · 7, Asados · 5. La rejilla muestra esos 15 fuertes.",
+   "La rejilla se desliza dentro de su caja de alto fijo, con degradado al pie, y las tejas no se encogen, así el PIN nunca queda fuera de vista.",
+   "Igual que la versión corta: solo platos de Cocina caliente, los ya apagados atenuados —«ya apagado» sobre la lechona tolimense—, firma con ficha y PIN, y al pie Cancelar y Confirmar.",
+   "Al confirmar, las dos mojarras salen de la cuenta de la mesa 15 y al mesero le llega el aviso con el motivo; lo marcado deja de pedirse hasta que se vuelva a encender."
+  ],
+  "nota": "Las categorías aparecen solas cuando la estación pasa de unos quince platos; por debajo estorban más de lo que ayudan."
+ },
+ "PanelPlataforma.dc.html": {
+  "archivo": "PanelPlataforma.dc.html",
+  "quien": "Operador de la plataforma",
+  "resumen": "Primera pantalla del operador del SaaS. En vez de métricas, una lista de las tres cosas que están rotas ahora mismo entre sus compañías, cada una con el botón que la resuelve.",
+  "puntos": [
+   "Rótulo PLATAFORMA sobre barra oscura: recuerda en qué nivel se está antes de equivocarse de restaurante.",
+   "Cinco contadores arriba: 2 activas, 1 en prueba, 0 suspendidas, 4 sedes, 3 requieren atención.",
+   "«Requiere tu atención», ordenado por lo que rompe antes: sin administrador, prueba que vence en 3 días, 6 días sin cerrar caja.",
+   "Cada fila trae su botón: Asociar usuario, Ver compañía, Entrar como soporte.",
+   "Las filas salen de consultas, no de avisos por marcar como leídos: una compañía sin usuarios con rol administrador, una prueba con fecha de fin próxima, un turno abierto hace más de 24 horas. Si el problema se arregla, desaparecen solas."
+  ],
+  "nota": "Es una lista de excepciones, no un tablero: con tres clientes, saber cuántos pedidos hubo ayer no sirve; saber cuál alta se quedó a medias, sí."
+ },
+ "Companias.dc.html": {
+  "archivo": "Companias.dc.html",
+  "quien": "Operador de la plataforma",
+  "resumen": "Las tres compañías que pagan por el sistema, en tabla: nombre —con la razón social o el nombre del dueño debajo—, documento, plan, estado, sedes, personas y última actividad.",
+  "puntos": [
+   "La columna Documento dice además cómo está registrado el negocio: «NIT · con cámara», «NIT · sin cámara» o «Cédula · sin RUT».",
+   "El plan se llama por sedes: «Sede única» en La Cava, «Dos sedes» en El Portal; Cafetería La Nube todavía va en «Prueba».",
+   "Estados: Activa, «Prueba · 3 días» y «Sin acceso» en rojo para Asadero El Portal, que además lleva bajo el nombre «Nadie puede entrar: no tiene administrador».",
+   "Personas cuenta a quien puede entrar, en todas sus sedes; un cero ahí es un alta que se quedó a medias, y por eso la fila sube al panel.",
+   "Última actividad llega hasta «nunca»: la señal de que ese cliente jamás pudo usar lo que compró.",
+   "Arriba: buscar por nombre o documento, Filtros, Exportar y Nueva compañía."
+  ],
+  "nota": "Trabajar con la cédula del dueño es una de las tres formas normales de tener un negocio en Colombia y no recorta ninguna función del sistema."
+ },
+ "FichaCompania.dc.html": {
+  "archivo": "FichaCompania.dc.html",
+  "quien": "Operador de la plataforma",
+  "resumen": "Ficha de La Cava del Llano en la primera de cinco pestañas —«Identidad y datos legales»; después Plan y límites, Administradores, Sedes y Bitácora—. Es el caso completo: NIT, RUT y matrícula de cámara. Arriba: Suspender, Cancelar y Guardar.",
+  "puntos": [
+   "El primer campo —«¿Cómo está registrado el negocio?»— decide qué secciones aparecen debajo. Aquí, «Con RUT y matrícula de cámara de comercio». Le siguen nombre del negocio, código para la dirección web (lacava) y razón social, Inversiones La Cava S.A.S.",
+   "Identificación: persona jurídica, NIT 901456789 y DV 8. El DV se calcula con módulo 11 y solo existe porque hay RUT — sin RUT sería un dato tributario fabricado.",
+   "«Registro mercantil» —matrícula 0000234519, Cámara de Cúcuta, renovada hasta 31/03/2027, aviso 30 días antes— desaparece entera si el negocio no tiene cámara de comercio.",
+   "«Representante legal» —Óscar Iván Peñaranda Villamizar— sale solo con sociedad: una persona natural firma por sí misma.",
+   "Contacto: dirección fiscal (la del RUT), municipio con su código DANE, celular con WhatsApp obligatorio —por ahí van el código para entrar la primera vez, los avisos y el cobro— y correo opcional, aquí «Sin correo».",
+   "Ley 1581: el restaurante es el responsable de los datos y la plataforma la encargada, y eso obliga a un contrato de transmisión. Aceptado el 14/03/2026, v2, por Óscar Peñaranda como representante legal. Es lo único que hay que aceptar para empezar."
+  ],
+  "nota": "Se sacaron CIIU, régimen de renta, responsabilidades del RUT, IVA/INC y franquicia: ninguna pantalla los lee y un dato tributario inventado es peor que un campo vacío. Vuelven con la facturación electrónica."
+ },
+ "FichaCompaniaSinRegistro.dc.html": {
+  "archivo": "FichaCompaniaSinRegistro.dc.html",
+  "quien": "Operador de la plataforma",
+  "resumen": "La misma ficha con la otra opción de registro: Asadero El Portal trabaja con la cédula del dueño. Sirve para ver qué cambia y qué desaparece frente al caso con NIT.",
+  "puntos": [
+   "Registro «Con la cédula del dueño». Donde el otro caso pide razón social, aquí pide «Nombre completo del dueño» —Jairo Alberto Contreras Sepúlveda—: trabajando con cédula, el nombre de la persona hace de nombre de la empresa. El nombre del letrero (Asadero El Portal) y el código (elportal) siguen igual.",
+   "Tipo de persona: Natural, con la razón al lado —«No hay sociedad sin NIT»—, y no hay DV: ese dígito lo asigna la DIAN al inscribir el RUT.",
+   "Documento: cédula de ciudadanía, «también CE, PPT o pasaporte». El número, 88234107, no cambia si mañana saca RUT.",
+   "Faltan «Registro mercantil» y «Representante legal» — no salen vacías, no existen: no hay matrícula que renovar ni a quién nombrar. Un campo gris con asterisco prometería algo que llenar.",
+   "El campo se llama «Dirección del negocio», no «Dirección fiscal», y admite referencias: «Vía a Los Patios, frente al taller de Jairo». Si el local no tiene nomenclatura, se escribe cómo se llega.",
+   "Contacto y tratamiento de datos son idénticos al otro caso; solo cambia quién firma el contrato: «Jairo Contreras · dueño del negocio» en vez de un representante legal."
+  ],
+  "nota": "El PPT va en la lista principal y no escondido en «otro»: en Cúcuta lo usa mucha gente y es documento válido para trabajar en el país. Y esto no bloquea nada: el negocio toma pedidos, manda a cocina, cobra, cierra caja, imprime su comprobante, crea meseros y edita la carta igual que uno matriculado. Lo único que la plataforma no hace, y no lo hace para nadie, es facturación electrónica."
+ },
+ "AdminsCompania.dc.html": {
+  "archivo": "AdminsCompania.dc.html",
+  "quien": "Operador de la plataforma",
+  "resumen": "Pestaña Administradores de Asadero El Portal, con el contador en 0 y en rojo. Cabecera: creada hace 2 días, 2 sedes, sin actividad. Es la única avería que el cliente no puede arreglar solo.",
+  "puntos": [
+   "Bloque rojo, «Nadie puede entrar a esta compañía»: tiene sus dos sedes creadas y su carta cargada, pero ningún usuario con rol de administrador.",
+   "Nadie de su lado puede arreglarlo, porque para crear el primer usuario hay que estar dentro. «Solo se puede resolver desde aquí».",
+   "Dos salidas: «Asociar un usuario existente» o «Crear el primer administrador».",
+   "Abajo, «Así se ve cuando sí los tiene» —La Cava del Llano, puesta para comparar—: persona, sedes que administra, última entrada, asociado por y Revocar.",
+   "Revocar le quita el acceso a esta compañía, no borra a la persona: sus comandas, anulaciones y autorizaciones siguen atribuidas a ella.",
+   "Una sola cuenta puede administrar varias compañías — un contador con tres restaurantes no debería tener tres contraseñas."
+  ],
+  "nota": "La pestaña vive en la plataforma porque quedarse sin administradores es la puerta cerrada por dentro: la llave tiene que estar afuera."
+ },
+ "EntrarComoSoporte.dc.html": {
+  "archivo": "EntrarComoSoporte.dc.html",
+  "quien": "Operador de la plataforma",
+  "resumen": "El operador metido dentro del panel de La Cava del Llano para mirar por qué llevan 6 días sin cerrar caja. Ve la pantalla del cliente, con una barra roja encima.",
+  "puntos": [
+   "Barra roja de 44 px arriba del todo, que no se puede ocultar: nombre del cliente, chip SOLO LECTURA, el motivo tecleado —«turno de caja abierto desde el 29 de agosto»— y el reloj «quedan 21:04».",
+   "La sesión se vence sola; no depende de que alguien se acuerde de salir. La única salida es «Salir de la cuenta», a la derecha.",
+   "Debajo, el panel del administrador tal cual —barra clara, selector de sede, chip «Turno abierto · 29 ago»—: es la pantalla del cliente, no la de la plataforma.",
+   "«Requiere tu atención»: seis filas de la que bloquea a la que solo conviene mirar —perímetro apagado, cuatro comandas sin tomar, diecisiete mesas sin QR, ningún producto con foto, dos pedidos del comensal por aprobar, dos meseros que no han entrado en la semana—, cada una con su botón.",
+   "«Revisado y en orden» al final —y «Revisado hace 2 min» arriba—, para que un día bueno no se vea igual que un panel que nadie revisó.",
+   "Ahí mismo, con triángulo naranja entre los chulos verdes, está el motivo de la visita: «El turno lleva 6 días abierto — desde el 29 de agosto». En el panel del cliente es un aviso sin botón; en el de la plataforma es una fila con acción."
+  ],
+  "nota": "Cada dato de la barra tapa un error concreto: de quién es la cuenta, si puede escribir, por qué entró y cuánto le queda. El desastre no es entrar, es olvidar que entraste."
+ },
+ "PanelAdmin.dc.html": {
+  "archivo": "PanelAdmin.dc.html",
+  "quien": "Administrador",
+  "resumen": "La primera pantalla del administrador de la sede. No muestra ventas: bajo el título «Requiere tu atención» lista las seis cosas que hoy están mal o pendientes, ordenadas de la que bloquea a la que solo conviene mirar. Arriba a la derecha, «Revisado hace 2 min».",
+  "puntos": [
+   "Cada fila explica el problema y trae al lado el botón que lo resuelve: Ver perímetro, Ver la cola, Ver mesas y QR, Ver productos, Ver bandeja, Ver usuarios.",
+   "Dos alertas rojas — el perímetro apagado y cuatro comandas que llevan más de veinte minutos sin que nadie las tome, en las mesas 15, 12, 9 y 1 —, tres naranjas y una gris.",
+   "Naranjas: diecisiete de veinte mesas sin adhesivo QR, «Ningún producto tiene foto» —los doce— y dos pedidos del comensal esperando aprobación en la mesa 5.",
+   "La gris: dos meseros no han entrado en toda la semana. O están de vacaciones, o su cuenta sobra.",
+   "Bloque «Revisado y en orden»: las dos estaciones respondiendo, ningún plato más de veinte minutos en el fuego, turno abierto desde las 11:00, ninguna mesa con la orden abierta desde ayer.",
+   "Arriba el selector de sede y el chip «Turno abierto · 11:00»; a la izquierda el menú: Salón, Carta, Cocina, Personas, Sede, Informes."
+  ],
+  "nota": "El bloque «Revisado y en orden» existe para que un día bueno no parezca un panel roto: un panel vacío no distingue «todo bien» de «no se revisó nada»."
+ },
+ "Zonas.dc.html": {
+  "archivo": "Zonas.dc.html",
+  "quien": "Administrador",
+  "resumen": "Lista de las zonas en que está repartido el salón de la sede: Terraza, Salón interior y Segundo piso, con cuántas mesas y puestos tiene cada una.",
+  "puntos": [
+   "Columnas: Orden, Nombre, Mesas, Puestos y Estado; las tres zonas están Activas y suman 20 mesas.",
+   "El «Orden» no es decorativo: es la posición en que el mesero ve la zona en sus filtros del salón.",
+   "Desde aquí solo se listan y se crean zonas — «Nueva zona», tecla Ins —; los datos de cada una se editan al abrirla.",
+   "Barra de tabla estándar: buscar zona, filtros, imprimir, exportar, columnas, y paginación «1–3 de 3», 25 por página."
+  ],
+  "nota": ""
+ },
+ "FormularioZona.dc.html": {
+  "archivo": "FormularioZona.dc.html",
+  "quien": "Administrador",
+  "resumen": "Ficha de la zona Terraza (7 mesas · 26 puestos): se editan su nombre, su orden en el salón y si está activa, y debajo se listan las mesas que le pertenecen.",
+  "puntos": [
+   "Captura tres datos: Nombre, Orden en el salón y el interruptor Activa —«Se puede sentar gente»—; apagada, sus mesas dejan de salir en el salón.",
+   "El nombre viaja: es el que ve el mesero en los filtros y el comensal en su comprobante.",
+   "Aviso: hoy la zona es una columna de texto dentro de cada mesa; sin promoverla a tabla, el orden y el interruptor no tienen dónde guardarse.",
+   "Tabla de mesas de la zona (1 a 7) con puestos y adhesivo QR: solo M05-v3 y M07-v1 lo tienen; las otras cinco, «Sin adhesivo».",
+   "Las mesas se añaden y se quitan desde aquí: fila «Añadir mesa» y un bote de basura por fila. Mover una mesa de zona se hace aquí o desde la propia mesa: es el mismo dato.",
+   "Arriba, la miga «Zonas» y los dos botones de la ficha: Cancelar y Guardar (Ctrl S)."
+  ],
+  "nota": "La tabla de mesas es a propósito distinta de la tabla de página: sin caja propia, cabecera clara en vez de barra oscura y una fila «Añadir mesa». En React será un componente aparte, TablaHija."
+ },
+ "MesasQR.dc.html": {
+  "archivo": "MesasQR.dc.html",
+  "quien": "Administrador",
+  "resumen": "Las mesas de la sede con el estado de su adhesivo QR —el encabezado dice «Sede Centro · 20 mesas» y el boceto dibuja cinco filas— y a la derecha el código de la mesa seleccionada para descargarlo o revocarlo.",
+  "puntos": [
+   "Cada fila: mesa, zona, puestos, adhesivo (M01-v2), último escaneo («hace 40 s», «hace 3 días», «nunca») y estado. Las filas dibujadas son las mesas 1, 5, 7, 9 y 11.",
+   "Tres estados del adhesivo: Activo, «Revocado · adhesivo perdido» —etiqueta tachada y sin escaneos— y «Sin imprimir», que sí tiene código (M11-v1) pero nunca lo han escaneado.",
+   "Panel de la mesa 5, que es la fila resaltada: el QR, «Terraza · 6 puestos», la etiqueta M05-v3, creado el 12 ago 2026 y 14 escaneos hoy; botones Descargar PNG y Revocar.",
+   "La regla se advierte ahí mismo: revocar genera un código nuevo y deja el anterior muerto, toca reimprimir el adhesivo.",
+   "Arriba, «Imprimir hoja A4» para sacar los adhesivos en tanda y «Nueva mesa»."
+  ],
+  "nota": "Las etiquetas van versionadas —M05-v3, M07-v1—: es lo que permite distinguir el papel pegado en la mesa del código que sigue vivo después de una revocación."
+ },
+ "Platos.dc.html": {
+  "archivo": "Platos.dc.html",
+  "quien": "Administrador",
+  "resumen": "La carta de la sede como tabla: 12 platos con SKU, categoría, estación de cocina, precio y disponibilidad. La receta y las opciones se editan dentro de cada plato, no aquí.",
+  "puntos": [
+   "Columnas: SKU (FUE-01, BEB-07), Nombre, Categoría, Estación, Precio, Ingredientes, Opciones y Disponible.",
+   "La Estación —Cocina caliente o Barra— es lo que decide a qué pantalla de cocina le cae el plato.",
+   "Ingredientes y Opciones solo se cuentan: la bandeja paisa lleva 10 y 2; muchas filas van en «—».",
+   "Disponibilidad por plato: casi todos Disponible, la empanada de carne aparece Agotado.",
+   "Se busca por nombre o SKU y se crea con «Nuevo plato» (Ins); abajo, «1–12 de 12», 25 por página."
+  ],
+  "nota": "El boceto se dibuja con el filtro «Foto es sin foto» puesto —Filtros marca 1— y salen los doce platos: la misma alerta del panel. La lista se usa para atacar el pendiente, no solo para mirar la carta."
+ },
+ "FormularioPlato.dc.html": {
+  "archivo": "FormularioPlato.dc.html",
+  "quien": "Administrador",
+  "resumen": "Ficha de la Bandeja paisa, pestaña General: foto, SKU, nombre, descripción, categoría, estación, precio y los interruptores que deciden dónde se ve el plato.",
+  "puntos": [
+   "Cuatro pestañas: General —la abierta—, Receta (10), Qué se elige al pedirlo (2) e Historial (17); el contador solo lo llevan las tres últimas.",
+   "Identificación: foto, SKU FUE-01, nombre y descripción — la foto y la descripción son lo que ve el comensal en la carta del QR; el mesero, que se sabe el menú, ve solo nombre y SKU.",
+   "La foto todavía no está: marco vacío con «Todavía sin foto», botón Subir foto y la regla de JPG o PNG desde 1200 px. La misma imagen se recorta cuadrada en la lista de la carta y 16:10 en la ficha.",
+   "En la descripción no van los ingredientes: eso ya lo dice el desglose, y repetirlo hace que la ficha diga dos veces lo mismo.",
+   "Categoría Fuertes, estación Cocina caliente y precio 38.000: la estación decide en qué pantalla de cocina cae, el precio se congela en la línea del pedido y el impuesto queda fuera del alcance por ahora.",
+   "Tres interruptores separados, los tres encendidos: Disponible hoy —manual, no un contador de existencias, con el último apagón: ayer 9:12 p. m., Marta desde cocina—, Visible en la carta del QR y Activo, que es baja lógica."
+  ],
+  "nota": "Pestañas en vez de un scroll largo, con la regla de no usarlas con menos de tres grupos. El contador de la lengüeta ocupa el sitio donde saldría el de errores: si al guardar falla algo en una pestaña que no estás mirando, ahí se ve."
+ },
+ "FormularioPlatoReceta.dc.html": {
+  "archivo": "FormularioPlatoReceta.dc.html",
+  "quien": "Administrador",
+  "resumen": "Pestaña Receta del plato: de qué está hecho, con los ingredientes tomados del catálogo y lo que se puede hacer con cada parte al pedir.",
+  "puntos": [
+   "Tabla con Ingrediente, Viene puesta, Se puede quitar y Precio del doble, papelera por fila y una fila «Añadir ingrediente» al pie.",
+   "Los ingredientes se eligen del catálogo, no se escriben: así «cebolla» es una sola cosa y se puede preguntar qué platos la llevan.",
+   "En las cuatro filas visibles van marcadas las dos casillas; Frijoles y Chorizo cobran 5.000 el doble y el Chicharrón 6.000, y el Arroz va con «—», sin precio de doble.",
+   "En el pedido solo se guarda lo que se desvía de esta lista, no la lista entera.",
+   "La lengüeta marca 10 partes: se ven 4 y las otras 6 van resumidas en la misma fila de «Añadir ingrediente» — Carne molida, Huevo frito, Tajadas de plátano, Arepa, Aguacate y Cebolla."
+  ],
+  "nota": "La tabla que va dentro del formulario es a propósito distinta de la tabla de página: sin caja propia ni cabecera oscura, filas más bajas y una fila «Añadir …» que la de página nunca tiene."
+ },
+ "FormularioPlatoOpciones.dc.html": {
+  "archivo": "FormularioPlatoOpciones.dc.html",
+  "quien": "Administrador",
+  "resumen": "Pestaña «Qué se elige al pedirlo»: el interruptor que hace que el plato abra la hoja de opciones y los grupos de elección con sus mínimos y máximos.",
+  "puntos": [
+   "Interruptor «Al tocarlo, abrir la hoja», encendido: pide opciones antes de agregarlo; apagado, el mesero lo agrega de un toque y no hay forma de personalizarlo.",
+   "Tabla con Grupo, Mín., Máx. y Opciones. Dos grupos: Término de la carne, obligatorio y de una sola (1 y 1) — Tres cuartos, Bien asada, Término medio — y Adiciones, de 0 a 3.",
+   "Las adiciones llevan el recargo en la misma línea: Chicharrón extra +6.000, Aguacate +4.000 y Sin cebolla, que va sin precio; las del término tampoco llevan precio.",
+   "Sin el término la cocina no sabe qué hacer; por eso ese grupo obliga a elegir.",
+   "Fila «Añadir grupo» al pie y papelera por fila para quitar un grupo entero."
+  ],
+  "nota": "El interruptor es de verdad, no deducido de los grupos. La hoja de opciones es el único sitio donde se quitan o se doblan las partes, así que un plato sin grupos —el sancocho, la mojarra— la necesita igual para poder decir «sin cilantro»."
+ },
+ "Ingredientes.dc.html": {
+  "archivo": "Ingredientes.dc.html",
+  "quien": "Administrador",
+  "resumen": "Catálogo de ingredientes en orden alfabético, con en cuántos platos se usa cada uno y si hay hoy.",
+  "puntos": [
+   "Tres columnas: Ingrediente, Se usa en (número de platos) y Estado — Disponible o Se acabó; hoy están en Se acabó la Cebolla y la Ensalada.",
+   "Casi todos marcan 1; la Ensalada marca 2 y sale resaltada — es el número que engancha con su ficha.",
+   "El subtítulo fija la regla: apagar uno avisa en todos los platos que lo llevan.",
+   "Barra con buscador «Buscar ingrediente», Filtros, Imprimir, Exportar, Columnas y el botón Nuevo ingrediente (Ins).",
+   "Casilla de selección por fila y otra en la cabecera; al pie, mostrando 1–16 de 21, 25 por página."
+  ],
+  "nota": ""
+ },
+ "FormularioIngrediente.dc.html": {
+  "archivo": "FormularioIngrediente.dc.html",
+  "quien": "Administrador",
+  "resumen": "Ficha del ingrediente Ensalada: SKU, nombre, si hay hoy y si sigue en el catálogo, más los platos que lo llevan.",
+  "puntos": [
+   "SKU ING-07 y nombre Ensalada; el nombre es el que ve el cocinero en la comanda y el comensal en su desglose, y cambiarlo no reescribe los pedidos de ayer, porque cada línea guardó el suyo.",
+   "Dos interruptores: «Hay hoy» —apagado, dice Se acabó— y «Activo» —encendido, En el catálogo—, que al apagarse lo retira de recetas nuevas sin borrar historial.",
+   "Aviso en amarillo: como está apagado, al mesero se le avisa en los 2 platos que lo llevan; los platos se siguen pidiendo y es él quien decide si los ofrece sin ensalada o no los ofrece.",
+   "Tabla «Platos que lo llevan»: Mojarra frita y Churrasco 300 g, los dos con Viene puesto y Se puede quitar marcados y con «—» en Precio del doble.",
+   "Esas tres cosas son del plato y no del ingrediente: la ensalada del churrasco se puede quitar y la de otro plato quizá no."
+  ],
+  "nota": "Tener ingredientes de verdad, en vez de la composición escrita a mano, es lo que convierte «se acabó la ensalada» en un interruptor: el sistema ya sabe a quién afecta, sin ir plato por plato leyendo sus partes."
+ },
+ "Categorias.dc.html": {
+  "archivo": "Categorias.dc.html",
+  "quien": "Administrador",
+  "resumen": "Lista de las categorías de la carta de la sede: en qué orden van, cuántos productos tiene cada una y a qué estación se despachan por defecto.",
+  "puntos": [
+   "El orden que se ve aquí es el de las pestañas del mesero y el de las secciones de la carta del QR.",
+   "Columnas: Orden, Nombre, Productos, Estación por defecto y Estado.",
+   "Cuatro categorías activas, con orden del 2 al 5: Entradas (3 productos), Fuertes (4), Bebidas (3) y Postres (2).",
+   "Entradas, Fuertes y Postres se despachan en Cocina caliente; Bebidas, en Barra.",
+   "Botón «Nueva categoría» (Ins), buscador de categoría, filtros, imprimir, exportar y columnas."
+  ],
+  "nota": ""
+ },
+ "FormularioCategoria.dc.html": {
+  "archivo": "FormularioCategoria.dc.html",
+  "quien": "Administrador",
+  "resumen": "Ficha de la categoría «Fuertes»: nombre, orden, si sale en la carta y con qué estación arrancan sus productos nuevos.",
+  "puntos": [
+   "El nombre sale en las pestañas del mesero y como título de sección en la carta del comensal.",
+   "Se captura Nombre, Orden y el switch Activa — «Sale en la carta».",
+   "Apagar Activa esconde sus productos de la carta sin borrarlos.",
+   "Estación por defecto (Cocina caliente): es con la que nace cada producto nuevo, y se puede cambiar plato por plato.",
+   "Encabezado: «4 productos · se despachan en Cocina caliente», con Cancelar y Guardar (Ctrl S)."
+  ],
+  "nota": "El boceto aclara que «Frecuentes» no está en la lista a propósito: no es una categoría sino un atajo del mesero con los platos más pedidos, y se configura en la ficha de cada producto."
+ },
+ "Estaciones.dc.html": {
+  "archivo": "Estaciones.dc.html",
+  "quien": "Administrador",
+  "resumen": "Lista de las estaciones de la sede — a dónde va cada plato al enviarse. Cada estación tiene su propia pantalla y sus propios tiempos.",
+  "puntos": [
+   "Dos estaciones: COCINA / Cocina caliente con 9 productos y BARRA / Barra con 3.",
+   "Cada estación lleva un código corto en mayúsculas además del nombre.",
+   "«En cola ahora» es dato de este momento, no configuración: 6 comandas en Cocina caliente, 0 en Barra.",
+   "La columna Pantalla dice si la estación muestra su cola en un monitor propio; las dos están «Con pantalla».",
+   "Botón «Nueva estación» (Ins), buscador, filtros, imprimir, exportar y columnas."
+  ],
+  "nota": ""
+ },
+ "FormularioEstacion.dc.html": {
+  "archivo": "FormularioEstacion.dc.html",
+  "quien": "Administrador",
+  "resumen": "Ficha de la estación Cocina caliente: código, nombre, si tiene pantalla propia, si recibe comandas y los tres umbrales que la ponen en ámbar o en rojo.",
+  "puntos": [
+   "Identificación: código COCINA, nombre, y dos switches — tiene pantalla propia y activa.",
+   "Sin pantalla propia sus platos salen impresos; apagada, sus platos se reasignan al enviarse.",
+   "Tres umbrales ámbar · rojo: esperando a que la tomen 5/10 min, en preparación 12/20 min, lista sin recoger 2/4 min.",
+   "Son tres relojes distintos: si la cocina da abasto, el único que depende del plato, y el que enfría la comida — veinte minutos cocinando una bandeja paisa es normal, veinte esperando a que la recojan es un desastre.",
+   "Encabezado en vivo: 9 productos y 6 comandas en cola. Cancelar y Guardar (Ctrl S)."
+  ],
+  "nota": "Los umbrales hoy están escritos en el código y el boceto los saca a la ficha, por estación: con un solo juego de tiempos para todo el restaurante, o la cocina vive en rojo o la barra no se alerta nunca."
+ },
+ "Cocineros.dc.html": {
+  "archivo": "Cocineros.dc.html",
+  "quien": "Administrador",
+  "resumen": "Lista de los cocineros de la sede. Son las fichas que aparecen en la pantalla de la cocina cuando alguien toma una comanda.",
+  "puntos": [
+   "Columnas: Ficha, Nombre completo, Nombre corto, Iniciales, Último plato y Estado.",
+   "La ficha es un círculo de color con iniciales — AR, LP, MC, JV, SD, AC — con un color distinto por cocinero.",
+   "Se guardan tres formas del nombre: completo, corto e iniciales. Dos se llaman Ana: los cortos son «Ana Ramírez» y «Ana Cárdenas».",
+   "«Último plato» muestra qué tan reciente es la actividad: hoy, ayer, hace 3 días. Los 6 están activos.",
+   "Botón «Nuevo cocinero» (Ins), buscador por nombre, filtros, imprimir, exportar y columnas."
+  ],
+  "nota": "No hay columna de usuario, rol ni documento: del cocinero se guarda cómo se reconoce en la pantalla de cocina — color, iniciales y nombre corto."
+ },
+ "FormularioCocinero.dc.html": {
+  "archivo": "FormularioCocinero.dc.html",
+  "quien": "Administrador",
+  "resumen": "Ficha de un cocinero de La Cava del Llano. Define cómo se le reconoce en la pantalla de la cocina, que se mira a metro y medio y con las manos ocupadas: ahí no se lee un nombre completo, se reconoce un color y dos letras.",
+  "puntos": [
+   "Vista previa de la ficha —el círculo de color con las iniciales— junto al nombre completo, que va en la auditoría y en los informes y nunca se abrevia.",
+   "Nombre corto para la tarjeta de la comanda («Ana Ramírez») e iniciales: dos, no una.",
+   "Color entre seis; el sistema avisa si repites uno, porque de lejos dos personas del mismo color se confunden.",
+   "Interruptor Activo, rotulado «Sale en el selector»: apagado deja de aparecer al tomar una comanda, pero sus platos viejos siguen a su nombre.",
+   "Aviso: hay dos Anas en la cocina. Por eso el nombre completo y las dos letras — con «Ana» y una «A», nadie sabe quién armó el plato que salió mal.",
+   "Encabezado «Ana Lucía Ramírez Ospina · Ficha AR · 38 platos esta semana», con Cancelar y Guardar (Ctrl S)."
+  ],
+  "nota": "El boceto deja anotada una decisión pendiente: si el cocinero es un usuario con rol cocinero o un catálogo aparte. Hoy son dos listas distintas —estas fichas viven en el código y los usuarios en su propia tabla—; si se unifican, esta pantalla desaparece y su contenido pasa a la ficha de usuario."
+ },
+ "Usuarios.dc.html": {
+  "archivo": "Usuarios.dc.html",
+  "quien": "Administrador",
+  "resumen": "Listado de quién puede entrar al panel y con qué rol. Los comensales no salen aquí: entran por el QR sin cuenta.",
+  "puntos": [
+   "Tabla con Documento, Nombre, Rol —Administrador, Mesero, Cocinero—, Último acceso y Estado.",
+   "Dos filas en ámbar con estado «Sin entrar»: una entró hace 8 días y la otra nunca. Las demás salen Activas.",
+   "Un filtro activo: Último acceso es «nunca o hace más de 7 días». La búsqueda es por nombre o documento.",
+   "«Invitar persona» (Ins) es como se da de alta; al lado, Imprimir, Exportar y Columnas.",
+   "Casilla por fila para seleccionar, 6 de 6 registros y 25 por página."
+  ],
+  "nota": "La cocinera figura en la lista como usuario con rol Cocinero, último acceso «—» y estado Activo: existe en la tabla aunque nunca entre al panel."
+ },
+ "FormularioUsuario.dc.html": {
+  "archivo": "FormularioUsuario.dc.html",
+  "quien": "Administrador",
+  "resumen": "Ficha de una persona del equipo: sus datos, su rol y cómo entra al sistema. El ejemplo es Camilo Andrés Ortega Silva, mesero.",
+  "puntos": [
+   "Persona: documento, nombre completo y correo. Con el correo entra al panel y es único por restaurante.",
+   "El rol manda sobre el resto de la ficha: qué credencial necesita y qué pantallas ve. Al lado, Estado y Último acceso, que lo registra el sistema al entrar.",
+   "Mesero: PIN en su teléfono. Administrador: correo y contraseña desde escritorio. Cocinero no entra — la cocina se autentica como equipo y cada acción se le atribuye por su ficha.",
+   "PIN de cuatro dígitos que se pone una vez y no se vuelve a ver, con «Sin bloqueos · 0 intentos fallidos hoy». Un solo teléfono activo por persona —«iPhone de Camilo · inscrito el 12 de agosto»—; revocarlo obliga a inscribir otro.",
+   "Aviso: el usuario no se borra nunca, pasa a «retirado». Tiene comandas a su nombre y borrarlo destruiría el registro de quién tomó cada pedido.",
+   "Encabezado «Camilo Andrés Ortega Silva · Mesero · entró hoy a las 11:05», con Cancelar y Guardar (Ctrl S)."
+  ],
+  "nota": "Aquí no se ve ni se escribe ninguna contraseña. Un campo así en la ficha de otra persona volvería a quien edita usuarios capaz de suplantarla sin dejar rastro distinguible en la auditoría."
+ },
+ "ConfigGeocerca.dc.html": {
+  "archivo": "ConfigGeocerca.dc.html",
+  "quien": "Administrador",
+  "resumen": "Define el perímetro de la Sede Centro —centro, radio y tolerancia del GPS— y muestra en un mapa cómo cayeron las lecturas recientes.",
+  "puntos": [
+   "Centro del perímetro por latitud y longitud, con «Usar mi posición actual»: pararse en el centro del salón es más fiable que teclear coordenadas.",
+   "Radio de 150 m en un deslizador de 100 a 260. Es geometría: diagonal del local más margen; el error del GPS se maneja aparte.",
+   "Precisión máxima aceptada ± 250 m. Por encima se pide reintentar en vez de rechazar, para no culpar al mesero de la mala señal.",
+   "Interruptor de modo: bloquear el envío fuera del perímetro o, apagado, solo registrar el intento y avisar.",
+   "Mapa con el círculo «Sede Centro · 150 m» y tres lecturas: aceptada a 62 m, con advertencia a 138 m ± 90 y rechazada a 340 m.",
+   "Abajo, cuatro cifras de los últimos 7 días: 1.284 lecturas, percentil 95 de la distancia en 88 m, 11 rechazos y 3 anulaciones de supervisor. Arriba, Cancelar y Guardar."
+  ],
+  "nota": "El radio y la precisión aceptada son dos perillas separadas a propósito: una mide el local y la otra la calidad de la señal, y el mapa deja ver el efecto de ambas."
+ },
+ "FormularioRol.dc.html": {
+  "archivo": "FormularioRol.dc.html",
+  "quien": "Administrador",
+  "resumen": "Permisos del rol Administrador, marcado «Del sistema», que aterriza en el Panel de administración y lo tienen 3 personas. Una matriz de recurso por acción, con dependencias que se activan solas y avisos de combinaciones engañosas.",
+  "puntos": [
+   "Filas de recursos —Zonas, Mesas, Adhesivos QR, Platos, Categorías, Ingredientes, Receta del plato, Cola de despacho, Cuentas, Líneas, Turnos, Cobros, Usuarios, Credenciales, Roles, Identidad, Operación, Informes— agrupadas por módulo (Salón, Carta, Cocina, Pedidos, Caja, Personas, Sede, Informes), contra Leer, Crear, Editar, Dar de baja, Importar y Exportar.",
+   "Columna final de acciones propias, distintas en cada fila: Cerrar cuenta, Anular cobro, Cerrar turno, Restablecer PIN, Avanzar estado, Apagar plato, Autorizar anulación, Revocar y reimprimir (adhesivos QR), Imprimir.",
+   "Notas debajo del nombre de la fila: en Cobros, «un cobro no se edita: se anula y se hace otro»; en Operación, «geocerca, corte del día, propina sugerida».",
+   "«Crear platos» arrastró solos Ingredientes · Leer y Receta del plato · Leer y editar, y dice por qué: el combobox de la pestaña Receta se abriría vacío y la tabla saldría sin nombres. Quitarlo los retira, salvo que los concedas por tu cuenta; en la matriz quedan marcados «lo exige Platos · Crear».",
+   "Aviso de combinación que no falla sino que miente: Zonas · Leer sin Mesas · Leer pinta «0 mesas y 0 puestos» en todas las filas, y un cero se lee como dato cierto, no como un permiso que falta. Botón «Conceder Mesas · Leer».",
+   "Resumen: 34 concedidos a mano, 3 arrastrados por dependencia, 1 aviso sin resolver. Encabezado con Cancelar y Guardar (Ctrl S)."
+  ],
+  "nota": "Distingue dos niveles: dependencias duras que el sistema activa solo, que sí impiden guardar y que el servidor vuelve a comprobar —porque una petición hecha a mano no pasa por esta pantalla— y avisos que solo señalan y no bloquean el guardado."
+ },
+ "Auditoria.dc.html": {
+  "archivo": "Auditoria.dc.html",
+  "quien": "Administrador",
+  "resumen": "Bitácora de la sede: quién hizo qué, desde dónde y cuándo. Se lee, se filtra y se exporta — nada más. La tabla es de solo lectura y ni la pantalla ni la base dejan editarla o borrarla.",
+  "puntos": [
+   "Cabecera: Sede Centro, 1.847 registros en el turno, sello SOLO LECTURA y un solo botón — Exportar.",
+   "Filtros: ventana de tiempo «Turno actual · desde 11:00», búsqueda por persona, entidad o IP, un botón «Filtros» y el chip «Formulario: Carta › Platos» con su equis para quitarlo.",
+   "Cada fila: hora, actor con rol y cómo se identificó (con PIN, contraseña, sesión por QR), dispositivo — su celular, KDS Cocina caliente, Escritorio, «Sin inscribir» —, acción y formulario.",
+   "«Cambio» a veces es el antes → después (38.000 → 42.000, disponible → agotado) y a veces una frase: «3 líneas pasan a «enviado»», «valor no registrado» cuando lo tocado fue una contraseña.",
+   "La columna del final es el estado: «Intentó anular» sale como Denegado en rojo con el permiso que faltaba, pedidos.lineas.anular. El galón abre el detalle de la fila.",
+   "Se registra a todos: el comensal de la mesa 5 entró con sesión por QR y propuso una línea — limonada de coco, $12.000; soporte de plataforma entró con ticket #412, solo lectura y 30 min.",
+   "«Formulario» no guarda la tabla, guarda el recurso: dbo.productos alimenta dos formularios, Platos e Ingredientes. Guardando la tabla los dos se verían iguales."
+  ],
+  "nota": "La IP y el request_id no salen en la tabla: se leen una vez cada cien y le robarían ancho a «Cambio», que se lee siempre. Van en el detalle de cada fila."
+ },
+ "DetalleAuditoria.dc.html": {
+  "archivo": "DetalleAuditoria.dc.html",
+  "quien": "Administrador",
+  "resumen": "Una fila de la auditoría abierta entera — registro #48 219, «Editó un plato» sobre Carta › Platos · Bandeja paisa: qué cambió campo por campo, cuándo, quién, desde dónde y con qué petición. Página con dirección propia y botón «Copiar enlace», para pegarla en un ticket de soporte.",
+  "puntos": [
+   "«Qué cambió» lista solo los campos tocados: Precio 38.000 → 42.000, Estación, Disponible y Foto — que no existía y ahora es menu/bandeja-paisa.jpg. Nunca la fila entera.",
+   "La contraseña también sale como fila, pero dice «se reemplazó · el valor no se registra, ni antes ni después». Nunca se pinta •••• → ••••, y quitar la fila haría que la auditoría mintiera por silencio.",
+   "Tres relojes: hora local de la sede, la UTC que guarda la columna con SYSUTCDATETIME() — la pone el motor, no el reloj del celular — y el día de negocio, que corta a las 4 a.m.",
+   "«Quién»: la persona, el rol que tenía en ese momento y cómo se identificó, de cuatro maneras posibles — contraseña, PIN, token del dispositivo, token del QR. «Desde dónde»: tipo de equipo, navegador derivado del user-agent y la IP 191.95.42.118, con enlace a todo lo que se hizo desde ella.",
+   "«Sobre qué» enlaza al registro y al historial de la ficha (17 cambios); «La petición que lo produjo» trae el identificador, la ruta PUT /productos/41, el permiso exigido, el resultado Permitido y las otras 3 filas del mismo Guardar."
+  ],
+  "nota": "El JSON original va al fondo y plegado a propósito: si el renderizador no entiende una forma nueva, mejor enseñar el dato feo que una celda vacía — y sirve para comprobar que la pantalla no inventa nada."
+ },
+ "HistorialFicha.dc.html": {
+  "archivo": "HistorialFicha.dc.html",
+  "quien": "Administrador",
+  "resumen": "El historial de un plato dentro de su propia ficha: qué cambió, quién y cuándo, desde que se creó. Responde «por qué este plato está así», no «qué pasó hoy».",
+  "puntos": [
+   "Es la cuarta pestaña de la ficha de Bandeja paisa — General, Receta 10, Qué se elige al pedirlo 2, Historial 17 — con el contador en la lengüeta. Arriba, FUE-01 · 17 cambios registrados · creado el 14 de marzo de 2026, y los Cancelar y Guardar de la ficha.",
+   "Sin ventana de tiempo: «17 cambios desde que se creó», todo el historial en solo lectura y el botón «Ver en Auditoría».",
+   "Agrupado por día — Hoy 3 cambios, Ayer 2 y el 14 de marzo, «así empezó», cuando Danilo Neiber lo creó como soporte de plataforma al montar la carta inicial — con hora, quién, rol y cómo se identificó en cada entrada.",
+   "Cada cambio muestra el campo con su antes → después: Precio 38.000 → 42.000, Estación Cocina caliente → Barra, Disponible sí → no.",
+   "Lo que no es un campo va en palabras: «Quitó «Cebolla» de la receta», «Añadió «Aguacate» · precio del doble 4.000». La descripción sale recortada a 40 caracteres, y el «no» de Marta Rojas lleva su nota — se acabó, y quedó firmado con su PIN, no con el del equipo.",
+   "Los intentos denegados salen en rojo junto a los cambios hechos: Yuliana Mora quiso tocar el precio y le falta carta.platos.editar."
+  ],
+  "nota": "En un alta no hay valor anterior, así que la fila lo dice con palabras — «Creó el plato» — en vez de dejar dos guiones que se leen como un fallo."
+ }
+}

@@ -26,6 +26,30 @@
     body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
     a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
     ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  
+    /* --- Tabla HIJA ------------------------------------------------------
+       Va DENTRO de una sección de formulario o de una ficha, y describe las
+       filas que le pertenecen al registro que se está editando.
+       DELIBERADAMENTE distinta de la DataTable de página: sin caja propia,
+       sin cabecera oscura, cabecera como rótulo y no como barra, filas más
+       bajas, y una fila «Añadir …» que la DataTable nunca tiene.
+       Al pasar a React esto es <TablaHija>, NO una variante de <DataTable>.
+       Ver api/notas/tabla-hija-componente.md */
+    .th-hija{width:100%;border-collapse:collapse}
+    .th-hija thead th{
+      height:26px;padding:0 10px;background:var(--surface);
+      border-bottom:1px solid var(--line2);
+      font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+      color:var(--fg3);white-space:nowrap;text-align:left;vertical-align:middle}
+    .th-hija tbody td{
+      height:34px;padding:0 10px;vertical-align:middle;
+      font-size:13px;color:var(--fg2);border-bottom:1px solid var(--line)}
+    .th-hija tbody tr:last-child td{border-bottom:0}
+    .th-hija tbody td:first-child{color:var(--fg);font-weight:500}
+    .th-hija tr.th-anadir td{border-top:1px dashed var(--line2);border-bottom:0;
+      color:var(--accent);font-weight:500}
+    .th-hija tr.th-vacio td{height:56px;text-align:center;color:var(--fg3);font-size:12px;border-bottom:0}
+    .th-hija--fija thead th{position:sticky;top:0;z-index:1}
   </style>
 </helmet>
 <div style="width:1280px;height:820px;display:flex;flex-direction:column;background:var(--canvas);font-size:13px;overflow:hidden">
@@ -121,7 +145,7 @@
         Colapsar
       </div>
     </div>
-    <div style="flex:1;min-width:0;min-height:0;overflow:hidden;padding:16px">
+    <div style="flex:1;min-width:0;min-height:0;overflow:hidden;padding:16px;display:flex;flex-direction:column">
       <div style="display:flex;flex-direction:column;min-height:0;gap:8px;height:100%">
 
         <div style="flex-shrink:0;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:1px solid var(--line)">
@@ -174,26 +198,26 @@
             <div><span style="font-size:13px;font-weight:600">Platos que lo llevan</span>
               <p style="margin:0;padding-top:2px;font-size:12px;color:var(--fg3);max-width:672px">Si viene puesto, si se puede quitar y cuánto cuesta doble son cosas del PLATO, no del ingrediente: la ensalada del churrasco puede quitarse y la de otro plato quizá no.</p>
             </div>
-            <div style="border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)">
-              <table style="width:100%;border-collapse:collapse">
+            <div>
+              <table class="th-hija">
                 <thead><tr>
-                  <th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left">Plato</th>
-                  <th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:140px;text-align:center">Viene puesto</th>
-                  <th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:150px;text-align:center">Se puede quitar</th>
-                  <th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:150px;text-align:right"><span style="display:flex;justify-content:flex-end;align-items:center;height:100%">Precio del doble</span></th>
+                  <th>Plato</th>
+                  <th style="width:140px;text-align:center">Viene puesto</th>
+                  <th style="width:150px;text-align:center">Se puede quitar</th>
+                  <th style="width:150px;text-align:right"><span style="display:flex;justify-content:flex-end;align-items:center;height:100%">Precio del doble</span></th>
                 </tr></thead>
                 <tbody>
-            <tr style="border-bottom:1px solid var(--line)">
-              <td style="padding:0 12px;height:32px;font-size:13px;font-weight:500">Mojarra frita</td>
-              <td style="padding:0 12px;height:32px;text-align:center"><span style="display:grid;place-items:center;width:15px;height:15px;border-radius:3px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-fg);margin:0 auto"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
-              <td style="padding:0 12px;height:32px;text-align:center"><span style="display:grid;place-items:center;width:15px;height:15px;border-radius:3px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-fg);margin:0 auto"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
-              <td style="padding:0 12px;height:32px;font-size:13px;text-align:right;color:var(--fg3)">—</td>
+            <tr>
+              <td style="font-weight:500">Mojarra frita</td>
+              <td style="text-align:center"><span style="display:grid;place-items:center;width:15px;height:15px;border-radius:3px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-fg);margin:0 auto"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+              <td style="text-align:center"><span style="display:grid;place-items:center;width:15px;height:15px;border-radius:3px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-fg);margin:0 auto"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+              <td style="text-align:right;color:var(--fg3)">—</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--line)">
-              <td style="padding:0 12px;height:32px;font-size:13px;font-weight:500">Churrasco 300 g</td>
-              <td style="padding:0 12px;height:32px;text-align:center"><span style="display:grid;place-items:center;width:15px;height:15px;border-radius:3px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-fg);margin:0 auto"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
-              <td style="padding:0 12px;height:32px;text-align:center"><span style="display:grid;place-items:center;width:15px;height:15px;border-radius:3px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-fg);margin:0 auto"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
-              <td style="padding:0 12px;height:32px;font-size:13px;text-align:right;color:var(--fg3)">—</td>
+            <tr>
+              <td style="font-weight:500">Churrasco 300 g</td>
+              <td style="text-align:center"><span style="display:grid;place-items:center;width:15px;height:15px;border-radius:3px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-fg);margin:0 auto"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+              <td style="text-align:center"><span style="display:grid;place-items:center;width:15px;height:15px;border-radius:3px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-fg);margin:0 auto"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+              <td style="text-align:right;color:var(--fg3)">—</td>
             </tr>
                 </tbody>
               </table>

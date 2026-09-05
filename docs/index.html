@@ -24,6 +24,8 @@
   .b{display:flex;align-items:center;min-height:56px;padding:12px 14px;background:var(--card);
      border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--fg);
      font-size:13.5px;font-weight:500;line-height:1.35;transition:.12s}
+  .b{flex-direction:column;align-items:flex-start;gap:3px;justify-content:center}
+  .b .q{font-size:11.5px;font-weight:500;color:var(--fg2)}
   .b:hover{border-color:var(--acc2);box-shadow:0 3px 12px rgba(20,45,75,.10);transform:translateY(-1px)}
   footer{border-top:1px solid var(--line);padding:22px 24px;color:var(--fg2);font-size:12.5px}
 </style>
@@ -31,99 +33,103 @@
 <body>
 <header><div class="w">
   <h1>Sistema de pedidos para restaurantes</h1>
-  <p>Bocetos de las 50 pantallas, agrupadas por quién las usa. Cada boceto abre a tamaño real.</p>
+  <p>Bocetos de las 54 pantallas, agrupadas por quién las usa. Cada boceto abre a tamaño real.</p>
 </div></header>
 <main><div class="w">
     <section id="plataforma">
       <h2>Plataforma <span class="c">6</span></h2>
       <p class="d">El nivel de encima: quién es cliente de la plataforma y qué paga. Solo lo ve el operador del SaaS.</p>
       <div class="rej">
-        <a class="b" href="bocetos/1-panel-de-la-plataforma.html"><span class="n">1 · Panel de la plataforma</span></a>
-        <a class="b" href="bocetos/2-companias.html"><span class="n">2 · Compañías</span></a>
-        <a class="b" href="bocetos/3a-ficha-con-rut-y-camara.html"><span class="n">3a · Ficha · con RUT y cámara</span></a>
-        <a class="b" href="bocetos/3b-ficha-con-la-cedula-del-dueno.html"><span class="n">3b · Ficha · con la cédula del dueño</span></a>
-        <a class="b" href="bocetos/4-administradores-de-la-compania.html"><span class="n">4 · Administradores de la compañía</span></a>
-        <a class="b" href="bocetos/5-entrar-como-soporte.html"><span class="n">5 · Entrar como soporte</span></a>
+        <a class="b" href="bocetos/1-panel-de-la-plataforma.html"><span class="n">1 · Panel de la plataforma</span><span class="q">Operador de la plataforma</span></a>
+        <a class="b" href="bocetos/2-companias.html"><span class="n">2 · Compañías</span><span class="q">Operador de la plataforma</span></a>
+        <a class="b" href="bocetos/3a-ficha-con-rut-y-camara.html"><span class="n">3a · Ficha · con RUT y cámara</span><span class="q">Operador de la plataforma</span></a>
+        <a class="b" href="bocetos/3b-ficha-con-la-cedula-del-dueno.html"><span class="n">3b · Ficha · con la cédula del dueño</span><span class="q">Operador de la plataforma</span></a>
+        <a class="b" href="bocetos/4-administradores-de-la-compania.html"><span class="n">4 · Administradores de la compañía</span><span class="q">Operador de la plataforma</span></a>
+        <a class="b" href="bocetos/5-entrar-como-soporte.html"><span class="n">5 · Entrar como soporte</span><span class="q">Operador de la plataforma</span></a>
+      </div>
+    </section>
+    <section id="mesero">
+      <h2>Mesero <span class="c">7</span></h2>
+      <p class="d">El teléfono del mesero: tomar el pedido, mirar un plato, revisar y enviar a cocina.</p>
+      <div class="rej">
+        <a class="b" href="bocetos/1-salon.html"><span class="n">1 · Salón</span><span class="q">Mesero</span></a>
+        <a class="b" href="bocetos/2-toma-de-pedido.html"><span class="n">2 · Toma de pedido</span><span class="q">Mesero</span></a>
+        <a class="b" href="bocetos/3-que-lleva-el-plato.html"><span class="n">3 · Qué lleva el plato</span><span class="q">Mesero</span></a>
+        <a class="b" href="bocetos/4-modificadores.html"><span class="n">4 · Modificadores</span><span class="q">Mesero</span></a>
+        <a class="b" href="bocetos/5-confirmar-envio.html"><span class="n">5 · Confirmar envío</span><span class="q">Mesero</span></a>
+        <a class="b" href="bocetos/6-pedidos-por-aprobar.html"><span class="n">6 · Pedidos por aprobar</span><span class="q">Mesero</span></a>
+        <a class="b" href="bocetos/7-fallos-de-ubicacion.html"><span class="n">7 · Fallos de ubicación</span><span class="q">Mesero</span></a>
       </div>
     </section>
     <section id="comensal">
       <h2>Comensal <span class="c">4</span></h2>
-      <p class="d">Lo que ve el cliente en su celular al escanear el QR de la mesa. No inicia sesión.</p>
+      <p class="d">Lo que ve quien se sienta a la mesa y escanea el QR. Sin instalar nada y sin cuenta.</p>
       <div class="rej">
-        <a class="b" href="bocetos/1-carta.html"><span class="n">1 · Carta</span></a>
-        <a class="b" href="bocetos/2-que-lleva-el-plato.html"><span class="n">2 · Qué lleva el plato</span></a>
-        <a class="b" href="bocetos/3-mi-pedido.html"><span class="n">3 · Mi pedido</span></a>
-        <a class="b" href="bocetos/4-seguimiento.html"><span class="n">4 · Seguimiento</span></a>
-      </div>
-    </section>
-    <section id="mesero">
-      <h2>Mesero <span class="c">6</span></h2>
-      <p class="d">Teléfono personal del mesero, con PIN y geocerca.</p>
-      <div class="rej">
-        <a class="b" href="bocetos/1-salon.html"><span class="n">1 · Salón</span></a>
-        <a class="b" href="bocetos/3-que-lleva-el-plato.html"><span class="n">3 · Qué lleva el plato</span></a>
-        <a class="b" href="bocetos/4-modificadores.html"><span class="n">4 · Modificadores</span></a>
-        <a class="b" href="bocetos/5-confirmar-envio.html"><span class="n">5 · Confirmar envío</span></a>
-        <a class="b" href="bocetos/6-pedidos-por-aprobar.html"><span class="n">6 · Pedidos por aprobar</span></a>
-        <a class="b" href="bocetos/7-fallos-de-ubicacion.html"><span class="n">7 · Fallos de ubicación</span></a>
+        <a class="b" href="bocetos/1-carta.html"><span class="n">1 · Carta</span><span class="q">Comensal</span></a>
+        <a class="b" href="bocetos/2-que-lleva-el-plato.html"><span class="n">2 · Qué lleva el plato</span><span class="q">Comensal</span></a>
+        <a class="b" href="bocetos/3-mi-pedido.html"><span class="n">3 · Mi pedido</span><span class="q">Comensal</span></a>
+        <a class="b" href="bocetos/4-seguimiento.html"><span class="n">4 · Seguimiento</span><span class="q">Comensal</span></a>
       </div>
     </section>
     <section id="cocina">
       <h2>Cocina <span class="c">7</span></h2>
-      <p class="d">Pantalla táctil compartida en la cocina. Fondo oscuro, se lee a un metro.</p>
+      <p class="d">La pantalla del pase, pensada para verse de lejos y tocarse con las manos ocupadas.</p>
       <div class="rej">
-        <a class="b" href="bocetos/1a-cola-scroll-en-la-tarjeta.html"><span class="n">1a · Cola · scroll en la tarjeta</span></a>
-        <a class="b" href="bocetos/1b-cola-tarjeta-con-ficha.html"><span class="n">1b · Cola · tarjeta con ficha</span></a>
-        <a class="b" href="bocetos/2-ficha-del-pedido.html"><span class="n">2 · Ficha del pedido</span></a>
-        <a class="b" href="bocetos/3-asignar-cocineros.html"><span class="n">3 · Asignar cocineros</span></a>
-        <a class="b" href="bocetos/4a-se-acabo-el-plato.html"><span class="n">4a · Se acabó el plato</span></a>
-        <a class="b" href="bocetos/4b-se-acabo-un-ingrediente.html"><span class="n">4b · Se acabó un ingrediente</span></a>
-        <a class="b" href="bocetos/4c-se-acabo-el-plato-carta-grande.html"><span class="n">4c · Se acabó el plato · carta grande</span></a>
+        <a class="b" href="bocetos/1a-cola-scroll-en-la-tarjeta.html"><span class="n">1a · Cola · scroll en la tarjeta</span><span class="q">Cocina</span></a>
+        <a class="b" href="bocetos/1b-cola-tarjeta-con-ficha.html"><span class="n">1b · Cola · tarjeta con ficha</span><span class="q">Cocina</span></a>
+        <a class="b" href="bocetos/2-ficha-del-pedido.html"><span class="n">2 · Ficha del pedido</span><span class="q">Cocina</span></a>
+        <a class="b" href="bocetos/3-asignar-cocineros.html"><span class="n">3 · Asignar cocineros</span><span class="q">Cocina</span></a>
+        <a class="b" href="bocetos/4a-se-acabo-el-plato.html"><span class="n">4a · Se acabó el plato</span><span class="q">Cocina</span></a>
+        <a class="b" href="bocetos/4b-se-acabo-un-ingrediente.html"><span class="n">4b · Se acabó un ingrediente</span><span class="q">Cocina</span></a>
+        <a class="b" href="bocetos/4c-se-acabo-el-plato-carta-grande.html"><span class="n">4c · Se acabó el plato · carta grande</span><span class="q">Cocina</span></a>
       </div>
     </section>
     <section id="caja">
       <h2>Caja <span class="c">4</span></h2>
-      <p class="d">El turno de caja: sin turno abierto no se puede abrir ni una mesa.</p>
+      <p class="d">Abrir el turno, cobrar la mesa, cuadrar y cerrar.</p>
       <div class="rej">
-        <a class="b" href="bocetos/1-abrir-el-turno.html"><span class="n">1 · Abrir el turno</span></a>
-        <a class="b" href="bocetos/2-cuentas-por-cobrar.html"><span class="n">2 · Cuentas por cobrar</span></a>
-        <a class="b" href="bocetos/3-cobrar-una-cuenta.html"><span class="n">3 · Cobrar una cuenta</span></a>
-        <a class="b" href="bocetos/4-cerrar-el-turno.html"><span class="n">4 · Cerrar el turno</span></a>
+        <a class="b" href="bocetos/1-abrir-el-turno.html"><span class="n">1 · Abrir el turno</span><span class="q">Cajero</span></a>
+        <a class="b" href="bocetos/2-cuentas-por-cobrar.html"><span class="n">2 · Cuentas por cobrar</span><span class="q">Cajero</span></a>
+        <a class="b" href="bocetos/3-cobrar-una-cuenta.html"><span class="n">3 · Cobrar una cuenta</span><span class="q">Cajero</span></a>
+        <a class="b" href="bocetos/4-cerrar-el-turno.html"><span class="n">4 · Cerrar el turno</span><span class="q">Cajero</span></a>
       </div>
     </section>
     <section id="acceso">
       <h2>Acceso <span class="c">3</span></h2>
-      <p class="d">Entrada al sistema: producto → sede → persona.</p>
+      <p class="d">Entrar al sistema: por contraseña, por sede y el acceso rápido del mesero.</p>
       <div class="rej">
-        <a class="b" href="bocetos/1-entrar.html"><span class="n">1 · Entrar</span></a>
-        <a class="b" href="bocetos/2-elegir-sede.html"><span class="n">2 · Elegir sede</span></a>
-        <a class="b" href="bocetos/3-pin-del-mesero.html"><span class="n">3 · PIN del mesero</span></a>
+        <a class="b" href="bocetos/1-entrar.html"><span class="n">1 · Entrar</span><span class="q">Personal del restaurante</span></a>
+        <a class="b" href="bocetos/2-elegir-sede.html"><span class="n">2 · Elegir sede</span><span class="q">Personal del restaurante</span></a>
+        <a class="b" href="bocetos/3-pin-del-mesero.html"><span class="n">3 · PIN del mesero</span><span class="q">Mesero</span></a>
       </div>
     </section>
     <section id="administracion">
-      <h2>Administración <span class="c">20</span></h2>
-      <p class="d">Listados y fichas, en pares. Mismo patrón de tabla en todos.</p>
+      <h2>Administración <span class="c">23</span></h2>
+      <p class="d">La configuración del restaurante: salón, carta, cocina, personas y los informes.</p>
       <div class="rej">
-        <a class="b" href="bocetos/1-panel.html"><span class="n">1 · Panel</span></a>
-        <a class="b" href="bocetos/2-salon-zonas.html"><span class="n">2 · Salón › Zonas</span></a>
-        <a class="b" href="bocetos/3-salon-ficha-de-zona.html"><span class="n">3 · Salón › Ficha de zona</span></a>
-        <a class="b" href="bocetos/4-salon-mesas-y-qr.html"><span class="n">4 · Salón › Mesas y QR</span></a>
-        <a class="b" href="bocetos/5-carta-platos.html"><span class="n">5 · Carta › Platos</span></a>
-        <a class="b" href="bocetos/6-carta-ficha-de-plato.html"><span class="n">6 · Carta › Ficha de plato</span></a>
-        <a class="b" href="bocetos/7-carta-ingredientes.html"><span class="n">7 · Carta › Ingredientes</span></a>
-        <a class="b" href="bocetos/8-carta-ficha-de-ingrediente.html"><span class="n">8 · Carta › Ficha de ingrediente</span></a>
-        <a class="b" href="bocetos/9-carta-categorias.html"><span class="n">9 · Carta › Categorías</span></a>
-        <a class="b" href="bocetos/10-carta-ficha-de-categoria.html"><span class="n">10 · Carta › Ficha de categoría</span></a>
-        <a class="b" href="bocetos/11-cocina-estaciones.html"><span class="n">11 · Cocina › Estaciones</span></a>
-        <a class="b" href="bocetos/12-cocina-ficha-de-estacion.html"><span class="n">12 · Cocina › Ficha de estación</span></a>
-        <a class="b" href="bocetos/13-cocina-cocineros.html"><span class="n">13 · Cocina › Cocineros</span></a>
-        <a class="b" href="bocetos/14-cocina-ficha-de-cocinero.html"><span class="n">14 · Cocina › Ficha de cocinero</span></a>
-        <a class="b" href="bocetos/15-personas-usuarios.html"><span class="n">15 · Personas › Usuarios</span></a>
-        <a class="b" href="bocetos/16-personas-ficha-de-usuario.html"><span class="n">16 · Personas › Ficha de usuario</span></a>
-        <a class="b" href="bocetos/17-personas-permisos-del-rol.html"><span class="n">17 · Personas › Permisos del rol</span></a>
-        <a class="b" href="bocetos/17-sede-perimetro.html"><span class="n">17 · Sede › Perímetro</span></a>
-        <a class="b" href="bocetos/19-informes-auditoria.html"><span class="n">19 · Informes › Auditoría</span></a>
-        <a class="b" href="bocetos/20-historial-de-una-ficha.html"><span class="n">20 · Historial de una ficha</span></a>
+        <a class="b" href="bocetos/1-panel.html"><span class="n">1 · Panel</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/2-salon-zonas.html"><span class="n">2 · Salón › Zonas</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/3-salon-ficha-de-zona.html"><span class="n">3 · Salón › Ficha de zona</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/4-salon-mesas-y-qr.html"><span class="n">4 · Salón › Mesas y QR</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/5-carta-platos.html"><span class="n">5 · Carta › Platos</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/6-carta-ficha-de-plato.html"><span class="n">6 · Carta › Ficha de plato</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/6a-carta-ficha-de-plato-receta.html"><span class="n">6a · Carta › Ficha de plato › Receta</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/6b-carta-ficha-de-plato-opciones.html"><span class="n">6b · Carta › Ficha de plato › Opciones</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/7-carta-ingredientes.html"><span class="n">7 · Carta › Ingredientes</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/8-carta-ficha-de-ingrediente.html"><span class="n">8 · Carta › Ficha de ingrediente</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/9-carta-categorias.html"><span class="n">9 · Carta › Categorías</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/10-carta-ficha-de-categoria.html"><span class="n">10 · Carta › Ficha de categoría</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/11-cocina-estaciones.html"><span class="n">11 · Cocina › Estaciones</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/12-cocina-ficha-de-estacion.html"><span class="n">12 · Cocina › Ficha de estación</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/13-cocina-cocineros.html"><span class="n">13 · Cocina › Cocineros</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/14-cocina-ficha-de-cocinero.html"><span class="n">14 · Cocina › Ficha de cocinero</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/15-personas-usuarios.html"><span class="n">15 · Personas › Usuarios</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/16-personas-ficha-de-usuario.html"><span class="n">16 · Personas › Ficha de usuario</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/17-personas-permisos-del-rol.html"><span class="n">17 · Personas › Permisos del rol</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/18-sede-perimetro.html"><span class="n">18 · Sede › Perímetro</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/19-informes-auditoria.html"><span class="n">19 · Informes › Auditoría</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/19b-auditoria-detalle.html"><span class="n">19b · Auditoría › Detalle</span><span class="q">Administrador</span></a>
+        <a class="b" href="bocetos/20-historial-de-una-ficha.html"><span class="n">20 · Historial de una ficha</span><span class="q">Administrador</span></a>
       </div>
     </section>
 </div></main>

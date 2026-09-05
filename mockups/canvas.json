@@ -1,6 +1,60 @@
 {
   "artboards": [
     {
+      "file": "PanelPlataforma.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "title": "1 · Panel de la plataforma",
+      "page": "plataforma"
+    },
+    {
+      "file": "Companias.dc.html",
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "title": "2 · Compañías",
+      "page": "plataforma"
+    },
+    {
+      "file": "FichaCompania.dc.html",
+      "x": 2800,
+      "y": 0,
+      "w": 1280,
+      "h": 1720,
+      "title": "3a · Ficha · con RUT y cámara",
+      "page": "plataforma"
+    },
+    {
+      "file": "FichaCompaniaSinRegistro.dc.html",
+      "x": 4200,
+      "y": 0,
+      "w": 1280,
+      "h": 1420,
+      "title": "3b · Ficha · con la cédula del dueño",
+      "page": "plataforma"
+    },
+    {
+      "file": "AdminsCompania.dc.html",
+      "x": 5600,
+      "y": 0,
+      "w": 1280,
+      "h": 880,
+      "title": "4 · Administradores de la compañía",
+      "page": "plataforma"
+    },
+    {
+      "file": "EntrarComoSoporte.dc.html",
+      "x": 7000,
+      "y": 0,
+      "w": 1280,
+      "h": 864,
+      "title": "5 · Entrar como soporte",
+      "page": "plataforma"
+    },
+    {
       "file": "Salon.dc.html",
       "x": 0,
       "y": 0,
@@ -23,7 +77,7 @@
       "x": 1020,
       "y": 0,
       "w": 390,
-      "h": 844,
+      "h": 950,
       "title": "3 · Qué lleva el plato",
       "page": "mesero"
     },
@@ -32,7 +86,7 @@
       "x": 1530,
       "y": 0,
       "w": 390,
-      "h": 844,
+      "h": 1220,
       "title": "4 · Modificadores",
       "page": "mesero"
     },
@@ -100,31 +154,67 @@
       "page": "comensal"
     },
     {
-      "file": "Login.dc.html",
+      "file": "Despacho.dc.html",
       "x": 0,
       "y": 0,
-      "w": 1280,
-      "h": 820,
-      "title": "1 · Entrar",
-      "page": "acceso"
+      "w": 1440,
+      "h": 900,
+      "title": "1a · Cola · scroll en la tarjeta",
+      "page": "cocina"
     },
     {
-      "file": "LoginSede.dc.html",
-      "x": 1400,
+      "file": "DespachoFicha.dc.html",
+      "x": 1560,
       "y": 0,
-      "w": 1280,
-      "h": 820,
-      "title": "2 · Elegir sede",
-      "page": "acceso"
+      "w": 1440,
+      "h": 900,
+      "title": "1b · Cola · tarjeta con ficha",
+      "page": "cocina"
     },
     {
-      "file": "LoginMesero.dc.html",
-      "x": 2800,
+      "file": "FichaComanda.dc.html",
+      "x": 3120,
       "y": 0,
-      "w": 390,
-      "h": 844,
-      "title": "3 · PIN del mesero",
-      "page": "acceso"
+      "w": 1440,
+      "h": 1140,
+      "title": "2 · Ficha del pedido",
+      "page": "cocina"
+    },
+    {
+      "file": "AsignarCocineros.dc.html",
+      "x": 4680,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "title": "3 · Asignar cocineros",
+      "page": "cocina"
+    },
+    {
+      "file": "SeAcabo.dc.html",
+      "title": "4a · Se acabó el plato",
+      "x": 6240,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "page": "cocina"
+    },
+    {
+      "file": "SeAcaboIngrediente.dc.html",
+      "title": "4b · Se acabó un ingrediente",
+      "x": 7800,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "page": "cocina"
+    },
+    {
+      "file": "SeAcaboMuchos.dc.html",
+      "title": "4c · Se acabó el plato · carta grande",
+      "x": 9360,
+      "y": 0,
+      "w": 1440,
+      "h": 1190,
+      "page": "cocina"
     },
     {
       "file": "AbrirTurno.dc.html",
@@ -161,6 +251,33 @@
       "w": 1280,
       "h": 820,
       "page": "caja"
+    },
+    {
+      "file": "Login.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "title": "1 · Entrar",
+      "page": "acceso"
+    },
+    {
+      "file": "LoginSede.dc.html",
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 820,
+      "title": "2 · Elegir sede",
+      "page": "acceso"
+    },
+    {
+      "file": "LoginMesero.dc.html",
+      "x": 2800,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "3 · PIN del mesero",
+      "page": "acceso"
     },
     {
       "file": "PanelAdmin.dc.html",
@@ -217,12 +334,30 @@
       "page": "admin"
     },
     {
+      "file": "FormularioPlatoReceta.dc.html",
+      "title": "6a · Carta › Ficha de plato › Receta",
+      "x": 7000,
+      "y": 1000,
+      "w": 1280,
+      "h": 600,
+      "page": "admin"
+    },
+    {
+      "file": "FormularioPlatoOpciones.dc.html",
+      "title": "6b · Carta › Ficha de plato › Opciones",
+      "x": 8400,
+      "y": 1000,
+      "w": 1280,
+      "h": 600,
+      "page": "admin"
+    },
+    {
       "file": "Ingredientes.dc.html",
       "title": "7 · Carta › Ingredientes",
       "x": 8400,
       "y": 0,
       "w": 1280,
-      "h": 820,
+      "h": 850,
       "page": "admin"
     },
     {
@@ -303,143 +438,26 @@
       "x": 21000,
       "y": 0,
       "w": 1280,
-      "h": 820,
+      "h": 940,
       "page": "admin"
     },
     {
       "file": "FormularioRol.dc.html",
       "title": "17 · Personas › Permisos del rol",
-      "x": 23800,
+      "x": 22400,
       "y": 0,
       "w": 1280,
-      "h": 1240,
+      "h": 1430,
       "page": "admin"
     },
     {
       "file": "ConfigGeocerca.dc.html",
-      "x": 22400,
+      "x": 23800,
       "y": 0,
       "w": 1280,
       "h": 820,
-      "title": "17 · Sede › Perímetro",
+      "title": "18 · Sede › Perímetro",
       "page": "admin"
-    },
-    {
-      "file": "Despacho.dc.html",
-      "x": 0,
-      "y": 0,
-      "w": 1440,
-      "h": 900,
-      "title": "1a · Cola · scroll en la tarjeta",
-      "page": "cocina"
-    },
-    {
-      "file": "DespachoFicha.dc.html",
-      "x": 1560,
-      "y": 0,
-      "w": 1440,
-      "h": 900,
-      "title": "1b · Cola · tarjeta con ficha",
-      "page": "cocina"
-    },
-    {
-      "file": "FichaComanda.dc.html",
-      "x": 3120,
-      "y": 0,
-      "w": 1440,
-      "h": 900,
-      "title": "2 · Ficha del pedido",
-      "page": "cocina"
-    },
-    {
-      "file": "AsignarCocineros.dc.html",
-      "x": 4680,
-      "y": 0,
-      "w": 1440,
-      "h": 900,
-      "title": "3 · Asignar cocineros",
-      "page": "cocina"
-    },
-    {
-      "file": "SeAcabo.dc.html",
-      "title": "4a · Se acabó el plato",
-      "x": 6240,
-      "y": 0,
-      "w": 1440,
-      "h": 900,
-      "page": "cocina"
-    },
-    {
-      "file": "SeAcaboIngrediente.dc.html",
-      "title": "4b · Se acabó un ingrediente",
-      "x": 7800,
-      "y": 0,
-      "w": 1440,
-      "h": 900,
-      "page": "cocina"
-    },
-    {
-      "file": "SeAcaboMuchos.dc.html",
-      "title": "4c · Se acabó el plato · carta grande",
-      "x": 9360,
-      "y": 0,
-      "w": 1440,
-      "h": 900,
-      "page": "cocina"
-    },
-    {
-      "file": "PanelPlataforma.dc.html",
-      "x": 0,
-      "y": 0,
-      "w": 1280,
-      "h": 820,
-      "title": "1 · Panel de la plataforma",
-      "page": "plataforma"
-    },
-    {
-      "file": "Companias.dc.html",
-      "x": 1400,
-      "y": 0,
-      "w": 1280,
-      "h": 820,
-      "title": "2 · Compañías",
-      "page": "plataforma"
-    },
-    {
-      "file": "FichaCompania.dc.html",
-      "x": 2800,
-      "y": 0,
-      "w": 1280,
-      "h": 1560,
-      "title": "3a · Ficha · con RUT y cámara",
-      "page": "plataforma"
-    },
-    {
-      "file": "FichaCompaniaSinRegistro.dc.html",
-      "x": 4200,
-      "y": 0,
-      "w": 1280,
-      "h": 1180,
-      "title": "3b · Ficha · con la cédula del dueño",
-      "page": "plataforma"
-    },
-    {
-      "file": "AdminsCompania.dc.html",
-      "x": 5600,
-      "y": 0,
-      "w": 1280,
-      "h": 880,
-      "title": "4 · Administradores de la compañía",
-      "page": "plataforma"
-    },
-    {
-      "file": "EntrarComoSoporte.dc.html",
-      "x": 7000,
-      "y": 0,
-      "w": 1280,
-      "h": 864,
-      "title": "5 · Entrar como soporte",
-      "page": "plataforma"
     },
     {
       "file": "Auditoria.dc.html",
@@ -451,8 +469,17 @@
       "page": "admin"
     },
     {
-      "file": "HistorialFicha.dc.html",
+      "file": "DetalleAuditoria.dc.html",
       "x": 26600,
+      "y": 0,
+      "w": 1280,
+      "h": 1660,
+      "title": "19b · Auditoría › Detalle",
+      "page": "admin"
+    },
+    {
+      "file": "HistorialFicha.dc.html",
+      "x": 28000,
       "y": 0,
       "w": 1280,
       "h": 820,

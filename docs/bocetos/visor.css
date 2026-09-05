@@ -1,0 +1,310 @@
+/* ==========================================================================
+   Visor de bocetos · simulador a la izquierda, descripción a la derecha.
+
+   CONVIVENCIA CON EL CSS DEL BOCETO
+   El CSS que trae cada boceto ya viene acotado a .bo por acota_css()
+   (herramientas/bocetos_comun.py): :root y body pasan a .bo, * pasa a .bo *,
+   a pasa a .bo a. Así que sus 26 variables y su reset viven dentro del
+   contenedor y no tocan la página. Aun así, TODO lo de esta hoja usa nombres
+   --g-*: si algún día se publica una página con el CSS del boceto sin acotar,
+   sus --line, --fg y --fg2 no pisan la paleta de la galería. La única regla
+   de esta hoja que entra en el boceto es .bo > * (deshace el margen, el radio
+   y la sombra que el visor viejo le ponía al artboard).
+
+   GEOMETRÍA
+   El boceto no se puede reflowear: la única forma de encajarlo es scale().
+   Aquí sólo hay UN transform en toda la página, el de .bo, y su padre
+   .pantalla mide ancho×escala por alto×escala, así que no queda hueco.
+   El cromo del aparato no lleva transform: se dibuja ya escalado con
+   calc(var(--s) * …px), o sea que su caja de layout es la definitiva.
+   ========================================================================== */
+
+:root{
+  --g-bg:#f6f8fa; --g-card:#fff; --g-line:#dde3ea;
+  --g-fg:#16232f; --g-fg1:#2c3d4e; --g-fg2:#5a6b7c; --g-fg3:#8b9aa8;
+  --g-acc:#12263b; --g-acc2:#2f6ea8; --g-acc2-soft:#eef4fa;
+  --g-h-barra:40px; --g-h-herr:41px; --g-w-panel:clamp(300px,24vw,400px);
+  --g-banda:#fff;                 /* lo pisa el JS con el fondo real del boceto */
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;overflow:hidden;overscroll-behavior:none}
+body{background:var(--g-bg);color:var(--g-fg);
+     font-family:"Inter",system-ui,-apple-system,sans-serif;
+     -webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+button{font:inherit;color:inherit}
+
+.app{height:100vh;height:100dvh;display:grid;grid-template-rows:var(--g-h-barra) minmax(0,1fr);
+     overflow:hidden}
+
+/* medidas del cromo a escala 1; el JS las lee para calcular el encaje */
+.app{--marco:0;--bsup:38;--binf:0}                       /* escritorio y panel */
+.app[data-tipo="movil"]{--marco:11;--bsup:46;--binf:24}  /* iPhone 17 Pro */
+.app.sin-cromo{--bsup:0;--binf:0}
+.app[data-tipo="movil"].sin-cromo{--marco:0}
+
+/* ===================== barra superior ===================== */
+.barra{display:flex;align-items:center;gap:10px;min-width:0;padding:0 14px;
+  background:var(--g-acc);color:#e8eef5;font-size:13px;font-weight:500}
+.volver{display:inline-flex;align-items:center;gap:6px;flex-shrink:0;
+  color:#9ec5e8;text-decoration:none;padding:5px 8px;margin-left:-8px;border-radius:6px}
+.volver:hover{background:rgba(255,255,255,.10);color:#cfe3f5}
+.volver:focus-visible{outline:2px solid #9ec5e8;outline-offset:1px}
+.ruta{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.ruta::before{content:"·";opacity:.45;margin-right:9px;font-weight:400}
+.chip{flex-shrink:0;font-size:11px;font-weight:600;letter-spacing:.02em;
+  background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.16);
+  border-radius:20px;padding:3px 10px}
+
+/* ===================== rejilla ===================== */
+.escena{display:grid;grid-template-columns:minmax(0,1fr) var(--g-w-panel);
+  min-width:0;min-height:0;overflow:hidden}
+.app.sin-ficha .escena{grid-template-columns:minmax(0,1fr)}
+.app.sin-ficha .panel{display:none}
+
+.col{display:grid;grid-template-rows:var(--g-h-herr) minmax(0,1fr);
+  min-width:0;min-height:0;background:var(--g-bg)}
+.col:fullscreen,.col:-webkit-full-screen{background:var(--g-bg)}
+.app.pleno .col{position:fixed;inset:0;z-index:80}   /* respaldo si no hay API */
+/* en el respaldo, lo de detrás se oculta de verdad: así tampoco se puede
+   tabular a ella, y al salir vuelve sola. No hay foco atrapado en ningún caso:
+   no se mueve ningún nodo ni se abre ningún diálogo modal. */
+.app.pleno .barra,.app.pleno .panel{visibility:hidden}
+
+/* ===================== herramientas ===================== */
+.herramientas{display:flex;align-items:center;gap:10px;min-width:0;padding:0 12px;
+  background:var(--g-card);border-bottom:1px solid var(--g-line)}
+.grupo-zoom{display:flex;align-items:center;border:1px solid var(--g-line);
+  border-radius:7px;overflow:hidden;flex-shrink:0}
+.grupo-zoom .tb{border:0;border-radius:0;height:26px}
+.grupo-zoom .tb+.tb{border-left:1px solid var(--g-line)}
+.tb{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex-shrink:0;
+  height:27px;padding:0 10px;background:var(--g-card);border:1px solid var(--g-line);
+  border-radius:7px;font-size:12px;font-weight:500;color:var(--g-fg1);
+  cursor:pointer;white-space:nowrap;transition:background .12s,border-color .12s,color .12s}
+.tb:hover{background:#f2f6fa;border-color:#c8d3de;color:var(--g-fg)}
+.tb:focus-visible{outline:2px solid var(--g-acc2);outline-offset:1px}
+.tb.ico{padding:0 9px}
+.tb.pct{min-width:62px;font-weight:600;color:var(--g-fg);font-variant-numeric:tabular-nums}
+.tb.pri{background:var(--g-acc);border-color:var(--g-acc);color:#eaf1f8}
+.tb.pri:hover{background:#1b3550;border-color:#1b3550;color:#fff}
+.tb[aria-pressed="true"]{background:var(--g-acc2-soft);border-color:#bcd6ec;color:var(--g-acc2)}
+.tb.pri[aria-pressed="true"]{background:#1b3550;border-color:#1b3550;color:#fff}
+.tb[hidden]{display:none}
+.medida{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font-size:11.5px;color:var(--g-fg2);font-variant-numeric:tabular-nums}
+.fin{margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0}
+
+/* ===================== escenario ===================== */
+/* place-content:safe center → centrado mientras cabe y sin cortar la parte de
+   arriba cuando no cabe. scrollbar-gutter:stable evita el vaivén de reajuste
+   (barra aparece → menos sitio → encoge → barra desaparece → …). */
+.escenario{position:relative;min-width:0;min-height:0;overflow:auto;
+  padding:20px;scrollbar-gutter:stable both-edges;
+  display:grid;place-content:center;place-content:safe center;
+  background:radial-gradient(1100px 520px at 50% -10%,#fff 0%,rgba(255,255,255,0) 70%),var(--g-bg)}
+.escenario:focus{outline:none}
+.escenario:focus-visible{outline:2px solid var(--g-acc2);outline-offset:-3px}
+.escenario.desbordado{cursor:grab}
+.escenario.arrastrando{cursor:grabbing;user-select:none;-webkit-user-select:none}
+.escenario::-webkit-scrollbar{width:10px;height:10px}
+.escenario::-webkit-scrollbar-thumb{background:#c4d0dc;border-radius:5px;border:2px solid var(--g-bg)}
+
+/* ===================== el aparato ===================== */
+.aparato{position:relative}
+.vidrio{position:relative;display:flex;flex-direction:column;overflow:hidden}
+
+/* la pantalla: padre directo de .bo, medida exacta */
+.pantalla{position:relative;flex:none;overflow:hidden;background:var(--g-banda);
+  width:calc(var(--w) * var(--s) * 1px);
+  height:calc(var(--hv) * var(--s) * 1px)}
+.app[data-modo="real"] .pantalla{overflow:auto;scrollbar-width:none}
+.app[data-modo="real"] .pantalla::-webkit-scrollbar{width:0;height:0}
+
+/* el boceto: el ÚNICO transform de la página */
+.bo{width:calc(var(--w) * 1px);height:calc(var(--h) * 1px);
+    transform:scale(var(--s));transform-origin:0 0}
+/* el visor viejo le ponía margen, radio y sombra al artboard: aquí estorban */
+.bo>*{margin:0 !important;border-radius:0 !important;box-shadow:none !important;flex-shrink:0}
+
+/* ---------- ventana de escritorio ---------- */
+/* La barra va a 1:1: a media escala un título de 6 px no se lee, y un
+   encabezado nítido sobre una página reducida es lo que hace cualquier
+   herramienta de diseño. El cristal no lleva borde sino anillo de sombra,
+   que no ocupa layout y se ve igual de fino a cualquier escala. */
+.titulo-ventana{display:none;align-items:center;gap:12px;flex:none;
+  height:calc(var(--bsup) * 1px);padding:0 12px;
+  background:linear-gradient(#fcfdfe,#eef2f7);border-bottom:1px solid var(--g-line)}
+.app:not([data-tipo="movil"]):not(.sin-cromo) .titulo-ventana{display:flex}
+.app:not([data-tipo="movil"]) .aparato{border-radius:12px;
+  box-shadow:0 0 0 1px #c8d1db,0 30px 60px -28px rgba(12,25,45,.45),0 4px 14px -6px rgba(12,25,45,.16)}
+.app:not([data-tipo="movil"]) .vidrio{border-radius:12px}
+.semaforo{display:flex;gap:7px;flex-shrink:0}
+.semaforo i{width:11px;height:11px;border-radius:50%;
+  box-shadow:inset 0 0 0 .5px rgba(0,0,0,.16)}
+.semaforo i:nth-child(1){background:#ec6a5e}
+.semaforo i:nth-child(2){background:#f4bf50}
+.semaforo i:nth-child(3){background:#61c554}
+.pastilla{flex:1;min-width:0;max-width:420px;margin:0 auto;height:23px;
+  display:flex;align-items:center;justify-content:center;padding:0 14px;
+  border-radius:12px;background:var(--g-card);border:1px solid var(--g-line);
+  font-size:11px;color:var(--g-fg2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tam{flex-shrink:0;width:78px;text-align:right;font-size:10.5px;color:var(--g-fg3);
+  font-variant-numeric:tabular-nums}
+
+/* ---------- iPhone 17 Pro ---------- */
+/* Todo el cromo del teléfono escala con --s: un bisel de 11 px fijos junto a
+   una pantalla reducida a la mitad no parecería un teléfono. */
+.app[data-tipo="movil"] .aparato{
+  padding:calc(var(--s) * var(--marco) * 1px);
+  border-radius:calc(var(--s) * 62px);
+  background:linear-gradient(147deg,#e9ecef 0%,#a6acb4 14%,#787f88 30%,#c9ced4 48%,
+    #7d838b 64%,#d5d9de 82%,#8d939a 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.45),
+    inset 0 1px 1px rgba(255,255,255,.65),
+    inset 0 -1px 2px rgba(0,0,0,.30),
+    0 calc(var(--s) * 30px) calc(var(--s) * 60px) calc(var(--s) * -24px) rgba(12,25,45,.50),
+    0 calc(var(--s) * 8px) calc(var(--s) * 20px) calc(var(--s) * -12px) rgba(12,25,45,.32)}
+.app[data-tipo="movil"] .vidrio{border-radius:calc(var(--s) * 50px);background:#05070a;
+  box-shadow:inset 0 0 0 calc(var(--s) * 2px) #05070a}
+.app[data-tipo="movil"].sin-cromo .aparato{border-radius:0;background:none;
+  box-shadow:0 18px 40px -22px rgba(12,25,45,.45)}
+.app[data-tipo="movil"].sin-cromo .vidrio{border-radius:0;box-shadow:none}
+
+/* botones físicos. Van en porcentaje del alto del aparato, no en píxeles fijos:
+   con un artboard de 1220 px unos desplazamientos de 150-360 px quedarían
+   pegados al borde de arriba. */
+.lat{display:none;position:absolute;border-radius:calc(var(--s) * 2px);
+  background:linear-gradient(90deg,#7c838d,#c2c7cd 45%,#8b929b);
+  box-shadow:0 1px 2px rgba(0,0,0,.28)}
+.app[data-tipo="movil"]:not(.sin-cromo) .lat{display:block}
+.lat.accion   {left:calc(var(--s) * -2.5px);top:12%;   height:4%;  width:calc(var(--s) * 4px)}
+.lat.vol-mas  {left:calc(var(--s) * -2.5px);top:19.5%; height:7.5%;width:calc(var(--s) * 4px)}
+.lat.vol-menos{left:calc(var(--s) * -2.5px);top:28.5%; height:7.5%;width:calc(var(--s) * 4px)}
+.lat.encendido{right:calc(var(--s) * -2.5px);top:22%;  height:11%; width:calc(var(--s) * 4px)}
+.lat.camara   {right:calc(var(--s) * -3px);  top:35.5%;height:5.5%; width:calc(var(--s) * 4.5px);
+  background:linear-gradient(90deg,#8d939a,#eef1f3 55%,#9aa1aa)}
+
+/* bandas de estado. Van FUERA de la pantalla, no encima: una Dynamic Island
+   superpuesta taparía la cabecera de 56 px con la que empiezan los bocetos
+   de celular. */
+.banda{display:none;position:relative;flex:none;align-items:center;
+  background:var(--g-banda);color:#0b1420}
+.app[data-tipo="movil"]:not(.sin-cromo) .banda{display:flex}
+.banda-sup{height:calc(var(--s) * var(--bsup) * 1px);justify-content:space-between;
+  padding:0 calc(var(--s) * 20px) 0 calc(var(--s) * 26px);
+  font-size:calc(var(--s) * 14.5px);font-weight:600}
+.isla{position:absolute;left:50%;top:calc(var(--s) * 8px);transform:translateX(-50%);
+  display:flex;align-items:center;justify-content:flex-end;
+  width:calc(var(--s) * 122px);height:calc(var(--s) * 34px);
+  padding-right:calc(var(--s) * 10px);border-radius:calc(var(--s) * 19px);background:#05070a}
+.isla i{width:calc(var(--s) * 10px);height:calc(var(--s) * 10px);border-radius:50%;
+  background:radial-gradient(circle at 32% 32%,#22445f,#0a1420 70%);
+  box-shadow:0 0 0 1px rgba(90,120,150,.28)}
+.estado{display:inline-flex;align-items:center;gap:calc(var(--s) * 5px)}
+.estado svg{width:calc(var(--s) * 17px);height:calc(var(--s) * 12px)}
+.estado svg:nth-of-type(2){width:calc(var(--s) * 15px)}
+.pila{position:relative;width:calc(var(--s) * 24px);height:calc(var(--s) * 12px);
+  border:calc(var(--s) * 1.5px) solid #0b1420;border-radius:calc(var(--s) * 3.5px);opacity:.9}
+.pila::after{content:"";position:absolute;inset:calc(var(--s) * 1.5px);
+  right:auto;width:calc(var(--s) * 14px);border-radius:calc(var(--s) * 1.5px);background:#0b1420}
+.banda-inf{height:calc(var(--s) * var(--binf) * 1px);justify-content:center}
+.inicio{width:calc(var(--s) * 140px);height:calc(var(--s) * 5px);
+  border-radius:calc(var(--s) * 3px);background:#0b1420;opacity:.82}
+
+/* reflejo del cristal */
+.brillo{display:none;position:absolute;inset:0;pointer-events:none;z-index:3;
+  border-radius:inherit;
+  background:linear-gradient(128deg,rgba(255,255,255,.26) 0 11%,rgba(255,255,255,.08) 19%,transparent 33%),
+             linear-gradient(300deg,rgba(255,255,255,.14) 0 7%,transparent 22%)}
+.app[data-tipo="movil"]:not(.sin-cromo) .brillo{display:block}
+
+/* ===================== panel de la derecha ===================== */
+.panel{position:relative;display:grid;grid-template-rows:auto minmax(0,1fr) auto;
+  min-width:0;min-height:0;overflow:hidden;
+  background:var(--g-card);border-left:1px solid var(--g-line)}
+.panel-cab{grid-area:1/1;padding:16px 22px 14px;border-bottom:1px solid var(--g-line)}
+.panel-tit{margin:0;font-size:19px;line-height:1.28;font-weight:600;letter-spacing:-.015em;
+  text-wrap:balance}
+.quien{margin:8px 0 0;display:flex;align-items:center;gap:6px;
+  font-size:12.5px;line-height:1.4;color:var(--g-fg2)}
+.quien svg{color:var(--g-acc2);flex-shrink:0}
+.quien b{color:var(--g-fg);font-weight:600}
+
+/* colocación explícita: si se dejara automática, el ::after de más abajo
+   ocuparía la fila 2 y empujaría el cuerpo a una fila nueva — adiós scroll
+   interno y hola hueco blanco */
+.panel-cuerpo{grid-area:2/1;overflow-y:auto;overscroll-behavior:contain;
+  padding:18px 22px 22px;scrollbar-gutter:stable}
+.panel-cuerpo:focus{outline:none}
+.panel-cuerpo::-webkit-scrollbar{width:8px}
+.panel-cuerpo::-webkit-scrollbar-thumb{background:#d3dde7;border-radius:4px}
+/* aviso de «hay más»: otro elemento en la MISMA celda de la rejilla, pegado
+   abajo. Así no hace falta enmascarar el scroller (repinta en cada rueda) ni
+   adivinar la altura del pie para posicionarlo. */
+.panel::after{content:"";grid-area:2/1;align-self:end;
+  height:28px;pointer-events:none;opacity:0;transition:opacity .15s;
+  background:linear-gradient(rgba(255,255,255,0),var(--g-card))}
+.panel.hay-mas::after{opacity:1}
+
+.resumen{margin:0;font-size:14.5px;line-height:1.62;color:var(--g-fg1);text-wrap:pretty}
+.bloque{margin-top:22px}
+.bloque:empty{display:none}
+.rotulo{display:flex;align-items:center;gap:10px;margin:0 0 10px;
+  font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--g-fg2)}
+.rotulo::after{content:"";flex:1;height:1px;background:var(--g-line)}
+.puntos{margin:0;padding:0;list-style:none}
+.puntos li{position:relative;padding-left:18px;margin-bottom:9px;
+  font-size:13.5px;line-height:1.55;color:var(--g-fg1);text-wrap:pretty}
+.puntos li:last-child{margin-bottom:0}
+.puntos li::before{content:"";position:absolute;left:2px;top:.55em;width:6px;height:6px;
+  border-radius:2px;background:var(--g-acc2);opacity:.8}
+.puntos li b,.puntos li strong{font-weight:600;color:var(--g-fg)}
+.nota p{margin:0;padding:11px 13px;border-radius:8px;background:#f7fafc;
+  border:1px solid var(--g-line);border-left:3px solid var(--g-acc2);
+  font-size:12.5px;line-height:1.55;color:var(--g-fg1)}
+.nota p+p{margin-top:8px}
+.ficha{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0;font-size:12px}
+.ficha dt{color:var(--g-fg2)}
+.ficha dd{margin:0;color:var(--g-fg1);font-variant-numeric:tabular-nums}
+.atajos{margin:22px 0 0;padding-top:13px;border-top:1px solid var(--g-line);
+  font-size:11.5px;line-height:2;color:var(--g-fg2)}
+.atajos kbd{display:inline-block;min-width:18px;padding:1px 5px;margin-right:3px;
+  border:1px solid var(--g-line);border-bottom-width:2px;border-radius:4px;
+  background:#fbfcfe;font:inherit;font-size:10.5px;color:var(--g-fg1);text-align:center}
+
+.panel-pie{grid-area:3/1;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 22px 14px;
+  border-top:1px solid var(--g-line)}
+.panel-pie:empty{display:none}
+a.mov{display:flex;flex-direction:column;gap:2px;min-width:0;padding:9px 11px;
+  border:1px solid var(--g-line);border-radius:9px;background:#fbfcfe;
+  text-decoration:none;transition:border-color .12s,box-shadow .12s,transform .12s}
+a.mov[rel="next"]{grid-column:2;text-align:right}
+a.mov:hover{border-color:var(--g-acc2);background:#fff;
+  box-shadow:0 3px 11px rgba(20,45,75,.09);transform:translateY(-1px)}
+a.mov:focus-visible{outline:2px solid var(--g-acc2);outline-offset:2px}
+.mov-dir{font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--g-fg2)}
+a.mov[rel="prev"] .mov-dir::before{content:"← "}
+a.mov[rel="next"] .mov-dir::after{content:" →"}
+.mov-tit{font-size:12.5px;font-weight:500;line-height:1.35;color:var(--g-fg);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ===================== ventanas estrechas o bajas ===================== */
+@media (max-width:1000px){
+  .escena{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(0,40%)}
+  .panel{border-left:0;border-top:1px solid var(--g-line)}
+  .app.sin-ficha .escena{grid-template-rows:minmax(0,1fr)}
+  .panel-cab{padding:13px 16px 11px}
+  .panel-cuerpo{padding:14px 16px 18px}
+  .panel-pie{padding:10px 16px 12px}
+  .escenario{padding:12px}
+  .medida{display:none}
+}
+@media (max-height:620px){
+  :root{--g-h-barra:34px;--g-h-herr:37px}
+  .escenario{padding:10px}
+  .atajos{display:none}
+}
+@media (max-width:700px){ #ficha,#uno{display:none} }
+@media (prefers-reduced-motion:reduce){ *{transition:none !important} }

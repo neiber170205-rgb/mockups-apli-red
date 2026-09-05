@@ -1,0 +1,128 @@
+<div class="app" id="app" data-tipo="{{ES_MOVIL}}" data-modo="completo"
+     style="--w:{{ANCHO}};--h:{{ALTO}};--hv:{{ALTO}};--s:1">
+
+  <header class="barra">
+    <a class="volver" href="../index.html">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      <span>Todos los bocetos</span>
+    </a>
+    <span class="ruta" id="ruta"></span>
+    <span class="chip">{{GRUPO}}</span>
+  </header>
+
+  <main class="escena">
+
+    <!-- ============ IZQUIERDA · simulador ============ -->
+    <section class="col" id="col">
+
+      <div class="herramientas" role="toolbar" aria-label="Visualización del boceto">
+        <div class="grupo-zoom">
+          <button type="button" class="tb ico" id="menos" title="Alejar  (−)" aria-label="Alejar">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+          </button>
+          <button type="button" class="tb pct" id="pct" title="Ajustar a la pantalla  (0)">100 %</button>
+          <button type="button" class="tb ico" id="mas" title="Acercar  (+)" aria-label="Acercar">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+        <button type="button" class="tb" id="uno" title="Tamaño real, 1 px del boceto = 1 px de pantalla  (1)">1:1</button>
+        <span class="medida" id="medida"></span>
+        <div class="fin">
+          <button type="button" class="tb" id="modo" hidden aria-pressed="false">Ver como pantalla real</button>
+          <button type="button" class="tb" id="cromo" aria-pressed="true" title="Marco, barra de estado y reflejos  (C)">Cromo</button>
+          <button type="button" class="tb" id="ficha" aria-pressed="false" title="Ocultar la descripción  (P)">Ocultar ficha</button>
+          <button type="button" class="tb pri" id="ampliar" aria-pressed="false" title="Ampliar  (F)">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            <span id="ampliar-txt">Ampliar</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="escenario" id="escenario" tabindex="0" aria-label="Boceto, se puede acercar y arrastrar">
+
+        <!-- El aparato NO lleva transform: su cromo se dibuja ya escalado con --s,
+             así que su caja de layout es la definitiva y no deja hueco. El único
+             transform de la página es el de .bo, y su padre .pantalla mide
+             exactamente ancho×escala por alto×escala. -->
+        <div class="aparato" id="aparato">
+
+          <span class="lat accion"    aria-hidden="true"></span>
+          <span class="lat vol-mas"   aria-hidden="true"></span>
+          <span class="lat vol-menos" aria-hidden="true"></span>
+          <span class="lat encendido" aria-hidden="true"></span>
+          <span class="lat camara"    aria-hidden="true"></span>
+
+          <div class="vidrio">
+
+            <div class="titulo-ventana" aria-hidden="true">
+              <span class="semaforo"><i></i><i></i><i></i></span>
+              <span class="pastilla" id="pastilla"></span>
+              <span class="tam" id="tam-ventana">{{ANCHO}} &times; {{ALTO}}</span>
+            </div>
+
+            <div class="banda banda-sup" aria-hidden="true">
+              <span class="hora">9:41</span>
+              <span class="isla"><i></i></span>
+              <span class="estado">
+                <svg viewBox="0 0 17 12" width="17" height="12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="4.5" y="6" width="3" height="6" rx="1"/><rect x="9" y="3" width="3" height="9" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+                <svg viewBox="0 0 16 12" width="15" height="12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1 4.2a10 10 0 0114 0"/><path d="M3.6 7a6.4 6.4 0 018.8 0"/><path d="M6.2 9.7a2.7 2.7 0 013.6 0"/></svg>
+                <span class="pila"></span>
+              </span>
+            </div>
+
+            <!-- padre directo de .bo: mide ancho×escala por alto×escala -->
+            <div class="pantalla" id="pantalla">
+              <div class="bo" id="bo">
+{{BOCETO}}
+              </div>
+            </div>
+
+            <div class="banda banda-inf" aria-hidden="true"><span class="inicio"></span></div>
+
+            <span class="brillo" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DERECHA · qué hace esta pantalla ============ -->
+    <aside class="panel" id="panel" aria-label="Qué hace esta pantalla">
+
+      <div class="panel-cab">
+        <h1 class="panel-tit" id="panel-tit">{{TITULO}}</h1>
+        <p class="quien">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>La usa <b>{{QUIEN}}</b></span>
+        </p>
+      </div>
+
+      <div class="panel-cuerpo" id="panel-cuerpo" tabindex="0">
+        <p class="resumen">{{RESUMEN}}</p>
+
+        <section class="bloque" id="b-puntos">
+          <h2 class="rotulo">Lo principal</h2>
+          <ul class="puntos" id="puntos">{{PUNTOS}}</ul>
+        </section>
+
+        <section class="bloque nota" id="b-nota">{{NOTA}}</section>
+
+        <section class="bloque" id="b-ficha">
+          <h2 class="rotulo">Ficha</h2>
+          <dl class="ficha">
+            <dt>Lienzo</dt><dd id="f-tam"></dd>
+            <dt>Se ve en</dt><dd id="f-tipo"></dd>
+            <dt>Escala</dt><dd id="f-esc"></dd>
+          </dl>
+        </section>
+
+        <p class="atajos">
+          <kbd>+</kbd><kbd>−</kbd> acercan · <kbd>0</kbd> ajusta · <kbd>1</kbd> tamaño real ·
+          <kbd>F</kbd> amplía · <kbd>P</kbd> oculta la ficha · <kbd>[</kbd><kbd>]</kbd> cambian de pantalla
+        </p>
+      </div>
+
+      <footer class="panel-pie" id="panel-pie">{{ANT}}{{SIG}}</footer>
+    </aside>
+
+  </main>
+</div>

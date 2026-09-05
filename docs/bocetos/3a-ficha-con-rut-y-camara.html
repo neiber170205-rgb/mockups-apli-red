@@ -4,12 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>3a · Ficha · con RUT y cámara &middot; Pedidos</title>
-<meta name="description" content="Boceto de la pantalla «3a · Ficha · con RUT y cámara» del sistema de pedidos para restaurantes.">
+<meta name="description" content="Ficha de La Cava del Llano en la primera de cinco pestañas —«Identidad y datos legales»; después Plan y límites, Administradores, Sedes y Bitácora—. Es el caso completo: NIT, RUT y matrícula de cámara. Arriba: Suspender, Cancelar y Guardar.">
 <meta name="robots" content="noindex">
-
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
-  <style>
-    :root{
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="visor.css">
+<style>
+/* --- CSS del boceto, acotado a .bo por acota_css() --- */
+.bo{
       --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
       --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
       --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
@@ -22,31 +24,91 @@
       --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
       --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
     }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
-    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
-    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
-  </style>
-
-
+.bo *{box-sizing:border-box}
+.bo{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+.bo a{color:var(--accent);text-decoration:none}
+.bo a:hover{color:var(--accent-hover)}
+.bo ::-webkit-scrollbar{width:6px;height:6px}
+.bo ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+</style>
 </head>
 <body>
-<div class="barra-guia">
-  <a href="../index.html">&#8592; Todos los bocetos</a>
-  <span class="sep">&middot;</span><strong>3a · Ficha · con RUT y cámara</strong>
-  <span class="mod">Plataforma</span>
-</div>
-<style>
-  .barra-guia{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:10px;
-    padding:10px 16px;background:#12263b;color:#e8eef5;font:500 13px/1.4 system-ui,sans-serif}
-  .barra-guia a{color:#9ec5e8;text-decoration:none} .barra-guia a:hover{text-decoration:underline}
-  .barra-guia .sep{opacity:.45} .barra-guia .mod{margin-left:auto;opacity:.65;font-weight:400}
-  body{display:flex;flex-direction:column;align-items:center}
-  body > *:not(.barra-guia):not(style){margin:22px auto;box-shadow:0 6px 28px rgba(10,25,45,.16);
-    border-radius:10px;overflow:hidden;flex-shrink:0}
-</style>
+<div class="app" id="app" data-tipo="escritorio" data-modo="completo"
+     style="--w:1280;--h:1720;--hv:1720;--s:1">
 
-<div style="width:1280px;height:1560px;display:flex;flex-direction:column;background:var(--canvas);font-size:13px;overflow:hidden">
+  <header class="barra">
+    <a class="volver" href="../index.html">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      <span>Todos los bocetos</span>
+    </a>
+    <span class="ruta" id="ruta"></span>
+    <span class="chip">Plataforma</span>
+  </header>
+
+  <main class="escena">
+
+    <!-- ============ IZQUIERDA · simulador ============ -->
+    <section class="col" id="col">
+
+      <div class="herramientas" role="toolbar" aria-label="Visualización del boceto">
+        <div class="grupo-zoom">
+          <button type="button" class="tb ico" id="menos" title="Alejar  (−)" aria-label="Alejar">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+          </button>
+          <button type="button" class="tb pct" id="pct" title="Ajustar a la pantalla  (0)">100 %</button>
+          <button type="button" class="tb ico" id="mas" title="Acercar  (+)" aria-label="Acercar">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+        <button type="button" class="tb" id="uno" title="Tamaño real, 1 px del boceto = 1 px de pantalla  (1)">1:1</button>
+        <span class="medida" id="medida"></span>
+        <div class="fin">
+          <button type="button" class="tb" id="modo" hidden aria-pressed="false">Ver como pantalla real</button>
+          <button type="button" class="tb" id="cromo" aria-pressed="true" title="Marco, barra de estado y reflejos  (C)">Cromo</button>
+          <button type="button" class="tb" id="ficha" aria-pressed="false" title="Ocultar la descripción  (P)">Ocultar ficha</button>
+          <button type="button" class="tb pri" id="ampliar" aria-pressed="false" title="Ampliar  (F)">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            <span id="ampliar-txt">Ampliar</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="escenario" id="escenario" tabindex="0" aria-label="Boceto, se puede acercar y arrastrar">
+
+        <!-- El aparato NO lleva transform: su cromo se dibuja ya escalado con --s,
+             así que su caja de layout es la definitiva y no deja hueco. El único
+             transform de la página es el de .bo, y su padre .pantalla mide
+             exactamente ancho×escala por alto×escala. -->
+        <div class="aparato" id="aparato">
+
+          <span class="lat accion"    aria-hidden="true"></span>
+          <span class="lat vol-mas"   aria-hidden="true"></span>
+          <span class="lat vol-menos" aria-hidden="true"></span>
+          <span class="lat encendido" aria-hidden="true"></span>
+          <span class="lat camara"    aria-hidden="true"></span>
+
+          <div class="vidrio">
+
+            <div class="titulo-ventana" aria-hidden="true">
+              <span class="semaforo"><i></i><i></i><i></i></span>
+              <span class="pastilla" id="pastilla"></span>
+              <span class="tam" id="tam-ventana">1280 &times; 1720</span>
+            </div>
+
+            <div class="banda banda-sup" aria-hidden="true">
+              <span class="hora">9:41</span>
+              <span class="isla"><i></i></span>
+              <span class="estado">
+                <svg viewBox="0 0 17 12" width="17" height="12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="4.5" y="6" width="3" height="6" rx="1"/><rect x="9" y="3" width="3" height="9" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+                <svg viewBox="0 0 16 12" width="15" height="12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1 4.2a10 10 0 0114 0"/><path d="M3.6 7a6.4 6.4 0 018.8 0"/><path d="M6.2 9.7a2.7 2.7 0 013.6 0"/></svg>
+                <span class="pila"></span>
+              </span>
+            </div>
+
+            <!-- padre directo de .bo: mide ancho×escala por alto×escala -->
+            <div class="pantalla" id="pantalla">
+              <div class="bo" id="bo">
+<div style="width:1280px;height:1720px;display:flex;flex-direction:column;background:var(--canvas);font-size:13px;overflow:hidden">
   <div style="flex-shrink:0;background:var(--thead-bg);border-bottom:1px solid oklch(38% .018 235)">
     <div style="display:flex;align-items:center;gap:12px;padding:0 12px;height:48px">
 
@@ -184,5 +246,58 @@
     </div>
   </div>
 </div>
+              </div>
+            </div>
+
+            <div class="banda banda-inf" aria-hidden="true"><span class="inicio"></span></div>
+
+            <span class="brillo" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DERECHA · qué hace esta pantalla ============ -->
+    <aside class="panel" id="panel" aria-label="Qué hace esta pantalla">
+
+      <div class="panel-cab">
+        <h1 class="panel-tit" id="panel-tit">3a · Ficha · con RUT y cámara</h1>
+        <p class="quien">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>La usa <b>Operador de la plataforma</b></span>
+        </p>
+      </div>
+
+      <div class="panel-cuerpo" id="panel-cuerpo" tabindex="0">
+        <p class="resumen">Ficha de La Cava del Llano en la primera de cinco pestañas —«Identidad y datos legales»; después Plan y límites, Administradores, Sedes y Bitácora—. Es el caso completo: NIT, RUT y matrícula de cámara. Arriba: Suspender, Cancelar y Guardar.</p>
+
+        <section class="bloque" id="b-puntos">
+          <h2 class="rotulo">Lo principal</h2>
+          <ul class="puntos" id="puntos"><li>El primer campo —«¿Cómo está registrado el negocio?»— decide qué secciones aparecen debajo. Aquí, «Con RUT y matrícula de cámara de comercio». Le siguen nombre del negocio, código para la dirección web (lacava) y razón social, Inversiones La Cava S.A.S.</li><li>Identificación: persona jurídica, NIT 901456789 y DV 8. El DV se calcula con módulo 11 y solo existe porque hay RUT — sin RUT sería un dato tributario fabricado.</li><li>«Registro mercantil» —matrícula 0000234519, Cámara de Cúcuta, renovada hasta 31/03/2027, aviso 30 días antes— desaparece entera si el negocio no tiene cámara de comercio.</li><li>«Representante legal» —Óscar Iván Peñaranda Villamizar— sale solo con sociedad: una persona natural firma por sí misma.</li><li>Contacto: dirección fiscal (la del RUT), municipio con su código DANE, celular con WhatsApp obligatorio —por ahí van el código para entrar la primera vez, los avisos y el cobro— y correo opcional, aquí «Sin correo».</li><li>Ley 1581: el restaurante es el responsable de los datos y la plataforma la encargada, y eso obliga a un contrato de transmisión. Aceptado el 14/03/2026, v2, por Óscar Peñaranda como representante legal. Es lo único que hay que aceptar para empezar.</li></ul>
+        </section>
+
+        <section class="bloque nota" id="b-nota"><h2 class="rotulo">Nota</h2><p>Se sacaron CIIU, régimen de renta, responsabilidades del RUT, IVA/INC y franquicia: ninguna pantalla los lee y un dato tributario inventado es peor que un campo vacío. Vuelven con la facturación electrónica.</p></section>
+
+        <section class="bloque" id="b-ficha">
+          <h2 class="rotulo">Ficha</h2>
+          <dl class="ficha">
+            <dt>Lienzo</dt><dd id="f-tam"></dd>
+            <dt>Se ve en</dt><dd id="f-tipo"></dd>
+            <dt>Escala</dt><dd id="f-esc"></dd>
+          </dl>
+        </section>
+
+        <p class="atajos">
+          <kbd>+</kbd><kbd>−</kbd> acercan · <kbd>0</kbd> ajusta · <kbd>1</kbd> tamaño real ·
+          <kbd>F</kbd> amplía · <kbd>P</kbd> oculta la ficha · <kbd>[</kbd><kbd>]</kbd> cambian de pantalla
+        </p>
+      </div>
+
+      <footer class="panel-pie" id="panel-pie"><a class="mov" rel="prev" href="2-companias.html"><span class="mov-dir">Anterior</span><span class="mov-tit">2 · Compañías</span></a><a class="mov" rel="next" href="3b-ficha-con-la-cedula-del-dueno.html"><span class="mov-dir">Siguiente</span><span class="mov-tit">3b · Ficha · con la cédula del dueño</span></a></footer>
+    </aside>
+
+  </main>
+</div>
+<script src="visor.js"></script>
 </body>
 </html>

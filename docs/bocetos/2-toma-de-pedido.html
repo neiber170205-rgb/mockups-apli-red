@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2 · Toma de pedido &middot; Pedidos</title>
+<meta name="description" content="La pantalla donde se arma el pedido de una mesa: categorías a la izquierda, platos a la derecha y abajo el carrito, con lo ya enviado y lo que todavía no se envía.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="visor.css">
+<style>
+/* --- CSS del boceto, acotado a .bo por acota_css() --- */
+.bo{
+      --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
+      --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
+      --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
+      --accent:oklch(46% .098 210); --accent-hover:oklch(40% .104 210); --accent-fg:oklch(99% 0 0);
+      --accent-soft:oklch(95.5% .024 210); --accent-line:oklch(87% .052 210);
+      --success:oklch(50% .120 155); --success-soft:oklch(95.5% .032 155);
+      --warning:oklch(56% .110 75); --warning-soft:oklch(96% .042 80);
+      --danger:oklch(52% .170 27); --danger-soft:oklch(96% .032 27);
+      --thead-bg:oklch(30% .015 235); --thead-fg:oklch(93% .010 235);
+      --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
+      --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    }
+.bo *{box-sizing:border-box}
+.bo{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+.bo a{color:var(--accent);text-decoration:none}
+.bo a:hover{color:var(--accent-hover)}
+.bo ::-webkit-scrollbar{width:6px;height:6px}
+.bo ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+</style>
+</head>
+<body>
+<div class="app" id="app" data-tipo="movil" data-modo="completo"
+     style="--w:390;--h:844;--hv:844;--s:1">
+
+  <header class="barra">
+    <a class="volver" href="../index.html">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      <span>Todos los bocetos</span>
+    </a>
+    <span class="ruta" id="ruta"></span>
+    <span class="chip">Mesero</span>
+  </header>
+
+  <main class="escena">
+
+    <!-- ============ IZQUIERDA · simulador ============ -->
+    <section class="col" id="col">
+
+      <div class="herramientas" role="toolbar" aria-label="Visualización del boceto">
+        <div class="grupo-zoom">
+          <button type="button" class="tb ico" id="menos" title="Alejar  (−)" aria-label="Alejar">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+          </button>
+          <button type="button" class="tb pct" id="pct" title="Ajustar a la pantalla  (0)">100 %</button>
+          <button type="button" class="tb ico" id="mas" title="Acercar  (+)" aria-label="Acercar">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+        <button type="button" class="tb" id="uno" title="Tamaño real, 1 px del boceto = 1 px de pantalla  (1)">1:1</button>
+        <span class="medida" id="medida"></span>
+        <div class="fin">
+          <button type="button" class="tb" id="modo" hidden aria-pressed="false">Ver como pantalla real</button>
+          <button type="button" class="tb" id="cromo" aria-pressed="true" title="Marco, barra de estado y reflejos  (C)">Cromo</button>
+          <button type="button" class="tb" id="ficha" aria-pressed="false" title="Ocultar la descripción  (P)">Ocultar ficha</button>
+          <button type="button" class="tb pri" id="ampliar" aria-pressed="false" title="Ampliar  (F)">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            <span id="ampliar-txt">Ampliar</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="escenario" id="escenario" tabindex="0" aria-label="Boceto, se puede acercar y arrastrar">
+
+        <!-- El aparato NO lleva transform: su cromo se dibuja ya escalado con --s,
+             así que su caja de layout es la definitiva y no deja hueco. El único
+             transform de la página es el de .bo, y su padre .pantalla mide
+             exactamente ancho×escala por alto×escala. -->
+        <div class="aparato" id="aparato">
+
+          <span class="lat accion"    aria-hidden="true"></span>
+          <span class="lat vol-mas"   aria-hidden="true"></span>
+          <span class="lat vol-menos" aria-hidden="true"></span>
+          <span class="lat encendido" aria-hidden="true"></span>
+          <span class="lat camara"    aria-hidden="true"></span>
+
+          <div class="vidrio">
+
+            <div class="titulo-ventana" aria-hidden="true">
+              <span class="semaforo"><i></i><i></i><i></i></span>
+              <span class="pastilla" id="pastilla"></span>
+              <span class="tam" id="tam-ventana">390 &times; 844</span>
+            </div>
+
+            <div class="banda banda-sup" aria-hidden="true">
+              <span class="hora">9:41</span>
+              <span class="isla"><i></i></span>
+              <span class="estado">
+                <svg viewBox="0 0 17 12" width="17" height="12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="4.5" y="6" width="3" height="6" rx="1"/><rect x="9" y="3" width="3" height="9" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+                <svg viewBox="0 0 16 12" width="15" height="12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1 4.2a10 10 0 0114 0"/><path d="M3.6 7a6.4 6.4 0 018.8 0"/><path d="M6.2 9.7a2.7 2.7 0 013.6 0"/></svg>
+                <span class="pila"></span>
+              </span>
+            </div>
+
+            <!-- padre directo de .bo: mide ancho×escala por alto×escala -->
+            <div class="pantalla" id="pantalla">
+              <div class="bo" id="bo">
+<div style="position:relative;width:390px;height:844px;display:flex;flex-direction:column;background:var(--canvas);font-size:15px;overflow:hidden">
+
+  <div style="height:56px;flex-shrink:0;display:flex;align-items:center;gap:10px;padding:0 14px;background:var(--surface);border-bottom:1px solid var(--line)">
+    <div style="width:44px;height:44px;margin-left:-6px;border-radius:5px;background:var(--surface3);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg2)"><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+    <div style="display:flex;flex-direction:column;flex-grow:1;min-width:0">
+      <div style="font-size:16px;font-weight:600;line-height:20px">Mesa 7</div>
+      <div style="font-size:12px;color:var(--fg3);line-height:15px">Terraza · 4 comensales</div>
+    </div>
+    <span style="display:grid;place-items:center;flex-shrink:0;color:var(--fg3)" title="Pedidos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M7 2v9a3 3 0 006 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h3V2z"/></svg></span>
+    <div style="display:flex;align-items:center;gap:5px;height:28px;padding:0 9px;border-radius:3px;background:var(--success-soft);border:1px solid oklch(50% .120 155/.25)">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--success)"></span>
+      <span style="font-size:11px;font-weight:600;color:var(--success);letter-spacing:.01em">En el local</span>
+    </div>
+  </div>
+
+  <div style="flex-grow:1;display:flex;min-height:0">
+    <div style="width:84px;flex-shrink:0;background:var(--surface2);border-right:1px solid var(--line);overflow-y:auto">
+      <sc-for list="{{cats}}" as="c" hint-placeholder-count="5">
+        <div onClick="{{c.pick}}" style="{{c.style}}">
+          <span style="font-size:12px;font-weight:600;line-height:15px;text-align:center">{{c.nombre}}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="flex-grow:1;min-height:0;overflow-y:auto;background:var(--surface)">
+      <sc-for list="{{prods}}" as="p" hint-placeholder-count="6">
+        <div style="{{p.filaStyle}}">
+          <div onClick="{{p.add}}" style="{{p.zonaStyle}}">
+            <div style="display:flex;flex-direction:column;flex-grow:1;min-width:0;gap:3px">
+              <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+                <span style="font-size:15px;font-weight:500;line-height:19px">{{p.nombre}}</span>
+                <!-- AGOTADO: sigue en la lista, pero no se puede tocar. Sacarlo
+                     de la carta haría creer al mesero que ya no existe. -->
+                <sc-if value="{{p.agotado}}" hint-placeholder-val="{{false}}">
+                  <span style="display:inline-flex;align-items:center;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:500;line-height:16px;background:var(--surface3);color:var(--fg2);border:1px solid var(--line)">Agotado</span>
+                </sc-if>
+              </div>
+              <span style="font-family:var(--f-mono);font-size:12px;color:var(--fg3)">{{p.sku}}</span>
+              <!-- INGREDIENTE AGOTADO: el plato SÍ se puede pedir. Lo que cambia
+                   es que sale sin una de sus partes, y el mesero tiene que poder
+                   avisarlo ANTES de escribirlo, no cuando llegue el plato. -->
+              <sc-if value="{{p.sinIngrediente}}" hint-placeholder-val="{{false}}">
+                <span style="display:inline-flex;align-self:flex-start;align-items:center;gap:5px;padding:3px 7px;border-radius:3px;background:var(--warning-soft);border:1px solid oklch(56% .110 75/.28)">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--warning);flex-shrink:0"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M21.7 18l-8-14a2 2 0 00-3.5 0l-8 14A2 2 0 004 21h16a2 2 0 001.7-3z"/></svg>
+                  <span style="font-size:12px;font-weight:500;color:var(--warning)">{{p.avisoIngrediente}}</span>
+                </span>
+              </sc-if>
+            </div>
+            <span style="font-family:var(--f-mono);font-size:14px;font-weight:500;color:var(--fg2);white-space:nowrap">{{p.precio}}</span>
+          </div>
+          <div onClick="{{p.ver}}" style="width:48px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--fg3);cursor:pointer">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="flex-shrink:0;max-height:296px;display:flex;flex-direction:column;background:var(--surface);border-top:1px solid var(--line2);box-shadow:0 -4px 12px oklch(24% .018 235/.06)">
+
+    <div style="display:flex;align-items:center;gap:8px;height:38px;padding:0 14px;background:var(--surface2);border-bottom:1px solid var(--line)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3)"><polyline points="20 6 9 17 4 12"/></svg>
+      <span style="font-size:12px;font-weight:600;color:var(--fg3);letter-spacing:.06em;text-transform:uppercase">Enviado · 3 líneas</span>
+      <span style="font-family:var(--f-mono);font-size:12px;color:var(--fg3);margin-left:auto">19:42</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--fg3)"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-bottom:1px solid var(--line)">
+      <span style="font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.06em;text-transform:uppercase">Por enviar</span>
+      <span style="font-family:var(--f-mono);font-size:12px;color:var(--fg3);margin-left:auto">{{nPorEnviar}}</span>
+    </div>
+
+    <div style="flex-grow:1;overflow-y:auto;min-height:64px">
+      <sc-if value="{{vacio}}" hint-placeholder-val="{{false}}">
+        <div style="height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px">
+          <span style="font-size:14px;color:var(--fg3)">Toca un plato para agregarlo</span>
+          <span style="font-size:12px;color:var(--fg3)">Categoría → producto → enviar</span>
+        </div>
+      </sc-if>
+      <sc-for list="{{lineas}}" as="l" hint-placeholder-count="2">
+        <div style="display:flex;align-items:center;gap:8px;padding:9px 14px;border-bottom:1px solid var(--line);background:var(--accent-soft)">
+          <div style="display:flex;flex-direction:column;flex-grow:1;min-width:0;gap:1px">
+            <span style="font-size:14px;font-weight:500;line-height:18px">{{l.nombre}}</span>
+            <sc-if value="{{l.tieneCambios}}" hint-placeholder-val="{{true}}">
+              <span style="display:flex;flex-wrap:wrap;gap:0 8px;font-size:12px;line-height:16px">
+                <span style="font-weight:600;color:var(--danger)">SIN CEBOLLA</span>
+                <span style="font-weight:600;color:var(--warning)">DOBLE CHICHARRÓN</span>
+              </span>
+            </sc-if>
+            <span style="font-family:var(--f-mono);font-size:12px;color:var(--fg2)">{{l.subtotal}}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:2px;background:var(--surface);border:1px solid var(--line2);border-radius:5px;overflow:hidden">
+            <div onClick="{{l.dec}}" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--fg2)"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+            <span style="font-family:var(--f-mono);font-size:15px;font-weight:600;min-width:22px;text-align:center">{{l.cant}}</span>
+            <div onClick="{{l.inc}}" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:var(--fg2)"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+          </div>
+          <div onClick="{{l.del}}" style="width:48px;height:48px;margin-left:4px;display:flex;align-items:center;justify-content:center;border-radius:5px;cursor:pointer">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="color:var(--danger)"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="height:76px;flex-shrink:0;display:flex;align-items:center;padding:0 14px;background:var(--surface);border-top:1px solid var(--line)">
+    <div style="{{btnStyle}}">
+      <span style="font-size:16px;font-weight:600">{{btnTexto}}</span>
+    </div>
+  </div>
+
+
+  <sc-if value="{{hayFicha}}" hint-placeholder-val="{{true}}">
+    <div onClick="{{cerrarFondo}}" style="position:absolute;inset:0;z-index:50;display:flex;align-items:flex-end;background:oklch(24% .018 235/.40)">
+      <div style="width:100%;max-height:85%;display:flex;flex-direction:column;overflow:hidden;border-radius:12px 12px 0 0;background:var(--surface);box-shadow:0 -16px 32px oklch(24% .018 235/.14)">
+
+        <div style="flex-shrink:0;display:flex;justify-content:center;padding:10px 0 4px">
+          <span style="width:36px;height:4px;border-radius:2px;background:var(--line2)"></span>
+        </div>
+
+        <div style="flex-grow:1;min-height:0;overflow-y:auto">
+          <div style="width:100%;aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--surface3)">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="color:var(--fg3)"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span style="font-size:13px;color:var(--fg3)">Todavía sin foto</span>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:16px;padding:16px 18px 20px">
+            <div style="display:flex;align-items:flex-start;gap:12px">
+              <span style="flex-grow:1;font-size:20px;font-weight:600;line-height:26px;text-wrap:balance">{{ficha.nombre}}</span>
+              <span style="flex-shrink:0;padding-top:3px;font-family:var(--f-mono);font-size:16px;font-weight:600;white-space:nowrap">{{ficha.precio}}</span>
+            </div>
+
+            <sc-if value="{{ficha.hayDesc}}" hint-placeholder-val="{{true}}">
+              <span style="font-size:14px;line-height:22px;color:var(--fg2)">{{ficha.desc}}</span>
+            </sc-if>
+
+            <sc-if value="{{ficha.sinIngrediente}}" hint-placeholder-val="{{false}}">
+              <span style="display:inline-flex;align-self:flex-start;align-items:center;gap:6px;padding:6px 10px;border-radius:5px;background:var(--warning-soft);border:1px solid oklch(56% .110 75/.28)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--warning);flex-shrink:0"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M21.7 18l-8-14a2 2 0 00-3.5 0l-8 14A2 2 0 004 21h16a2 2 0 001.7-3z"/></svg>
+                <span style="font-size:13px;font-weight:500;color:var(--warning)">{{ficha.avisoIngrediente}} — avísale al cliente</span>
+              </span>
+            </sc-if>
+
+            <sc-if value="{{ficha.hayLleva}}" hint-placeholder-val="{{true}}">
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--fg3)">Lleva</span>
+                <div style="display:flex;flex-wrap:wrap;gap:6px">
+                  <sc-for list="{{ficha.lleva}}" as="parte" hint-placeholder-count="6">
+                    <span style="border-radius:3px;padding:4px 10px;font-size:13px;color:var(--fg2);background:var(--surface2);border:1px solid var(--line)">{{parte.nombre}}</span>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ficha.hayOpciones}}" hint-placeholder-val="{{true}}">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--fg3)">Se elige al pedirlo</span>
+                <sc-for list="{{ficha.opciones}}" as="g" hint-placeholder-count="2">
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <span style="font-size:14px;font-weight:500;line-height:19px">{{g.nombre}}</span>
+                    <span style="font-size:13px;line-height:18px;color:var(--fg3)">{{g.valores}}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ficha.pelado}}" hint-placeholder-val="{{false}}">
+              <span style="font-size:14px;color:var(--fg3)">De este plato no hay más detalle cargado todavía.</span>
+            </sc-if>
+          </div>
+        </div>
+
+        <div style="flex-shrink:0;display:flex;gap:10px;padding:12px 18px 16px;border-top:1px solid var(--line)">
+          <div onClick="{{cerrarFicha}}" style="height:52px;flex-shrink:0;display:flex;align-items:center;gap:6px;padding:0 16px;border-radius:5px;font-size:14px;font-weight:500;color:var(--fg2);border:1px solid var(--line);cursor:pointer">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            Cerrar
+          </div>
+          <div onClick="{{agregarDesdeFicha}}" style="height:52px;flex-grow:1;display:flex;align-items:center;justify-content:center;border-radius:5px;font-size:16px;font-weight:600;background:var(--accent);color:var(--accent-fg);border:1px solid var(--accent);cursor:pointer">Agregar al pedido</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+              </div>
+            </div>
+
+            <div class="banda banda-inf" aria-hidden="true"><span class="inicio"></span></div>
+
+            <span class="brillo" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DERECHA · qué hace esta pantalla ============ -->
+    <aside class="panel" id="panel" aria-label="Qué hace esta pantalla">
+
+      <div class="panel-cab">
+        <h1 class="panel-tit" id="panel-tit">2 · Toma de pedido</h1>
+        <p class="quien">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>La usa <b>Mesero</b></span>
+        </p>
+      </div>
+
+      <div class="panel-cuerpo" id="panel-cuerpo" tabindex="0">
+        <p class="resumen">La pantalla donde se arma el pedido de una mesa: categorías a la izquierda, platos a la derecha y abajo el carrito, con lo ya enviado y lo que todavía no se envía.</p>
+
+        <section class="bloque" id="b-puntos">
+          <h2 class="rotulo">Lo principal</h2>
+          <ul class="puntos" id="puntos"><li>Encabezado de la mesa: flecha para volver, «Mesa 7», «Terraza · 4 comensales» y el distintivo verde «En el local»</li><li>Tres zonas fijas: categorías (Frecuentes, Entradas, Fuertes, Bebidas, Postres), lista de platos con nombre, SKU y precio, y el carrito abajo</li><li>El plato agotado no se saca de la lista: la Mojarra frita se queda atenuada, con etiqueta «Agotado» y sin responder al toque, para que el mesero no la busque creyendo que se borró</li><li>Aviso ámbar en el plato cuando falta un ingrediente — Churrasco 300 g, «Hoy sale sin ensalada» — para avisarle al comensal antes de escribirlo, no cuando llegue el plato</li><li>El carrito separa «Enviado · 3 líneas» — colapsado, con la hora 19:42, eso ya está en cocina — de «Por enviar», donde sí se cambia cantidad con − / + o se borra la línea; los cambios salen en la misma línea: SIN CEBOLLA, DOBLE CHICHARRÓN</li><li>Con el carrito vacío el botón dice «Sin líneas por enviar» y en el hueco se lee «Toca un plato para agregarlo · Categoría → producto → enviar»; con líneas pasa a «Enviar N líneas · $total», y si la ubicación falla se bloquea en «Fuera del restaurante» (rojo) o «Señal imprecisa · ± 840 m» (ámbar)</li></ul>
+        </section>
+
+        <section class="bloque nota" id="b-nota"><h2 class="rotulo">Nota</h2><p>El ícono de información abre la ficha del plato en una hoja sobre la misma pantalla; mirar qué lleva un plato no obliga a salir de la toma de pedido.</p></section>
+
+        <section class="bloque" id="b-ficha">
+          <h2 class="rotulo">Ficha</h2>
+          <dl class="ficha">
+            <dt>Lienzo</dt><dd id="f-tam"></dd>
+            <dt>Se ve en</dt><dd id="f-tipo"></dd>
+            <dt>Escala</dt><dd id="f-esc"></dd>
+          </dl>
+        </section>
+
+        <p class="atajos">
+          <kbd>+</kbd><kbd>−</kbd> acercan · <kbd>0</kbd> ajusta · <kbd>1</kbd> tamaño real ·
+          <kbd>F</kbd> amplía · <kbd>P</kbd> oculta la ficha · <kbd>[</kbd><kbd>]</kbd> cambian de pantalla
+        </p>
+      </div>
+
+      <footer class="panel-pie" id="panel-pie"><a class="mov" rel="prev" href="1-salon.html"><span class="mov-dir">Anterior</span><span class="mov-tit">1 · Salón</span></a><a class="mov" rel="next" href="3-que-lleva-el-plato.html"><span class="mov-dir">Siguiente</span><span class="mov-tit">3 · Qué lleva el plato</span></a></footer>
+    </aside>
+
+  </main>
+</div>
+<script src="visor.js"></script>
+</body>
+</html>

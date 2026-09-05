@@ -15,6 +15,7 @@ mockups/salon-cocina-y-mesa.html
 
 # sistema
 .DS_Store
+__pycache__/
 node_modules/
 *.log
 docs/GUIA-01-RESPUESTAS.pdf

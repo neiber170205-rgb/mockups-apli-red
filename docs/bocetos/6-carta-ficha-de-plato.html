@@ -4,12 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>6 · Carta › Ficha de plato &middot; Pedidos</title>
-<meta name="description" content="Boceto de la pantalla «6 · Carta › Ficha de plato» del sistema de pedidos para restaurantes.">
+<meta name="description" content="Ficha de la Bandeja paisa, pestaña General: foto, SKU, nombre, descripción, categoría, estación, precio y los interruptores que deciden dónde se ve el plato.">
 <meta name="robots" content="noindex">
-
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
-  <style>
-    :root{
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="visor.css">
+<style>
+/* --- CSS del boceto, acotado a .bo por acota_css() --- */
+.bo{
       --canvas:oklch(98.5% .004 220); --surface:oklch(100% 0 0); --surface2:oklch(96.8% .005 220); --surface3:oklch(93.8% .007 220);
       --line:oklch(91.5% .007 220); --line2:oklch(84.5% .010 220);
       --fg:oklch(24% .018 235); --fg2:oklch(47% .014 235); --fg3:oklch(60% .012 235);
@@ -22,29 +24,113 @@
       --sh-sm:0 1px 2px oklch(24% .018 235/.06); --sh-md:0 4px 12px oklch(24% .018 235/.10);
       --f-sans:"Inter",system-ui,-apple-system,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
     }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
-    a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
-    ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
-  </style>
-
+.bo *{box-sizing:border-box}
+.bo{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
+.bo a{color:var(--accent);text-decoration:none}
+.bo a:hover{color:var(--accent-hover)}
+.bo ::-webkit-scrollbar{width:6px;height:6px}
+.bo ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+/* --- Tabla HIJA ------------------------------------------------------
+       Va DENTRO de una sección de formulario o de una ficha, y describe las
+       filas que le pertenecen al registro que se está editando.
+       DELIBERADAMENTE distinta de la DataTable de página: sin caja propia,
+       sin cabecera oscura, cabecera como rótulo y no como barra, filas más
+       bajas, y una fila «Añadir …» que la DataTable nunca tiene.
+       Al pasar a React esto es <TablaHija>, NO una variante de <DataTable>.
+       Ver api/notas/tabla-hija-componente.md */
+    .th-hija{width:100%;border-collapse:collapse}
+.th-hija thead th{
+      height:26px;padding:0 10px;background:var(--surface);
+      border-bottom:1px solid var(--line2);
+      font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+      color:var(--fg3);white-space:nowrap;text-align:left;vertical-align:middle}
+.th-hija tbody td{
+      height:34px;padding:0 10px;vertical-align:middle;
+      font-size:13px;color:var(--fg2);border-bottom:1px solid var(--line)}
+.th-hija tbody tr:last-child td{border-bottom:0}
+.th-hija tbody td:first-child{color:var(--fg);font-weight:500}
+.th-hija tr.th-anadir td{border-top:1px dashed var(--line2);border-bottom:0;
+      color:var(--accent);font-weight:500}
+.th-hija tr.th-vacio td{height:56px;text-align:center;color:var(--fg3);font-size:12px;border-bottom:0}
+.th-hija--fija thead th{position:sticky;top:0;z-index:1}
+</style>
 </head>
 <body>
-<div class="barra-guia">
-  <a href="../index.html">&#8592; Todos los bocetos</a>
-  <span class="sep">&middot;</span><strong>6 · Carta › Ficha de plato</strong>
-  <span class="mod">Administración</span>
-</div>
-<style>
-  .barra-guia{position:sticky;top:0;z-index:99;display:flex;align-items:center;gap:10px;
-    padding:10px 16px;background:#12263b;color:#e8eef5;font:500 13px/1.4 system-ui,sans-serif}
-  .barra-guia a{color:#9ec5e8;text-decoration:none} .barra-guia a:hover{text-decoration:underline}
-  .barra-guia .sep{opacity:.45} .barra-guia .mod{margin-left:auto;opacity:.65;font-weight:400}
-  body{display:flex;flex-direction:column;align-items:center}
-  body > *:not(.barra-guia):not(style){margin:22px auto;box-shadow:0 6px 28px rgba(10,25,45,.16);
-    border-radius:10px;overflow:hidden;flex-shrink:0}
-</style>
+<div class="app" id="app" data-tipo="escritorio" data-modo="completo"
+     style="--w:1280;--h:820;--hv:820;--s:1">
 
+  <header class="barra">
+    <a class="volver" href="../index.html">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      <span>Todos los bocetos</span>
+    </a>
+    <span class="ruta" id="ruta"></span>
+    <span class="chip">Administración</span>
+  </header>
+
+  <main class="escena">
+
+    <!-- ============ IZQUIERDA · simulador ============ -->
+    <section class="col" id="col">
+
+      <div class="herramientas" role="toolbar" aria-label="Visualización del boceto">
+        <div class="grupo-zoom">
+          <button type="button" class="tb ico" id="menos" title="Alejar  (−)" aria-label="Alejar">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+          </button>
+          <button type="button" class="tb pct" id="pct" title="Ajustar a la pantalla  (0)">100 %</button>
+          <button type="button" class="tb ico" id="mas" title="Acercar  (+)" aria-label="Acercar">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+        <button type="button" class="tb" id="uno" title="Tamaño real, 1 px del boceto = 1 px de pantalla  (1)">1:1</button>
+        <span class="medida" id="medida"></span>
+        <div class="fin">
+          <button type="button" class="tb" id="modo" hidden aria-pressed="false">Ver como pantalla real</button>
+          <button type="button" class="tb" id="cromo" aria-pressed="true" title="Marco, barra de estado y reflejos  (C)">Cromo</button>
+          <button type="button" class="tb" id="ficha" aria-pressed="false" title="Ocultar la descripción  (P)">Ocultar ficha</button>
+          <button type="button" class="tb pri" id="ampliar" aria-pressed="false" title="Ampliar  (F)">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            <span id="ampliar-txt">Ampliar</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="escenario" id="escenario" tabindex="0" aria-label="Boceto, se puede acercar y arrastrar">
+
+        <!-- El aparato NO lleva transform: su cromo se dibuja ya escalado con --s,
+             así que su caja de layout es la definitiva y no deja hueco. El único
+             transform de la página es el de .bo, y su padre .pantalla mide
+             exactamente ancho×escala por alto×escala. -->
+        <div class="aparato" id="aparato">
+
+          <span class="lat accion"    aria-hidden="true"></span>
+          <span class="lat vol-mas"   aria-hidden="true"></span>
+          <span class="lat vol-menos" aria-hidden="true"></span>
+          <span class="lat encendido" aria-hidden="true"></span>
+          <span class="lat camara"    aria-hidden="true"></span>
+
+          <div class="vidrio">
+
+            <div class="titulo-ventana" aria-hidden="true">
+              <span class="semaforo"><i></i><i></i><i></i></span>
+              <span class="pastilla" id="pastilla"></span>
+              <span class="tam" id="tam-ventana">1280 &times; 820</span>
+            </div>
+
+            <div class="banda banda-sup" aria-hidden="true">
+              <span class="hora">9:41</span>
+              <span class="isla"><i></i></span>
+              <span class="estado">
+                <svg viewBox="0 0 17 12" width="17" height="12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="4.5" y="6" width="3" height="6" rx="1"/><rect x="9" y="3" width="3" height="9" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+                <svg viewBox="0 0 16 12" width="15" height="12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1 4.2a10 10 0 0114 0"/><path d="M3.6 7a6.4 6.4 0 018.8 0"/><path d="M6.2 9.7a2.7 2.7 0 013.6 0"/></svg>
+                <span class="pila"></span>
+              </span>
+            </div>
+
+            <!-- padre directo de .bo: mide ancho×escala por alto×escala -->
+            <div class="pantalla" id="pantalla">
+              <div class="bo" id="bo">
 <div style="width:1280px;height:820px;display:flex;flex-direction:column;background:var(--canvas);font-size:13px;overflow:hidden">
   <div style="flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--line)">
     <div style="display:flex;align-items:center;gap:12px;padding:0 12px;height:48px">
@@ -139,7 +225,7 @@
         Colapsar
       </div>
     </div>
-    <div style="flex:1;min-width:0;min-height:0;overflow:hidden;padding:16px">
+    <div style="flex:1;min-width:0;min-height:0;overflow:hidden;padding:16px;display:flex;flex-direction:column">
 
   <div style="flex-shrink:0;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding:14px 24px 12px;background:var(--canvas);border-bottom:1px solid var(--line)">
     <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
@@ -159,7 +245,7 @@
     </div>
   </div>
 
-  <div style="flex-grow:1;overflow:auto;padding:18px 24px 32px;display:flex;flex-direction:column;gap:22px">
+  <div style="flex-grow:1;min-height:0;overflow-y:auto;padding:18px 24px 32px;display:flex;flex-direction:column;gap:22px">
 
       <!-- PESTAÑAS, no un scroll de cinco secciones — como el FormularioItem
            del ERP. Y con su doctrina: «nunca pestañas con menos de tres grupos»,
@@ -173,9 +259,7 @@
            eso cada lengüeta lleva su contador —aquí sale el número de partes y
            de grupos, que es el mismo sitio donde iría el de errores. -->
       <div style="display:flex;align-items:center;gap:4px;border-bottom:1px solid var(--line);flex-shrink:0;overflow-x:auto">
-        <span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid var(--accent);color:var(--accent);font-weight:500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M16.5 9.4 7.5 4.2"/><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>General</span>
-        <span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid transparent;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="m12.8 2.5 7.4 4.3a1.6 1.6 0 0 1 0 2.8l-7.4 4.3a1.6 1.6 0 0 1-1.6 0L3.8 9.6a1.6 1.6 0 0 1 0-2.8l7.4-4.3a1.6 1.6 0 0 1 1.6 0z"/><path d="m22 17.6-9.2 5.3a1.6 1.6 0 0 1-1.6 0L2 17.6"/><path d="m22 12.6-9.2 5.3a1.6 1.6 0 0 1-1.6 0L2 12.6"/></svg>Receta<span style="font-size:11px;color:var(--fg3);font-variant-numeric:tabular-nums">10</span></span>
-        <span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid transparent;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M9 5H2v7l6.3 6.3a2.4 2.4 0 0 0 3.4 0l4.6-4.6a2.4 2.4 0 0 0 0-3.4L9 5z"/><circle cx="5.5" cy="8.5" r="1"/></svg>Qué se elige al pedirlo<span style="font-size:11px;color:var(--fg3);font-variant-numeric:tabular-nums">2</span></span>
+        <span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid var(--accent);color:var(--accent);font-weight:600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M16.5 9.4 7.5 4.2"/><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>General</span><span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid transparent;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="m12.8 2.5 7.4 4.3a1.6 1.6 0 0 1 0 2.8l-7.4 4.3a1.6 1.6 0 0 1-1.6 0L3.8 9.6a1.6 1.6 0 0 1 0-2.8l7.4-4.3a1.6 1.6 0 0 1 1.6 0z"/><path d="m22 17.6-9.2 5.3a1.6 1.6 0 0 1-1.6 0L2 17.6"/></svg>Receta<span style="font-size:11px;color:var(--fg3);font-variant-numeric:tabular-nums">10</span></span><span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid transparent;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></svg>Qué se elige al pedirlo<span style="font-size:11px;color:var(--fg3);font-variant-numeric:tabular-nums">2</span></span><span style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;margin-bottom:-1px;white-space:nowrap;font-size:13px;border-bottom:2px solid transparent;color:var(--fg2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Historial<span style="font-size:11px;color:var(--fg3);font-variant-numeric:tabular-nums">17</span></span>
       </div>
 
       <div style="min-width:0;display:flex;flex-direction:column;gap:22px">
@@ -252,111 +336,64 @@
       </div>
     </div>
       </div>
-      <div style="display:none;min-width:0;display:flex;flex-direction:column;gap:22px">
-<div style="display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:8px;background:var(--surface);border:1px solid var(--line)">
-      <div>
-        <span style="font-size:13px;font-weight:600">Receta</span>
-        <p style="margin:0;padding-top:2px;font-size:12px;color:var(--fg3);max-width:700px">De qué está hecho, eligiendo ingredientes que YA EXISTEN en el catálogo — no escribiendo nombres. Así «cebolla» es una sola cosa y se puede preguntar qué platos la llevan. En el pedido solo se guarda lo que se desvía de esta lista.</p>
-      </div>
-      <div style="border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)">
-        <table style="width:100%;border-collapse:collapse">
-          <thead>
-            <tr style="height:32px;background:var(--thead-bg)">
-              <th style="font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--thead-fg);padding:0 12px;text-align:left;white-space:nowrap">Ingrediente</th>
-              <th style="font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--thead-fg);padding:0 12px;text-align:left;white-space:nowrap;width:130px;text-align:center">Viene puesta</th>
-              <th style="font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--thead-fg);padding:0 12px;text-align:left;white-space:nowrap;width:130px;text-align:center">Se puede quitar</th>
-              <th style="font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--thead-fg);padding:0 12px;text-align:left;white-space:nowrap;width:150px;text-align:right">Precio del doble</th>
-              <th style="font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--thead-fg);padding:0 12px;text-align:left;white-space:nowrap;width:56px"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="height:32px;border-bottom:1px solid var(--line)"><td style="padding:0 12px">Frijoles</td><td style="padding:0 12px;text-align:center"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:3px;background:var(--accent);color:var(--accent-fg)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td><td style="padding:0 12px;text-align:center"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:3px;background:var(--accent);color:var(--accent-fg)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td><td style="padding:0 12px;text-align:right;font-family:var(--f-mono);">5.000</td><td style="padding:0 12px;text-align:center;color:var(--fg3)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="display:inline"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg></td></tr>
-            <tr style="height:32px;border-bottom:1px solid var(--line)"><td style="padding:0 12px">Arroz</td><td style="padding:0 12px;text-align:center"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:3px;background:var(--accent);color:var(--accent-fg)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td><td style="padding:0 12px;text-align:center"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:3px;background:var(--accent);color:var(--accent-fg)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td><td style="padding:0 12px;text-align:right;font-family:var(--f-mono);color:var(--fg3)">—</td><td style="padding:0 12px;text-align:center;color:var(--fg3)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="display:inline"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg></td></tr>
-            <tr style="height:32px;border-bottom:1px solid var(--line)"><td style="padding:0 12px">Chicharrón</td><td style="padding:0 12px;text-align:center"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:3px;background:var(--accent);color:var(--accent-fg)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td><td style="padding:0 12px;text-align:center"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:3px;background:var(--accent);color:var(--accent-fg)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td><td style="padding:0 12px;text-align:right;font-family:var(--f-mono);">6.000</td><td style="padding:0 12px;text-align:center;color:var(--fg3)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="display:inline"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg></td></tr>
-            <tr style="height:32px;border-bottom:1px solid var(--line)"><td style="padding:0 12px">Chorizo</td><td style="padding:0 12px;text-align:center"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:3px;background:var(--accent);color:var(--accent-fg)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td><td style="padding:0 12px;text-align:center"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:3px;background:var(--accent);color:var(--accent-fg)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span></td><td style="padding:0 12px;text-align:right;font-family:var(--f-mono);">5.000</td><td style="padding:0 12px;text-align:center;color:var(--fg3)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="display:inline"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg></td></tr>
-            <tr style="height:36px"><td colspan="5" style="padding:0 12px">
-              <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--accent)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                Añadir ingrediente
-              </span>
-              <span style="padding-left:14px;font-size:12px;color:var(--fg3)">6 más: Carne molida, Huevo frito, Tajadas de plátano, Arepa, Aguacate, Cebolla</span>
-            </td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-      </div>
-      <div style="display:none;min-width:0;display:flex;flex-direction:column;gap:22px">
-
-<div style="display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:8px;background:var(--surface);border:1px solid var(--line)">
-      <div>
-        <span style="font-size:13px;font-weight:600">Qué se elige al pedirlo</span>
-        <p style="margin:0;padding-top:2px;font-size:12px;color:var(--fg3);max-width:700px">Esto SÍ hay que elegirlo: sin el término, la cocina no sabe qué hacer.</p>
-      </div>
-      <!-- ESTO ES UN INTERRUPTOR DE VERDAD, no algo deducido.
-           La primera versión de esta ficha decía «se deduce de los grupos», y
-           era falso y además peligroso: la hoja de opciones es el ÚNICO sitio
-           del sistema donde se quitan y se doblan las PARTES, así que un plato
-           sin ningún grupo obligatorio la necesita igual. Con aquella regla, el
-           sancocho y la mojarra —que hoy la abren y no tienen grupos— se
-           habrían agregado de un toque, y sus nueve partes se habrían quedado
-           sin forma de pedirse: nadie podría decir «sin cilantro». -->
-      <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px">
-        <div style="grid-column:span 5;display:flex;flex-direction:column;gap:5px">
-          <span style="font-size:12px;font-weight:500;color:var(--fg2)">Al tocarlo, abrir la hoja</span>
-          <div style="display:flex;align-items:center;gap:11px;height:32px">
-            <span style="width:36px;height:20px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);display:flex;align-items:center;justify-content:flex-end;padding:0 2px;box-sizing:border-box">
-              <span style="width:14px;height:14px;border-radius:50%;background:var(--surface)"></span>
-            </span>
-            <span style="font-size:13px;color:var(--fg2)">Pide opciones antes de agregarlo</span>
-          </div>
-        </div>
-        <div style="grid-column:span 7;display:flex;align-items:flex-end">
-          <span style="font-size:11px;line-height:16px;color:var(--fg3)">Enciéndelo si el plato tiene algo que ELEGIR —el término— o partes que se puedan quitar. Apagado, el mesero lo agrega de un toque y no hay forma de personalizarlo.</span>
-        </div>
-      </div>
-      <div style="border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)">
-        <table style="width:100%;border-collapse:collapse">
-          <thead>
-            <tr style="height:32px;background:var(--thead-bg)">
-              <th style="font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--thead-fg);padding:0 12px;text-align:left;white-space:nowrap">Grupo</th>
-              <th style="font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--thead-fg);padding:0 12px;text-align:left;white-space:nowrap;width:90px;text-align:center">Mín.</th>
-              <th style="font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--thead-fg);padding:0 12px;text-align:left;white-space:nowrap;width:90px;text-align:center">Máx.</th>
-              <th style="font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--thead-fg);padding:0 12px;text-align:left;white-space:nowrap">Opciones</th>
-              <th style="font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--thead-fg);padding:0 12px;text-align:left;white-space:nowrap;width:56px"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="height:32px;border-bottom:1px solid var(--line)">
-              <td style="padding:0 12px;font-weight:500">Término de la carne</td>
-              <td style="padding:0 12px;text-align:center;font-family:var(--f-mono);font-size:12px">1</td>
-              <td style="padding:0 12px;text-align:center;font-family:var(--f-mono);font-size:12px">1</td>
-              <td style="padding:0 12px;color:var(--fg2)">Tres cuartos · Bien asada · Término medio</td>
-              <td style="padding:0 12px;text-align:center;color:var(--fg3)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="display:inline"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg></td>
-            </tr>
-            <tr style="height:32px;border-bottom:1px solid var(--line)">
-              <td style="padding:0 12px;font-weight:500">Adiciones</td>
-              <td style="padding:0 12px;text-align:center;font-family:var(--f-mono);font-size:12px">0</td>
-              <td style="padding:0 12px;text-align:center;font-family:var(--f-mono);font-size:12px">3</td>
-              <td style="padding:0 12px;color:var(--fg2)">Chicharrón extra +6.000 · Aguacate +4.000 · Sin cebolla</td>
-              <td style="padding:0 12px;text-align:center;color:var(--fg3)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="display:inline"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg></td>
-            </tr>
-            <tr style="height:36px"><td colspan="5" style="padding:0 12px">
-              <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--accent)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                Añadir grupo
-              </span>
-            </td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-      </div>
+      
+      
   </div>
     </div>
   </div>
 </div>
+              </div>
+            </div>
+
+            <div class="banda banda-inf" aria-hidden="true"><span class="inicio"></span></div>
+
+            <span class="brillo" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DERECHA · qué hace esta pantalla ============ -->
+    <aside class="panel" id="panel" aria-label="Qué hace esta pantalla">
+
+      <div class="panel-cab">
+        <h1 class="panel-tit" id="panel-tit">6 · Carta › Ficha de plato</h1>
+        <p class="quien">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>La usa <b>Administrador</b></span>
+        </p>
+      </div>
+
+      <div class="panel-cuerpo" id="panel-cuerpo" tabindex="0">
+        <p class="resumen">Ficha de la Bandeja paisa, pestaña General: foto, SKU, nombre, descripción, categoría, estación, precio y los interruptores que deciden dónde se ve el plato.</p>
+
+        <section class="bloque" id="b-puntos">
+          <h2 class="rotulo">Lo principal</h2>
+          <ul class="puntos" id="puntos"><li>Cuatro pestañas: General —la abierta—, Receta (10), Qué se elige al pedirlo (2) e Historial (17); el contador solo lo llevan las tres últimas.</li><li>Identificación: foto, SKU FUE-01, nombre y descripción — la foto y la descripción son lo que ve el comensal en la carta del QR; el mesero, que se sabe el menú, ve solo nombre y SKU.</li><li>La foto todavía no está: marco vacío con «Todavía sin foto», botón Subir foto y la regla de JPG o PNG desde 1200 px. La misma imagen se recorta cuadrada en la lista de la carta y 16:10 en la ficha.</li><li>En la descripción no van los ingredientes: eso ya lo dice el desglose, y repetirlo hace que la ficha diga dos veces lo mismo.</li><li>Categoría Fuertes, estación Cocina caliente y precio 38.000: la estación decide en qué pantalla de cocina cae, el precio se congela en la línea del pedido y el impuesto queda fuera del alcance por ahora.</li><li>Tres interruptores separados, los tres encendidos: Disponible hoy —manual, no un contador de existencias, con el último apagón: ayer 9:12 p. m., Marta desde cocina—, Visible en la carta del QR y Activo, que es baja lógica.</li></ul>
+        </section>
+
+        <section class="bloque nota" id="b-nota"><h2 class="rotulo">Nota</h2><p>Pestañas en vez de un scroll largo, con la regla de no usarlas con menos de tres grupos. El contador de la lengüeta ocupa el sitio donde saldría el de errores: si al guardar falla algo en una pestaña que no estás mirando, ahí se ve.</p></section>
+
+        <section class="bloque" id="b-ficha">
+          <h2 class="rotulo">Ficha</h2>
+          <dl class="ficha">
+            <dt>Lienzo</dt><dd id="f-tam"></dd>
+            <dt>Se ve en</dt><dd id="f-tipo"></dd>
+            <dt>Escala</dt><dd id="f-esc"></dd>
+          </dl>
+        </section>
+
+        <p class="atajos">
+          <kbd>+</kbd><kbd>−</kbd> acercan · <kbd>0</kbd> ajusta · <kbd>1</kbd> tamaño real ·
+          <kbd>F</kbd> amplía · <kbd>P</kbd> oculta la ficha · <kbd>[</kbd><kbd>]</kbd> cambian de pantalla
+        </p>
+      </div>
+
+      <footer class="panel-pie" id="panel-pie"><a class="mov" rel="prev" href="5-carta-platos.html"><span class="mov-dir">Anterior</span><span class="mov-tit">5 · Carta › Platos</span></a><a class="mov" rel="next" href="6a-carta-ficha-de-plato-receta.html"><span class="mov-dir">Siguiente</span><span class="mov-tit">6a · Carta › Ficha de plato › Receta</span></a></footer>
+    </aside>
+
+  </main>
+</div>
+<script src="visor.js"></script>
 </body>
 </html>

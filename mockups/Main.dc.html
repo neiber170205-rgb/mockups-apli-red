@@ -54,7 +54,7 @@
       </sc-for>
     </div>
 
-    <div style="flex-grow:1;overflow-y:auto;background:var(--surface)">
+    <div style="flex-grow:1;min-height:0;overflow-y:auto;background:var(--surface)">
       <sc-for list="{{prods}}" as="p" hint-placeholder-count="6">
         <div style="{{p.filaStyle}}">
           <div onClick="{{p.add}}" style="{{p.zonaStyle}}">

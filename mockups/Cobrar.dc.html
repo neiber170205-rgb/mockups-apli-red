@@ -26,6 +26,30 @@
     body{margin:0;font-family:var(--f-sans);background:var(--canvas);color:var(--fg);-webkit-font-smoothing:antialiased}
     a{color:var(--accent);text-decoration:none} a:hover{color:var(--accent-hover)}
     ::-webkit-scrollbar{width:6px;height:6px} ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+  
+    /* --- Tabla HIJA ------------------------------------------------------
+       Va DENTRO de una sección de formulario o de una ficha, y describe las
+       filas que le pertenecen al registro que se está editando.
+       DELIBERADAMENTE distinta de la DataTable de página: sin caja propia,
+       sin cabecera oscura, cabecera como rótulo y no como barra, filas más
+       bajas, y una fila «Añadir …» que la DataTable nunca tiene.
+       Al pasar a React esto es <TablaHija>, NO una variante de <DataTable>.
+       Ver api/notas/tabla-hija-componente.md */
+    .th-hija{width:100%;border-collapse:collapse}
+    .th-hija thead th{
+      height:26px;padding:0 10px;background:var(--surface);
+      border-bottom:1px solid var(--line2);
+      font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+      color:var(--fg3);white-space:nowrap;text-align:left;vertical-align:middle}
+    .th-hija tbody td{
+      height:34px;padding:0 10px;vertical-align:middle;
+      font-size:13px;color:var(--fg2);border-bottom:1px solid var(--line)}
+    .th-hija tbody tr:last-child td{border-bottom:0}
+    .th-hija tbody td:first-child{color:var(--fg);font-weight:500}
+    .th-hija tr.th-anadir td{border-top:1px dashed var(--line2);border-bottom:0;
+      color:var(--accent);font-weight:500}
+    .th-hija tr.th-vacio td{height:56px;text-align:center;color:var(--fg3);font-size:12px;border-bottom:0}
+    .th-hija--fija thead th{position:sticky;top:0;z-index:1}
   </style>
 </helmet>
 <div style="width:1280px;height:820px;display:flex;flex-direction:column;background:var(--canvas);font-size:13px;overflow:hidden">
@@ -96,7 +120,7 @@
         <span style="font-size:12px;line-height:16px;color:var(--fg3)"><b style="font-weight:600;color:var(--fg2)">Cajero.</b> Dos módulos. No ve la carta ni puede tocar precios: los de la cuenta vienen congelados del pedido.</span>
       </div>
     </div>
-    <div style="flex:1;min-width:0;min-height:0;overflow:hidden;padding:16px">
+    <div style="flex:1;min-width:0;min-height:0;overflow:hidden;padding:16px;display:flex;flex-direction:column">
       <div style="display:flex;flex-direction:column;min-height:0;gap:8px;height:100%">
         <div style="flex-shrink:0;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:1px solid var(--line)">
           <div style="min-width:0">
@@ -111,45 +135,45 @@
 
         <div style="flex:1;min-height:0;display:grid;grid-template-columns:1fr 380px;gap:16px;padding-top:8px">
 
-          <div style="min-width:0;display:flex;flex-direction:column;gap:10px;overflow:auto">
-            <div style="border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)">
-              <table style="width:100%;border-collapse:collapse">
+          <div style="min-width:0;min-height:0;display:flex;flex-direction:column;gap:10px;overflow:auto">
+            <div style="padding:2px 14px 4px;border:1px solid var(--line);border-radius:8px;background:var(--surface)">
+              <table class="th-hija">
                 <thead><tr>
-                  <th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:60px">Cant.</th><th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left">Plato</th>
-                  <th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:110px;text-align:right"><span style="display:flex;justify-content:flex-end;align-items:center;height:100%">Unitario</span></th>
-                  <th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:120px;text-align:right"><span style="display:flex;justify-content:flex-end;align-items:center;height:100%">Total</span></th>
-                  <th style="background:var(--thead-bg);border-bottom:1px solid var(--line2);height:36px;padding:0 12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.025em;color:var(--thead-fg);white-space:nowrap;text-align:left;width:80px"></th>
+                  <th style="width:60px">Cant.</th><th>Plato</th>
+                  <th style="width:110px;text-align:right"><span style="display:flex;justify-content:flex-end;align-items:center;height:100%">Unitario</span></th>
+                  <th style="width:120px;text-align:right"><span style="display:flex;justify-content:flex-end;align-items:center;height:100%">Total</span></th>
+                  <th style="width:80px"></th>
                 </tr></thead>
                 <tbody>
-              <tr style="border-bottom:1px solid var(--line)">
-                <td style="padding:8px 12px;vertical-align:top;font-family:var(--f-mono);font-size:13px;color:var(--fg2)">3×</td>
-                <td style="padding:8px 12px;vertical-align:top">
+              <tr>
+                <td style="font-family:var(--f-mono);color:var(--fg2)">3×</td>
+                <td>
                   <span style="font-size:13px;font-weight:500">Bandeja paisa</span>
                   <div style="padding-top:2px;font-size:11px;color:var(--fg3)">Sin aguacate · sin cebolla</div>
                 </td>
-                <td style="padding:8px 12px;vertical-align:top;text-align:right"><span style="font-size:12px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--fg2)">38.000</span></td>
-                <td style="padding:8px 12px;vertical-align:top;text-align:right"><span style="font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg)">114.000</span></td>
-                <td style="padding:8px 12px;vertical-align:top;text-align:center"><span style="font-size:12px;color:var(--fg3)">Anular</span></td>
+                <td style="text-align:right"><span style="font-size:12px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--fg2)">38.000</span></td>
+                <td style="text-align:right"><span style="font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg)">114.000</span></td>
+                <td style="text-align:center"><span style="font-size:12px;color:var(--fg3)">Anular</span></td>
               </tr>
-              <tr style="border-bottom:1px solid var(--line)">
-                <td style="padding:8px 12px;vertical-align:top;font-family:var(--f-mono);font-size:13px;color:var(--fg2)">1×</td>
-                <td style="padding:8px 12px;vertical-align:top">
+              <tr>
+                <td style="font-family:var(--f-mono);color:var(--fg2)">1×</td>
+                <td>
                   <span style="font-size:13px;font-weight:500">Churrasco 300 g</span>
                   <div style="padding-top:2px;font-size:11px;color:var(--fg3)">Término medio</div>
                 </td>
-                <td style="padding:8px 12px;vertical-align:top;text-align:right"><span style="font-size:12px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--fg2)">46.000</span></td>
-                <td style="padding:8px 12px;vertical-align:top;text-align:right"><span style="font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg)">46.000</span></td>
-                <td style="padding:8px 12px;vertical-align:top;text-align:center"><span style="font-size:12px;color:var(--fg3)">Anular</span></td>
+                <td style="text-align:right"><span style="font-size:12px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--fg2)">46.000</span></td>
+                <td style="text-align:right"><span style="font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg)">46.000</span></td>
+                <td style="text-align:center"><span style="font-size:12px;color:var(--fg3)">Anular</span></td>
               </tr>
-              <tr style="border-bottom:1px solid var(--line)">
-                <td style="padding:8px 12px;vertical-align:top;font-family:var(--f-mono);font-size:13px;color:var(--fg2)">3×</td>
-                <td style="padding:8px 12px;vertical-align:top">
+              <tr>
+                <td style="font-family:var(--f-mono);color:var(--fg2)">3×</td>
+                <td>
                   <span style="font-size:13px;font-weight:500">Limonada de coco</span>
                   
                 </td>
-                <td style="padding:8px 12px;vertical-align:top;text-align:right"><span style="font-size:12px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--fg2)">12.000</span></td>
-                <td style="padding:8px 12px;vertical-align:top;text-align:right"><span style="font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg)">36.000</span></td>
-                <td style="padding:8px 12px;vertical-align:top;text-align:center"><span style="font-size:12px;color:var(--fg3)">Anular</span></td>
+                <td style="text-align:right"><span style="font-size:12px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--fg2)">12.000</span></td>
+                <td style="text-align:right"><span style="font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg)">36.000</span></td>
+                <td style="text-align:center"><span style="font-size:12px;color:var(--fg3)">Anular</span></td>
               </tr>
                 </tbody>
               </table>
