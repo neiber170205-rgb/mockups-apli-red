@@ -14,10 +14,12 @@
   --line2:#cfd7dc;
   --fg:#16232f;
   --fg2:#5a6b7a;
-  --fg3:#7d8b98;
+  /* Oscurecidos para pasar AA: #7d8b98 daba 3,30:1 en los títulos de sección
+     (sobre --canvas) y 3,49:1 en «Sede Centro» (sobre blanco); ahora 4,58 y 4,84. */
+  --fg3:#68737e;
   --acento:#0f766e;
   --acento-suave:#e6f2f0;
-  --exito:#1a7f4b;
+  --exito:#197c4a;   /* 4,44:1 sobre --exito-suave se quedaba corto; ahora 4,61 */
   --exito-suave:#e7f4ec;
   --aviso:#8a5a00;
   --aviso-suave:#fdf3dc;
@@ -25,6 +27,10 @@
 }
 
 *{ box-sizing:border-box }
+
+/* La nav de secciones es sticky: sin esto, al pulsar «Bebidas» el <h2> aterriza
+   DEBAJO de la barra y no se ve. La barra mide ~72 px a 390 px de ancho. */
+html{ scroll-padding-top:72px }
 
 body{
   margin:0;

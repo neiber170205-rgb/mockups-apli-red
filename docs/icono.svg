@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Fondo a sangre: en modo «maskable» el sistema recorta los bordes, así que
+       el dibujo se mantiene dentro del 80% central. -->
+  <rect width="512" height="512" fill="oklch(22% 0.012 235)"/>
+  <g fill="none" stroke="oklch(72% 0.14 200)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Campana de servir: la silueta más reconocible de una cocina a tamaño de icono -->
+    <path d="M136 288a120 120 0 0 1 240 0"/>
+    <path d="M104 288h304"/>
+    <path d="M256 168v-32"/>
+    <circle cx="256" cy="120" r="18" fill="oklch(72% 0.14 200)" stroke="none"/>
+    <path d="M152 336h208" stroke="oklch(72% 0.13 155)"/>
+  </g>
+</svg>
