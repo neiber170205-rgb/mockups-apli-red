@@ -20,4 +20,9 @@ node_modules/
 *.log
 docs/GUIA-01-RESPUESTAS.pdf
 docs/GUIA-01-RESPUESTAS.md
+docs/REQUERIMIENTOS.md
+docs/REQUERIMIENTOS.pdf
+docs/informe/
+docs/Normas-APA2.pdf
+docs/Estructura vs Funcionalidad.pdf
 .gitignore

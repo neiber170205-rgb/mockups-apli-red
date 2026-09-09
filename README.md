@@ -26,7 +26,8 @@ explicación de la pantalla al lado, zoom y un botón para ampliar.
 ```
 docs/            el sitio que publica GitHub Pages  ← GENERADO
   index.html       galería agrupada por rol
-  carta/           la primera página construida en HTML5
+  carta/           la carta construida en HTML5 · versión 1.0, la auditada
+  carta-v2/        la misma carta reconstruida · versión 2.0
   bocetos/         una página por pantalla, con simulador y descripción
     visor.css        el visor: simulador, zoom, ampliar, panel
     visor.js         la escala, el zoom y los atajos

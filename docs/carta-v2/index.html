@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Carta · La Cava del Llano</title>
+<title>Carta · La Cava del Llano (versión 2.0)</title>
 
 <!-- Inerte mientras haya noindex: su unico consumidor seria un buscador. Se
      mantiene porque si algun dia la carta se publica sin token, ya esta puesta. -->
@@ -45,15 +45,13 @@
      La mesa no es decorativa: es la unica pista de que el QR escaneado es el
      correcto, y el comensal la puede contrastar con el numero de su mesa. -->
 <header class="cabecera">
-  <div class="marca">
+  <p class="restaurante">
     <span class="logo" aria-hidden="true">LC</span>
-    <div>
-      <h1 class="restaurante">La Cava del Llano</h1>
-      <p class="sede">Sede Centro</p>
-    </div>
-  </div>
+    La Cava del Llano <span class="sede">· Sede Centro</span>
+  </p>
+  <h1>Carta</h1>
   <p class="mesa">
-    Mesa 5 · Terraza
+    <data value="5">Mesa 5</data> · Terraza
     <span class="estado"><span class="punto" aria-hidden="true"></span>En la mesa</span>
   </p>
 </header>
@@ -78,52 +76,43 @@
 
       <li>
         <article class="plato">
-          <figure class="foto">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <figcaption>Todavía sin foto</figcaption>
-          </figure>
+          <div class="foto sin-foto" aria-hidden="true"></div>
           <div class="detalle">
             <h3>Empanada de carne</h3>
             <p class="descripcion">Masa de maíz, frita al momento. Va con ají de la casa.</p>
             <p class="precio"><data value="4500">$4.500</data></p>
           </div>
-          <button type="button" class="anadir">Añadir<span class="sr"> Empanada de carne al pedido</span></button>
+          <form method="post" action="/pedido/agregar">
+            <button name="sku" value="ENT-01" class="anadir">Añadir<span class="sr"> Empanada de carne al pedido</span></button>
+          </form>
         </article>
       </li>
 
       <li>
         <article class="plato">
-          <figure class="foto">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <figcaption>Todavía sin foto</figcaption>
-          </figure>
+          <div class="foto sin-foto" aria-hidden="true"></div>
           <div class="detalle">
             <h3>Arepa de huevo</h3>
             <p class="descripcion">Arepa de maíz con huevo dentro, frita en el momento.</p>
             <p class="precio"><data value="8500">$8.500</data></p>
           </div>
-          <button type="button" class="anadir">Añadir<span class="sr"> Arepa de huevo al pedido</span></button>
+          <form method="post" action="/pedido/agregar">
+            <button name="sku" value="ENT-03" class="anadir">Añadir<span class="sr"> Arepa de huevo al pedido</span></button>
+          </form>
         </article>
       </li>
 
       <li>
         <article class="plato">
-          <figure class="foto">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <figcaption>Todavía sin foto</figcaption>
-          </figure>
+          <div class="foto sin-foto" aria-hidden="true"></div>
           <div class="detalle">
             <h3>Patacón con hogao</h3>
             <p class="descripcion">Plátano verde aplastado, con hogao de tomate y cebolla.</p>
             <p class="precio"><data value="14000">$14.000</data></p>
           </div>
-          <button type="button" class="anadir">Añadir<span class="sr"> Patacón con hogao al pedido</span></button>
+          <form method="post" action="/pedido/agregar">
+            <button name="sku" value="ENT-06" class="anadir">Añadir<span class="sr"> Patacón con hogao al pedido</span></button>
+          </form>
         </article>
       </li>
 
@@ -136,35 +125,29 @@
 
       <li>
         <article class="plato">
-          <figure class="foto">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <figcaption>Todavía sin foto</figcaption>
-          </figure>
+          <div class="foto sin-foto" aria-hidden="true"></div>
           <div class="detalle">
             <h3>Bandeja paisa</h3>
             <p class="descripcion">El plato de la casa. Alcanza de sobra si se comparte entre dos.</p>
             <p class="precio"><data value="38000">$38.000</data></p>
           </div>
-          <button type="button" class="anadir">Añadir<span class="sr"> Bandeja paisa al pedido</span></button>
+          <form method="post" action="/pedido/agregar">
+            <button name="sku" value="FUE-01" class="anadir">Añadir<span class="sr"> Bandeja paisa al pedido</span></button>
+          </form>
         </article>
       </li>
 
       <li>
         <article class="plato">
-          <figure class="foto">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <figcaption>Todavía sin foto</figcaption>
-          </figure>
+          <div class="foto sin-foto" aria-hidden="true"></div>
           <div class="detalle">
             <h3>Sancocho de gallina</h3>
             <p class="descripcion">Con yuca, plátano y mazorca. Se sirve con arroz aparte.</p>
             <p class="precio"><data value="32000">$32.000</data></p>
           </div>
-          <button type="button" class="anadir">Añadir<span class="sr"> Sancocho de gallina al pedido</span></button>
+          <form method="post" action="/pedido/agregar">
+            <button name="sku" value="FUE-02" class="anadir">Añadir<span class="sr"> Sancocho de gallina al pedido</span></button>
+          </form>
         </article>
       </li>
 
@@ -174,29 +157,22 @@
            atributo `disabled` — no solo pintado de gris. -->
       <li>
         <article class="plato agotado">
-          <figure class="foto">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <figcaption>Todavía sin foto</figcaption>
-          </figure>
+          <div class="foto sin-foto" aria-hidden="true"></div>
           <div class="detalle">
-            <h3>Mojarra frita <span class="marca-agotado">Agotado</span></h3>
+            <h3>Mojarra frita</h3>
+            <p class="marca-agotado">Agotado hoy</p>
             <p class="descripcion">Mojarra entera, frita al momento del pedido.</p>
             <p class="precio"><data value="42000">$42.000</data></p>
           </div>
-          <button type="button" class="anadir" disabled>Agotado</button>
+          <form method="post" action="/pedido/agregar">
+            <button name="sku" value="FUE-04" class="anadir" disabled>Agotado</button>
+          </form>
         </article>
       </li>
 
       <li>
         <article class="plato">
-          <figure class="foto">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <figcaption>Todavía sin foto</figcaption>
-          </figure>
+          <div class="foto sin-foto" aria-hidden="true"></div>
           <div class="detalle">
             <h3>Churrasco 300 g</h3>
             <p class="descripcion">Lomo de res a la parrilla.</p>
@@ -205,7 +181,9 @@
             <p class="aviso">Hoy sale sin ensalada</p>
             <p class="precio"><data value="46000">$46.000</data></p>
           </div>
-          <button type="button" class="anadir">Añadir<span class="sr"> Churrasco 300 g al pedido</span></button>
+          <form method="post" action="/pedido/agregar">
+            <button name="sku" value="FUE-08" class="anadir">Añadir<span class="sr"> Churrasco 300 g al pedido</span></button>
+          </form>
         </article>
       </li>
 
@@ -218,52 +196,43 @@
 
       <li>
         <article class="plato">
-          <figure class="foto">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <figcaption>Todavía sin foto</figcaption>
-          </figure>
+          <div class="foto sin-foto" aria-hidden="true"></div>
           <div class="detalle">
             <h3>Jugo de lulo</h3>
             <p class="descripcion">Natural, en agua o en leche.</p>
             <p class="precio"><data value="9000">$9.000</data></p>
           </div>
-          <button type="button" class="anadir">Añadir<span class="sr"> Jugo de lulo al pedido</span></button>
+          <form method="post" action="/pedido/agregar">
+            <button name="sku" value="BEB-02" class="anadir">Añadir<span class="sr"> Jugo de lulo al pedido</span></button>
+          </form>
         </article>
       </li>
 
       <li>
         <article class="plato">
-          <figure class="foto">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <figcaption>Todavía sin foto</figcaption>
-          </figure>
+          <div class="foto sin-foto" aria-hidden="true"></div>
           <div class="detalle">
             <h3>Limonada de coco</h3>
             <p class="descripcion">Batida al momento, bien fría.</p>
             <p class="precio"><data value="12000">$12.000</data></p>
           </div>
-          <button type="button" class="anadir">Añadir<span class="sr"> Limonada de coco al pedido</span></button>
+          <form method="post" action="/pedido/agregar">
+            <button name="sku" value="BEB-07" class="anadir">Añadir<span class="sr"> Limonada de coco al pedido</span></button>
+          </form>
         </article>
       </li>
 
       <li>
         <article class="plato">
-          <figure class="foto">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <figcaption>Todavía sin foto</figcaption>
-          </figure>
+          <div class="foto sin-foto" aria-hidden="true"></div>
           <div class="detalle">
             <h3>Gaseosa 400 ml</h3>
             <p class="descripcion">Botella personal.</p>
             <p class="precio"><data value="5000">$5.000</data></p>
           </div>
-          <button type="button" class="anadir">Añadir<span class="sr"> Gaseosa 400 ml al pedido</span></button>
+          <form method="post" action="/pedido/agregar">
+            <button name="sku" value="BEB-11" class="anadir">Añadir<span class="sr"> Gaseosa 400 ml al pedido</span></button>
+          </form>
         </article>
       </li>
 
@@ -276,35 +245,29 @@
 
       <li>
         <article class="plato">
-          <figure class="foto">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <figcaption>Todavía sin foto</figcaption>
-          </figure>
+          <div class="foto sin-foto" aria-hidden="true"></div>
           <div class="detalle">
             <h3>Flan de caramelo</h3>
             <p class="descripcion">Casero, porción individual.</p>
             <p class="precio"><data value="10000">$10.000</data></p>
           </div>
-          <button type="button" class="anadir">Añadir<span class="sr"> Flan de caramelo al pedido</span></button>
+          <form method="post" action="/pedido/agregar">
+            <button name="sku" value="POS-01" class="anadir">Añadir<span class="sr"> Flan de caramelo al pedido</span></button>
+          </form>
         </article>
       </li>
 
       <li>
         <article class="plato">
-          <figure class="foto">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <figcaption>Todavía sin foto</figcaption>
-          </figure>
+          <div class="foto sin-foto" aria-hidden="true"></div>
           <div class="detalle">
             <h3>Postre de natas</h3>
             <p class="descripcion">Tradicional, con uvas pasas.</p>
             <p class="precio"><data value="11000">$11.000</data></p>
           </div>
-          <button type="button" class="anadir">Añadir<span class="sr"> Postre de natas al pedido</span></button>
+          <form method="post" action="/pedido/agregar">
+            <button name="sku" value="POS-02" class="anadir">Añadir<span class="sr"> Postre de natas al pedido</span></button>
+          </form>
         </article>
       </li>
 
@@ -316,7 +279,7 @@
 <!-- Barra fija con el resumen del pedido. Va DESPUES del contenido en el
      orden del documento —para que el lector de pantalla lea primero la carta—
      pero se ancla abajo con CSS. -->
-<a class="resumen" href="../bocetos/3-mi-pedido.html" aria-label="Ver mi pedido: 3 platos, 31.000 pesos">
+<a class="resumen" href="../bocetos/3-mi-pedido.html">
   <span>Ver mi pedido · 3</span>
   <strong><data value="31000">$31.000</data></strong>
 </a>

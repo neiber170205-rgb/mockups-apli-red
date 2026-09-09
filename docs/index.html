@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bocetos &middot; Sistema de pedidos para restaurantes</title>
 <meta name="description" content="Bocetos de las pantallas del sistema de pedidos para restaurantes: plataforma, comensal, mesero, cocina, caja, acceso y administración.">
-<meta name="author" content="Danilo Neiber &middot; FESC">
+<meta name="author" content="Neiber Danilo Araque &middot; FESC">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
   :root{--bg:#f6f8fa;--card:#fff;--line:#dde3ea;--fg:#16232f;--fg2:#5a6b7c;--acc:#12263b;--acc2:#2f6ea8}
@@ -28,6 +28,10 @@
   .b .q{font-size:11.5px;font-weight:500;color:var(--fg2)}
   .b:hover{border-color:var(--acc2);box-shadow:0 3px 12px rgba(20,45,75,.10);transform:translateY(-1px)}
   footer{border-top:1px solid var(--line);padding:22px 24px;color:var(--fg2);font-size:12.5px}
+  footer p{margin:0 0 10px}
+  footer p:last-child{margin:0}
+  footer .cons{max-width:75ch;line-height:1.6}
+  footer a{color:var(--acc2);font-weight:500}
 </style>
 </head>
 <body>
@@ -133,6 +137,12 @@
       </div>
     </section>
 </div></main>
-<footer><div class="w">Desarrollo Básico de Aplicaciones en Red &middot; Unidad 1 &middot; FESC &middot; Cúcuta</div></footer>
+<footer><div class="w">
+  <p class="cons">Además de los bocetos, hay dos páginas <b>construidas</b> en HTML5 y CSS a
+    partir del boceto «1 · Carta», publicadas juntas para poder comparar su código fuente:
+    <a href="carta/">versión 1.0</a>, la auditada, y
+    <a href="carta-v2/">versión 2.0</a>, la reconstruida.</p>
+  <p>Desarrollo Básico de Aplicaciones en Red &middot; Unidad 1 &middot; FESC &middot; Cúcuta</p>
+</div></footer>
 </body>
 </html>
